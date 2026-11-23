@@ -17,7 +17,7 @@
       /* ── Page-specific: Pricing Hero ── */
       .pricing-hero {
         position: relative;
-        min-height: 420px;
+        min-height: 440px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -40,7 +40,7 @@
         position: relative;
         z-index: 2;
         max-width: 720px;
-        padding: 80px 20px 60px;
+        padding: 80px 0 60px;
         color: #fff;
       }
       .pricing-hero-content h1 {
@@ -48,6 +48,7 @@
         font-weight: 600;
         margin-bottom: 16px;
         line-height: 1.2;
+        color: #fff;
       }
       .pricing-hero-content p {
         font-size: 1.15rem;
@@ -56,6 +57,7 @@
         max-width: 560px;
         margin: 0 auto;
         line-height: 1.65;
+        color: #fff;
       }
 
       /* ── Page-specific: Pricing Grid ── */
@@ -297,6 +299,7 @@
         font-size: 2.15rem;
         font-weight: 600;
         margin-bottom: 14px;
+        color: #fff;
       }
       .pricing-cta-banner p {
         font-size: 1.08rem;
@@ -305,6 +308,7 @@
         max-width: 540px;
         margin: 0 auto 32px;
         line-height: 1.65;
+        color: #fff;
       }
       .pricing-cta-buttons {
         display: flex;
@@ -320,6 +324,7 @@
       }
       @media (max-width: 768px) {
         .pricing-hero-content h1 { font-size: 2rem; }
+        .pricing-hero { min-height: 360px; }
         .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
         .insurance-section { grid-template-columns: 1fr; text-align: center; }
         .insurance-image { max-height: 280px; }
@@ -331,6 +336,7 @@
       @media (max-width: 360px) {
         .pricing-hero-content h1 { font-size: 1.6rem; }
         .pricing-hero-content p { font-size: 1rem; }
+        .pricing-hero { min-height: 320px; }
         .insurance-badges-grid { grid-template-columns: repeat(2, 1fr); }
         .trust-indicators { gap: 18px; }
       }
@@ -342,12 +348,14 @@
     <main>
 
       <!-- ═══════════════ 1. HERO BANNER ═══════════════ -->
-      <section class="pricing-hero">
+      <section class="pricing-hero page-hero">
         <div class="pricing-hero-bg"></div>
-        <div class="pricing-hero-overlay"></div>
-        <div class="pricing-hero-content fade-up">
-          <h1>Transparent &amp; Affordable Heart Care</h1>
-          <p>No hidden fees, no surprises — just clear pricing for world-class cardiac diagnostics and consultations tailored to your needs.</p>
+        <div class="pricing-hero-overlay page-hero-overlay"></div>
+        <div class="container">
+          <div class="pricing-hero-content page-hero-content fade-up">
+            <h1>Transparent &amp; Affordable Heart Care</h1>
+            <p>No hidden fees, no surprises — just clear pricing for world-class cardiac diagnostics and consultations tailored to your needs.</p>
+          </div>
         </div>
       </section>
 

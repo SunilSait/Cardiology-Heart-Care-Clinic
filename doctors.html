@@ -17,7 +17,7 @@
       /* ── Page-specific: Doctors Hero ── */
       .doctors-hero {
         position: relative;
-        min-height: 480px;
+        min-height: 440px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -38,7 +38,7 @@
         position: relative;
         z-index: 2;
         max-width: 720px;
-        padding: 80px 24px;
+        padding: 80px 0;
         color: #fff;
       }
       .doctors-hero-content h1 {
@@ -46,12 +46,14 @@
         font-weight: 600;
         margin-bottom: 16px;
         line-height: 1.2;
+        color: #fff;
       }
       .doctors-hero-content p {
         font-size: 1.125rem;
         font-weight: 400;
         opacity: .92;
         line-height: 1.7;
+        color: #fff;
       }
 
       /* ── Doctor Grid Cards ── */
@@ -338,6 +340,7 @@
         font-size: 2.25rem;
         font-weight: 600;
         margin-bottom: 16px;
+        color: #fff;
       }
       .doctors-cta p {
         font-size: 1.1rem;
@@ -346,6 +349,7 @@
         margin: 0 auto 32px;
         opacity: .92;
         line-height: 1.7;
+        color: #fff;
       }
       .doctors-cta .cta-btns {
         display: flex;
@@ -397,7 +401,7 @@
       }
       @media (max-width: 768px) {
         .doctors-hero-content h1 { font-size: 2rem; }
-        .doctors-hero { min-height: 380px; }
+        .doctors-hero { min-height: 360px; }
         .approach-split,
         .research-split { grid-template-columns: 1fr; gap: 32px; }
         .testimonials-grid { grid-template-columns: 1fr; }
@@ -419,12 +423,14 @@
     <main>
 
         <!-- ════════════ 1. HERO BANNER ════════════ -->
-        <section class="doctors-hero">
+        <section class="doctors-hero page-hero">
             <div class="doctors-hero-bg"></div>
-            <div class="doctors-hero-overlay"></div>
-            <div class="doctors-hero-content fade-up">
-                <h1>Meet Our Expert Cardiologists</h1>
-                <p>Our world-class team of board-certified cardiologists combines decades of experience with cutting-edge innovation to deliver compassionate, personalized heart care for every patient.</p>
+            <div class="doctors-hero-overlay page-hero-overlay"></div>
+            <div class="container">
+                <div class="doctors-hero-content page-hero-content fade-up">
+                    <h1>Meet Our Expert Cardiologists</h1>
+                    <p>Our world-class team of board-certified cardiologists combines decades of experience with cutting-edge innovation to deliver compassionate, personalized heart care for every patient.</p>
+                </div>
             </div>
         </section>
 
@@ -578,7 +584,7 @@
                 <div class="expertise-row fade-up">
                     <div class="expertise-card">
                         <div class="ex-number" data-count="150" data-suffix="+">0</div>
-                        <div class="ex-label">Peer-Reviewed Publications</div>
+                        <div class="ex-label">Publications</div>
                         <p class="ex-desc">Research papers published in leading cardiology and medical journals worldwide.</p>
                     </div>
                     <div class="expertise-card">

@@ -48,17 +48,17 @@ const LOGO_SVG = `<svg width="38" height="38" viewBox="0 0 100 100" fill="none" 
 
 /* ---- FontAwesome Icon Helper ---- */
 const ICONS = {
-    sun: '<i class="fas fa-sun"></i>',
-    moon: '<i class="fas fa-moon"></i>',
-    menu: '<i class="fas fa-bars"></i>',
-    x: '<i class="fas fa-xmark"></i>',
-    chevronDown: '<i class="fas fa-chevron-down"></i>',
-    facebook: '<i class="fab fa-facebook-f"></i>',
-    instagram: '<i class="fab fa-instagram"></i>',
-    linkedin: '<i class="fab fa-linkedin-in"></i>',
-    twitter: '<i class="fab fa-x-twitter"></i>',
-    eye: '<i class="fas fa-eye"></i>',
-    eyeOff: '<i class="fas fa-eye-slash"></i>',
+    sun: '<i class="fa-solid fa-sun"></i>',
+    moon: '<i class="fa-solid fa-moon"></i>',
+    menu: '<i class="fa-solid fa-bars"></i>',
+    x: '<i class="fa-solid fa-xmark"></i>',
+    chevronDown: '<i class="fa-solid fa-chevron-down"></i>',
+    facebook: '<i class="fa-brands fa-facebook-f"></i>',
+    instagram: '<i class="fa-brands fa-instagram"></i>',
+    linkedin: '<i class="fa-brands fa-linkedin-in"></i>',
+    twitter: '<i class="fa-brands fa-x-twitter"></i>',
+    eye: '<i class="fa-solid fa-eye"></i>',
+    eyeOff: '<i class="fa-solid fa-eye-slash"></i>',
 };
 
 /* ---- SOCIAL SVGs (for OAuth) ---- */
@@ -120,7 +120,7 @@ function renderNavbar() {
             <div class="nav-actions">
                 <!-- RTL Toggle -->
                 <button onclick="toggleDir()" class="nav-icon-btn" id="rtlToggleNav" aria-label="Toggle layout direction / RTL" title="Toggle RTL">
-                    <span class="dir-indicator dir-label" style="font-size:0.625rem;font-weight:700;">${isRTL ? 'RTL' : 'LTR'}</span>
+                    <span class="dir-indicator dir-label" style="font-size:0.625rem;font-weight:600;">${isRTL ? 'RTL' : 'LTR'}</span>
                 </button>
                 <!-- Theme Toggle -->
                 <button onclick="toggleTheme()" class="nav-icon-btn" id="darkToggleNav" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -148,7 +148,7 @@ function renderNavbar() {
             </div>
             <div class="mob-toggles">
                 <button onclick="toggleDir()" class="nav-icon-btn" id="rtlToggleMob" aria-label="Toggle layout direction / RTL" title="Toggle Direction">
-                    <span class="dir-indicator dir-label" style="font-size:0.625rem;font-weight:700;">${isRTL ? 'RTL' : 'LTR'}</span>
+                    <span class="dir-indicator dir-label" style="font-size:0.625rem;font-weight:600;">${isRTL ? 'RTL' : 'LTR'}</span>
                 </button>
                 <button onclick="toggleTheme()" class="nav-icon-btn" id="darkToggleMob" aria-label="Toggle dark mode" title="Toggle Theme">
                     <span class="theme-icon-wrap">${isDark ? ICONS.sun : ICONS.moon}</span>
@@ -347,7 +347,7 @@ function renderFooter() {
         </div>
     </footer>`;
 
-    const container = document.getElementById('footer-placeholder');
+    const container = document.getElementById('footer-placeholder') || document.getElementById('main-footer');
     if (container) container.innerHTML = html;
 }
 
@@ -377,10 +377,31 @@ window.toggleDir = toggleRTL;
 
 function updateRTLIndicators() {
     const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-    document.querySelectorAll('.dir-indicator').forEach(el => {
+    document.querySelectorAll('.dir-indicator, .dir-label').forEach(el => {
         el.textContent = isRTL ? 'RTL' : 'LTR';
     });
 }
+window.updateDarkIcons = updateDarkIcons;
+window.updateRTLIndicators = updateRTLIndicators;
+
+/* ---- AUTH & UTILITY HELPER ---- */
+function initAuthPage() {
+    updateDarkIcons();
+    updateRTLIndicators();
+}
+window.initAuthPage = initAuthPage;
+
+function togglePasswordVisibility(inputId, btnEl) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    const iconWrap = (btnEl && btnEl.querySelector('.pw-icon')) || btnEl;
+    if (iconWrap) {
+        iconWrap.innerHTML = isPassword ? ICONS.eyeOff : ICONS.eye;
+    }
+}
+window.togglePasswordVisibility = togglePasswordVisibility;
 
 /* ---- FADE-UP Observer ---- */
 function initFadeUp() {
