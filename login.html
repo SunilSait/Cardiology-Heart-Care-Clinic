@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In — CardioVita Heart Care</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=1">
+    <script>(function(){try{if(localStorage.getItem('cv-dark')==='1'){document.documentElement.classList.add('dark')}if(localStorage.getItem('cv-rtl')==='1'){document.documentElement.setAttribute('dir','rtl')}}catch(e){}})();</script>
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-top-controls">
+            <button class="nav-icon-btn" id="rtlToggle" onclick="toggleDir()" aria-label="Toggle RTL"><span class="dir-indicator" style="font-size:0.625rem;font-weight:600;">LTR</span></button>
+            <button class="nav-icon-btn" id="darkToggle" onclick="toggleTheme()" aria-label="Toggle dark mode"><span class="theme-icon-wrap"><i class="fas fa-moon"></i></span></button>
+        </div>
+        <div class="auth-card">
+            <div class="auth-logo-wrap">
+                <a href="index.html" aria-label="CardioVita Home" id="authLogoLink"></a>
+            </div>
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Sign in to access your CardioVita patient portal</p>
+            <form onsubmit="event.preventDefault(); alert('Sign in successful! Redirecting to dashboard...'); window.location.href='dashboard.html';">
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" class="form-input" placeholder="patient@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <div class="password-wrap">
+                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" aria-label="Toggle password visibility"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+                <div class="form-row-inline">
+                    <label class="form-check"><input type="checkbox"> Remember me</label>
+                    <a href="coming-soon.html" class="forgot-link">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary w-full btn-lg">Sign In</button>
+            </form>
+            <div class="auth-divider"><span>OR CONTINUE WITH</span></div>
+            <div class="social-login-grid" id="socialBtns"></div>
+            <p class="auth-footer-text">Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </div>
+    <script src="components.js"></script>
+    <script>
+        // Render logo
+        document.getElementById('authLogoLink').innerHTML = LOGO_SVG + '<div class="nav-logo-text"><span class="brand-top">Heart Care</span><span class="brand-bottom">CardioVita</span></div>';
+        document.getElementById('authLogoLink').classList.add('nav-logo');
+        // Render social buttons
+        document.getElementById('socialBtns').innerHTML = `
+            <button type="button" class="social-btn">${GOOGLE_SVG}<span>Continue with Google</span></button>
+            <button type="button" class="social-btn">${APPLE_SVG}<span>Continue with Apple</span></button>
+            <button type="button" class="social-btn">${FACEBOOK_SVG}<span>Continue with Facebook</span></button>`;
+        // Init toggles
+        initPasswordToggles();
+        updateDarkIcons();
+        updateRTLIndicators();
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up — CardioVita Heart Care</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=1">
+    <script>(function(){try{if(localStorage.getItem('cv-dark')==='1'){document.documentElement.classList.add('dark')}if(localStorage.getItem('cv-rtl')==='1'){document.documentElement.setAttribute('dir','rtl')}}catch(e){}})();</script>
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-top-controls">
+            <button class="nav-icon-btn" id="rtlToggle" onclick="toggleDir()" aria-label="Toggle RTL"><span class="dir-indicator" style="font-size:0.625rem;font-weight:600;">LTR</span></button>
+            <button class="nav-icon-btn" id="darkToggle" onclick="toggleTheme()" aria-label="Toggle dark mode"><span class="theme-icon-wrap"><i class="fas fa-moon"></i></span></button>
+        </div>
+        <div class="auth-card">
+            <div class="auth-logo-wrap">
+                <a href="index.html" aria-label="CardioVita Home" id="authLogoLink"></a>
+            </div>
+            <h1 class="auth-title">Create Your Account</h1>
+            <p class="auth-subtitle">Join CardioVita to manage your heart health</p>
+            <form onsubmit="event.preventDefault(); alert('Account created! Redirecting to sign in...'); window.location.href='login.html';">
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" class="form-input" placeholder="e.g. Robert Chambers" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" class="form-input" placeholder="patient@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" class="form-input" placeholder="(555) 000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <div class="password-wrap">
+                        <input type="password" id="password" class="form-input" placeholder="Create a strong password" required>
+                        <button type="button" class="password-toggle" aria-label="Toggle password visibility"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                    <div class="password-wrap">
+                        <input type="password" id="confirmPassword" class="form-input" placeholder="Re-enter your password" required>
+                        <button type="button" class="password-toggle" aria-label="Toggle password visibility"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+                <div style="margin-bottom:1.25rem;">
+                    <label class="form-check"><input type="checkbox" required> I agree to the <a href="coming-soon.html" style="color:var(--primary);font-weight:500;">Terms of Service</a> and <a href="coming-soon.html" style="color:var(--primary);font-weight:500;">Privacy Policy</a></label>
+                </div>
+                <button type="submit" class="btn btn-primary w-full btn-lg">Create Account</button>
+            </form>
+            <div class="auth-divider"><span>OR SIGN UP WITH</span></div>
+            <div class="social-login-grid" id="socialBtns"></div>
+            <p class="auth-footer-text">Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+    </div>
+    <script src="components.js"></script>
+    <script>
+        document.getElementById('authLogoLink').innerHTML = LOGO_SVG + '<div class="nav-logo-text"><span class="brand-top">Heart Care</span><span class="brand-bottom">CardioVita</span></div>';
+        document.getElementById('authLogoLink').classList.add('nav-logo');
+        document.getElementById('socialBtns').innerHTML = `
+            <button type="button" class="social-btn">${GOOGLE_SVG}<span>Sign up with Google</span></button>
+            <button type="button" class="social-btn">${APPLE_SVG}<span>Sign up with Apple</span></button>
+            <button type="button" class="social-btn">${FACEBOOK_SVG}<span>Sign up with Facebook</span></button>`;
+        initPasswordToggles();
+        updateDarkIcons();
+        updateRTLIndicators();
+    </script>
+</body>
+</html>

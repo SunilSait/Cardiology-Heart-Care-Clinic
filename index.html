@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      try{if(localStorage.getItem('cv-dark')==='1')document.documentElement.classList.add('dark');if(localStorage.getItem('cv-rtl')==='1')document.documentElement.setAttribute('dir','rtl');}catch(e){}
+    </script>
+    <title>CardioVita — Expert Heart Care & Cardiology</title>
+    <style>
+        .trust-row{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;padding:1.5rem 0}
+        .trust-item{display:flex;align-items:center;gap:.6rem;font-size:.875rem;font-weight:500;color:var(--text)}
+        .trust-item i{font-size:1.25rem;color:var(--primary)}
+        .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+        .service-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all var(--transition-normal)}
+        .service-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+        .service-card-img{width:100%;height:200px;object-fit:cover}
+        .service-card-body{padding:1.25rem}
+        .service-card-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;margin-bottom:.75rem}
+        .service-card-body h3{font-size:1.1rem;margin-bottom:.4rem}
+        .service-card-body p{font-size:.875rem;margin-bottom:.75rem}
+        .service-card-link{font-size:.84375rem;font-weight:600;color:var(--primary);display:inline-flex;align-items:center;gap:.35rem}
+        .about-split{display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:center}
+        .about-img{border-radius:var(--radius-lg);width:100%;height:400px;object-fit:cover}
+        .about-features{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+        .about-feat{display:flex;align-items:flex-start;gap:.75rem}
+        .about-feat-icon{width:36px;height:36px;border-radius:50%;background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:.9rem;flex-shrink:0}
+        .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
+        .process-card{text-align:center;position:relative}
+        .process-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.1rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
+        .process-img{width:100%;height:160px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:.75rem}
+        .process-card h4{font-size:1rem;margin-bottom:.35rem}
+        .process-card p{font-size:.84375rem}
+        .stats-section{position:relative;background-size:cover;background-position:center;padding:4rem 0}
+        .stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.92),rgba(30,58,95,.9))}
+        .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
+        .stat-value{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
+        .stat-label{font-size:.9375rem;font-weight:450;opacity:.9}
+        .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .testimonial-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;transition:all var(--transition-normal)}
+        .testimonial-card:hover{border-color:var(--primary);box-shadow:var(--shadow-md)}
+        .testimonial-stars{color:#f59e0b;font-size:.875rem;margin-bottom:.75rem}
+        .testimonial-text{font-size:.9375rem;font-weight:400;color:var(--text-light);line-height:1.65;margin-bottom:1.25rem;font-style:italic}
+        .testimonial-author{display:flex;align-items:center;gap:.75rem}
+        .testimonial-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover}
+        .testimonial-info h4{font-size:.9375rem;margin-bottom:.15rem}
+        .testimonial-info p{font-size:.8125rem;color:var(--text-muted)}
+        .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .blog-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all var(--transition-normal)}
+        .blog-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+        .blog-card-img{width:100%;height:200px;object-fit:cover}
+        .blog-card-body{padding:1.25rem}
+        .blog-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;font-size:.8125rem}
+        .blog-category{background:rgba(185,28,58,.08);color:var(--primary);padding:.2rem .6rem;border-radius:var(--radius-full);font-weight:600;font-size:.75rem}
+        .blog-date{color:var(--text-muted);font-weight:400}
+        .blog-card-body h3{font-size:1.05rem;margin-bottom:.4rem}
+        .blog-card-body>p{font-size:.875rem;margin-bottom:.75rem}
+        .cta-banner{position:relative;background-size:cover;background-position:center;padding:5rem 0;text-align:center}
+        .cta-banner-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.93),rgba(30,58,95,.91))}
+        .cta-banner-content{position:relative;z-index:2;color:#fff;max-width:700px;margin:0 auto}
+        .cta-banner-content h2{color:#fff;font-size:2rem;margin-bottom:.75rem}
+        .cta-banner-content p{color:rgba(255,255,255,.9);font-size:1.0625rem;margin-bottom:1.75rem}
+        @media(max-width:1024px){.service-grid,.process-grid,.stats-grid{grid-template-columns:repeat(2,1fr)}.about-split{grid-template-columns:1fr}.testimonial-grid,.blog-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.service-grid,.testimonial-grid,.blog-grid{grid-template-columns:1fr}.trust-row{gap:1rem}.about-split{gap:1.75rem}.about-img{height:280px}}
+        @media(max-width:360px){.process-grid,.stats-grid{grid-template-columns:1fr}.trust-row{flex-direction:column;align-items:center}}
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <main>
+
+        <!-- HERO SLIDER -->
+        <section class="hero-slider">
+            <div class="hero-slide active">
+                <img src="assets/images/hero-heart-care.jpg" alt="Heart Care" class="hero-slide-bg">
+                <div class="hero-slide-overlay"></div>
+                <div class="hero-slide-content container">
+                    <h1 class="hero-slide-title">Your Heart Deserves<br>the Best Care</h1>
+                    <p class="hero-slide-subtitle">World-class cardiology services with compassionate, patient-centered care. From prevention to advanced treatment, we're here for every beat.</p>
+                    <div class="hero-btn-group">
+                        <a href="services.html" class="btn btn-white btn-lg">Our Services</a>
+                        <a href="contact.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="assets/images/hero-diagnostics.jpg" alt="Diagnostics" class="hero-slide-bg">
+                <div class="hero-slide-overlay"></div>
+                <div class="hero-slide-content container">
+                    <h1 class="hero-slide-title">Advanced Cardiac<br>Diagnostics</h1>
+                    <p class="hero-slide-subtitle">State-of-the-art imaging, ECG monitoring, and stress testing to detect and diagnose heart conditions early with precision.</p>
+                    <div class="hero-btn-group">
+                        <a href="services.html" class="btn btn-white btn-lg">Learn More</a>
+                        <a href="doctors.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">Meet Our Doctors</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="assets/images/hero-surgery.jpg" alt="Surgery" class="hero-slide-bg">
+                <div class="hero-slide-overlay"></div>
+                <div class="hero-slide-content container">
+                    <h1 class="hero-slide-title">Interventional<br>Cardiology Excellence</h1>
+                    <p class="hero-slide-subtitle">Minimally invasive procedures including angioplasty, stenting, and electrophysiology performed by board-certified specialists.</p>
+                    <div class="hero-btn-group">
+                        <a href="pricing.html" class="btn btn-white btn-lg">View Pricing</a>
+                        <a href="contact.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-nav">
+                <button class="hero-arrow-btn" id="heroPrevBtn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="hero-arrow-btn" id="heroNextBtn" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="hero-dots">
+                <button class="hero-dot active" aria-label="Slide 1"></button>
+                <button class="hero-dot" aria-label="Slide 2"></button>
+                <button class="hero-dot" aria-label="Slide 3"></button>
+            </div>
+        </section>
+
+        <!-- TRUST BADGES -->
+        <section class="section">
+            <div class="container">
+                <div class="trust-row fade-up">
+                    <div class="trust-item"><i class="fas fa-award"></i><span>JCI Accredited</span></div>
+                    <div class="trust-item"><i class="fas fa-users"></i><span>50K+ Patients</span></div>
+                    <div class="trust-item"><i class="fas fa-clock"></i><span>25+ Years</span></div>
+                    <div class="trust-item"><i class="fas fa-phone-volume"></i><span>24/7 Emergency</span></div>
+                    <div class="trust-item"><i class="fas fa-certificate"></i><span>Board Certified</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES GRID -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-heartbeat"></i> Our Services</span>
+                    <h2 class="section-title">Comprehensive Heart Care Services</h2>
+                    <p class="section-desc">From routine checkups to complex interventions, our expert team provides complete cardiovascular care for every stage of life.</p>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card fade-up">
+                        <img src="assets/images/service-ecg.jpg" alt="ECG Monitoring" class="service-card-img">
+                        <div class="service-card-body">
+                            <div class="service-card-icon"><i class="fas fa-wave-square"></i></div>
+                            <h3>ECG & Monitoring</h3>
+                            <p>Continuous cardiac monitoring and electrocardiogram services for accurate heart rhythm analysis.</p>
+                            <a href="services.html" class="service-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-up">
+                        <img src="assets/images/service-echo.jpg" alt="Echocardiography" class="service-card-img">
+                        <div class="service-card-body">
+                            <div class="service-card-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <h3>Echocardiography</h3>
+                            <p>Non-invasive ultrasound imaging to assess heart structure, valves, and blood flow in real time.</p>
+                            <a href="services.html" class="service-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-up">
+                        <img src="assets/images/service-catheter.jpg" alt="Catheterization" class="service-card-img">
+                        <div class="service-card-body">
+                            <div class="service-card-icon"><i class="fas fa-syringe"></i></div>
+                            <h3>Cardiac Catheterization</h3>
+                            <p>Minimally invasive diagnostic and treatment procedures for coronary artery disease.</p>
+                            <a href="services.html" class="service-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-up">
+                        <img src="assets/images/service-stress-test.jpg" alt="Stress Testing" class="service-card-img">
+                        <div class="service-card-body">
+                            <div class="service-card-icon"><i class="fas fa-running"></i></div>
+                            <h3>Stress Testing</h3>
+                            <p>Exercise and pharmacological stress tests to evaluate heart performance under exertion.</p>
+                            <a href="services.html" class="service-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SPLIT -->
+        <section class="section">
+            <div class="container">
+                <div class="about-split">
+                    <div class="fade-up">
+                        <img src="assets/images/about-clinic.jpg" alt="CardioVita Clinic" class="about-img">
+                    </div>
+                    <div class="fade-up">
+                        <span class="section-tag"><i class="fas fa-stethoscope"></i> About Us</span>
+                        <h2 class="section-title">Leading the Way in Heart Health</h2>
+                        <p class="section-desc">For over 25 years, CardioVita has been at the forefront of cardiovascular medicine, combining cutting-edge technology with compassionate care to deliver exceptional outcomes for our patients.</p>
+                        <div class="about-features">
+                            <div class="about-feat">
+                                <div class="about-feat-icon"><i class="fas fa-user-md"></i></div>
+                                <div>
+                                    <h4 style="font-size:.9375rem;margin-bottom:.15rem">Expert Cardiologists</h4>
+                                    <p style="font-size:.84375rem">Board-certified specialists with decades of combined experience.</p>
+                                </div>
+                            </div>
+                            <div class="about-feat">
+                                <div class="about-feat-icon"><i class="fas fa-microscope"></i></div>
+                                <div>
+                                    <h4 style="font-size:.9375rem;margin-bottom:.15rem">Advanced Technology</h4>
+                                    <p style="font-size:.84375rem">State-of-the-art diagnostic and interventional equipment.</p>
+                                </div>
+                            </div>
+                            <div class="about-feat">
+                                <div class="about-feat-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                                <div>
+                                    <h4 style="font-size:.9375rem;margin-bottom:.15rem">Patient-First Approach</h4>
+                                    <p style="font-size:.84375rem">Personalized treatment plans tailored to your unique needs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="about.html" class="btn btn-primary">Learn More About Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS PROCESS -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-list-check"></i> How It Works</span>
+                    <h2 class="section-title">Your Journey to Better Heart Health</h2>
+                    <p class="section-desc">Our streamlined process ensures you receive prompt, thorough, and personalized cardiac care from start to finish.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-card fade-up">
+                        <div class="process-num">1</div>
+                        <img src="assets/images/process-step1.jpg" alt="Book Appointment" class="process-img">
+                        <h4>Book Appointment</h4>
+                        <p>Schedule your visit online or call our team for a convenient appointment time.</p>
+                    </div>
+                    <div class="process-card fade-up">
+                        <div class="process-num">2</div>
+                        <img src="assets/images/process-step2.jpg" alt="Initial Assessment" class="process-img">
+                        <h4>Initial Assessment</h4>
+                        <p>Comprehensive evaluation including medical history review and diagnostic tests.</p>
+                    </div>
+                    <div class="process-card fade-up">
+                        <div class="process-num">3</div>
+                        <img src="assets/images/process-step3.jpg" alt="Treatment Plan" class="process-img">
+                        <h4>Treatment Plan</h4>
+                        <p>Your cardiologist creates a customized treatment plan suited to your condition.</p>
+                    </div>
+                    <div class="process-card fade-up">
+                        <div class="process-num">4</div>
+                        <img src="assets/images/process-step4.jpg" alt="Follow-Up Care" class="process-img">
+                        <h4>Follow-Up Care</h4>
+                        <p>Ongoing monitoring and follow-up visits to track your progress and recovery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATISTICS COUNTER -->
+        <section class="stats-section" style="background-image:url('assets/images/stats-background.jpg')">
+            <div class="stats-overlay"></div>
+            <div class="container">
+                <div class="stats-grid fade-up">
+                    <div>
+                        <div class="stat-value" data-count="25" data-suffix="+">0</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div>
+                        <div class="stat-value" data-count="50000" data-suffix="+">0</div>
+                        <div class="stat-label">Patients Treated</div>
+                    </div>
+                    <div>
+                        <div class="stat-value" data-count="15" data-suffix="+">0</div>
+                        <div class="stat-label">Expert Cardiologists</div>
+                    </div>
+                    <div>
+                        <div class="stat-value" data-count="98" data-suffix="%">0</div>
+                        <div class="stat-label">Patient Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-quote-left"></i> Testimonials</span>
+                    <h2 class="section-title">What Our Patients Say</h2>
+                    <p class="section-desc">Real stories from patients whose lives have been transformed by our dedicated cardiac care team.</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card fade-up">
+                        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="testimonial-text">"After my heart attack, Dr. Mitchell and the CardioVita team saved my life. Their quick response and expert care gave me a second chance. I'm now healthier than ever."</p>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonial-1.jpg" alt="Michael R." class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Michael R.</h4>
+                                <p>Heart Attack Recovery</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-up">
+                        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="testimonial-text">"The comprehensive cardiac screening detected an issue I didn't even know I had. Thanks to early detection, I was treated before it became serious. Truly grateful."</p>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonial-2.jpg" alt="Sarah L." class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Sarah L.</h4>
+                                <p>Preventive Screening</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-up">
+                        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div>
+                        <p class="testimonial-text">"Living with atrial fibrillation was challenging until I found CardioVita. Dr. Chen's electrophysiology expertise changed my life. I finally feel normal again."</p>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonial-3.jpg" alt="David K." class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>David K.</h4>
+                                <p>Atrial Fibrillation Treatment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ ACCORDION -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-circle-question"></i> FAQ</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-desc">Find answers to common questions about our cardiology services, appointments, and patient care.</p>
+                </div>
+                <div style="max-width:800px;margin:0 auto">
+                    <div class="faq-item active fade-up">
+                        <button class="faq-question">
+                            <span>What symptoms should prompt a visit to a cardiologist?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You should see a cardiologist if you experience chest pain, shortness of breath, dizziness, irregular heartbeat, persistent fatigue, swelling in legs or ankles, or if you have risk factors like high blood pressure, diabetes, or a family history of heart disease.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-up">
+                        <button class="faq-question">
+                            <span>What cardiac services does CardioVita offer?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We offer comprehensive services including ECG monitoring, echocardiography, cardiac catheterization, stress testing, electrophysiology studies, nuclear cardiology, preventive screenings, cardiac rehabilitation, and emergency cardiac care.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-up">
+                        <button class="faq-question">
+                            <span>Do you accept health insurance?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we accept most major health insurance plans including Aetna, BlueCross BlueShield, Cigna, UnitedHealthcare, Humana, and Medicare. Please contact our billing team to verify your specific coverage before your visit.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-up">
+                        <button class="faq-question">
+                            <span>How do I schedule an appointment?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You can schedule an appointment by calling +1 (800) 432-7428, using our online booking system through the patient dashboard, or visiting our contact page. We offer both in-person and telehealth consultations.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-up">
+                        <button class="faq-question">
+                            <span>What should I do in a cardiac emergency?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>If you or someone else is experiencing a cardiac emergency such as severe chest pain, difficulty breathing, or loss of consciousness, call 911 immediately. Our emergency cardiac unit is available 24/7 for urgent cases.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG PREVIEW -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-newspaper"></i> Health Blog</span>
+                    <h2 class="section-title">Latest Heart Health Insights</h2>
+                    <p class="section-desc">Stay informed with expert articles on cardiovascular health, prevention tips, and the latest advancements in cardiac care.</p>
+                </div>
+                <div class="blog-grid">
+                    <div class="blog-card fade-up">
+                        <img src="assets/images/blog-cholesterol.jpg" alt="Cholesterol Management" class="blog-card-img">
+                        <div class="blog-card-body">
+                            <div class="blog-meta">
+                                <span class="blog-category">Prevention</span>
+                                <span class="blog-date">Nov 15, 2024</span>
+                            </div>
+                            <h3>Understanding Cholesterol: What Your Numbers Really Mean</h3>
+                            <p>Learn how to interpret your cholesterol levels and what lifestyle changes can improve your heart health significantly.</p>
+                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card fade-up">
+                        <img src="assets/images/blog-exercise.jpg" alt="Heart Exercise" class="blog-card-img">
+                        <div class="blog-card-body">
+                            <div class="blog-meta">
+                                <span class="blog-category">Wellness</span>
+                                <span class="blog-date">Nov 8, 2024</span>
+                            </div>
+                            <h3>The Best Exercises for a Healthy Heart at Any Age</h3>
+                            <p>Discover the most effective cardiovascular exercises recommended by our cardiologists for optimal heart fitness.</p>
+                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card fade-up">
+                        <img src="assets/images/blog-diet.jpg" alt="Heart-Healthy Diet" class="blog-card-img">
+                        <div class="blog-card-body">
+                            <div class="blog-meta">
+                                <span class="blog-category">Nutrition</span>
+                                <span class="blog-date">Oct 28, 2024</span>
+                            </div>
+                            <h3>Heart-Healthy Diet: Foods That Protect Your Cardiovascular System</h3>
+                            <p>A comprehensive guide to foods that lower blood pressure, reduce inflammation, and support overall cardiac wellness.</p>
+                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <section class="cta-banner" style="background-image:url('assets/images/cta-heart-bg.jpg')">
+            <div class="cta-banner-overlay"></div>
+            <div class="cta-banner-content">
+                <h2>Take the First Step Toward a Healthier Heart</h2>
+                <p>Don't wait for symptoms. Schedule your comprehensive cardiac screening today and gain peace of mind about your heart health.</p>
+                <div class="hero-btn-group" style="justify-content:center">
+                    <a href="contact.html" class="btn btn-white btn-lg">Book a Consultation</a>
+                    <a href="pricing.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">View Pricing Plans</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="components.js"></script>
+</body>
+</html>

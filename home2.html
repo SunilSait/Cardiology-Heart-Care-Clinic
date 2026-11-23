@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      try{if(localStorage.getItem('cv-dark')==='1')document.documentElement.classList.add('dark');if(localStorage.getItem('cv-rtl')==='1')document.documentElement.setAttribute('dir','rtl');}catch(e){}
+    </script>
+    <title>CardioVita — Premium Heart Care Experience</title>
+    <style>
+        .h2-hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;min-height:520px;padding:3rem 0}
+        .h2-hero-text h1{font-size:2.75rem;line-height:1.15;margin-bottom:1rem}
+        .h2-hero-text p{font-size:1.0625rem;margin-bottom:1.75rem}
+        .h2-hero-img-wrap{position:relative}
+        .h2-hero-img{width:100%;height:460px;object-fit:cover;border-radius:var(--radius-xl)}
+        .h2-hero-stat{position:absolute;bottom:1.5rem;left:-1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:.85rem 1.15rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:.6rem}
+        [dir="rtl"] .h2-hero-stat{left:auto;right:-1.5rem}
+        .h2-hero-stat i{color:var(--primary);font-size:1.25rem}
+        .h2-hero-stat .stat-num{font-size:1.25rem;font-weight:600;color:var(--text)}
+        .h2-hero-stat .stat-txt{font-size:.75rem;color:var(--text-muted)}
+        .specialty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .specialty-card{text-align:center;padding:2rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal)}
+        .specialty-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+        .specialty-icon{width:60px;height:60px;border-radius:50%;background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.35rem;margin:0 auto .85rem}
+        .specialty-card h3{font-size:1.05rem;margin-bottom:.4rem}
+        .specialty-card p{font-size:.84375rem}
+        .zigzag-item{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
+        .zigzag-item:last-child{margin-bottom:0}
+        .zigzag-item.reverse{direction:rtl}
+        .zigzag-item.reverse>*{direction:ltr}
+        .zigzag-img{width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg)}
+        .zigzag-text h3{font-size:1.35rem;margin-bottom:.6rem}
+        .zigzag-text p{font-size:.9375rem;margin-bottom:1rem}
+        .zigzag-features{display:flex;flex-direction:column;gap:.5rem}
+        .zigzag-feat{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--text-light)}
+        .zigzag-feat i{color:var(--primary);font-size:.8rem;width:16px}
+        .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+        .why-card{text-align:center;padding:2rem}
+        .why-icon{width:64px;height:64px;border-radius:var(--radius-lg);background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.5rem;margin:0 auto 1rem}
+        .why-card h3{font-size:1.1rem;margin-bottom:.5rem}
+        .why-card p{font-size:.875rem}
+        .journey-section{position:relative}
+        .journey-timeline{display:flex;flex-direction:column;gap:2rem;max-width:700px;margin:0 auto;position:relative}
+        .journey-timeline::before{content:'';position:absolute;left:24px;top:0;bottom:0;width:2px;background:var(--primary)}
+        [dir="rtl"] .journey-timeline::before{left:auto;right:24px}
+        .journey-step{display:flex;gap:1.25rem;position:relative}
+        .journey-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1}
+        .journey-step-content{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem;flex:1}
+        .journey-step-content h4{font-size:1rem;margin-bottom:.3rem}
+        .journey-step-content p{font-size:.84375rem}
+        .h2-stats{position:relative;background-size:cover;background-position:center;padding:4rem 0}
+        .h2-stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,58,95,.92),rgba(185,28,58,.88))}
+        .h2-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
+        .h2-stat-val{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
+        .h2-stat-lbl{font-size:.9375rem;font-weight:450;opacity:.9}
+        .awards-badges{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem}
+        .award-badge{text-align:center;padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);transition:all var(--transition-normal)}
+        .award-badge:hover{border-color:var(--primary);transform:translateY(-3px)}
+        .award-badge i{font-size:1.75rem;color:var(--primary);margin-bottom:.6rem;display:block}
+        .award-badge h4{font-size:.9375rem;margin-bottom:.2rem}
+        .award-badge p{font-size:.8125rem;color:var(--text-muted)}
+        .spotlight-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+        .spotlight-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;height:320px}
+        .spotlight-card img{width:100%;height:100%;object-fit:cover}
+        .spotlight-caption{position:absolute;bottom:0;left:0;right:0;padding:1.25rem;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff}
+        .spotlight-caption h3{font-size:1.1rem;margin-bottom:.2rem;color:#fff}
+        .spotlight-caption p{font-size:.84375rem;color:rgba(255,255,255,.85)}
+        .h2-testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .h2-testimonial{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;position:relative;transition:all var(--transition-normal)}
+        .h2-testimonial:hover{border-color:var(--primary);box-shadow:var(--shadow-md)}
+        .h2-quote-mark{font-size:3rem;color:var(--primary);opacity:.2;line-height:1;margin-bottom:.5rem}
+        .h2-testimonial p{font-size:.9375rem;font-style:italic;color:var(--text-light);line-height:1.65;margin-bottom:1rem}
+        .h2-testimonial-author{display:flex;align-items:center;gap:.65rem}
+        .h2-testimonial-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
+        .h2-testimonial-info h4{font-size:.875rem;margin-bottom:.1rem}
+        .h2-testimonial-info span{font-size:.75rem;color:var(--text-muted)}
+        .newsletter-section{position:relative;min-height:360px;background-size:cover;background-position:center;display:flex;align-items:center}
+        .newsletter-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.92),rgba(30,58,95,.9))}
+        .newsletter-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:560px;margin:0 auto}
+        .newsletter-content h2{color:#fff;margin-bottom:.6rem}
+        .newsletter-content p{color:rgba(255,255,255,.88);margin-bottom:1.5rem}
+        .newsletter-form{display:flex;gap:.5rem;max-width:440px;margin:0 auto}
+        .newsletter-input{flex:1;padding:.75rem 1rem;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:.9375rem;font-family:var(--font)}
+        .newsletter-input::placeholder{color:rgba(255,255,255,.5)}
+        .newsletter-input:focus{outline:none;border-color:rgba(255,255,255,.5)}
+        @media(max-width:1024px){.h2-hero{grid-template-columns:1fr;gap:2rem;min-height:auto}.h2-hero-img{height:360px}.specialty-grid,.why-grid,.awards-badges,.h2-stats-grid{grid-template-columns:repeat(2,1fr)}.zigzag-item,.zigzag-item.reverse{grid-template-columns:1fr;direction:ltr}.spotlight-grid{grid-template-columns:1fr}.h2-testimonial-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.specialty-grid,.why-grid,.h2-testimonial-grid{grid-template-columns:1fr}.awards-badges{grid-template-columns:repeat(2,1fr)}.h2-hero-img{height:280px}.zigzag-img{height:260px}.spotlight-card{height:240px}.newsletter-form{flex-direction:column}}
+        @media(max-width:360px){.h2-stats-grid,.awards-badges{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <main>
+
+        <!-- SPLIT HERO -->
+        <section class="section">
+            <div class="container">
+                <div class="h2-hero">
+                    <div class="fade-up">
+                        <span class="badge badge-primary" style="margin-bottom:1rem"><i class="fas fa-heart-pulse"></i> Premium Heart Care</span>
+                        <h1>Advanced Cardiology for a Healthier Tomorrow</h1>
+                        <p>Experience the finest in cardiovascular medicine. Our world-renowned specialists use cutting-edge technology and evidence-based approaches to protect and restore your heart health.</p>
+                        <div class="hero-btn-group">
+                            <a href="contact.html" class="btn btn-primary btn-lg">Book Consultation</a>
+                            <a href="services.html" class="btn btn-outline btn-lg">Explore Services</a>
+                        </div>
+                    </div>
+                    <div class="h2-hero-img-wrap fade-up">
+                        <img src="assets/images/hero2-operating.jpg" alt="Advanced Cardiology" class="h2-hero-img">
+                        <div class="h2-hero-stat">
+                            <i class="fas fa-heart-pulse"></i>
+                            <div>
+                                <div class="stat-num">50K+</div>
+                                <div class="stat-txt">Patients Treated</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPECIALTY CARDS -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-stethoscope"></i> Our Specialties</span>
+                    <h2 class="section-title">Comprehensive Cardiac Specializations</h2>
+                    <p class="section-desc">Our multidisciplinary team covers every aspect of cardiovascular care, from prevention to complex interventions.</p>
+                </div>
+                <div class="specialty-grid">
+                    <div class="specialty-card fade-up">
+                        <div class="specialty-icon"><i class="fas fa-syringe"></i></div>
+                        <h3>Interventional Cardiology</h3>
+                        <p>Minimally invasive catheter-based procedures for coronary artery disease and structural heart conditions.</p>
+                    </div>
+                    <div class="specialty-card fade-up">
+                        <div class="specialty-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Electrophysiology</h3>
+                        <p>Advanced diagnosis and treatment of heart rhythm disorders including ablation and pacemaker implantation.</p>
+                    </div>
+                    <div class="specialty-card fade-up">
+                        <div class="specialty-icon"><i class="fas fa-shield-heart"></i></div>
+                        <h3>Preventive Cardiology</h3>
+                        <p>Risk assessment, lifestyle modification, and early detection programs to prevent cardiovascular disease.</p>
+                    </div>
+                    <div class="specialty-card fade-up">
+                        <div class="specialty-icon"><i class="fas fa-dumbbell"></i></div>
+                        <h3>Cardiac Rehabilitation</h3>
+                        <p>Supervised exercise programs and lifestyle counseling to aid recovery after cardiac events or surgery.</p>
+                    </div>
+                    <div class="specialty-card fade-up">
+                        <div class="specialty-icon"><i class="fas fa-lungs"></i></div>
+                        <h3>Vascular Surgery</h3>
+                        <p>Surgical and endovascular treatment of conditions affecting blood vessels throughout the body.</p>
+                    </div>
+                    <div class="specialty-card fade-up">
+                        <div class="specialty-icon"><i class="fas fa-heart-crack"></i></div>
+                        <h3>Heart Failure Management</h3>
+                        <p>Comprehensive care programs for chronic heart failure, including advanced device therapies and transplant evaluation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNOLOGY SHOWCASE (ZIGZAG) -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-microchip"></i> Technology</span>
+                    <h2 class="section-title">State-of-the-Art Technology</h2>
+                    <p class="section-desc">We invest in the most advanced cardiac technology to ensure precise diagnostics and effective treatments.</p>
+                </div>
+                <div class="zigzag-item fade-up">
+                    <div>
+                        <img src="assets/images/h2-tech-lab.jpg" alt="Advanced Lab" class="zigzag-img">
+                    </div>
+                    <div class="zigzag-text">
+                        <h3>Advanced Cardiac Laboratory</h3>
+                        <p>Our fully equipped cardiac lab enables real-time imaging and minimally invasive diagnostic procedures with unmatched precision.</p>
+                        <div class="zigzag-features">
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> 3D Cardiac Mapping Systems</div>
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> AI-Assisted Diagnostic Tools</div>
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> Digital Hemodynamic Monitoring</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zigzag-item reverse fade-up">
+                    <div>
+                        <img src="assets/images/equipment-mri.jpg" alt="Cardiac MRI" class="zigzag-img">
+                    </div>
+                    <div class="zigzag-text">
+                        <h3>Cardiac MRI & Imaging Suite</h3>
+                        <p>High-resolution cardiac MRI provides detailed images of heart structures, function, and tissue characteristics without radiation exposure.</p>
+                        <div class="zigzag-features">
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> 3T Cardiac MRI Scanner</div>
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> Real-Time Imaging Protocols</div>
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> Tissue Characterization</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zigzag-item fade-up">
+                    <div>
+                        <img src="assets/images/equipment-cath-lab.jpg" alt="Cath Lab" class="zigzag-img">
+                    </div>
+                    <div class="zigzag-text">
+                        <h3>Catheterization Laboratory</h3>
+                        <p>Our state-of-the-art cath labs are equipped for diagnostic and interventional procedures, including complex stenting and structural heart interventions.</p>
+                        <div class="zigzag-features">
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> Biplane Fluoroscopy Systems</div>
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> Intravascular Ultrasound (IVUS)</div>
+                            <div class="zigzag-feat"><i class="fas fa-check"></i> Fractional Flow Reserve (FFR)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-star"></i> Why CardioVita</span>
+                    <h2 class="section-title">Why Choose Us</h2>
+                    <p class="section-desc">What sets CardioVita apart is our unwavering commitment to excellence, innovation, and patient-centered care.</p>
+                </div>
+                <div class="why-grid">
+                    <div class="why-card fade-up">
+                        <div class="why-icon"><i class="fas fa-user-doctor"></i></div>
+                        <h3>Experienced Team</h3>
+                        <p>Our board-certified cardiologists bring decades of combined clinical and research experience from leading medical institutions worldwide.</p>
+                    </div>
+                    <div class="why-card fade-up">
+                        <div class="why-icon"><i class="fas fa-laptop-medical"></i></div>
+                        <h3>Advanced Technology</h3>
+                        <p>We deploy the latest cardiac imaging, diagnostic, and interventional technologies to deliver precise and effective treatments.</p>
+                    </div>
+                    <div class="why-card fade-up">
+                        <div class="why-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>Compassionate Care</h3>
+                        <p>Every patient receives personalized attention, clear communication, and emotional support throughout their entire cardiac care journey.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PATIENT JOURNEY TIMELINE -->
+        <section class="section journey-section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-route"></i> Your Journey</span>
+                    <h2 class="section-title">The Patient Experience</h2>
+                    <p class="section-desc">From your first call to long-term follow-up, here's what your CardioVita care journey looks like.</p>
+                </div>
+                <div class="journey-timeline">
+                    <div class="journey-step fade-up">
+                        <div class="journey-num">1</div>
+                        <div class="journey-step-content">
+                            <h4>Initial Consultation</h4>
+                            <p>Meet with one of our specialists for a thorough evaluation of your cardiac health, medical history, and risk factors. We listen carefully to understand your concerns.</p>
+                        </div>
+                    </div>
+                    <div class="journey-step fade-up">
+                        <div class="journey-num">2</div>
+                        <div class="journey-step-content">
+                            <h4>Diagnostic Testing</h4>
+                            <p>Based on your consultation, we may recommend advanced diagnostics such as ECG, echocardiogram, stress test, or cardiac MRI for a complete picture of your heart health.</p>
+                        </div>
+                    </div>
+                    <div class="journey-step fade-up">
+                        <div class="journey-num">3</div>
+                        <div class="journey-step-content">
+                            <h4>Treatment Planning</h4>
+                            <p>Your cardiologist develops a personalized treatment plan — whether it's lifestyle modifications, medication management, or an interventional procedure — tailored to your specific needs.</p>
+                        </div>
+                    </div>
+                    <div class="journey-step fade-up">
+                        <div class="journey-num">4</div>
+                        <div class="journey-step-content">
+                            <h4>Recovery & Follow-Up</h4>
+                            <p>Ongoing monitoring, cardiac rehabilitation, and regular follow-up appointments ensure your continued progress and long-term heart health.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATISTICS BAR -->
+        <section class="h2-stats" style="background-image:url('assets/images/h2-counter-bg.jpg')">
+            <div class="h2-stats-overlay"></div>
+            <div class="container">
+                <div class="h2-stats-grid fade-up">
+                    <div>
+                        <div class="h2-stat-val" data-count="30000" data-suffix="+">0</div>
+                        <div class="h2-stat-lbl">Procedures Performed</div>
+                    </div>
+                    <div>
+                        <div class="h2-stat-val" data-count="99" data-suffix=".2%">0</div>
+                        <div class="h2-stat-lbl">Success Rate</div>
+                    </div>
+                    <div>
+                        <div class="h2-stat-val" data-count="15" data-suffix="+">0</div>
+                        <div class="h2-stat-lbl">Awards Won</div>
+                    </div>
+                    <div>
+                        <div class="h2-stat-val" data-count="200" data-suffix="+">0</div>
+                        <div class="h2-stat-lbl">Research Papers</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AWARDS & RECOGNITION -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-trophy"></i> Recognition</span>
+                    <h2 class="section-title">Awards & Recognition</h2>
+                    <p class="section-desc">Our commitment to excellence has been recognized by leading healthcare organizations worldwide.</p>
+                </div>
+                <div class="fade-up" style="text-align:center;margin-bottom:1.5rem">
+                    <img src="assets/images/h2-award.jpg" alt="Awards" style="width:100%;max-width:700px;height:300px;object-fit:cover;border-radius:var(--radius-lg);margin:0 auto">
+                </div>
+                <div class="awards-badges fade-up">
+                    <div class="award-badge">
+                        <i class="fas fa-award"></i>
+                        <h4>Best Cardiac Center</h4>
+                        <p>National Healthcare Awards 2023</p>
+                    </div>
+                    <div class="award-badge">
+                        <i class="fas fa-star"></i>
+                        <h4>Top 10 Heart Hospital</h4>
+                        <p>US News & World Report</p>
+                    </div>
+                    <div class="award-badge">
+                        <i class="fas fa-certificate"></i>
+                        <h4>Excellence in Research</h4>
+                        <p>American Heart Association</p>
+                    </div>
+                    <div class="award-badge">
+                        <i class="fas fa-medal"></i>
+                        <h4>Patient Safety Award</h4>
+                        <p>Healthgrades 2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOCTOR SPOTLIGHT -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-user-md"></i> Our Experts</span>
+                    <h2 class="section-title">Doctor Spotlight</h2>
+                    <p class="section-desc">Meet the renowned cardiologists leading our commitment to exceptional patient care and medical innovation.</p>
+                </div>
+                <div class="spotlight-grid fade-up">
+                    <div class="spotlight-card">
+                        <img src="assets/images/h2-consultation.jpg" alt="Consultation">
+                        <div class="spotlight-caption">
+                            <h3>Personalized Consultations</h3>
+                            <p>One-on-one sessions with leading cardiologists for tailored treatment strategies and comprehensive cardiac evaluations.</p>
+                        </div>
+                    </div>
+                    <div class="spotlight-card">
+                        <img src="assets/images/h2-research.jpg" alt="Research">
+                        <div class="spotlight-caption">
+                            <h3>Pioneering Research</h3>
+                            <p>Our team actively contributes to global cardiovascular research, clinical trials, and development of innovative therapies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-comments"></i> Patient Stories</span>
+                    <h2 class="section-title">Voices of Our Patients</h2>
+                    <p class="section-desc">Hear from real patients who have experienced the CardioVita difference in their cardiac care journey.</p>
+                </div>
+                <div class="h2-testimonial-grid">
+                    <div class="h2-testimonial fade-up">
+                        <div class="h2-quote-mark">"</div>
+                        <p>The team at CardioVita didn't just treat my condition — they educated me about my heart health and empowered me to make lasting lifestyle changes. I feel like a new person.</p>
+                        <div class="h2-testimonial-author">
+                            <img src="assets/images/h2-testimonial-1.jpg" alt="James P." class="h2-testimonial-avatar">
+                            <div class="h2-testimonial-info">
+                                <h4>James P.</h4>
+                                <span>Coronary Artery Disease</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h2-testimonial fade-up">
+                        <div class="h2-quote-mark">"</div>
+                        <p>After being told I needed open-heart surgery elsewhere, CardioVita's interventional team performed a minimally invasive procedure instead. I was back home in 48 hours.</p>
+                        <div class="h2-testimonial-author">
+                            <img src="assets/images/h2-testimonial-2.jpg" alt="Linda M." class="h2-testimonial-avatar">
+                            <div class="h2-testimonial-info">
+                                <h4>Linda M.</h4>
+                                <span>Valve Replacement</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h2-testimonial fade-up">
+                        <div class="h2-quote-mark">"</div>
+                        <p>The cardiac rehabilitation program was life-changing. The staff was supportive, the exercises were progressive, and the results were beyond what I expected for my recovery.</p>
+                        <div class="h2-testimonial-author">
+                            <img src="assets/images/h2-testimonial-3.jpg" alt="Robert K." class="h2-testimonial-avatar">
+                            <div class="h2-testimonial-info">
+                                <h4>Robert K.</h4>
+                                <span>Cardiac Rehabilitation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER CTA -->
+        <section class="newsletter-section" style="background-image:url('assets/images/h2-newsletter.jpg')">
+            <div class="newsletter-overlay"></div>
+            <div class="newsletter-content">
+                <h2>Stay Heart-Smart</h2>
+                <p>Subscribe to our newsletter for the latest heart health tips, clinic updates, and exclusive wellness resources from our expert cardiologists.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault();alert('Thank you! You are now subscribed to CardioVita updates.');this.reset();">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address" required>
+                    <button type="submit" class="btn btn-white">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="components.js"></script>
+</body>
+</html>

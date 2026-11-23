@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      try{if(localStorage.getItem('cv-dark')==='1')document.documentElement.classList.add('dark');if(localStorage.getItem('cv-rtl')==='1')document.documentElement.setAttribute('dir','rtl');}catch(e){}
+    </script>
+    <title>About Us — CardioVita Heart Care</title>
+    <style>
+        .about-hero{position:relative;min-height:400px;display:flex;align-items:center;background-size:cover;background-position:center}
+        .about-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.93),rgba(139,20,41,.88))}
+        .about-hero-content{position:relative;z-index:2;color:#fff;text-align:center;width:100%}
+        .about-hero-content h1{color:#fff;margin-bottom:.75rem}
+        .about-hero-content p{color:rgba(255,255,255,.9);font-size:1.0625rem;max-width:640px;margin:0 auto}
+        .story-split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+        .story-img{width:100%;height:380px;object-fit:cover;border-radius:var(--radius-lg);border-left:4px solid var(--primary)}
+        .story-text .section-title{position:relative}
+        .story-text .section-title::after{content:'';display:block;width:60px;height:3px;background:var(--primary);margin-top:.75rem;border-radius:2px}
+        .timeline-section{position:relative}
+        .timeline-line{position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--primary);transform:translateX(-50%)}
+        .timeline-items{position:relative;display:flex;flex-direction:column;gap:3rem}
+        .timeline-item{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;position:relative}
+        .timeline-item:nth-child(even){direction:rtl}
+        .timeline-item:nth-child(even) .timeline-content{direction:ltr}
+        .timeline-dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:var(--primary);border:3px solid var(--bg);z-index:2;box-shadow:0 0 0 4px rgba(185,28,58,.2)}
+        .timeline-img{width:100%;height:220px;object-fit:cover;border-radius:var(--radius-md);border:2px solid rgba(185,28,58,.2)}
+        .timeline-content{padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);border-top:3px solid var(--primary)}
+        .timeline-year{font-size:.8125rem;font-weight:600;color:var(--primary);margin-bottom:.35rem;display:inline-flex;align-items:center;gap:.35rem;background:rgba(185,28,58,.08);padding:.2rem .6rem;border-radius:var(--radius-full)}
+        .timeline-content h3{font-size:1.15rem;margin-bottom:.4rem}
+        .timeline-content p{font-size:.875rem}
+        .philosophy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+        .philosophy-card{text-align:center;padding:1.75rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal)}
+        .philosophy-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+        .philosophy-icon{width:56px;height:56px;border-radius:50%;background:rgba(185,28,58,.1);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.25rem;margin:0 auto .85rem}
+        .philosophy-card h3{font-size:1rem;margin-bottom:.35rem}
+        .philosophy-card p{font-size:.84375rem}
+        .facility-section{position:relative;min-height:360px;background-size:cover;background-position:center;display:flex;align-items:center}
+        .facility-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.88),rgba(30,58,95,.85))}
+        .facility-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
+        .facility-stat-value{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
+        .facility-stat-label{font-size:.9375rem;font-weight:450;opacity:.9}
+        .values-split{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center}
+        .values-img{width:100%;height:380px;object-fit:cover;border-radius:var(--radius-lg)}
+        .values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+        .value-item{display:flex;align-items:flex-start;gap:.65rem;padding:1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);transition:all var(--transition-normal)}
+        .value-item:hover{border-color:var(--primary)}
+        .value-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:.35rem}
+        .value-item h4{font-size:.9375rem;margin-bottom:.15rem}
+        .value-item p{font-size:.8125rem}
+        .accred-section{text-align:center}
+        .accred-img{width:100%;max-width:600px;height:280px;object-fit:cover;border-radius:var(--radius-lg);margin:0 auto 2rem}
+        .accred-badges{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+        .accred-badge{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1.25rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);min-width:140px;transition:all var(--transition-normal)}
+        .accred-badge:hover{border-color:var(--primary);transform:translateY(-3px)}
+        .accred-badge i{font-size:1.5rem;color:var(--primary)}
+        .accred-badge span{font-size:.84375rem;font-weight:600;color:var(--text)}
+        .about-cta{position:relative;padding:4.5rem 0;text-align:center;background:linear-gradient(135deg,var(--primary),var(--primary-dark))}
+        .about-cta h2,.about-cta p{color:#fff}
+        .about-cta p{color:rgba(255,255,255,.9);max-width:600px;margin:0 auto 1.75rem}
+        @media(max-width:1024px){.story-split,.values-split{grid-template-columns:1fr}.philosophy-grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr;gap:1rem}.timeline-line{left:1rem}.timeline-dot{left:1rem}.timeline-item:nth-child(even){direction:ltr}}
+        @media(max-width:768px){.facility-stats{grid-template-columns:1fr;gap:1.5rem}.story-img,.values-img{height:260px}.accred-badges{flex-direction:column;align-items:center}.philosophy-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}}
+        @media(max-width:360px){.timeline-line{display:none}.timeline-dot{display:none}.facility-stat-value{font-size:2rem}}
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <main>
+
+        <!-- HERO BANNER -->
+        <section class="about-hero" style="background-image:url('assets/images/about-hero.jpg')">
+            <div class="about-hero-overlay"></div>
+            <div class="container about-hero-content">
+                <span class="badge badge-primary" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25);margin-bottom:1rem;display:inline-flex"><i class="fas fa-heart"></i> About CardioVita</span>
+                <h1>Caring for Hearts,<br>Changing Lives</h1>
+                <p>For over 25 years, CardioVita has been a beacon of excellence in cardiovascular care, combining advanced medical expertise with genuine compassion for every patient who walks through our doors.</p>
+            </div>
+        </section>
+
+        <!-- OUR STORY -->
+        <section class="section">
+            <div class="container">
+                <div class="story-split">
+                    <div class="fade-up">
+                        <img src="assets/images/about-story.jpg" alt="Our Story" class="story-img">
+                    </div>
+                    <div class="story-text fade-up">
+                        <span class="section-tag"><i class="fas fa-book-open"></i> Our Story</span>
+                        <h2 class="section-title">A Legacy of Heart Care Excellence</h2>
+                        <p class="section-desc">Founded in 1998 by a team of visionary cardiologists, CardioVita began as a small clinic with a bold mission: to make world-class cardiac care accessible to everyone.</p>
+                        <p class="section-desc" style="margin-top:.75rem">Over two decades, we've grown into a leading cardiovascular center, treating over 50,000 patients and pioneering innovative procedures. Our journey has been driven by an unwavering commitment to medical excellence, continuous learning, and putting patients at the heart of everything we do.</p>
+                        <a href="services.html" class="btn btn-primary" style="margin-top:1.5rem">Explore Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE HISTORY -->
+        <section class="section bg-alt timeline-section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-clock-rotate-left"></i> Our Journey</span>
+                    <h2 class="section-title">Milestones in Cardiac Care</h2>
+                    <p class="section-desc">Key moments that shaped CardioVita into the leading cardiovascular center it is today.</p>
+                </div>
+                <div class="timeline-items">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item fade-up">
+                        <div>
+                            <img src="assets/images/timeline-founding.jpg" alt="1998 Founding" class="timeline-img">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year"><i class="fas fa-flag"></i> 1998</span>
+                            <h3>The Founding</h3>
+                            <p>CardioVita was established by Dr. Richard Chambers and Dr. Helena Park with a vision to create a patient-first cardiac care center. Starting with just 5 cardiologists and 20 beds, the clinic quickly gained recognition for its exceptional diagnostic accuracy and personalized approach.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-item fade-up">
+                        <div>
+                            <img src="assets/images/timeline-expansion.jpg" alt="2010 Expansion" class="timeline-img">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year"><i class="fas fa-building"></i> 2010</span>
+                            <h3>Major Expansion</h3>
+                            <p>After 12 years of growth, CardioVita expanded to a state-of-the-art 200-bed facility with dedicated catheterization labs, an electrophysiology suite, and a cardiac rehabilitation center. We also launched our research division, contributing to 50+ published studies.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-item fade-up">
+                        <div>
+                            <img src="assets/images/timeline-modern.jpg" alt="2023 Modern Era" class="timeline-img">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year"><i class="fas fa-rocket"></i> 2023</span>
+                            <h3>The Modern Era</h3>
+                            <p>Today, CardioVita stands as a JCI-accredited center of excellence with 15+ cardiologists, AI-assisted diagnostics, robotic-assisted surgery capabilities, and a fully digital patient portal. We continue to push the boundaries of cardiac care innovation.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR PHILOSOPHY -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-hand-holding-heart"></i> Our Philosophy</span>
+                    <h2 class="section-title">Patient-First Philosophy</h2>
+                    <p class="section-desc">Every decision we make is guided by four core pillars that define who we are and how we care for you.</p>
+                </div>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card fade-up">
+                        <div class="philosophy-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Compassion</h3>
+                        <p>We treat every patient with warmth, empathy, and genuine concern for their well-being and comfort.</p>
+                    </div>
+                    <div class="philosophy-card fade-up">
+                        <div class="philosophy-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Innovation</h3>
+                        <p>We embrace the latest technologies and research to deliver cutting-edge cardiovascular treatments.</p>
+                    </div>
+                    <div class="philosophy-card fade-up">
+                        <div class="philosophy-icon"><i class="fas fa-trophy"></i></div>
+                        <h3>Excellence</h3>
+                        <p>We hold ourselves to the highest medical standards, ensuring every procedure meets world-class benchmarks.</p>
+                    </div>
+                    <div class="philosophy-card fade-up">
+                        <div class="philosophy-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h3>Integrity</h3>
+                        <p>We maintain transparency, honesty, and ethical practices in every aspect of patient care and communication.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR FACILITY -->
+        <section class="facility-section" style="background-image:url('assets/images/about-facility.jpg')">
+            <div class="facility-overlay"></div>
+            <div class="container">
+                <div class="section-header text-center fade-up" style="margin-bottom:2.5rem;position:relative;z-index:2">
+                    <h2 class="section-title" style="color:#fff">World-Class Facility</h2>
+                    <p class="section-desc" style="color:rgba(255,255,255,.88);margin:0 auto">Our state-of-the-art cardiac center is equipped with the latest technology to provide comprehensive heart care.</p>
+                </div>
+                <div class="facility-stats fade-up">
+                    <div>
+                        <div class="facility-stat-value">10</div>
+                        <div class="facility-stat-label">Operating Rooms</div>
+                    </div>
+                    <div>
+                        <div class="facility-stat-value">200+</div>
+                        <div class="facility-stat-label">Patient Beds</div>
+                    </div>
+                    <div>
+                        <div class="facility-stat-value">50+</div>
+                        <div class="facility-stat-label">ICU Units</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE VALUES -->
+        <section class="section">
+            <div class="container">
+                <div class="values-split">
+                    <div class="fade-up">
+                        <img src="assets/images/about-values.jpg" alt="Our Values" class="values-img">
+                    </div>
+                    <div class="fade-up">
+                        <span class="section-tag"><i class="fas fa-gem"></i> Core Values</span>
+                        <h2 class="section-title">What We Stand For</h2>
+                        <p class="section-desc" style="margin-bottom:1.5rem">Our values are the foundation of every interaction, treatment, and decision at CardioVita.</p>
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <div class="value-dot"></div>
+                                <div>
+                                    <h4>Trust</h4>
+                                    <p>Building lasting relationships through transparency and reliability.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-dot"></div>
+                                <div>
+                                    <h4>Expertise</h4>
+                                    <p>Board-certified specialists with decades of combined experience.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-dot"></div>
+                                <div>
+                                    <h4>Innovation</h4>
+                                    <p>Embracing new technologies for better patient outcomes.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-dot"></div>
+                                <div>
+                                    <h4>Empathy</h4>
+                                    <p>Understanding each patient's unique journey and concerns.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-dot"></div>
+                                <div>
+                                    <h4>Teamwork</h4>
+                                    <p>Collaborative care approach across all specialties.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-dot"></div>
+                                <div>
+                                    <h4>Safety</h4>
+                                    <p>Rigorous safety protocols and quality assurance measures.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACCREDITATIONS -->
+        <section class="section bg-alt accred-section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-medal"></i> Accreditations</span>
+                    <h2 class="section-title">Recognized for Excellence</h2>
+                    <p class="section-desc">Our quality of care is validated by the most prestigious healthcare accreditation bodies worldwide.</p>
+                </div>
+                <div class="fade-up">
+                    <img src="assets/images/about-accreditation.jpg" alt="Accreditations" class="accred-img">
+                </div>
+                <div class="accred-badges fade-up">
+                    <div class="accred-badge">
+                        <i class="fas fa-award"></i>
+                        <span>JCI Accredited</span>
+                    </div>
+                    <div class="accred-badge">
+                        <i class="fas fa-certificate"></i>
+                        <span>ISO 9001:2015</span>
+                    </div>
+                    <div class="accred-badge">
+                        <i class="fas fa-heart-circle-check"></i>
+                        <span>AHA Gold Plus</span>
+                    </div>
+                    <div class="accred-badge">
+                        <i class="fas fa-star"></i>
+                        <span>ACC Certified</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="about-cta">
+            <div class="container">
+                <div class="fade-up">
+                    <h2 style="font-size:2rem;margin-bottom:.5rem">Start Your Heart Health Journey</h2>
+                    <p>Take the first step toward a healthier heart. Our expert cardiologists are ready to provide you with the best possible care and guidance.</p>
+                    <div class="hero-btn-group" style="justify-content:center">
+                        <a href="contact.html" class="btn btn-white btn-lg">Book a Consultation</a>
+                        <a href="services.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">Explore Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="components.js"></script>
+</body>
+</html>

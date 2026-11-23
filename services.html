@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      try{if(localStorage.getItem('cv-dark')==='1')document.documentElement.classList.add('dark');if(localStorage.getItem('cv-rtl')==='1')document.documentElement.setAttribute('dir','rtl');}catch(e){}
+    </script>
+    <title>Our Services — CardioVita Heart Care</title>
+    <style>
+        .srv-hero{position:relative;min-height:400px;display:flex;align-items:center;background-size:cover;background-position:center}
+        .srv-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,58,95,.92),rgba(185,28,58,.88))}
+        .srv-hero-content{position:relative;z-index:2;color:#fff;text-align:center;width:100%}
+        .srv-hero-content h1{color:#fff;margin-bottom:.75rem}
+        .srv-hero-content p{color:rgba(255,255,255,.9);font-size:1.0625rem;max-width:640px;margin:0 auto}
+        .srv-icon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .srv-icon-card{text-align:center;padding:2rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal)}
+        .srv-icon-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+        .srv-icon-circle{width:60px;height:60px;border-radius:50%;background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.3rem;margin:0 auto .85rem}
+        .srv-icon-card h3{font-size:1.05rem;margin-bottom:.4rem}
+        .srv-icon-card p{font-size:.84375rem}
+        .srv-featured{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+        .srv-featured.reverse{direction:rtl}
+        .srv-featured.reverse>*{direction:ltr}
+        .srv-featured-img{width:100%;height:360px;object-fit:cover;border-radius:var(--radius-lg)}
+        .srv-featured-text h3{font-size:1.4rem;margin-bottom:.6rem}
+        .srv-featured-text>p{font-size:.9375rem;margin-bottom:1.25rem}
+        .srv-bullets{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.25rem}
+        .srv-bullet{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--text-light)}
+        .srv-bullet i{color:var(--primary);font-size:.8rem;width:16px}
+        .srv-extra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .srv-extra-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all var(--transition-normal)}
+        .srv-extra-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+        .srv-extra-img{width:100%;height:200px;object-fit:cover}
+        .srv-extra-body{padding:1.25rem}
+        .srv-extra-body h3{font-size:1.05rem;margin-bottom:.4rem}
+        .srv-extra-body p{font-size:.84375rem}
+        .srv-process{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative}
+        .srv-process-step{text-align:center;position:relative;padding:1.5rem 1rem}
+        .srv-process-icon{width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto .85rem}
+        .srv-process-step h4{font-size:1rem;margin-bottom:.3rem}
+        .srv-process-step p{font-size:.8125rem}
+        .srv-process-arrow{position:absolute;top:28px;right:-8px;color:var(--primary);font-size:1.1rem}
+        [dir="rtl"] .srv-process-arrow{right:auto;left:-8px;transform:scaleX(-1)}
+        .srv-cta{position:relative;min-height:320px;background-size:cover;background-position:center;display:flex;align-items:center}
+        .srv-cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.92),rgba(30,58,95,.9))}
+        .srv-cta-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:660px;margin:0 auto}
+        .srv-cta-content h2{color:#fff;margin-bottom:.6rem}
+        .srv-cta-content p{color:rgba(255,255,255,.88);margin-bottom:1.75rem}
+        @media(max-width:1024px){.srv-icon-grid{grid-template-columns:repeat(2,1fr)}.srv-featured,.srv-featured.reverse{grid-template-columns:1fr;direction:ltr}.srv-process{grid-template-columns:repeat(2,1fr)}.srv-extra-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.srv-icon-grid,.srv-extra-grid{grid-template-columns:1fr}.srv-featured-img{height:260px}.srv-process-arrow{display:none}}
+        @media(max-width:360px){.srv-process{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <main>
+
+        <!-- HERO BANNER -->
+        <section class="srv-hero" style="background-image:url('assets/images/services-hero.jpg')">
+            <div class="srv-hero-overlay"></div>
+            <div class="container srv-hero-content">
+                <span class="badge badge-primary" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25);margin-bottom:1rem;display:inline-flex"><i class="fas fa-heartbeat"></i> Our Services</span>
+                <h1>Comprehensive Heart Care Services</h1>
+                <p>From advanced diagnostics to life-saving interventions, we provide a full spectrum of cardiovascular services to protect and restore your heart health.</p>
+            </div>
+        </section>
+
+        <!-- SERVICE OVERVIEW -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-grid"></i> What We Offer</span>
+                    <h2 class="section-title">Our Core Services</h2>
+                    <p class="section-desc">Each service is delivered by experienced specialists using the latest medical technology and evidence-based protocols.</p>
+                </div>
+                <div class="srv-icon-grid">
+                    <div class="srv-icon-card fade-up">
+                        <div class="srv-icon-circle"><i class="fas fa-wave-square"></i></div>
+                        <h3>ECG & Monitoring</h3>
+                        <p>Continuous cardiac rhythm monitoring and standard 12-lead electrocardiogram for comprehensive heart rhythm analysis.</p>
+                    </div>
+                    <div class="srv-icon-card fade-up">
+                        <div class="srv-icon-circle"><i class="fas fa-heart-pulse"></i></div>
+                        <h3>Echocardiography</h3>
+                        <p>Non-invasive ultrasound imaging to evaluate heart structure, valve function, and blood flow dynamics in real time.</p>
+                    </div>
+                    <div class="srv-icon-card fade-up">
+                        <div class="srv-icon-circle"><i class="fas fa-syringe"></i></div>
+                        <h3>Cardiac Catheterization</h3>
+                        <p>Minimally invasive catheter-based procedures for diagnosis and treatment of coronary artery disease.</p>
+                    </div>
+                    <div class="srv-icon-card fade-up">
+                        <div class="srv-icon-circle"><i class="fas fa-running"></i></div>
+                        <h3>Stress Testing</h3>
+                        <p>Exercise and pharmacological stress tests to evaluate cardiac performance and detect hidden coronary artery disease.</p>
+                    </div>
+                    <div class="srv-icon-card fade-up">
+                        <div class="srv-icon-circle"><i class="fas fa-bolt"></i></div>
+                        <h3>Electrophysiology</h3>
+                        <p>Specialized studies and treatments for cardiac arrhythmias, including ablation and device implantation.</p>
+                    </div>
+                    <div class="srv-icon-card fade-up">
+                        <div class="srv-icon-circle"><i class="fas fa-atom"></i></div>
+                        <h3>Nuclear Cardiology</h3>
+                        <p>Advanced nuclear imaging to assess blood flow to the heart muscle and detect areas of ischemia or damage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED SERVICE 1 -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="srv-featured fade-up">
+                    <div>
+                        <img src="assets/images/srv-ecg-detail.jpg" alt="ECG Monitoring" class="srv-featured-img">
+                    </div>
+                    <div class="srv-featured-text">
+                        <span class="section-tag"><i class="fas fa-wave-square"></i> Featured Service</span>
+                        <h3>Advanced ECG & Cardiac Monitoring</h3>
+                        <p>Our comprehensive ECG services range from standard 12-lead recordings to extended Holter monitoring and event recorders, providing detailed insight into your heart's electrical activity and rhythm patterns.</p>
+                        <div class="srv-bullets">
+                            <div class="srv-bullet"><i class="fas fa-check"></i> 24/48/72-hour Holter Monitoring</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Event Recorder for Intermittent Symptoms</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Signal-Averaged ECG Analysis</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> AI-Assisted Rhythm Interpretation</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Book This Service</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED SERVICE 2 -->
+        <section class="section">
+            <div class="container">
+                <div class="srv-featured reverse fade-up">
+                    <div>
+                        <img src="assets/images/srv-echo-detail.jpg" alt="Echocardiography" class="srv-featured-img">
+                    </div>
+                    <div class="srv-featured-text">
+                        <span class="section-tag"><i class="fas fa-heart-pulse"></i> Featured Service</span>
+                        <h3>Echocardiography & Cardiac Imaging</h3>
+                        <p>Using advanced ultrasound technology, our echocardiography services provide real-time, detailed images of your heart's chambers, valves, and blood flow, enabling accurate diagnosis of structural and functional abnormalities.</p>
+                        <div class="srv-bullets">
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Transthoracic Echocardiogram (TTE)</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Transesophageal Echocardiogram (TEE)</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> 3D Echocardiography</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Stress Echocardiography</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Book This Service</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED SERVICE 3 -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="srv-featured fade-up">
+                    <div>
+                        <img src="assets/images/srv-angioplasty.jpg" alt="Angioplasty" class="srv-featured-img">
+                    </div>
+                    <div class="srv-featured-text">
+                        <span class="section-tag"><i class="fas fa-syringe"></i> Featured Service</span>
+                        <h3>Interventional Cardiology & Angioplasty</h3>
+                        <p>Our interventional cardiologists perform advanced catheter-based procedures to open blocked arteries, implant stents, and treat structural heart conditions with minimal recovery time.</p>
+                        <div class="srv-bullets">
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Percutaneous Coronary Intervention (PCI)</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Drug-Eluting Stent Placement</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> Rotational Atherectomy</div>
+                            <div class="srv-bullet"><i class="fas fa-check"></i> TAVR — Transcatheter Valve Replacement</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Book This Service</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADDITIONAL SERVICES -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-plus-circle"></i> More Services</span>
+                    <h2 class="section-title">Additional Cardiac Services</h2>
+                    <p class="section-desc">Beyond our core offerings, we provide specialized services to address a wide range of cardiovascular needs.</p>
+                </div>
+                <div class="srv-extra-grid">
+                    <div class="srv-extra-card fade-up">
+                        <img src="assets/images/srv-electrophysiology.jpg" alt="Electrophysiology" class="srv-extra-img">
+                        <div class="srv-extra-body">
+                            <h3>Electrophysiology Studies</h3>
+                            <p>Specialized testing to map the heart's electrical system and diagnose the cause of abnormal heart rhythms for targeted ablation therapy.</p>
+                        </div>
+                    </div>
+                    <div class="srv-extra-card fade-up">
+                        <img src="assets/images/srv-nuclear.jpg" alt="Nuclear Cardiology" class="srv-extra-img">
+                        <div class="srv-extra-body">
+                            <h3>Nuclear Cardiac Imaging</h3>
+                            <p>SPECT and PET scanning to evaluate myocardial perfusion, detect ischemia, assess viability, and guide treatment decisions with precision.</p>
+                        </div>
+                    </div>
+                    <div class="srv-extra-card fade-up">
+                        <img src="assets/images/srv-vascular-screen.jpg" alt="Vascular Screening" class="srv-extra-img">
+                        <div class="srv-extra-body">
+                            <h3>Vascular Screening</h3>
+                            <p>Comprehensive vascular health assessments including carotid ultrasound, ABI testing, and peripheral artery disease screening.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-diagram-project"></i> Our Process</span>
+                    <h2 class="section-title">How We Work</h2>
+                    <p class="section-desc">Our patient-centered approach ensures thorough evaluation and effective treatment at every stage.</p>
+                </div>
+                <div class="srv-process fade-up">
+                    <div class="srv-process-step">
+                        <div class="srv-process-icon"><i class="fas fa-comments"></i></div>
+                        <h4>Consultation</h4>
+                        <p>Detailed discussion of your symptoms, concerns, and medical history with a specialist.</p>
+                        <span class="srv-process-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="srv-process-step">
+                        <div class="srv-process-icon"><i class="fas fa-microscope"></i></div>
+                        <h4>Diagnosis</h4>
+                        <p>Advanced diagnostic tests to identify the exact nature and extent of your condition.</p>
+                        <span class="srv-process-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="srv-process-step">
+                        <div class="srv-process-icon"><i class="fas fa-prescription"></i></div>
+                        <h4>Treatment</h4>
+                        <p>Personalized treatment plan including medication, procedures, or lifestyle changes.</p>
+                        <span class="srv-process-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="srv-process-step">
+                        <div class="srv-process-icon"><i class="fas fa-heart-circle-check"></i></div>
+                        <h4>Recovery</h4>
+                        <p>Ongoing monitoring, rehabilitation, and support for lasting heart health.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="srv-cta" style="background-image:url('assets/images/srv-rehab.jpg')">
+            <div class="srv-cta-overlay"></div>
+            <div class="srv-cta-content">
+                <h2>Ready to Prioritize Your Heart Health?</h2>
+                <p>Take the first step today. Our team of expert cardiologists is ready to provide you with the comprehensive cardiac care you deserve.</p>
+                <div class="hero-btn-group" style="justify-content:center">
+                    <a href="contact.html" class="btn btn-white btn-lg">Schedule a Visit</a>
+                    <a href="pricing.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">View Pricing</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="components.js"></script>
+</body>
+</html>

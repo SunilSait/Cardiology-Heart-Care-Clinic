@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      try{if(localStorage.getItem('cv-dark')==='1')document.documentElement.classList.add('dark');if(localStorage.getItem('cv-rtl')==='1')document.documentElement.setAttribute('dir','rtl');}catch(e){}
+    </script>
+    <title>Our Cardiologists — CardioVita Heart Care</title>
+    <style>
+      /* ── Page-specific: Doctors Hero ── */
+      .doctors-hero {
+        position: relative;
+        min-height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+      }
+      .doctors-hero-bg {
+        position: absolute;
+        inset: 0;
+        background: url('assets/images/doctors-hero.jpg') center/cover no-repeat;
+      }
+      .doctors-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(30,58,95,.85) 0%, rgba(185,28,58,.7) 100%);
+      }
+      .doctors-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 720px;
+        padding: 80px 24px;
+        color: #fff;
+      }
+      .doctors-hero-content h1 {
+        font-size: 2.75rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      .doctors-hero-content p {
+        font-size: 1.125rem;
+        font-weight: 400;
+        opacity: .92;
+        line-height: 1.7;
+      }
+
+      /* ── Doctor Grid Cards ── */
+      .doctor-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+      .doctor-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(0,0,0,.07);
+        transition: transform .3s ease, box-shadow .3s ease;
+      }
+      .doctor-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 36px rgba(0,0,0,.12);
+      }
+      .doctor-card-img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        display: block;
+      }
+      .doctor-card-body {
+        padding: 24px;
+        text-align: center;
+      }
+      .doctor-card-body h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1E3A5F;
+        margin-bottom: 4px;
+      }
+      .doctor-card-specialty {
+        font-size: .9rem;
+        font-weight: 500;
+        color: #B91C3A;
+        margin-bottom: 12px;
+      }
+      .doctor-card-bio {
+        font-size: .9rem;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .doctor-socials {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+      }
+      .doctor-socials a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1E3A5F;
+        font-size: .9rem;
+        transition: background .25s, color .25s, border-color .25s;
+        text-decoration: none;
+      }
+      .doctor-socials a:hover {
+        background: #1E3A5F;
+        color: #fff;
+        border-color: #1E3A5F;
+      }
+
+      /* ── Our Approach (Split) ── */
+      .approach-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .approach-img {
+        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
+      }
+      .approach-text h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #1E3A5F;
+        margin-bottom: 16px;
+      }
+      .approach-text > p {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+      .approach-bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .approach-bullets li {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        font-size: .95rem;
+        font-weight: 400;
+        color: #444;
+        line-height: 1.6;
+      }
+      .approach-bullets li i {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(185,28,58,.1);
+        color: #B91C3A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        margin-top: 2px;
+      }
+
+      /* ── Expertise Highlights ── */
+      .expertise-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+      }
+      .expertise-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 36px 24px;
+        text-align: center;
+        box-shadow: 0 2px 16px rgba(0,0,0,.06);
+        border-top: 4px solid #B91C3A;
+      }
+      .expertise-card .ex-number {
+        font-size: 2.75rem;
+        font-weight: 600;
+        color: #B91C3A;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .expertise-card .ex-label {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #1E3A5F;
+        margin-bottom: 10px;
+      }
+      .expertise-card .ex-desc {
+        font-size: .88rem;
+        font-weight: 400;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      /* ── Research & Innovation (image left, text right) ── */
+      .research-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .research-img {
+        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
+      }
+      .research-text h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #1E3A5F;
+        margin-bottom: 16px;
+      }
+      .research-text p {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 16px;
+      }
+      .research-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .research-tags span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: 24px;
+        background: rgba(30,58,95,.08);
+        color: #1E3A5F;
+        font-size: .85rem;
+        font-weight: 500;
+      }
+
+      /* ── Testimonials ── */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+      .testimonial-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 4px 24px rgba(0,0,0,.07);
+        position: relative;
+      }
+      .testimonial-card .quote-icon {
+        font-size: 2rem;
+        color: #B91C3A;
+        opacity: .2;
+        position: absolute;
+        top: 24px;
+        left: 32px;
+      }
+      .testimonial-stars {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 16px;
+        color: #B91C3A;
+        font-size: .95rem;
+      }
+      .testimonial-card blockquote {
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: #444;
+        line-height: 1.75;
+        margin: 0 0 24px 0;
+        padding: 0;
+        border: none;
+        font-style: italic;
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testimonial-author-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(185,28,58,.1);
+        color: #B91C3A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+      }
+      .testimonial-author-info strong {
+        display: block;
+        font-size: .95rem;
+        font-weight: 600;
+        color: #1E3A5F;
+      }
+      .testimonial-author-info span {
+        font-size: .82rem;
+        font-weight: 400;
+        color: #888;
+      }
+
+      /* ── CTA Gradient ── */
+      .doctors-cta {
+        background: linear-gradient(135deg, #1E3A5F 0%, #B91C3A 100%);
+        padding: 80px 24px;
+        text-align: center;
+        color: #fff;
+      }
+      .doctors-cta h2 {
+        font-size: 2.25rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+      .doctors-cta p {
+        font-size: 1.1rem;
+        font-weight: 400;
+        max-width: 600px;
+        margin: 0 auto 32px;
+        opacity: .92;
+        line-height: 1.7;
+      }
+      .doctors-cta .cta-btns {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      /* ── Dark Mode Overrides ── */
+      :root.dark .doctor-card,
+      :root.dark .expertise-card,
+      :root.dark .testimonial-card {
+        background: #1a1a2e;
+        box-shadow: 0 4px 20px rgba(0,0,0,.3);
+      }
+      :root.dark .doctor-card-body h3,
+      :root.dark .approach-text h2,
+      :root.dark .research-text h2,
+      :root.dark .expertise-card .ex-label,
+      :root.dark .testimonial-author-info strong {
+        color: #e2e8f0;
+      }
+      :root.dark .doctor-card-bio,
+      :root.dark .approach-text > p,
+      :root.dark .approach-bullets li,
+      :root.dark .research-text p,
+      :root.dark .expertise-card .ex-desc,
+      :root.dark .testimonial-card blockquote {
+        color: #a0aec0;
+      }
+      :root.dark .doctor-socials a {
+        border-color: #444;
+        color: #cbd5e1;
+      }
+      :root.dark .doctor-socials a:hover {
+        background: #B91C3A;
+        border-color: #B91C3A;
+        color: #fff;
+      }
+      :root.dark .research-tags span {
+        background: rgba(185,28,58,.15);
+        color: #f1c0c8;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 1024px) {
+        .doctor-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .expertise-row { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 768px) {
+        .doctors-hero-content h1 { font-size: 2rem; }
+        .doctors-hero { min-height: 380px; }
+        .approach-split,
+        .research-split { grid-template-columns: 1fr; gap: 32px; }
+        .testimonials-grid { grid-template-columns: 1fr; }
+        .expertise-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .expertise-card { padding: 28px 18px; }
+        .expertise-card .ex-number { font-size: 2.2rem; }
+      }
+      @media (max-width: 480px) {
+        .doctor-grid { grid-template-columns: 1fr; }
+        .expertise-row { grid-template-columns: 1fr; }
+        .doctors-cta h2 { font-size: 1.6rem; }
+        .testimonial-card { padding: 28px 20px; }
+      }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main>
+
+        <!-- ════════════ 1. HERO BANNER ════════════ -->
+        <section class="doctors-hero">
+            <div class="doctors-hero-bg"></div>
+            <div class="doctors-hero-overlay"></div>
+            <div class="doctors-hero-content fade-up">
+                <h1>Meet Our Expert Cardiologists</h1>
+                <p>Our world-class team of board-certified cardiologists combines decades of experience with cutting-edge innovation to deliver compassionate, personalized heart care for every patient.</p>
+            </div>
+        </section>
+
+
+        <!-- ════════════ 2. DOCTOR GRID ════════════ -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag">Our Team</span>
+                    <h2 class="section-title">Board-Certified Cardiologists</h2>
+                    <p class="section-desc">Each of our physicians brings specialized expertise, ensuring you receive the most advanced cardiac care available today.</p>
+                </div>
+
+                <div class="doctor-grid fade-up">
+                    <!-- Doctor 1 -->
+                    <div class="doctor-card">
+                        <img src="assets/images/doctor-1.jpg" alt="Dr. James Mitchell" class="doctor-card-img" loading="lazy">
+                        <div class="doctor-card-body">
+                            <h3>Dr. James Mitchell</h3>
+                            <p class="doctor-card-specialty">Interventional Cardiology</p>
+                            <p class="doctor-card-bio">Pioneering minimally invasive cardiac procedures with over 18 years of experience in coronary stenting and structural heart interventions.</p>
+                            <div class="doctor-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor 2 -->
+                    <div class="doctor-card">
+                        <img src="assets/images/doctor-2.jpg" alt="Dr. Sarah Chen" class="doctor-card-img" loading="lazy">
+                        <div class="doctor-card-body">
+                            <h3>Dr. Sarah Chen</h3>
+                            <p class="doctor-card-specialty">Electrophysiology</p>
+                            <p class="doctor-card-bio">Leading expert in cardiac rhythm disorders, specializing in catheter ablation and advanced device implantation for arrhythmia management.</p>
+                            <div class="doctor-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor 3 -->
+                    <div class="doctor-card">
+                        <img src="assets/images/doctor-3.jpg" alt="Dr. Robert Williams" class="doctor-card-img" loading="lazy">
+                        <div class="doctor-card-body">
+                            <h3>Dr. Robert Williams</h3>
+                            <p class="doctor-card-specialty">Preventive Cardiology</p>
+                            <p class="doctor-card-bio">Dedicated to cardiovascular disease prevention through risk assessment, lifestyle medicine, and advanced lipid management strategies.</p>
+                            <div class="doctor-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor 4 -->
+                    <div class="doctor-card">
+                        <img src="assets/images/doctor-4.jpg" alt="Dr. Maria Rodriguez" class="doctor-card-img" loading="lazy">
+                        <div class="doctor-card-body">
+                            <h3>Dr. Maria Rodriguez</h3>
+                            <p class="doctor-card-specialty">Cardiac Surgery</p>
+                            <p class="doctor-card-bio">Renowned cardiac surgeon specializing in robotic-assisted heart surgery, valve repair, and complex coronary bypass procedures.</p>
+                            <div class="doctor-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor 5 -->
+                    <div class="doctor-card">
+                        <img src="assets/images/doctor-5.jpg" alt="Dr. David Kim" class="doctor-card-img" loading="lazy">
+                        <div class="doctor-card-body">
+                            <h3>Dr. David Kim</h3>
+                            <p class="doctor-card-specialty">Heart Failure Specialist</p>
+                            <p class="doctor-card-bio">Expert in advanced heart failure therapies including mechanical circulatory support, transplant evaluation, and innovative drug protocols.</p>
+                            <div class="doctor-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor 6 -->
+                    <div class="doctor-card">
+                        <img src="assets/images/doctor-6.jpg" alt="Dr. Emily Thompson" class="doctor-card-img" loading="lazy">
+                        <div class="doctor-card-body">
+                            <h3>Dr. Emily Thompson</h3>
+                            <p class="doctor-card-specialty">Pediatric Cardiology</p>
+                            <p class="doctor-card-bio">Compassionate specialist in congenital heart defects and pediatric cardiac imaging, caring for young hearts from infancy through adolescence.</p>
+                            <div class="doctor-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════ 3. OUR APPROACH — Split Layout ════════════ -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="approach-split fade-up">
+                    <img src="assets/images/doctors-approach.jpg" alt="Collaborative Care Model" class="approach-img" loading="lazy">
+                    <div class="approach-text">
+                        <span class="section-tag">Our Philosophy</span>
+                        <h2>Collaborative Care Model</h2>
+                        <p>At CardioVita, our physicians don't work in silos. We believe the best cardiac outcomes come from a team-based approach where multiple specialists collaborate on every complex case, ensuring no detail is overlooked.</p>
+                        <ul class="approach-bullets">
+                            <li>
+                                <i class="fa-solid fa-users"></i>
+                                <span><strong style="font-weight:600;">Multidisciplinary Conferences</strong> — Weekly case reviews where our entire team evaluates complex patient conditions together.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-heart-pulse"></i>
+                                <span><strong style="font-weight:600;">Integrated Diagnostics</strong> — Shared imaging, labs, and records across specialties for a unified treatment view.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-clipboard-check"></i>
+                                <span><strong style="font-weight:600;">Personalized Treatment Plans</strong> — Every plan is tailored through combined input from relevant specialists.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-handshake"></i>
+                                <span><strong style="font-weight:600;">Seamless Referral Network</strong> — Smooth transitions between our cardiology sub-specialties and partner institutions.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════ 4. EXPERTISE HIGHLIGHTS ════════════ -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag">By The Numbers</span>
+                    <h2 class="section-title">Collective Expertise</h2>
+                    <p class="section-desc">Our team's combined achievements reflect a relentless commitment to advancing cardiovascular medicine.</p>
+                </div>
+
+                <div class="expertise-row fade-up">
+                    <div class="expertise-card">
+                        <div class="ex-number" data-count="150" data-suffix="+">0</div>
+                        <div class="ex-label">Peer-Reviewed Publications</div>
+                        <p class="ex-desc">Research papers published in leading cardiology and medical journals worldwide.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="ex-number" data-count="30" data-suffix="+">0</div>
+                        <div class="ex-label">Clinical Trials</div>
+                        <p class="ex-desc">Active and completed clinical trials driving new treatments for heart disease.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="ex-number" data-count="20" data-suffix="+">0</div>
+                        <div class="ex-label">International Awards</div>
+                        <p class="ex-desc">Recognitions from global medical associations for excellence in cardiac care.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="ex-number" data-count="15" data-suffix="+">0</div>
+                        <div class="ex-label">Board Certifications</div>
+                        <p class="ex-desc">Certifications across cardiology sub-specialties, ensuring the highest standard of expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════ 5. RESEARCH & INNOVATION ════════════ -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="research-split fade-up">
+                    <div class="research-text">
+                        <span class="section-tag">Advancing Medicine</span>
+                        <h2>Research &amp; Innovation</h2>
+                        <p>Our cardiologists are not only clinicians — they are researchers at the forefront of cardiovascular science. From gene therapy for inherited arrhythmias to AI-powered diagnostic imaging, our team is shaping the future of heart care.</p>
+                        <p>We actively participate in multi-center clinical trials, collaborate with leading universities, and have contributed to breakthrough treatments that are now standard of care in cardiology practices around the world.</p>
+                        <div class="research-tags">
+                            <span><i class="fa-solid fa-flask"></i> Gene Therapy</span>
+                            <span><i class="fa-solid fa-microchip"></i> AI Diagnostics</span>
+                            <span><i class="fa-solid fa-syringe"></i> Novel Drug Trials</span>
+                            <span><i class="fa-solid fa-stethoscope"></i> Device Innovation</span>
+                            <span><i class="fa-solid fa-dna"></i> Genomic Cardiology</span>
+                        </div>
+                    </div>
+                    <img src="assets/images/doctors-research.jpg" alt="Research and Innovation" class="research-img" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════ 6. WHAT PATIENTS SAY ════════════ -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag">Patient Stories</span>
+                    <h2 class="section-title">What Patients Say</h2>
+                    <p class="section-desc">Real experiences from patients whose lives were transformed by our cardiologists.</p>
+                </div>
+
+                <div class="testimonials-grid fade-up">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <blockquote>"Dr. James Mitchell performed my stent procedure and I was back on my feet within days. His calm demeanor and clear explanations made a terrifying diagnosis feel manageable. I truly owe him my life."</blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="testimonial-author-info">
+                                <strong>Michael R. Patterson</strong>
+                                <span>Interventional Cardiology Patient</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <blockquote>"Dr. Emily Thompson has been caring for my daughter's congenital heart condition since she was an infant. Her warmth, expertise, and dedication have given our family so much hope and confidence."</blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="testimonial-author-info">
+                                <strong>Angela Torres</strong>
+                                <span>Pediatric Cardiology Parent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════ 7. BOOK A CONSULTATION CTA ════════════ -->
+        <section class="doctors-cta">
+            <div class="container fade-up">
+                <h2>Find the Right Specialist for Your Heart</h2>
+                <p>Whether you need a routine checkup or advanced cardiac care, our team of specialists is ready to guide you on the path to better heart health.</p>
+                <div class="cta-btns">
+                    <a href="appointment.html" class="btn btn-primary btn-lg" style="background:#fff;color:#B91C3A;border-color:#fff;">Book Appointment</a>
+                    <a href="services.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">View Services</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="components.js"></script>
+</body>
+</html>
