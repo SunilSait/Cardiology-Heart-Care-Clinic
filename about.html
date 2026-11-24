@@ -38,11 +38,12 @@
         .philosophy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
         .philosophy-card{text-align:center;padding:1.75rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal)}
         .philosophy-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
-        .philosophy-icon{width:56px;height:56px;border-radius:50%;background:rgba(230, 28, 28,.1);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.25rem;margin:0 auto .85rem}
+        .philosophy-icon{width:56px;height:56px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.25rem;margin:0 auto .85rem}
         .philosophy-card h3{font-size:1rem;margin-bottom:.35rem}
         .philosophy-card p{font-size:.84375rem}
         .facility-section{position:relative;min-height:360px;background-size:cover;background-position:center;display:flex;align-items:center}
-        .facility-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(230, 28, 28,.88),rgba(30,58,95,.85))}
+        .facility-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(230, 28, 28,.90) 0%,rgba(185, 28, 28,.90) 45%,rgba(74, 7, 16,.94) 100%)}
+        html.dark .facility-overlay,:root.dark .facility-overlay{background:linear-gradient(135deg,rgba(185, 28, 28,.88) 0%,rgba(92, 13, 23,.92) 50%,rgba(15, 17, 23,.96) 100%)}
         .facility-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
         .facility-stat-value{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
         .facility-stat-label{font-size:.9375rem;font-weight:450;opacity:.9}
@@ -56,12 +57,20 @@
         .value-item h4{font-size:.9375rem;margin-bottom:.15rem}
         .value-item p{font-size:.8125rem}
         .accred-section{text-align:center}
-        .accred-img{width:100%;max-width:600px;height:280px;object-fit:cover;border-radius:var(--radius-lg);margin:0 auto 2rem}
-        .accred-badges{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
-        .accred-badge{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1.25rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);min-width:140px;transition:all var(--transition-normal)}
-        .accred-badge:hover{border-color:var(--primary);transform:translateY(-3px)}
-        .accred-badge i{font-size:1.5rem;color:var(--primary)}
-        .accred-badge span{font-size:.84375rem;font-weight:600;color:var(--text)}
+        .accred-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:1.75rem;align-items:stretch;margin-top:1rem}
+        .accred-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.25rem 2rem;display:flex;flex-direction:column;justify-content:center;text-align:left;box-shadow:var(--shadow-sm);transition:all var(--transition-normal)}
+        .accred-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 12px 30px rgba(230,28,28,.12),var(--shadow-md)}
+        .accred-card-icon{width:50px;height:50px;border-radius:12px;background:var(--bg-alt);color:var(--text);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.15rem;border:1px solid var(--border)}
+        .accred-card-tag{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--primary);margin-bottom:.5rem;display:flex;align-items:center;gap:.35rem}
+        .accred-card h3{font-size:1.25rem;font-weight:600;margin-bottom:.85rem;color:var(--text);line-height:1.3}
+        .accred-card p{font-size:.9rem;line-height:1.65;color:var(--text-light);margin-bottom:0}
+        .accred-center{display:flex;align-items:center;justify-content:center}
+        .accred-center .accred-img{width:100%;max-width:100%;height:100%;min-height:280px;object-fit:cover;border-radius:var(--radius-lg);margin:0;border:1px solid var(--border)}
+        [dir="rtl"] .accred-card{text-align:right}
+        @media(max-width:1024px){
+            .accred-grid{grid-template-columns:1fr;gap:1.5rem}
+            .accred-center .accred-img{max-width:600px;height:280px;margin:0 auto}
+        }
         /* ── Modern Split About CTA Card ── */
         .about-cta-section {
             padding: 4.5rem 0 5.5rem;
@@ -69,7 +78,7 @@
             background: var(--bg);
         }
         .about-cta-card {
-            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #B91C1C 100%);
+            background: linear-gradient(135deg, #38060D 0%, #680E1A 50%, #B91C1C 100%);
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: var(--radius-xl);
             overflow: hidden;
@@ -78,7 +87,7 @@
         }
         html.dark .about-cta-card,
         :root.dark .about-cta-card {
-            background: linear-gradient(135deg, #0d1a2d 0%, #162a45 50%, #5c1020 100%);
+            background: linear-gradient(135deg, #150407 0%, #2E070F 50%, #680E1A 100%);
             border-color: rgba(255, 255, 255, 0.12);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(230, 28, 28, 0.2);
         }
@@ -170,7 +179,7 @@
             gap: 6px;
         }
         .about-cta-features i {
-            color: #34D399;
+            color: rgba(255, 255, 255, 0.85);
             font-size: 0.9rem;
         }
         .about-cta-image-col {
@@ -209,7 +218,7 @@
         }
         .about-cta-img-badge i {
             font-size: 1.5rem;
-            color: #FFD166;
+            color: #FFFFFF;
         }
         .about-cta-img-badge strong {
             display: block;
@@ -340,7 +349,7 @@
                     <div class="philosophy-card fade-up">
                         <div class="philosophy-icon"><i class="fas fa-heart"></i></div>
                         <h3>Compassion</h3>
-                        <p>We treat every patient with warmth, empathy, and genuine concern for their well-being and comfort.</p>
+                        <p>We treat every patient with warmth, empathy, and genuine concern for their well-being and comfort treatment.</p>
                     </div>
                     <div class="philosophy-card fade-up">
                         <div class="philosophy-icon"><i class="fas fa-lightbulb"></i></div>
@@ -454,25 +463,30 @@
                     <h2 class="section-title">Recognized for Excellence</h2>
                     <p class="section-desc">Our quality of care is validated by the most prestigious healthcare accreditation bodies worldwide.</p>
                 </div>
-                <div class="fade-up">
-                    <img src="assets/images/about-accreditation.jpg" alt="Accreditations" class="accred-img">
-                </div>
-                <div class="accred-badges fade-up">
-                    <div class="accred-badge">
-                        <i class="fas fa-award"></i>
-                        <span>JCI Accredited</span>
+                <div class="accred-grid fade-up">
+                    <!-- Left Card: Patient Safety -->
+                    <div class="accred-card">
+                        <div class="accred-card-icon">
+                            <i class="fas fa-shield-heart"></i>
+                        </div>
+                        <span class="accred-card-tag"><i class="fas fa-shield-halved"></i> Patient Safety</span>
+                        <h3>Rigorous Safety Standards</h3>
+                        <p>Every clinical pathway at CardioVita is anchored by strict, internationally verified patient safety protocols, zero-harm initiatives, and continuous multidisciplinary surgical reviews.</p>
                     </div>
-                    <div class="accred-badge">
-                        <i class="fas fa-certificate"></i>
-                        <span>ISO 9001:2015</span>
+
+                    <!-- Center Column: Image -->
+                    <div class="accred-center">
+                        <img src="assets/images/about-accreditation.jpg" alt="Accreditations & Quality Assurance" class="accred-img">
                     </div>
-                    <div class="accred-badge">
-                        <i class="fas fa-heart-circle-check"></i>
-                        <span>AHA Gold Plus</span>
-                    </div>
-                    <div class="accred-badge">
-                        <i class="fas fa-star"></i>
-                        <span>ACC Certified</span>
+
+                    <!-- Right Card: Clinical Outcomes -->
+                    <div class="accred-card">
+                        <div class="accred-card-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <span class="accred-card-tag"><i class="fas fa-chart-line"></i> Quality Metrics</span>
+                        <h3>Validated Clinical Outcomes</h3>
+                        <p>Our procedural success and survival metrics consistently rank in the top percentile of national cardiovascular registries, validated through regular external quality audits.</p>
                     </div>
                 </div>
             </div>

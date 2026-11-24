@@ -15,41 +15,72 @@
     <title>Our Services — CardioVita Heart Care</title>
     <style>
         .srv-hero{position:relative;min-height:440px;display:flex;align-items:center;background-size:cover;background-position:center}
-        .srv-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,58,95,.92),rgba(230, 28, 28,.88))}
+        .srv-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15, 17, 23, 0.88) 0%,rgba(92, 13, 23, 0.88) 50%,rgba(230, 28, 28, 0.85) 100%)}
+        html.dark .srv-hero-overlay,:root.dark .srv-hero-overlay{background:linear-gradient(135deg,rgba(11, 4, 6, 0.94) 0%,rgba(45, 8, 14, 0.90) 50%,rgba(185, 28, 28, 0.82) 100%)}
         .srv-hero-content{position:relative;z-index:2;color:#fff;text-align:center;width:100%}
         .srv-hero-content h1{color:#fff;margin-bottom:.75rem}
         .srv-hero-content p{color:rgba(255,255,255,.9);font-size:1.0625rem;max-width:640px;margin:0 auto}
         .srv-icon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
         .srv-icon-card{text-align:center;padding:2rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal)}
         .srv-icon-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
-        .srv-icon-circle{width:60px;height:60px;border-radius:50%;background:rgba(230, 28, 28,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.3rem;margin:0 auto .85rem}
+        .srv-icon-circle{width:60px;height:60px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.3rem;margin:0 auto .85rem}
         .srv-icon-card h3{font-size:1.05rem;margin-bottom:.4rem}
         .srv-icon-card p{font-size:.84375rem}
         .srv-featured{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
         .srv-featured.reverse{direction:rtl}
         .srv-featured.reverse>*{direction:ltr}
-        .srv-featured-img{width:100%;height:360px;object-fit:cover;border-radius:var(--radius-lg)}
+        .srv-featured-img{width:100%;height:380px;object-fit:cover;border-radius:var(--radius-lg)}
         .srv-featured-text h3{font-size:1.4rem;margin-bottom:.6rem}
         .srv-featured-text>p{font-size:.9375rem;margin-bottom:1.25rem}
         .srv-bullets{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.25rem}
         .srv-bullet{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--text-light)}
-        .srv-bullet i{color:var(--primary);font-size:.8rem;width:16px}
+        .srv-bullet i{color:var(--text-muted);font-size:.8rem;width:16px}
         .srv-extra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
         .srv-extra-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all var(--transition-normal)}
         .srv-extra-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
-        .srv-extra-img{width:100%;height:200px;object-fit:cover}
+        .srv-extra-img{width:100%;height:275px;object-fit:cover}
         .srv-extra-body{padding:1.25rem}
         .srv-extra-body h3{font-size:1.05rem;margin-bottom:.4rem}
         .srv-extra-body p{font-size:.84375rem}
         .srv-process{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative}
         .srv-process-step{text-align:center;position:relative;padding:1.5rem 1rem}
-        .srv-process-icon{width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto .85rem}
+        .srv-process-icon{width:56px;height:56px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto .85rem}
         .srv-process-step h4{font-size:1rem;margin-bottom:.3rem}
         .srv-process-step p{font-size:.8125rem}
         .srv-process-arrow{position:absolute;top:28px;right:-8px;color:var(--primary);font-size:1.1rem}
         [dir="rtl"] .srv-process-arrow{right:auto;left:-8px;transform:scaleX(-1)}
-        @media(max-width:1024px){.srv-icon-grid{grid-template-columns:repeat(2,1fr)}.srv-featured,.srv-featured.reverse{grid-template-columns:1fr;direction:ltr}.srv-process{grid-template-columns:repeat(2,1fr)}.srv-extra-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:768px){.srv-icon-grid,.srv-extra-grid{grid-template-columns:1fr}.srv-featured-img{height:260px}.srv-process-arrow{display:none}}
+        @media(max-width:1024px){
+            .srv-icon-grid{grid-template-columns:repeat(2,1fr)}
+            .srv-featured{gap:2rem}
+            .srv-featured-img{height:360px}
+            .srv-process{grid-template-columns:repeat(2,1fr)}
+            .srv-process-step:nth-child(2) .srv-process-arrow{display:none}
+            .srv-extra-grid{grid-template-columns:repeat(2,1fr)}
+            .srv-extra-card:last-child:nth-child(odd){
+                grid-column: 1 / -1;
+                max-width: calc(50% - 0.75rem);
+                width: 100%;
+                justify-self: center;
+                margin: 0 auto;
+            }
+            .srv-extra-img{height:330px}
+        }
+        @media(max-width:768px){
+            .srv-featured,.srv-featured.reverse{grid-template-columns:1fr;direction:ltr}
+            .srv-icon-grid,.srv-extra-grid{grid-template-columns:1fr}
+            .srv-extra-card:last-child:nth-child(odd){
+                grid-column: auto;
+                max-width: 100%;
+                margin: 0;
+            }
+            .srv-featured-img{height:380px}
+            .srv-extra-img{height:380px}
+            .srv-process-arrow{display:none}
+        }
+        @media(max-width:480px){
+            .srv-featured-img{height:250px}
+            .srv-extra-img{height:220px}
+        }
         @media(max-width:360px){.srv-process{grid-template-columns:1fr}}
     </style>
 </head>
@@ -245,7 +276,7 @@
                     <div class="srv-process-step">
                         <div class="srv-process-icon"><i class="fas fa-heart-circle-check"></i></div>
                         <h4>Recovery</h4>
-                        <p>Ongoing monitoring, rehabilitation, and support for lasting heart health.</p>
+                        <p>Ongoing recovery monitoring, rehabilitation, and support for lasting heart health.</p>
                     </div>
                 </div>
             </div>

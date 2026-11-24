@@ -123,10 +123,10 @@
         .dash-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 480px;
         }
         .dash-table th, .dash-table td {
-            white-space: nowrap;
+            white-space: normal;
+            word-break: normal;
         }
         .dash-table .btn {
             width: auto !important;
@@ -146,8 +146,9 @@
             border-radius: var(--radius-md);
             padding: 1.25rem;
             display: flex;
-            gap: 1rem;
-            align-items: flex-start;
+            gap: 1.25rem;
+            align-items: center;
+            justify-content: center;
             box-sizing: border-box;
         }
         .med-icon {
@@ -383,7 +384,7 @@
             color: transparent;
         }
         .telehealth-hero-card {
-            background: linear-gradient(135deg,rgba(30,58,95,.08) 0%,rgba(230, 28, 28,.08) 100%);
+            background: linear-gradient(135deg, rgba(230, 28, 28, 0.10) 0%, rgba(185, 28, 28, 0.05) 100%);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             padding: 1.5rem;
@@ -545,6 +546,59 @@
             line-height: 1.5;
         }
 
+        @media (max-width: 1024px) {
+            .dash-sidebar {
+                transform: translateX(-100%);
+                z-index: 10001;
+                box-shadow: 0 0 35px rgba(0, 0, 0, 0.4);
+            }
+            [dir="rtl"] .dash-sidebar {
+                transform: translateX(100%);
+            }
+            .dash-sidebar.open {
+                transform: translateX(0) !important;
+            }
+            .dash-sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 10000;
+                backdrop-filter: blur(2px);
+            }
+            .dash-sidebar-overlay.active {
+                display: block !important;
+            }
+            .dash-main {
+                margin-left: 0 !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+            [dir="rtl"] .dash-main {
+                margin-right: 0 !important;
+            }
+            .dash-header,
+            [dir="rtl"] .dash-header {
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                padding: 0.5rem 1.25rem !important;
+                box-sizing: border-box !important;
+            }
+            .dash-mobile-toggle {
+                display: flex !important;
+            }
+            .dash-sidebar-close {
+                display: flex !important;
+            }
+            .dash-header-title {
+                display: flex !important;
+                font-size: 1.15rem !important;
+            }
+        }
+
         @media (max-width: 900px) {
             .dash-two-col {
                 grid-template-columns: 1fr;
@@ -597,8 +651,10 @@
                 padding: 0.5rem 0.75rem !important;
                 box-sizing: border-box !important;
             }
-            .dash-header-title {
-                display: none !important;
+            @media (max-width: 576px) {
+                .dash-header-title {
+                    display: none !important;
+                }
             }
             .dash-mobile-toggle {
                 display: flex !important;
@@ -644,6 +700,11 @@
             .payment-cards {
                 grid-template-columns: 1fr !important;
                 gap: 0.75rem !important;
+            }
+            .med-card {
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 1.25rem !important;
             }
             .telehealth-hero-card {
                 padding: 1rem 0.85rem !important;
@@ -841,7 +902,7 @@
            RESPONSIVE MOBILE DASHBOARD TABLE & CARD LAYOUT
            Eliminates horizontal sidescroll on mobile viewports
            ═════════════════════════════════════════════════════════════ */
-        @media (max-width: 680px) {
+        @media (max-width: 768px) {
             .dash-table-wrap {
                 overflow-x: hidden !important;
                 width: 100% !important;
@@ -1078,17 +1139,27 @@
         }
 
         .btn-hotline {
-            background: rgba(14, 165, 233, 0.06) !important;
-            color: #0284C7 !important;
-            border: 1.5px solid rgba(14, 165, 233, 0.4) !important;
+            background: rgba(230, 28, 28, 0.08) !important;
+            color: var(--primary) !important;
+            border: 1.5px solid rgba(230, 28, 28, 0.4) !important;
         }
 
         .btn-hotline:hover {
-            background: #0284C7 !important;
+            background: var(--primary) !important;
             color: #FFFFFF !important;
-            border-color: #0284C7 !important;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 4px 14px rgba(230, 28, 28, 0.3) !important;
             transform: translateY(-1px);
+        }
+
+        .status-badge.scheduled {
+            background: rgba(230, 28, 28, 0.1) !important;
+            color: var(--primary) !important;
+            border: 1px solid rgba(230, 28, 28, 0.25) !important;
+        }
+
+        .status-badge.scheduled i {
+            color: inherit !important;
         }
 
         /* ═════════════════════════════════════════════════════════════
@@ -1167,17 +1238,23 @@
         }
 
         html.dark .btn-hotline {
-            background: rgba(56, 189, 248, 0.12) !important;
-            color: #38BDF8 !important;
-            border: 1.5px solid rgba(56, 189, 248, 0.45) !important;
+            background: rgba(230, 28, 28, 0.15) !important;
+            color: #FF6B81 !important;
+            border: 1.5px solid rgba(230, 28, 28, 0.45) !important;
         }
 
         html.dark .btn-hotline:hover {
-            background: #0284C7 !important;
+            background: var(--primary) !important;
             color: #FFFFFF !important;
-            border-color: #38BDF8 !important;
-            box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 4px 16px rgba(230, 28, 28, 0.4) !important;
             transform: translateY(-1px);
+        }
+
+        html.dark .status-badge.scheduled {
+            background: rgba(230, 28, 28, 0.2) !important;
+            color: #FF6B81 !important;
+            border-color: rgba(230, 28, 28, 0.35) !important;
         }
 
     </style>
@@ -1194,6 +1271,7 @@
                         <span class="brand-bottom">CardioVita</span>
                     </div>
                 </a>
+                <button class="dash-sidebar-close" id="dashSidebarClose" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
             </div>
             <nav class="dash-sidebar-nav">
                 <div class="dash-nav-label">MENU</div>
@@ -1235,21 +1313,21 @@
                         <div class="dash-notif-dropdown" id="dashNotifDropdown">
                             <div class="notif-header">Notifications</div>
                             <div class="notif-item">
-                                <div class="notif-icon" style="background:rgba(34,197,94,.1);color:#16a34a"><i class="fas fa-check"></i></div>
+                                <div class="notif-icon" style="background:var(--bg-alt);border:1px solid var(--border);color:var(--text)"><i class="fas fa-check"></i></div>
                                 <div>
                                     <div class="notif-text">Your ECG report is ready for review.</div>
                                     <div class="notif-time">2 hours ago</div>
                                 </div>
                             </div>
                             <div class="notif-item">
-                                <div class="notif-icon" style="background:rgba(59,130,246,.1);color:#2563eb"><i class="fas fa-calendar"></i></div>
+                                <div class="notif-icon" style="background:var(--bg-alt);border:1px solid var(--border);color:var(--text)"><i class="fas fa-calendar"></i></div>
                                 <div>
                                     <div class="notif-text">Upcoming consultation with Dr. Mitchell on Dec 15.</div>
                                     <div class="notif-time">5 hours ago</div>
                                 </div>
                             </div>
                             <div class="notif-item">
-                                <div class="notif-icon" style="background:rgba(245,158,11,.1);color:#d97706"><i class="fas fa-pills"></i></div>
+                                <div class="notif-icon" style="background:var(--bg-alt);border:1px solid var(--border);color:var(--text)"><i class="fas fa-pills"></i></div>
                                 <div>
                                     <div class="notif-text">Medication reminder: Take Lisinopril 10mg this evening.</div>
                                     <div class="notif-time">Today, 6:00 PM</div>
@@ -1281,7 +1359,7 @@
                         <div class="dash-metric-card">
                             <div class="dash-metric-label">Next Appointment</div>
                             <div class="dash-metric-value" style="font-size:1.25rem">Dec 15, 2024</div>
-                            <div class="dash-metric-trend" style="color:var(--info)"><i class="fas fa-calendar"></i> Dr. Mitchell</div>
+                            <div class="dash-metric-trend" style="color:var(--text)"><i class="fas fa-calendar"></i> Dr. Mitchell</div>
                         </div>
                         <div class="dash-metric-card">
                             <div class="dash-metric-label">Heart Rate</div>
@@ -1296,14 +1374,14 @@
                         <div class="dash-metric-card">
                             <div class="dash-metric-label">Active Medications</div>
                             <div class="dash-metric-value">3</div>
-                            <div class="dash-metric-trend" style="color:var(--info)"><i class="fas fa-pills"></i> On Schedule</div>
+                            <div class="dash-metric-trend" style="color:var(--text)"><i class="fas fa-pills"></i> On Schedule</div>
                         </div>
                     </div>
 
                     <!-- Daily Vitals & Care Plan 2-Col Grid -->
                     <div class="dash-two-col">
                         <div class="dash-card" style="margin-bottom:0">
-                            <h3 class="dash-card-title"><i class="fas fa-heart-pulse" style="color:var(--primary)"></i>Daily Cardiac Activity & Recovery</h3>
+                            <h3 class="dash-card-title"><i class="fas fa-heart-pulse"></i>Daily Cardiac Activity & Recovery</h3>
                             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem">
                                 <span style="font-size:.875rem;color:var(--text)">Daily Steps Goal</span>
                                 <span style="font-size:.875rem;font-weight:600;color:var(--primary)">6,840 / 8,000 (85%)</span>
@@ -1314,18 +1392,28 @@
                             <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.25rem">
                                 <div class="policy-item">
                                     <div class="policy-lbl">Resting HR</div>
-                                    <div class="policy-val" style="color:#10b981"><i class="fas fa-heart"></i> 58 bpm</div>
+                                    <div class="policy-val" style="color:var(--text)"><i class="fas fa-heart"></i> 58 bpm</div>
                                     <span style="font-size:.6875rem;color:var(--text-muted)">Optimal range</span>
                                 </div>
                                 <div class="policy-item">
                                     <div class="policy-lbl">Sleep Quality</div>
-                                    <div class="policy-val"><i class="fas fa-moon" style="color:#6366f1"></i> 7h 25m</div>
+                                    <div class="policy-val"><i class="fas fa-moon"></i> 7h 25m</div>
                                     <span style="font-size:.6875rem;color:#10b981">92% Restorative</span>
+                                </div>
+                                <div class="policy-item">
+                                    <div class="policy-lbl">Active Burn</div>
+                                    <div class="policy-val"><i class="fas fa-fire"></i> 485 kcal</div>
+                                    <span style="font-size:.6875rem;color:var(--text-muted)">Goal: 500 kcal</span>
+                                </div>
+                                <div class="policy-item">
+                                    <div class="policy-lbl">Blood Oxygen</div>
+                                    <div class="policy-val"><i class="fas fa-lungs"></i> 98% SpO2</div>
+                                    <span style="font-size:.6875rem;color:#10b981">Optimal (Room Air)</span>
                                 </div>
                             </div>
                         </div>
                         <div class="dash-card" style="margin-bottom:0">
-                            <h3 class="dash-card-title"><i class="fas fa-list-check" style="color:var(--primary)"></i>Today's Care Plan Checklist</h3>
+                            <h3 class="dash-card-title"><i class="fas fa-list-check"></i>Today's Care Plan Checklist</h3>
                             <ul class="dash-checklist">
                                 <li class="dash-check-item">
                                     <div class="dash-check-left">
@@ -1400,7 +1488,7 @@
 
                     <!-- Assigned Care Team & Clinical Note Card -->
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-user-doctor" style="color:var(--primary)"></i>Assigned Cardiologist & Latest Clinical Note</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-user-doctor"></i>Assigned Cardiologist & Latest Clinical Note</h3>
                         <div class="care-team-row" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border-light)">
                             <div style="display:flex;align-items:center;gap:1rem">
                                 <div style="width:50px;height:50px;border-radius:50%;background:rgba(230, 28, 28,.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.4rem"><i class="fas fa-stethoscope"></i></div>
@@ -1430,7 +1518,7 @@
                         <div class="telehealth-info">
                             <span class="status-badge scheduled" style="margin-bottom:.5rem"><i class="fas fa-video"></i> Next Virtual Consultation</span>
                             <h3>Follow-Up Telehealth Visit with Dr. James Mitchell</h3>
-                            <p><i class="fas fa-calendar-day" style="margin-right:.4rem;color:var(--primary)"></i>Sunday, Dec 15, 2024 • 10:00 AM EST • 30-Minute Video Assessment</p>
+                            <p><i class="fas fa-calendar-day" style="margin-right:.4rem;"></i>Sunday, Dec 15, 2024 • 10:00 AM EST • 30-Minute Video Assessment</p>
                         </div>
                         <div style="display:flex;gap:.75rem;flex-wrap:wrap">
                             <button class="btn btn-primary btn-sm" onclick="alert('Virtual Telehealth Room will activate 10 minutes prior to scheduled start time.')"><i class="fas fa-video"></i> Enter Waiting Room</button>
@@ -1470,7 +1558,7 @@
                     <!-- Visit Summaries & Preparation Guidelines -->
                     <div class="dash-two-col">
                         <div class="dash-card" style="margin-bottom:0">
-                            <h3 class="dash-card-title"><i class="fas fa-file-waveform" style="color:var(--primary)"></i>Past Consultation Summaries</h3>
+                            <h3 class="dash-card-title"><i class="fas fa-file-waveform"></i>Past Consultation Summaries</h3>
                             <div style="margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border-light)">
                                 <div style="display:flex;justify-content:space-between;margin-bottom:.25rem">
                                     <strong style="font-size:.875rem">Dr. James Mitchell — Nov 10, 2024</strong>
@@ -1487,29 +1575,29 @@
                             </div>
                         </div>
                         <div class="dash-card" style="margin-bottom:0">
-                            <h3 class="dash-card-title"><i class="fas fa-clipboard-check" style="color:var(--primary)"></i>Pre-Appointment Guidelines</h3>
+                            <h3 class="dash-card-title"><i class="fas fa-clipboard-check"></i>Pre-Appointment Guidelines</h3>
                             <ul class="dash-checklist">
                                 <li class="dash-check-item">
                                     <div class="dash-check-left">
-                                        <i class="fas fa-pills" style="color:var(--primary);width:18px"></i>
+                                        <i class="fas fa-pills" style="width:18px"></i>
                                         <span style="font-size:.8125rem">Have all current prescription and supplement bottles accessible.</span>
                                     </div>
                                 </li>
                                 <li class="dash-check-item">
                                     <div class="dash-check-left">
-                                        <i class="fas fa-mug-hot" style="color:var(--primary);width:18px"></i>
+                                        <i class="fas fa-mug-hot" style="width:18px"></i>
                                         <span style="font-size:.8125rem">Refrain from caffeinated beverages 3 hours prior to in-office ECGs.</span>
                                     </div>
                                 </li>
                                 <li class="dash-check-item">
                                     <div class="dash-check-left">
-                                        <i class="fas fa-shirt" style="color:var(--primary);width:18px"></i>
+                                        <i class="fas fa-shirt" style="width:18px"></i>
                                         <span style="font-size:.8125rem">Wear comfortable loose-fitting clothing for blood pressure monitoring.</span>
                                     </div>
                                 </li>
                                 <li class="dash-check-item">
                                     <div class="dash-check-left">
-                                        <i class="fas fa-book-medical" style="color:var(--primary);width:18px"></i>
+                                        <i class="fas fa-book-medical" style="width:18px"></i>
                                         <span style="font-size:.8125rem">Note any recent episodes of lightheadedness or irregular palpitations.</span>
                                     </div>
                                 </li>
@@ -1568,7 +1656,7 @@
                         <div style="background:#070d18;border:1px solid rgba(56,189,248,.2);border-radius:var(--radius-sm);padding:1rem;position:relative;overflow:hidden;margin-bottom:1rem">
                             <div style="font-size:.6875rem;font-weight:600;color:#38bdf8;letter-spacing:.05em;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.35rem">
                                 <span style="word-break:break-word;max-width:100%"><i class="fas fa-chart-line"></i> LEAD II TELEMETRY RHYTHM STRIP</span>
-                                <span style="color:#10b981"><i class="fas fa-circle" style="font-size:.5rem;margin-right:.25rem"></i>CALIBRATED</span>
+                                <span style="color:var(--text)"><i class="fas fa-circle" style="font-size:.5rem;margin-right:.25rem"></i>CALIBRATED</span>
                             </div>
                             <svg viewBox="0 0 900 80" style="width:100%;height:65px;display:block" preserveAspectRatio="none">
                                 <defs>
@@ -1604,7 +1692,7 @@
 
                     <!-- Cardiovascular Biomarkers Panel -->
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-vial" style="color:var(--primary)"></i>Key Cardiac Biomarkers & Lipid Panel (Nov 10, 2024)</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-vial"></i>Key Cardiac Biomarkers & Lipid Panel (Nov 10, 2024)</h3>
                         <div class="dash-table-wrap" style="margin-bottom:0;border:none">
                             <table class="dash-table dash-table-cards-mobile">
                                 <thead><tr><th>Biomarker Test</th><th>Patient Result</th><th>Standard Target Range</th><th>Clinical Assessment</th></tr></thead>
@@ -1622,7 +1710,7 @@
 
                     <!-- Upload Outside Medical Records Zone -->
                     <div class="upload-dropzone" onclick="alert('File picker opened. Select PDF, DICOM, or image reports from outside healthcare networks.')">
-                        <i class="fas fa-cloud-arrow-up" style="font-size:2.25rem;color:var(--primary);margin-bottom:.75rem"></i>
+                        <i class="fas fa-cloud-arrow-up" style="font-size:2.25rem;margin-bottom:.75rem"></i>
                         <h4 style="font-size:1rem;margin-bottom:.35rem">Upload Outside Diagnostic Records</h4>
                         <p style="font-size:.8125rem;color:var(--text-muted);max-width:520px;margin:0 auto .75rem">Have tests performed at an external laboratory, hospital, or cardiologist? Upload records here to sync with your CardioVita electronic chart.</p>
                         <span class="btn btn-outline btn-sm"><i class="fas fa-folder-open"></i> Browse Documents (PDF, DICOM, JPG up to 25MB)</span>
@@ -1661,7 +1749,7 @@
                             </div>
                         </div>
                         <div class="med-card">
-                            <div class="med-icon" style="background:rgba(245,158,11,.1);color:#d97706"><i class="fas fa-pills"></i></div>
+                            <div class="med-icon" style="background:var(--bg-alt);border:1px solid var(--border);color:var(--text)"><i class="fas fa-pills"></i></div>
                             <div class="med-info">
                                 <h4>Metoprolol 25mg</h4>
                                 <p>Twice daily — Morning & Evening</p>
@@ -1678,10 +1766,10 @@
                         <table class="dash-table med-schedule-table">
                             <thead><tr><th>Medication</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
                             <tbody>
-                                <tr><td>Aspirin 81mg</td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td></tr>
-                                <tr><td>Lisinopril 10mg</td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td></tr>
-                                <tr><td>Atorvastatin 20mg</td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td></tr>
-                                <tr><td>Metoprolol 25mg</td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-minus" style="color:var(--warning)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-minus" style="color:var(--warning)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td></tr>
+                                <tr><td>Aspirin 81mg</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+                                <tr><td>Lisinopril 10mg</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+                                <tr><td>Atorvastatin 20mg</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+                                <tr><td>Metoprolol 25mg</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-minus"></i></td><td><i class="fas fa-check"></i></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -1690,7 +1778,7 @@
                     <div class="dash-card">
                         <div class="refill-header-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem">
                             <div>
-                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-prescription-bottle-medical" style="color:var(--primary)"></i>Prescription Refill Center</h3>
+                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-prescription-bottle-medical"></i>Prescription Refill Center</h3>
                                 <p style="font-size:.8125rem;color:var(--text-muted);margin:0"><i class="fas fa-store" style="margin-right:.3rem"></i>Preferred Pharmacy: <strong>CVS Pharmacy #4821</strong> — 1420 3rd Avenue, NY (Tel: 555-847-0199)</p>
                             </div>
                             <button class="btn btn-outline btn-sm" onclick="alert('Manage connected pharmacies window opened.')"><i class="fas fa-pen-to-square"></i> Change Pharmacy</button>
@@ -1700,25 +1788,25 @@
                                 <thead><tr><th>Prescription</th><th>Prescribed By</th><th>Refills Left</th><th>Next Refill Due</th><th>Action</th></tr></thead>
                                 <tbody>
                                     <tr>
-                                        <td data-label="Prescription"><span class="cell-val"><strong>Lisinopril 10mg</strong> (Oral Tablet)</span></td>
+                                        <td data-label="Prescription"><div class="drug-name-wrap"><strong>Lisinopril 10mg</strong><span class="drug-form">(Oral Tablet)</span></div></td>
                                         <td data-label="Prescribed By"><span class="cell-val">Dr. James Mitchell</span></td>
                                         <td data-label="Refills Left"><span class="cell-val"><span class="status-badge normal">2 Refills</span></span></td>
                                         <td data-label="Next Refill Due"><span class="cell-val">Dec 28, 2024</span></td>
-                                        <td data-label="Action"><button class="btn btn-outline btn-sm" onclick="alert('Refill requested for Lisinopril 10mg. Order forwarded to CVS Pharmacy #4821.')"><i class="fas fa-arrows-rotate"></i> Request Refill</button></td>
+                                        <td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Refill requested for Lisinopril 10mg. Order forwarded to CVS Pharmacy #4821.')"><i class="fas fa-arrows-rotate"></i> Request Refill</button></td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Prescription"><span class="cell-val"><strong>Atorvastatin 20mg</strong> (Oral Tablet)</span></td>
+                                        <td data-label="Prescription"><div class="drug-name-wrap"><strong>Atorvastatin 20mg</strong><span class="drug-form">(Oral Tablet)</span></div></td>
                                         <td data-label="Prescribed By"><span class="cell-val">Dr. James Mitchell</span></td>
                                         <td data-label="Refills Left"><span class="cell-val"><span class="status-badge warning">1 Refill</span></span></td>
                                         <td data-label="Next Refill Due"><span class="cell-val">Jan 05, 2025</span></td>
-                                        <td data-label="Action"><button class="btn btn-outline btn-sm" onclick="alert('Refill requested for Atorvastatin 20mg. Order forwarded to CVS Pharmacy #4821.')"><i class="fas fa-arrows-rotate"></i> Request Refill</button></td>
+                                        <td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Refill requested for Atorvastatin 20mg. Order forwarded to CVS Pharmacy #4821.')"><i class="fas fa-arrows-rotate"></i> Request Refill</button></td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Prescription"><span class="cell-val"><strong>Metoprolol 25mg</strong> (Oral Tablet)</span></td>
+                                        <td data-label="Prescription"><div class="drug-name-wrap"><strong>Metoprolol 25mg</strong><span class="drug-form">(Oral Tablet)</span></div></td>
                                         <td data-label="Prescribed By"><span class="cell-val">Dr. Sarah Chen</span></td>
                                         <td data-label="Refills Left"><span class="cell-val"><span class="status-badge warning">Under Review</span></span></td>
                                         <td data-label="Next Refill Due"><span class="cell-val">Awaiting Next Visit</span></td>
-                                        <td data-label="Action"><button class="btn btn-outline btn-sm" onclick="alert('Consultation note sent to Dr. Chen regarding Metoprolol renewal.')"><i class="fas fa-stethoscope"></i> Ask Doctor</button></td>
+                                        <td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Consultation note sent to Dr. Chen regarding Metoprolol renewal.')"><i class="fas fa-stethoscope"></i> Ask Doctor</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1763,7 +1851,7 @@
                         </div>
                         <div class="dash-metric-card">
                             <div class="dash-metric-label">Last Payment</div>
-                            <div class="dash-metric-value" style="color:var(--success)">$349</div>
+                            <div class="dash-metric-value" style="color:var(--text)">$349</div>
                             <div class="dash-metric-trend up"><i class="fas fa-check-circle"></i> Nov 10</div>
                         </div>
                         <div class="dash-metric-card">
@@ -1773,7 +1861,7 @@
                         </div>
                         <div class="dash-metric-card">
                             <div class="dash-metric-label">Insurance Covered</div>
-                            <div class="dash-metric-value" style="color:var(--success)">$4,200</div>
+                            <div class="dash-metric-value" style="color:var(--text)">$4,200</div>
                             <div class="dash-metric-trend up"><i class="fas fa-shield-halved"></i> BlueCross</div>
                         </div>
                     </div>
@@ -1813,7 +1901,7 @@
                     <div class="policy-card">
                         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
                             <div>
-                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-shield-halved" style="color:var(--primary)"></i>Health Insurance Coverage & Benefit Tiers</h3>
+                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-shield-halved"></i>Health Insurance Coverage & Benefit Tiers</h3>
                                 <p style="font-size:.8125rem;color:var(--text-muted);margin:0">Primary Payer: <strong>BlueCross BlueShield Comprehensive HeartCare</strong> • Member ID: <strong>BCBS-8849-0194</strong> • Group: <strong>GRP-4821</strong></p>
                             </div>
                             <span class="status-badge active"><i class="fas fa-check-circle"></i> Policy Active</span>
@@ -1821,7 +1909,7 @@
                         <div class="policy-grid">
                             <div class="policy-item">
                                 <div class="policy-lbl">Annual Deductible</div>
-                                <div class="policy-val" style="color:#10b981">$1,500.00</div>
+                                <div class="policy-val" style="color:var(--text)">$1,500.00</div>
                                 <span style="font-size:.75rem;color:#10b981"><i class="fas fa-check"></i> 100% Met for 2024</span>
                             </div>
                             <div class="policy-item">
@@ -1838,7 +1926,7 @@
                     </div>
 
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-credit-card" style="color:var(--primary)"></i>Saved Payment Methods</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-credit-card"></i>Saved Payment Methods</h3>
                         <div class="payment-cards">
                             <div class="payment-card">
                                 <i class="fab fa-cc-visa"></i>
@@ -1861,7 +1949,7 @@
                     <div class="dash-card" style="margin-bottom:0">
                         <div class="tax-doc-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
                             <div>
-                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-receipt" style="color:var(--primary)"></i>Annual Tax Documents & HSA/FSA Superbills</h3>
+                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-receipt"></i>Annual Tax Documents & HSA/FSA Superbills</h3>
                                 <p style="font-size:.8125rem;color:var(--text-muted);margin:0">All CardioVita cardiac diagnostics, consultations, and monitoring services are 100% eligible for FSA/HSA reimbursement.</p>
                             </div>
                             <button class="btn btn-outline btn-sm" onclick="alert('Downloading 2024 Itemized Medical Expense Superbill (PDF)...')"><i class="fas fa-file-pdf"></i> Download 2024 Tax Statement</button>
@@ -1873,7 +1961,7 @@
                 <div class="dash-tab" id="tab-settings">
                     <h2 class="dash-section-title">Account Settings</h2>
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-user" style="color:var(--primary)"></i>Personal Information</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-user"></i>Personal Information</h3>
                         <form class="settings-form" onsubmit="event.preventDefault();alert('Settings saved successfully!')">
                             <div class="form-group">
                                 <label>Full Name</label>
@@ -1910,7 +1998,7 @@
                         </form>
                     </div>
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-bell" style="color:var(--primary)"></i>Notification Preferences</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-bell"></i>Notification Preferences</h3>
                         <div class="notif-toggle">
                             <span class="notif-toggle-label">Email Notifications</span>
                             <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
@@ -1925,7 +2013,7 @@
                         </div>
                     </div>
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-lock" style="color:var(--primary)"></i>Change Password</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-lock"></i>Change Password</h3>
                         <form class="settings-form" onsubmit="event.preventDefault();alert('Password updated successfully!')">
                             <div class="form-group">
                                 <label>Current Password</label>

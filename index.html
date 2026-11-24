@@ -19,7 +19,7 @@
         .service-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
         .service-card-img{width:100%;height:220px;object-fit:cover;object-position:center 20%}
         .service-card-body{padding:1.25rem}
-        .service-card-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:rgba(230, 28, 28,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;margin-bottom:.75rem}
+        .service-card-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem;margin-bottom:.75rem}
         .service-card-body h3{font-size:1.1rem;margin-bottom:.4rem}
         .service-card-body p{font-size:.875rem;margin-bottom:.75rem}
         .service-card-link{font-size:.84375rem;font-weight:600;color:var(--primary);display:inline-flex;align-items:center;gap:.35rem}
@@ -28,7 +28,7 @@
         .about-img{border-radius:var(--radius-lg);width:100%;height:100%;min-height:510px;object-fit:cover;box-shadow:var(--shadow-md)}
         .about-features{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
         .about-feat{display:flex;align-items:flex-start;gap:.75rem}
-        .about-feat-icon{width:36px;height:36px;border-radius:50%;background:rgba(230, 28, 28,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:.9rem;flex-shrink:0}
+        .about-feat-icon{width:36px;height:36px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:.9rem;flex-shrink:0}
         .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
         .process-card{text-align:center;position:relative}
         .process-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.1rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
@@ -36,14 +36,15 @@
         .process-card h4{font-size:1rem;margin-bottom:.35rem}
         .process-card p{font-size:.84375rem}
         .stats-section{position:relative;background-size:cover;background-position:center;padding:4rem 0}
-        .stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(230, 28, 28,.92),rgba(30,58,95,.9))}
+        .stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(230, 28, 28,.94) 0%,rgba(185, 28, 28,.92) 45%,rgba(74, 7, 16,.96) 100%)}
+        html.dark .stats-overlay,:root.dark .stats-overlay{background:linear-gradient(135deg,rgba(185, 28, 28,.90) 0%,rgba(92, 13, 23,.94) 45%,rgba(15, 17, 23,.98) 100%)}
         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
         .stat-value{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
         .stat-label{font-size:.9375rem;font-weight:450;opacity:.9}
         .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
         .testimonial-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;transition:all var(--transition-normal)}
         .testimonial-card:hover{border-color:var(--primary);box-shadow:var(--shadow-md)}
-        .testimonial-stars{color:#f59e0b;font-size:.875rem;margin-bottom:.75rem}
+        .testimonial-stars{color:var(--text-muted);font-size:.875rem;margin-bottom:.75rem}
         .testimonial-text{font-size:.9375rem;font-weight:400;color:var(--text-light);line-height:1.65;margin-bottom:1.25rem;font-style:italic}
         .testimonial-author{display:flex;align-items:center;gap:.75rem}
         .testimonial-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover}
@@ -284,7 +285,7 @@
                 </div>
                 <div class="risk-screener-grid fade-up">
                     <div class="risk-form-card">
-                        <div class="risk-step-title"><i class="fas fa-user text-primary"></i> 1. Select Your Age Group</div>
+                        <div class="risk-step-title"><i class="fas fa-user"></i> 1. Select Your Age Group</div>
                         <div class="risk-pill-selector age-selector">
                             <button type="button" class="risk-pill-btn active" data-val="<35">&lt; 35 yrs</button>
                             <button type="button" class="risk-pill-btn" data-val="35-49">35 – 49 yrs</button>
@@ -292,13 +293,13 @@
                             <button type="button" class="risk-pill-btn" data-val="65+">65+ yrs</button>
                         </div>
 
-                        <div class="risk-step-title"><i class="fas fa-venus-mars text-primary"></i> 2. Biological Sex</div>
+                        <div class="risk-step-title"><i class="fas fa-venus-mars"></i> 2. Biological Sex</div>
                         <div class="risk-pill-selector">
                             <button type="button" class="risk-pill-btn active">Male</button>
                             <button type="button" class="risk-pill-btn">Female</button>
                         </div>
 
-                        <div class="risk-step-title"><i class="fas fa-notes-medical text-primary"></i> 3. Clinical Biomarkers & Lifestyle Factors</div>
+                        <div class="risk-step-title"><i class="fas fa-notes-medical"></i> 3. Clinical Biomarkers & Lifestyle Factors</div>
                         <div class="risk-checkbox-grid">
                             <label class="risk-check-label">
                                 <input type="checkbox" class="risk-factor-chk" value="bp">
@@ -326,7 +327,7 @@
                             </label>
                         </div>
 
-                        <div class="risk-step-title"><i class="fas fa-stethoscope text-primary"></i> 4. Symptoms in Past 30 Days</div>
+                        <div class="risk-step-title"><i class="fas fa-stethoscope"></i> 4. Symptoms in Past 30 Days</div>
                         <div class="risk-checkbox-grid">
                             <label class="risk-check-label">
                                 <input type="checkbox" class="risk-symptom-chk" value="chest_pain">
@@ -353,7 +354,7 @@
 
                     <div class="risk-result-card">
                         <div>
-                            <div class="risk-step-title"><i class="fas fa-chart-pie text-primary"></i> Clinical Assessment Result</div>
+                            <div class="risk-step-title"><i class="fas fa-chart-pie"></i> Clinical Assessment Result</div>
                             <div class="risk-meter-wrapper">
                                 <div class="risk-score-circle" id="riskScoreCircle">
                                     <div class="risk-score-val" id="riskScoreVal">5%</div>
@@ -368,7 +369,7 @@
 
                             <div class="risk-clinical-actions" id="riskClinicalActions">
                                 <div class="risk-actions-header">
-                                    <i class="fas fa-clipboard-check text-primary"></i>
+                                    <i class="fas fa-clipboard-check"></i>
                                     <span>Recommended Clinical Protocol</span>
                                 </div>
                                 <div class="risk-actions-list" id="riskActionsList">
@@ -457,7 +458,7 @@
                         <div class="process-num">2</div>
                         <img src="assets/images/process-step2.jpg" alt="Initial Assessment" class="process-img">
                         <h4>Initial Assessment</h4>
-                        <p>Comprehensive evaluation including medical history review and tests assessment.</p>
+                        <p>Comprehensive evaluation including medical history review.</p>
                     </div>
                     <div class="process-card fade-up">
                         <div class="process-num">3</div>
@@ -596,9 +597,9 @@
                             <h3>Heart Attack Warning Signs</h3>
                             <p>Call 911 or our Emergency Hotline immediately. Every second of delay impacts cardiac muscle preservation.</p>
                             <ul class="triage-symptoms-list">
-                                <li><i class="fas fa-circle-exclamation text-danger"></i> <span>Crushing central chest heaviness, pressure, or tightness</span></li>
-                                <li><i class="fas fa-circle-exclamation text-danger"></i> <span>Radiating numbness or pain to left arm, neck, back, or jaw</span></li>
-                                <li><i class="fas fa-circle-exclamation text-danger"></i> <span>Cold sweats, sudden dizziness, nausea, or impending doom</span></li>
+                                <li><i class="fas fa-circle-exclamation"></i> <span>Crushing central chest heaviness, pressure, or tightness</span></li>
+                                <li><i class="fas fa-circle-exclamation"></i> <span>Radiating numbness or pain to left arm, neck, back, or jaw</span></li>
+                                <li><i class="fas fa-circle-exclamation"></i> <span>Cold sweats, sudden dizziness, nausea, or impending doom</span></li>
                             </ul>
                         </div>
                         <div class="triage-action-box">
@@ -616,9 +617,9 @@
                             <h3>Acute Symptom Evaluation</h3>
                             <p>For urgent new-onset symptoms that require same-day physician evaluation and rhythm diagnostics.</p>
                             <ul class="triage-symptoms-list">
-                                <li><i class="fas fa-circle-dot text-warning"></i> <span>Rapid palpitations or fluttering heartbeat lasting &gt; 15 mins</span></li>
-                                <li><i class="fas fa-circle-dot text-warning"></i> <span>Shortness of breath climbing stairs or when resting flat</span></li>
-                                <li><i class="fas fa-circle-dot text-warning"></i> <span>Unexplained bilateral fluid retention or ankle swelling</span></li>
+                                <li><i class="fas fa-circle-dot"></i> <span>Rapid palpitations or fluttering heartbeat lasting &gt; 15 mins</span></li>
+                                <li><i class="fas fa-circle-dot"></i> <span>Shortness of breath climbing stairs or when resting flat</span></li>
+                                <li><i class="fas fa-circle-dot"></i> <span>Unexplained bilateral fluid retention or ankle swelling</span></li>
                             </ul>
                         </div>
                         <div class="triage-action-box">
@@ -636,9 +637,9 @@
                             <h3>Cath Lab Guarantee</h3>
                             <p>Our STEMI emergency protocol bypasses general triage to route acute coronary alerts directly into our surgical suite.</p>
                             <ul class="triage-symptoms-list">
-                                <li><i class="fas fa-check text-success"></i> <span><strong>&lt; 45 Minute</strong> Door-to-Balloon Time (National avg: 90m)</span></li>
-                                <li><i class="fas fa-check text-success"></i> <span>Direct ambulance bay into biplane catheterization suite</span></li>
-                                <li><i class="fas fa-check text-success"></i> <span>On-site 24/7 board-certified interventional surgical team</span></li>
+                                <li><i class="fas fa-check"></i> <span><strong>&lt; 45 Minute</strong> Door-to-Balloon Time (National avg: 90m)</span></li>
+                                <li><i class="fas fa-check"></i> <span>Direct ambulance bay into biplane catheterization suite</span></li>
+                                <li><i class="fas fa-check"></i> <span>On-site 24/7 board-certified interventional surgical team</span></li>
                             </ul>
                         </div>
                         <div class="triage-action-box">

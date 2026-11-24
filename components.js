@@ -403,19 +403,130 @@ function togglePasswordVisibility(inputId, btnEl) {
 }
 window.togglePasswordVisibility = togglePasswordVisibility;
 
-/* ---- FADE-UP Observer ---- */
-function initFadeUp() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+/* ---- SCROLL ANIMATIONS & INTERACTIVE PROGRESS ---- */
+function initScrollAnimations() {
+    // Scroll progress bar removed per user request
+    const existingBar = document.getElementById('scroll-progress-bar');
+    if (existingBar) existingBar.remove();
+
+    // Check if on auth page (login & signup only)
+    const isAuthPage = document.body.classList.contains('auth-page');
+
+    // Scroll to Top Floating Button (exclude auth pages: login & signup)
+    let backToTop = document.getElementById('back-to-top-btn');
+    if (isAuthPage) {
+        if (backToTop) backToTop.remove();
+        return;
+    }
+
+    if (!backToTop) {
+        backToTop = document.createElement('button');
+        backToTop.id = 'back-to-top-btn';
+        backToTop.setAttribute('aria-label', 'Scroll to top');
+        backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+        document.body.appendChild(backToTop);
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // Scroll Handler (Back to Top visibility)
+    let isTicking = false;
+    function handleScroll() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        if (backToTop) {
+            if (scrollTop > 350) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+        isTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!isTicking) {
+            window.requestAnimationFrame(handleScroll);
+            isTicking = true;
+        }
+    }, { passive: true });
+    handleScroll();
+
+    // 3. Staggered Card Grid Animation Setup
+    const gridSelectors = [
+        '.service-grid', '.doctor-grid', '.pricing-grid', '.why-grid', 
+        '.specialty-grid', '.testimonials-grid', '.blog-grid', '.info-cards-grid', 
+        '.accred-grid', '.process-grid', '.process-cards', '.dash-metrics-grid', '.dash-table-cards-mobile',
+        '.awards-badges', '.dash-grid', '.spotlight-grid'
+    ];
+
+    gridSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(grid => {
+            const cards = grid.children;
+            Array.from(cards).forEach((card, idx) => {
+                if (!card.classList.contains('fade-up') && 
+                    !card.classList.contains('fade-down') && 
+                    !card.classList.contains('fade-in') && 
+                    !card.classList.contains('fade-slide-left') && 
+                    !card.classList.contains('fade-slide-right') && 
+                    !card.classList.contains('scale-up')) {
+                    card.classList.add('fade-up');
+                }
+                const delay = (idx % 6) * 0.1;
+                card.style.transitionDelay = `${delay.toFixed(2)}s`;
+            });
+        });
+    });
+
+    // 4. Auto-assign fade-up to section headers and standalone cards if missing
+    document.querySelectorAll('.section-header, .card, .triage-card, .vitality-calc-card, .h2-concierge-card, .map-floating-card, .newsletter-modern-card, .about-cta-card, .hero-glass-card').forEach(el => {
+        if (!el.classList.contains('fade-up') && 
+            !el.classList.contains('fade-down') && 
+            !el.classList.contains('fade-in') && 
+            !el.classList.contains('fade-slide-left') && 
+            !el.classList.contains('fade-slide-right') && 
+            !el.classList.contains('scale-up')) {
+            el.classList.add('fade-up');
+        }
+    });
+
+    // 5. IntersectionObserver for all animated elements
+    const animElements = document.querySelectorAll(
+        '.fade-up, .fade-down, .fade-in, .fade-slide-left, .fade-slide-right, .scale-up, .scroll-reveal'
+    );
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.08,
+            rootMargin: '0px 0px -20px 0px'
+        });
+
+        animElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            // If already above the fold, reveal immediately so user sees initial content
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                el.classList.add('visible');
+            } else {
+                observer.observe(el);
             }
         });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    } else {
+        animElements.forEach(el => el.classList.add('visible'));
+    }
 }
+function initFadeUp() {
+    initScrollAnimations();
+}
+window.initFadeUp = initFadeUp;
+window.initScrollAnimations = initScrollAnimations;
 
 /* ---- HERO SLIDER ---- */
 function initHeroSlider() {
@@ -567,6 +678,14 @@ function initDashboard() {
         mobileToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open');
             if (overlay) overlay.classList.toggle('active');
+        });
+    }
+
+    const sidebarClose = document.getElementById('dashSidebarClose');
+    if (sidebarClose) {
+        sidebarClose.addEventListener('click', () => {
+            if (sidebar) sidebar.classList.remove('open');
+            if (overlay) overlay.classList.remove('active');
         });
     }
 
@@ -987,7 +1106,7 @@ function initCardiacHero() {
 
     if (heartWrap) {
         heartWrap.addEventListener('click', () => {
-            heartWrap.style.transform = 'scale(1.14) rotate(1.5deg)';
+            heartWrap.style.transform = 'scale(1.08) rotate(1.2deg)';
             setTimeout(() => { heartWrap.style.transform = ''; }, 260);
         });
     }
@@ -1012,7 +1131,7 @@ function initCardiacHero() {
         const bgCtx = bgCanvas.getContext('2d');
         if (bgCtx) {
             let bgW = bgCanvas.width = card.clientWidth || 520;
-            let bgH = bgCanvas.height = card.clientHeight || 520;
+            let bgH = bgCanvas.height = card.clientHeight || 530;
 
             const rbcSources = [
                 'assets/images/rbc-1.png?v=2',
@@ -1025,20 +1144,75 @@ function initCardiacHero() {
                 return img;
             });
 
+            // Heart & HUD exclusion metrics (avoids any overlapping)
+            function getHeartMetrics() {
+                const cx = bgW * 0.5;
+                const cy = bgH * 0.44;
+                // Exclusion boundary ellipse around the enlarged anatomical heart
+                const rx = 142;
+                const ry = 172;
+                const topSafe = 68;
+                const bottomSafe = bgH - 128;
+                return { cx, cy, rx, ry, topSafe, bottomSafe };
+            }
+
             const cells = [];
-            for (let i = 0; i < 16; i++) {
-                cells.push({
-                    x: Math.random() * bgW,
-                    y: Math.random() * bgH,
-                    depth: 0.35 + Math.random() * 0.8,
-                    vx: (Math.random() - 0.48) * 0.45,
-                    vy: (Math.random() - 0.52) * 0.35,
-                    rot: Math.random() * Math.PI * 2,
-                    vRot: (Math.random() - 0.5) * 0.012,
-                    spriteIdx: i % 3,
-                    wobble: Math.random() * Math.PI * 2,
-                    wobbleSpeed: 0.015 + Math.random() * 0.02
-                });
+            const CELL_COUNT = 13;
+
+            function initCell(cell, index) {
+                const { cx, cy, rx, ry, topSafe, bottomSafe } = getHeartMetrics();
+                const depth = 0.42 + Math.random() * 0.48; // depth: 0.42 - 0.90
+                const size = 32 + depth * 16;              // reduced cell diameter: ~38px - 46px (down from 105px)
+                const radius = size * 0.5;
+
+                // Position strategically in peripheral circulation zones (outside heart and HUDs)
+                let x, y, valid = false;
+                for (let attempt = 0; attempt < 60; attempt++) {
+                    if (Math.random() < 0.65) {
+                        // Flank streams (left / right margins)
+                        x = Math.random() < 0.5 
+                            ? Math.random() * Math.max(30, cx - rx * 0.88)
+                            : (cx + rx * 0.88) + Math.random() * Math.max(30, bgW - (cx + rx * 0.88));
+                        y = topSafe + Math.random() * (bottomSafe - topSafe);
+                    } else {
+                        // Corner pockets
+                        x = Math.random() * bgW;
+                        y = Math.random() < 0.5 
+                            ? topSafe + Math.random() * 50
+                            : (bottomSafe - 50) + Math.random() * 50;
+                    }
+
+                    const dx = (x - cx) / rx;
+                    const dy = (y - cy) / ry;
+                    if (Math.hypot(dx, dy) >= 1.14 && y >= topSafe && y <= bottomSafe) {
+                        valid = true;
+                        break;
+                    }
+                }
+
+                if (!valid) {
+                    x = (index % 2 === 0) ? 40 + Math.random() * 60 : bgW - 90 + Math.random() * 50;
+                    y = topSafe + 25 + Math.random() * (bottomSafe - topSafe - 50);
+                }
+
+                cell.x = x;
+                cell.y = y;
+                cell.depth = depth;
+                cell.size = size;
+                cell.radius = radius;
+                cell.vx = (Math.random() - 0.48) * 0.42;
+                cell.vy = (Math.random() - 0.52) * 0.32;
+                cell.rot = Math.random() * Math.PI * 2;
+                cell.vRot = (Math.random() - 0.5) * 0.012;
+                cell.spriteIdx = index % 3;
+                cell.wobble = Math.random() * Math.PI * 2;
+                cell.wobbleSpeed = 0.015 + Math.random() * 0.02;
+            }
+
+            for (let i = 0; i < CELL_COUNT; i++) {
+                const cell = {};
+                initCell(cell, i);
+                cells.push(cell);
             }
 
             const shockwaves = [];
@@ -1162,29 +1336,85 @@ function initCardiacHero() {
                 bgCtx.fill();
                 bgCtx.restore();
 
-                // 5. Floating 3D Red Blood Cells
+                // 5. Floating 3D Red Blood Cells (Reduced size & Zero Overlap)
                 const rateMult = (currentBpm / 72);
+                const { cx: hcx, cy: hcy, rx: hrx, ry: hry, topSafe, bottomSafe } = getHeartMetrics();
+
                 cells.forEach(cell => {
                     cell.wobble += cell.wobbleSpeed;
                     cell.rot += cell.vRot * rateMult;
-                    cell.x += (cell.vx * cell.depth + Math.sin(cell.wobble) * 0.25) * rateMult;
-                    cell.y += (cell.vy * cell.depth + Math.cos(cell.wobble) * 0.18) * rateMult;
+                    cell.x += (cell.vx * cell.depth + Math.sin(cell.wobble) * 0.22) * rateMult;
+                    cell.y += (cell.vy * cell.depth + Math.cos(cell.wobble) * 0.16) * rateMult;
 
-                    const margin = 90 * cell.depth;
-                    if (cell.x < -margin) cell.x = bgW + margin;
-                    if (cell.x > bgW + margin) cell.x = -margin;
-                    if (cell.y < -margin) cell.y = bgH + margin;
-                    if (cell.y > bgH + margin) cell.y = -margin;
+                    // A. Vertical HUD bounds - soft containment
+                    if (cell.y < topSafe + cell.radius) {
+                        cell.y = topSafe + cell.radius;
+                        cell.vy = Math.abs(cell.vy) * 0.85;
+                    } else if (cell.y > bottomSafe - cell.radius) {
+                        cell.y = bottomSafe - cell.radius;
+                        cell.vy = -Math.abs(cell.vy) * 0.85;
+                    }
 
+                    // B. Horizontal wrapping across screen edges
+                    const margin = cell.radius * 2;
+                    if (cell.x < -margin) {
+                        cell.x = bgW + margin * 0.5;
+                        cell.y = topSafe + Math.random() * (bottomSafe - topSafe);
+                    } else if (cell.x > bgW + margin) {
+                        cell.x = -margin * 0.5;
+                        cell.y = topSafe + Math.random() * (bottomSafe - topSafe);
+                    }
+
+                    // C. Heart Exclusion Zone (NO OVERLAP WITH HEART)
+                    const hdx = (cell.x - hcx) / hrx;
+                    const hdy = (cell.y - hcy) / hry;
+                    const hDist = Math.hypot(hdx, hdy);
+                    if (hDist < 1.08 && hDist > 0.001) {
+                        // Smoothly repel cell outward away from heart boundary
+                        const angle = Math.atan2(hdy, hdx);
+                        const push = (1.08 - hDist);
+                        cell.x += Math.cos(angle) * hrx * push * 0.35;
+                        cell.y += Math.sin(angle) * hry * push * 0.35;
+                        // Hemodynamic circulation flow around the heart perimeter
+                        const tangX = -Math.sin(angle);
+                        const tangY = Math.cos(angle);
+                        cell.vx = cell.vx * 0.85 + tangX * 0.25;
+                        cell.vy = cell.vy * 0.85 + tangY * 0.25;
+                    }
+                });
+
+                // D. Cell-to-Cell Separation (NO OVERLAP BETWEEN BLOOD CELLS)
+                for (let i = 0; i < cells.length; i++) {
+                    for (let j = i + 1; j < cells.length; j++) {
+                        const c1 = cells[i];
+                        const c2 = cells[j];
+                        const cdx = c2.x - c1.x;
+                        const cdy = c2.y - c1.y;
+                        const dist = Math.hypot(cdx, cdy);
+                        const minDist = c1.radius + c2.radius + 12; // guaranteed clear spacing
+                        if (dist < minDist && dist > 0.001) {
+                            const overlap = (minDist - dist) * 0.5;
+                            const nx = cdx / dist;
+                            const ny = cdy / dist;
+                            c1.x -= nx * overlap * 0.35;
+                            c1.y -= ny * overlap * 0.35;
+                            c2.x += nx * overlap * 0.35;
+                            c2.y += ny * overlap * 0.35;
+                        }
+                    }
+                }
+
+                // E. Render RBCs with crisp, realistic reduced dimensions
+                cells.forEach(cell => {
                     const sprite = rbcImages[cell.spriteIdx];
                     if (sprite && sprite.complete && sprite.naturalWidth > 0) {
                         bgCtx.save();
                         bgCtx.translate(cell.x, cell.y);
                         bgCtx.rotate(cell.rot);
-                        const s = 105 * cell.depth;
-                        bgCtx.globalAlpha = Math.min(0.92, 0.4 + cell.depth * 0.5);
-                        bgCtx.shadowColor = 'rgba(200, 10, 25, 0.45)';
-                        bgCtx.shadowBlur = 18 * cell.depth;
+                        const s = cell.size;
+                        bgCtx.globalAlpha = Math.min(0.92, 0.45 + cell.depth * 0.45);
+                        bgCtx.shadowColor = 'rgba(210, 15, 30, 0.40)';
+                        bgCtx.shadowBlur = 12 * cell.depth;
                         bgCtx.drawImage(sprite, -s / 2, -s / 2, s, s);
                         bgCtx.restore();
                     }
@@ -1304,7 +1534,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRTLIndicators();
     renderNavbar();
     renderFooter();
-    initFadeUp();
+    initScrollAnimations();
     initHeroSlider();
     initCardiacHero();
     initCounters();

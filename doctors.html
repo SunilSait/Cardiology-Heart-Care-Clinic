@@ -32,7 +32,11 @@
       .doctors-hero-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(30,58,95,.85) 0%, rgba(230, 28, 28,.7) 100%);
+        background: linear-gradient(135deg, rgba(15, 17, 23, 0.88) 0%, rgba(92, 13, 23, 0.85) 50%, rgba(230, 28, 28, 0.75) 100%);
+      }
+      html.dark .doctors-hero-overlay,
+      :root.dark .doctors-hero-overlay {
+        background: linear-gradient(135deg, rgba(11, 4, 6, 0.94) 0%, rgba(45, 8, 14, 0.90) 50%, rgba(185, 28, 28, 0.75) 100%);
       }
       .doctors-hero-content {
         position: relative;
@@ -181,8 +185,9 @@
         width: 40px;
         height: 40px;
         border-radius: 10px;
-        background: rgba(230, 28, 28,.1);
-        color: #E61C1C;
+        background: var(--bg-alt);
+        color: var(--text);
+        border: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -265,10 +270,11 @@
         gap: 6px;
         padding: 8px 16px;
         border-radius: 24px;
-        background: rgba(30,58,95,.08);
-        color: #1E3A5F;
+        background: rgba(230, 28, 28, 0.08);
+        color: var(--primary);
         font-size: .85rem;
         font-weight: 500;
+        border: 1px solid rgba(230, 28, 28, 0.15);
       }
 
       /* ── Testimonials ── */
@@ -288,8 +294,8 @@
       }
       .testimonial-card .quote-icon {
         font-size: 2rem;
-        color: #E61C1C;
-        opacity: .2;
+        color: var(--text-muted);
+        opacity: .15;
         position: absolute;
         top: 24px;
         left: 32px;
@@ -321,8 +327,9 @@
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: rgba(230, 28, 28,.1);
-        color: #E61C1C;
+        background: var(--bg-alt);
+        color: var(--text);
+        border: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -387,7 +394,7 @@
         .approach-split,
         .research-split { grid-template-columns: 1fr; gap: 32px; }
         .approach-img,
-        .research-img { height: 320px; min-height: unset; }
+        .research-img { height: 380px; min-height: unset; }
         .testimonials-grid { grid-template-columns: 1fr; }
         .expertise-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .expertise-card { padding: 28px 18px; }
@@ -601,10 +608,9 @@
                         <p>We actively participate in multi-center clinical trials, collaborate with leading universities, and have contributed to breakthrough treatments that are now standard of care in cardiology practices around the world.</p>
                         <div class="research-tags">
                             <span><i class="fa-solid fa-flask"></i> Gene Therapy</span>
-                            <span><i class="fa-solid fa-microchip"></i> AI Diagnostics</span>
-                            <span><i class="fa-solid fa-syringe"></i> Novel Drug Trials</span>
+                            <span><i class="fa-solid fa-microchip"></i> Diagnostics</span>
+                            <span><i class="fa-solid fa-syringe"></i> Drug Trials</span>
                             <span><i class="fa-solid fa-stethoscope"></i> Device Innovation</span>
-                            <span><i class="fa-solid fa-dna"></i> Genomic Cardiology</span>
                         </div>
                     </div>
                     <img src="assets/images/doctors-research.jpg" alt="Research and Innovation" class="research-img" loading="lazy">
