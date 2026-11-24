@@ -1264,9 +1264,9 @@ function initCardiacHero() {
                 if (i === 0) ctx.moveTo(px, py);
                 else ctx.lineTo(px, py);
             }
-            ctx.strokeStyle = '#00E5FF';
+            ctx.strokeStyle = '#FF2E44';
             ctx.lineWidth = 2.2;
-            ctx.shadowColor = '#00E5FF';
+            ctx.shadowColor = '#FF2E44';
             ctx.shadowBlur = 8;
             ctx.stroke();
             ctx.shadowBlur = 0;
@@ -1276,7 +1276,7 @@ function initCardiacHero() {
             ctx.beginPath();
             ctx.arc(headX, headY, 3.5, 0, Math.PI * 2);
             ctx.fillStyle = '#FFFFFF';
-            ctx.shadowColor = '#00E5FF';
+            ctx.shadowColor = '#FF2E44';
             ctx.shadowBlur = 10;
             ctx.fill();
             ctx.shadowBlur = 0;

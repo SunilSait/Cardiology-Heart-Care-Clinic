@@ -1295,15 +1295,15 @@ html.dark .footer-newsletter-input:focus {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #10B981;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    background: #E61C1C;
+    box-shadow: 0 0 0 0 rgba(230, 28, 28, 0.7);
     animation: heroPulse 2s infinite;
 }
 
 @keyframes heroPulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 28, 28, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(230, 28, 28, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 28, 28, 0); }
 }
 
 .hero-slide-title {
@@ -5192,8 +5192,8 @@ html.dark .cardiac-live-badge,
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #10B981;
-    box-shadow: 0 0 8px #10B981;
+    background: #FF2E44;
+    box-shadow: 0 0 8px #FF2E44;
     animation: beaconBlink 1.2s infinite;
 }
 
@@ -5310,13 +5310,13 @@ html.dark .ecg-hud-header i,
 }
 
 .ecg-sync-tag {
-    color: #10B981;
+    color: #FF2E44;
     font-weight: 700;
 }
 
 html.dark .ecg-sync-tag,
 :root.dark .ecg-sync-tag {
-    color: #10B981;
+    color: #FF2E44;
 }
 
 .ecg-canvas-wrap {
@@ -5370,12 +5370,12 @@ html.dark .telemetry-mini-val,
 }
 
 .telemetry-mini-val.ef-val {
-    color: #34D399;
+    color: #FFFFFF;
 }
 
 html.dark .telemetry-mini-val.ef-val,
 :root.dark .telemetry-mini-val.ef-val {
-    color: #6EE7B7;
+    color: #FFFFFF;
 }
 
 @media (max-width: 1024px) {
