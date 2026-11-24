@@ -19,7 +19,7 @@
         .service-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
         .service-card-img{width:100%;height:220px;object-fit:cover;object-position:center 20%}
         .service-card-body{padding:1.25rem}
-        .service-card-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;margin-bottom:.75rem}
+        .service-card-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:rgba(230, 28, 28,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;margin-bottom:.75rem}
         .service-card-body h3{font-size:1.1rem;margin-bottom:.4rem}
         .service-card-body p{font-size:.875rem;margin-bottom:.75rem}
         .service-card-link{font-size:.84375rem;font-weight:600;color:var(--primary);display:inline-flex;align-items:center;gap:.35rem}
@@ -28,7 +28,7 @@
         .about-img{border-radius:var(--radius-lg);width:100%;height:100%;min-height:510px;object-fit:cover;box-shadow:var(--shadow-md)}
         .about-features{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
         .about-feat{display:flex;align-items:flex-start;gap:.75rem}
-        .about-feat-icon{width:36px;height:36px;border-radius:50%;background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:.9rem;flex-shrink:0}
+        .about-feat-icon{width:36px;height:36px;border-radius:50%;background:rgba(230, 28, 28,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:.9rem;flex-shrink:0}
         .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
         .process-card{text-align:center;position:relative}
         .process-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.1rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
@@ -36,7 +36,7 @@
         .process-card h4{font-size:1rem;margin-bottom:.35rem}
         .process-card p{font-size:.84375rem}
         .stats-section{position:relative;background-size:cover;background-position:center;padding:4rem 0}
-        .stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.92),rgba(30,58,95,.9))}
+        .stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(230, 28, 28,.92),rgba(30,58,95,.9))}
         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
         .stat-value{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
         .stat-label{font-size:.9375rem;font-weight:450;opacity:.9}
@@ -55,7 +55,7 @@
         .blog-card-img{width:100%;height:200px;object-fit:cover}
         .blog-card-body{padding:1.25rem}
         .blog-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;font-size:.8125rem}
-        .blog-category{background:rgba(185,28,58,.08);color:var(--primary);padding:.2rem .6rem;border-radius:var(--radius-full);font-weight:600;font-size:.75rem}
+        .blog-category{background:rgba(230, 28, 28,.08);color:var(--primary);padding:.2rem .6rem;border-radius:var(--radius-full);font-weight:600;font-size:.75rem}
         .blog-date{color:var(--text-muted);font-weight:400}
         .blog-card-body h3{font-size:1.05rem;margin-bottom:.4rem}
         .blog-card-body>p{font-size:.875rem;margin-bottom:.75rem}
@@ -129,209 +129,74 @@
     <div id="navbar-placeholder"></div>
     <main>
 
-        <!-- HERO SLIDER -->
-        <section class="hero-slider">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-                <img src="assets/images/hero-heart-care.jpg" alt="Heart Care" class="hero-slide-bg">
-                <div class="hero-slide-overlay"></div>
-                <div class="container hero-slide-container">
-                    <div class="hero-grid">
-                        <div class="hero-main-col">
-                            <div class="hero-badge-pill">
-                                <span class="hero-badge-pulse"></span>
-                                <i class="fas fa-heart-pulse"></i>
-                                <span>#1 Rated Cardiac Center</span>
-                            </div>
-                            <h1 class="hero-slide-title">Your Heart Deserves<br><span class="hero-gradient-text">World-Class Care</span></h1>
-                            <p class="hero-slide-subtitle">World-class cardiology services with compassionate, patient-centered care. From preventative screenings to advanced interventional procedures, we protect every beat.</p>
-                            <div class="hero-btn-group">
-                                <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Consultation</a>
-                                <a href="services.html" class="btn hero-btn-glass btn-lg"><i class="fas fa-stethoscope"></i> Our Services</a>
-                            </div>
-                            <div class="hero-trust-bar">
-                                <div class="hero-trust-item"><i class="fas fa-shield-halved"></i> JCI Accredited Hospital</div>
-                                <div class="hero-trust-item"><i class="fas fa-user-doctor"></i> 15+ Board Specialists</div>
-                                <div class="hero-trust-item"><i class="fas fa-star text-warning"></i> 99.4% Procedure Success</div>
-                            </div>
+        <!-- SPLIT HERO -->
+        <section class="section hero-cardiac-section">
+            <div class="container">
+                <div class="h2-hero">
+                    <div class="h2-hero-text fade-up">
+                        <span class="badge badge-primary"><span class="hero-badge-pulse"></span> <i class="fas fa-heart-pulse"></i> #1 Rated Cardiac Center</span>
+                        <h1>Your Heart Deserves<br><span class="hero-gradient-text">World-Class Care</span></h1>
+                        <p>World-class cardiology services with compassionate, patient-centered care. From preventative screenings and real-time hemodynamic monitoring to advanced interventional procedures, we protect every beat.</p>
+                        <div class="hero-btn-group">
+                            <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Consultation</a>
+                            <a href="services.html" class="btn btn-outline btn-lg"><i class="fas fa-stethoscope"></i> Our Services</a>
                         </div>
-                        <div class="hero-side-col">
-                            <div class="hero-glass-card">
-                                <div class="hero-glass-header">
-                                    <div class="hero-glass-title">
-                                        <span class="hero-badge-pulse"></span>
-                                        <span>24/7 Rapid Response</span>
-                                    </div>
-                                    <span class="hero-glass-tag">CRITICAL CARE</span>
+                        <div class="hero-trust-bar">
+                            <div class="hero-trust-item"><i class="fas fa-shield-halved"></i> JCI Accredited Hospital</div>
+                            <div class="hero-trust-item"><i class="fas fa-user-doctor"></i> 25+ Board Specialists</div>
+                            <div class="hero-trust-item"><i class="fas fa-award"></i> 99.4% Procedure Success</div>
+                        </div>
+                    </div>
+                    <div class="h2-hero-visual-wrap" id="cardiacHeroVisual">
+                        <div class="cardiac-hero-card" id="cardiacHeroCard">
+                            <canvas id="cardiacAnimatedBgCanvas" class="cardiac-animated-bg-canvas"></canvas>
+                            <div class="cardiac-grid-bg"></div>
+
+                            <!-- Top Telemetry Header -->
+                            <div class="cardiac-top-hud">
+                                <div class="rhythm-toggle-group">
+                                    <button type="button" class="rhythm-pill-btn" data-bpm="60">Rest 60</button>
+                                    <button type="button" class="rhythm-pill-btn active" data-bpm="72">Normal 72</button>
+                                    <button type="button" class="rhythm-pill-btn" data-bpm="96">Active 96</button>
                                 </div>
-                                <div class="hero-hotline-box">
-                                    <div class="hero-hotline-icon"><i class="fas fa-phone-volume"></i></div>
-                                    <div>
-                                        <div class="hero-hotline-label">Emergency Cardiac Hotline</div>
-                                        <div class="hero-hotline-number">(555) 911-HEART</div>
-                                    </div>
+                                <div class="cardiac-live-badge">
+                                    <span class="live-beacon-dot"></span>
+                                    <span id="liveBpmText">72 BPM</span>
+                                    <span class="live-nsr-tag">| NSR</span>
                                 </div>
-                                <div class="hero-glass-metrics">
-                                    <div class="hero-metric-pill">
-                                        <div class="hero-metric-val">&lt; 45m</div>
-                                        <div class="hero-metric-lbl">Door-to-Balloon</div>
-                                    </div>
-                                    <div class="hero-metric-pill">
-                                        <div class="hero-metric-val">24/7</div>
-                                        <div class="hero-metric-lbl">Cath Lab Ready</div>
-                                    </div>
-                                    <div class="hero-metric-pill">
-                                        <div class="hero-metric-val">100%</div>
-                                        <div class="hero-metric-lbl">ICU Monitored</div>
-                                    </div>
+                            </div>
+
+                            <!-- Center Stage: Realistic 3D Anatomical Heart -->
+                            <div class="cardiac-center-stage">
+                                <div class="realistic-heart-wrap" id="realisticHeartWrap" title="Physiological Human Heart Model - Click to pulse">
+                                    <img src="assets/images/realistic-anatomical-heart.png" alt="Realistic Anatomical Human Heart" class="realistic-heart-img" id="realisticHeartImg">
                                 </div>
-                                <div class="hero-glass-footer">
-                                    <a href="contact.html" class="hero-glass-link">Emergency Arrival Protocols <i class="fas fa-arrow-right"></i></a>
+                            </div>
+
+                            <!-- Bottom Lead II ECG Telemetry Monitor -->
+                            <div class="cardiac-bottom-hud">
+                                <div class="ecg-hud-header">
+                                    <span><i class="fas fa-heart-pulse"></i> LEAD II TELEMETRY</span>
+                                    <span class="ecg-sync-tag">&bull; REALTIME SYNC</span>
+                                </div>
+                                <div class="ecg-canvas-wrap">
+                                    <canvas id="cardiacWaveCanvas" width="460" height="48"></canvas>
+                                </div>
+                                <div class="cardiac-telemetry-metrics">
+                                    <div class="telemetry-mini-cell">
+                                        Cardiac Output: <span class="telemetry-mini-val">5.2 L/m</span>
+                                    </div>
+                                    <div class="telemetry-mini-cell">
+                                        Vascular Flow: <span class="telemetry-mini-val">99.4%</span>
+                                    </div>
+                                    <div class="telemetry-mini-cell">
+                                        Ejection Fraction: <span class="telemetry-mini-val ef-val">65%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-                <img src="assets/images/hero-diagnostics.jpg" alt="Diagnostics" class="hero-slide-bg">
-                <div class="hero-slide-overlay"></div>
-                <div class="container hero-slide-container">
-                    <div class="hero-grid">
-                        <div class="hero-main-col">
-                            <div class="hero-badge-pill">
-                                <span class="hero-badge-pulse"></span>
-                                <i class="fas fa-microscope"></i>
-                                <span>State-of-the-Art Diagnostics</span>
-                            </div>
-                            <h1 class="hero-slide-title">Advanced Cardiac<br><span class="hero-gradient-text">Precision Diagnostics</span></h1>
-                            <p class="hero-slide-subtitle">Ultra-precise imaging, continuous ECG telemetry, and clinical stress profiling to uncover cardiovascular conditions before symptoms arise.</p>
-                            <div class="hero-btn-group">
-                                <a href="services.html" class="btn btn-primary btn-lg"><i class="fas fa-magnifying-glass"></i> Explore Diagnostics</a>
-                                <a href="doctors.html" class="btn hero-btn-glass btn-lg"><i class="fas fa-user-doctor"></i> Meet Our Doctors</a>
-                            </div>
-                            <div class="hero-trust-bar">
-                                <div class="hero-trust-item"><i class="fas fa-bolt text-warning"></i> Same-Day Results</div>
-                                <div class="hero-trust-item"><i class="fas fa-file-waveform"></i> 12-Lead Digital ECG</div>
-                                <div class="hero-trust-item"><i class="fas fa-certificate"></i> AI-Enhanced Precision</div>
-                            </div>
-                        </div>
-                        <div class="hero-side-col">
-                            <div class="hero-glass-card">
-                                <div class="hero-glass-header">
-                                    <div class="hero-glass-title">
-                                        <i class="fas fa-heart-pulse text-danger"></i>
-                                        <span>Diagnostic Capabilities</span>
-                                    </div>
-                                    <span class="hero-glass-tag">PORTAL READY</span>
-                                </div>
-                                <div class="hero-capabilities-list">
-                                    <div class="hero-cap-item">
-                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
-                                        <div>
-                                            <div class="hero-cap-title">12-Lead ECG & 14-Day Holter</div>
-                                            <div class="hero-cap-desc">Continuous arrhythmia capture & AI rhythm review</div>
-                                        </div>
-                                    </div>
-                                    <div class="hero-cap-item">
-                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
-                                        <div>
-                                            <div class="hero-cap-title">4D Color Doppler Echocardiogram</div>
-                                            <div class="hero-cap-desc">Hemodynamic flow & myocardial wall strain imaging</div>
-                                        </div>
-                                    </div>
-                                    <div class="hero-cap-item">
-                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
-                                        <div>
-                                            <div class="hero-cap-title">Low-Dose Cardiac CT Angiography</div>
-                                            <div class="hero-cap-desc">Sub-millimeter calcium score & plaque mapping</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hero-glass-footer">
-                                    <a href="services.html" class="hero-glass-link">View Diagnostic Tests & Prep <i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-                <img src="assets/images/hero-surgery.jpg" alt="Surgery" class="hero-slide-bg">
-                <div class="hero-slide-overlay"></div>
-                <div class="container hero-slide-container">
-                    <div class="hero-grid">
-                        <div class="hero-main-col">
-                            <div class="hero-badge-pill">
-                                <span class="hero-badge-pulse"></span>
-                                <i class="fas fa-stethoscope"></i>
-                                <span>Interventional Excellence</span>
-                            </div>
-                            <h1 class="hero-slide-title">Interventional<br><span class="hero-gradient-text">Cardiology Leadership</span></h1>
-                            <p class="hero-slide-subtitle">Transformative catheter-based interventions, transcatheter valve replacement (TAVR), and precision electrophysiology for faster, safer recoveries.</p>
-                            <div class="hero-btn-group">
-                                <a href="pricing.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice-dollar"></i> View Pricing</a>
-                                <a href="contact.html" class="btn hero-btn-glass btn-lg"><i class="fas fa-envelope"></i> Contact Clinic</a>
-                            </div>
-                            <div class="hero-trust-bar">
-                                <div class="hero-trust-item"><i class="fas fa-clock"></i> Same-Day Discharge Options</div>
-                                <div class="hero-trust-item"><i class="fas fa-hospital"></i> Hybrid Cath Suites</div>
-                                <div class="hero-trust-item"><i class="fas fa-bed"></i> 1.2 Days Avg Recovery</div>
-                            </div>
-                        </div>
-                        <div class="hero-side-col">
-                            <div class="hero-glass-card">
-                                <div class="hero-glass-header">
-                                    <div class="hero-glass-title">
-                                        <i class="fas fa-hospital-user text-accent"></i>
-                                        <span>Surgical & Interventional Suite</span>
-                                    </div>
-                                    <span class="hero-glass-tag">HYBRID THEATRE</span>
-                                </div>
-                                <div class="hero-capabilities-list">
-                                    <div class="hero-cap-item">
-                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
-                                        <div>
-                                            <div class="hero-cap-title">Radial-First Coronary Angioplasty</div>
-                                            <div class="hero-cap-desc">Minimally invasive wrist access reduces recovery time</div>
-                                        </div>
-                                    </div>
-                                    <div class="hero-cap-item">
-                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
-                                        <div>
-                                            <div class="hero-cap-title">TAVR & Mitral Clip Repair</div>
-                                            <div class="hero-cap-desc">Surgical valve repair without open-heart surgery</div>
-                                        </div>
-                                    </div>
-                                    <div class="hero-cap-item">
-                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
-                                        <div>
-                                            <div class="hero-cap-title">Electrophysiology & 3D Mapping</div>
-                                            <div class="hero-cap-desc">Targeted ablation for atrial fibrillation & flutter</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hero-glass-footer">
-                                    <a href="pricing.html" class="hero-glass-link">Explore Procedure Packages <i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-controls">
-                <button class="hero-arrow-btn" id="heroPrevBtn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                <div class="hero-dots">
-                    <button class="hero-dot active" aria-label="Slide 1"></button>
-                    <button class="hero-dot" aria-label="Slide 2"></button>
-                    <button class="hero-dot" aria-label="Slide 3"></button>
-                </div>
-                <button class="hero-arrow-btn" id="heroNextBtn" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 

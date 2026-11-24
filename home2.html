@@ -70,7 +70,7 @@
         .specialty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
         .specialty-card{text-align:center;padding:2rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal)}
         .specialty-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
-        .specialty-icon{width:60px;height:60px;border-radius:50%;background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.35rem;margin:0 auto .85rem}
+        .specialty-icon{width:60px;height:60px;border-radius:50%;background:rgba(230, 28, 28,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.35rem;margin:0 auto .85rem}
         .specialty-card h3{font-size:1.05rem;margin-bottom:.4rem}
         .specialty-card p{font-size:.84375rem}
         .zigzag-item{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
@@ -85,7 +85,7 @@
         .zigzag-feat i{color:var(--primary);font-size:.8rem;width:16px}
         .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
         .why-card{text-align:center;padding:2rem}
-        .why-icon{width:64px;height:64px;border-radius:var(--radius-lg);background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.5rem;margin:0 auto 1rem}
+        .why-icon{width:64px;height:64px;border-radius:var(--radius-lg);background:rgba(230, 28, 28,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.5rem;margin:0 auto 1rem}
         .why-card h3{font-size:1.1rem;margin-bottom:.5rem}
         .why-card p{font-size:.875rem;line-height:1.6;max-width:320px;margin:0 auto}
         .journey-section{position:relative}
@@ -98,7 +98,7 @@
         .journey-step-content h4{font-size:1rem;margin-bottom:.3rem}
         .journey-step-content p{font-size:.84375rem}
         .h2-stats{position:relative;background-size:cover;background-position:center;padding:4rem 0}
-        .h2-stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,58,95,.92),rgba(185,28,58,.88))}
+        .h2-stats-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,58,95,.92),rgba(230, 28, 28,.88))}
         .h2-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
         .h2-stat-val{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
         .h2-stat-lbl{font-size:.9375rem;font-weight:450;opacity:.9}
@@ -130,18 +130,18 @@
             background: var(--bg);
         }
         .newsletter-modern-card {
-            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #8B1429 100%);
+            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #B91C1C 100%);
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(185, 28, 58, 0.18), 0 10px 30px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 20px 50px rgba(230, 28, 28, 0.18), 0 10px 30px rgba(0, 0, 0, 0.25);
             position: relative;
         }
         html.dark .newsletter-modern-card,
         :root.dark .newsletter-modern-card {
             background: linear-gradient(135deg, #0d1a2d 0%, #162a45 50%, #5c1020 100%);
             border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(185, 28, 58, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(230, 28, 28, 0.2);
         }
         .newsletter-split-grid {
             display: grid;
@@ -268,9 +268,9 @@
             box-shadow: 0 0 0 3px rgba(255, 107, 129, 0.25);
         }
         .newsletter-submit-btn {
-            background: #B91C3A;
+            background: #E61C1C;
             color: #fff;
-            border: 1px solid #B91C3A;
+            border: 1px solid #E61C1C;
             border-radius: var(--radius-md);
             padding: 14px 26px;
             font-weight: 600;
@@ -280,13 +280,13 @@
             gap: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(185, 28, 58, 0.35);
+            box-shadow: 0 4px 14px rgba(230, 28, 28, 0.35);
         }
         .newsletter-submit-btn:hover {
             background: #d42247;
             border-color: #d42247;
             transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(185, 28, 58, 0.45);
+            box-shadow: 0 8px 22px rgba(230, 28, 28, 0.45);
         }
         .newsletter-trust-tags {
             display: flex;
@@ -549,17 +549,16 @@
 
         .h2-hero-visual-wrap {
             position: relative;
-            perspective: 1000px;
         }
 
         .cardiac-hero-card {
             position: relative;
             width: 100%;
             height: 520px;
-            background: radial-gradient(circle at 50% 42%, rgba(185, 28, 58, 0.22) 0%, rgba(15, 23, 42, 0.94) 58%, #070E18 100%);
+            background: linear-gradient(155deg, #FFFFFF 0%, #FFF5F5 45%, #FFEAEA 100%);
             border-radius: var(--radius-xl, 24px);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 50px rgba(185, 28, 58, 0.25);
+            border: 1px solid rgba(230, 28, 28, 0.2);
+            box-shadow: 0 20px 48px rgba(15, 23, 42, 0.07), 0 8px 28px rgba(230, 28, 28, 0.12);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -567,12 +566,14 @@
             overflow: hidden;
             box-sizing: border-box;
             user-select: none;
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
         }
 
-        .cardiac-hero-card:hover {
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 60px rgba(185, 28, 58, 0.35);
-            border-color: rgba(56, 189, 248, 0.45);
+        /* Dark Mode Hero Card */
+        html.dark .cardiac-hero-card,
+        :root.dark .cardiac-hero-card {
+            background: radial-gradient(circle at 50% 42%, rgba(230, 28, 28, 0.35) 0%, rgba(35, 8, 12, 0.95) 58%, #0D0305 100%);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 50px rgba(230, 28, 28, 0.35);
         }
 
         /* Background grid */
@@ -580,11 +581,18 @@
             position: absolute;
             inset: 0;
             background-image: 
-                linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+                linear-gradient(rgba(230, 28, 28, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(230, 28, 28, 0.055) 1px, transparent 1px);
             background-size: 24px 24px;
             pointer-events: none;
             z-index: 1;
+        }
+
+        html.dark .cardiac-grid-bg,
+        :root.dark .cardiac-grid-bg {
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
         }
 
         /* Top HUD Header */
@@ -601,11 +609,17 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            background: rgba(15, 23, 42, 0.75);
+            background: #F1F5F9;
             padding: 3px;
             border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid #E2E8F0;
             backdrop-filter: blur(8px);
+        }
+
+        html.dark .rhythm-toggle-group,
+        :root.dark .rhythm-toggle-group {
+            background: rgba(15, 23, 42, 0.75);
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
         .rhythm-pill-btn {
@@ -615,33 +629,55 @@
             border-radius: 999px;
             border: none;
             background: transparent;
-            color: rgba(255, 255, 255, 0.7);
+            color: #64748B;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .rhythm-pill-btn:hover {
+            color: #1E293B;
+        }
+
+        html.dark .rhythm-pill-btn,
+        :root.dark .rhythm-pill-btn {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        html.dark .rhythm-pill-btn:hover,
+        :root.dark .rhythm-pill-btn:hover {
             color: #FFFFFF;
         }
 
         .rhythm-pill-btn.active {
-            background: #B91C3A;
+            background: #E61C1C;
             color: #FFFFFF;
-            box-shadow: 0 2px 8px rgba(185, 28, 58, 0.45);
+            box-shadow: 0 2px 8px rgba(230, 28, 28, 0.35);
+        }
+
+        html.dark .rhythm-pill-btn.active,
+        :root.dark .rhythm-pill-btn.active {
+            box-shadow: 0 2px 8px rgba(230, 28, 28, 0.45);
         }
 
         .cardiac-live-badge {
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: #FFF1F2;
+            border: 1px solid rgba(230, 28, 28, 0.22);
             padding: 5px 12px;
             border-radius: 999px;
             font-size: 0.78rem;
             font-weight: 700;
-            color: #38BDF8;
+            color: #E61C1C;
             backdrop-filter: blur(8px);
+        }
+
+        html.dark .cardiac-live-badge,
+        :root.dark .cardiac-live-badge {
+            background: rgba(15, 23, 42, 0.75);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #38BDF8;
         }
 
         .live-beacon-dot {
@@ -651,6 +687,17 @@
             background: #10B981;
             box-shadow: 0 0 8px #10B981;
             animation: beaconBlink 1.2s infinite;
+        }
+
+        .live-nsr-tag {
+            font-weight: 400;
+            font-size: 0.6875rem;
+            color: #64748B;
+        }
+
+        html.dark .live-nsr-tag,
+        :root.dark .live-nsr-tag {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         @keyframes beaconBlink {
@@ -680,14 +727,13 @@
             justify-content: center;
             animation: cardiacLubDub var(--cardiac-duration, 0.833s) infinite ease-in-out;
             transform-origin: 50% 55%;
-            cursor: pointer;
-            filter: drop-shadow(0 14px 40px rgba(220, 38, 38, 0.52)) drop-shadow(0 0 24px rgba(56, 189, 248, 0.25));
-            transition: filter 0.3s ease, transform 0.25s ease;
+            filter: drop-shadow(0 14px 36px rgba(230, 28, 28, 0.42)) drop-shadow(0 0 20px rgba(255, 77, 77, 0.22));
             user-select: none;
         }
 
-        .realistic-heart-wrap:hover {
-            filter: drop-shadow(0 18px 52px rgba(220, 38, 38, 0.7)) drop-shadow(0 0 35px rgba(56, 189, 248, 0.45));
+        html.dark .realistic-heart-wrap,
+        :root.dark .realistic-heart-wrap {
+            filter: drop-shadow(0 14px 44px rgba(230, 28, 28, 0.65)) drop-shadow(0 0 28px rgba(255, 77, 77, 0.35));
         }
 
         .realistic-heart-img {
@@ -695,7 +741,7 @@
             height: 100%;
             object-fit: contain;
             pointer-events: none;
-            filter: contrast(1.1) brightness(1.05);
+            filter: contrast(1.08) brightness(1.02);
             display: block;
         }
 
@@ -715,11 +761,19 @@
         .cardiac-bottom-hud {
             position: relative;
             z-index: 5;
-            background: rgba(11, 18, 33, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.22);
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
             border-radius: var(--radius-md, 12px);
             padding: 0.65rem 0.9rem;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
             backdrop-filter: blur(8px);
+        }
+
+        html.dark .cardiac-bottom-hud,
+        :root.dark .cardiac-bottom-hud {
+            background: rgba(11, 18, 33, 0.85);
+            border-color: rgba(56, 189, 248, 0.22);
+            box-shadow: none;
         }
 
         .ecg-hud-header {
@@ -728,9 +782,34 @@
             justify-content: space-between;
             font-size: 0.72rem;
             font-weight: 700;
-            color: #38BDF8;
+            color: #1E293B;
             letter-spacing: 0.05em;
             margin-bottom: 0.35rem;
+        }
+
+        .ecg-hud-header i {
+            color: #E61C1C;
+            margin-right: 3px;
+        }
+
+        html.dark .ecg-hud-header,
+        :root.dark .ecg-hud-header {
+            color: #38BDF8;
+        }
+
+        html.dark .ecg-hud-header i,
+        :root.dark .ecg-hud-header i {
+            color: #38BDF8;
+        }
+
+        .ecg-sync-tag {
+            color: #059669;
+            font-weight: 700;
+        }
+
+        html.dark .ecg-sync-tag,
+        :root.dark .ecg-sync-tag {
+            color: #10B981;
         }
 
         .ecg-canvas-wrap {
@@ -739,8 +818,14 @@
             position: relative;
             border-radius: 6px;
             overflow: hidden;
+            background: #080E1A;
+            border: 1px solid rgba(15, 23, 42, 0.15);
+        }
+
+        html.dark .ecg-canvas-wrap,
+        :root.dark .ecg-canvas-wrap {
             background: rgba(3, 7, 18, 0.75);
-            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.15);
         }
 
         #cardiacWaveCanvas {
@@ -756,14 +841,34 @@
             gap: 8px;
             margin-top: 0.45rem;
             padding-top: 0.35rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid #E2E8F0;
             font-size: 0.6875rem;
+            color: #64748B;
+        }
+
+        html.dark .cardiac-telemetry-metrics,
+        :root.dark .cardiac-telemetry-metrics {
+            border-top-color: rgba(255, 255, 255, 0.08);
             color: rgba(255, 255, 255, 0.7);
         }
 
         .telemetry-mini-val {
             font-weight: 700;
+            color: #E61C1C;
+        }
+
+        html.dark .telemetry-mini-val,
+        :root.dark .telemetry-mini-val {
             color: #38BDF8;
+        }
+
+        .telemetry-mini-val.ef-val {
+            color: #059669;
+        }
+
+        html.dark .telemetry-mini-val.ef-val,
+        :root.dark .telemetry-mini-val.ef-val {
+            color: #6EE7B7;
         }
 
         /* Mobile View - Live Cardiac HUD Display */
@@ -870,7 +975,7 @@
         html.dark .vitality-calc-card {
             background: linear-gradient(145deg, #0e1726 0%, #070d18 100%);
             border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 40px rgba(185, 28, 58, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 40px rgba(230, 28, 28, 0.15);
         }
         .vitality-calc-grid {
             display: grid;
@@ -897,18 +1002,18 @@
             color: var(--text);
         }
         .vitality-val-badge {
-            background: rgba(185, 28, 58, 0.1);
+            background: rgba(230, 28, 28, 0.1);
             color: var(--primary);
             font-size: 0.8125rem;
             font-weight: 700;
             padding: 0.2rem 0.65rem;
             border-radius: var(--radius-full);
-            border: 1px solid rgba(185, 28, 58, 0.2);
+            border: 1px solid rgba(230, 28, 28, 0.2);
         }
         html.dark .vitality-val-badge {
-            background: rgba(244, 63, 94, 0.16);
-            color: #FDA4AF;
-            border-color: rgba(244, 63, 94, 0.35);
+            background: rgba(230, 28, 28, 0.16);
+            color: #FF6B6B;
+            border-color: rgba(230, 28, 28, 0.35);
         }
         .vitality-slider {
             width: 100%;
@@ -927,7 +1032,7 @@
             border-radius: 50%;
             background: var(--primary);
             border: 3px solid #FFFFFF;
-            box-shadow: 0 2px 8px rgba(185, 28, 58, 0.4);
+            box-shadow: 0 2px 8px rgba(230, 28, 28, 0.4);
             cursor: pointer;
             transition: transform 0.15s ease;
         }
@@ -956,15 +1061,15 @@
             color: var(--text);
         }
         .vitality-pill-btn.active {
-            background: rgba(185, 28, 58, 0.08);
+            background: rgba(230, 28, 28, 0.08);
             border-color: var(--primary);
             color: var(--primary);
-            box-shadow: 0 2px 10px rgba(185, 28, 58, 0.12);
+            box-shadow: 0 2px 10px rgba(230, 28, 28, 0.12);
         }
         html.dark .vitality-pill-btn.active {
-            background: rgba(244, 63, 94, 0.18);
-            color: #FDA4AF;
-            border-color: #E11D48;
+            background: rgba(230, 28, 28, 0.2);
+            color: #FFFFFF;
+            border-color: var(--primary);
         }
         .vitality-check-row {
             display: flex;
@@ -990,7 +1095,7 @@
 
         /* Results Display Pane */
         .vitality-result-pane {
-            background: linear-gradient(145deg, rgba(185, 28, 58, 0.04) 0%, rgba(15, 23, 42, 0.03) 100%);
+            background: linear-gradient(145deg, rgba(230, 28, 28, 0.04) 0%, rgba(15, 23, 42, 0.03) 100%);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: 2.25rem 2rem;
@@ -1002,7 +1107,7 @@
             position: relative;
         }
         html.dark .vitality-result-pane {
-            background: linear-gradient(145deg, rgba(225, 29, 72, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
+            background: linear-gradient(145deg, rgba(230, 28, 28, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
             border-color: rgba(255, 255, 255, 0.12);
         }
         .vitality-gauge-wrap {
@@ -1168,7 +1273,7 @@
             background: var(--primary);
             border-color: var(--primary);
             color: #FFFFFF !important;
-            box-shadow: 0 4px 14px rgba(185, 28, 58, 0.3);
+            box-shadow: 0 4px 14px rgba(230, 28, 28, 0.3);
         }
         .h2-faq-layout {
             display: grid;
@@ -1229,7 +1334,7 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: rgba(185, 28, 58, 0.08);
+            background: rgba(230, 28, 28, 0.08);
             color: var(--primary);
             display: flex;
             align-items: center;
@@ -1259,7 +1364,7 @@
 
         /* Concierge Help Box */
         .h2-concierge-card {
-            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #8B1429 100%);
+            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #B91C1C 100%);
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: var(--radius-xl);
             padding: 2.25rem 2rem;
@@ -1343,68 +1448,209 @@
     <div id="navbar-placeholder"></div>
     <main>
 
-        <!-- SPLIT HERO -->
-        <section class="section">
-            <div class="container">
-                <div class="h2-hero">
-                    <div class="h2-hero-text fade-up">
-                        <span class="badge badge-primary"><i class="fas fa-heart-pulse"></i> Premium Heart Care</span>
-                        <h1>Advanced Cardiology for a Healthier Tomorrow</h1>
-                        <p>Experience the finest in cardiovascular medicine. Our world-renowned specialists use cutting-edge technology and evidence-based approaches to protect and restore your heart health.</p>
-                        <div class="hero-btn-group">
-                            <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Consultation</a>
-                            <a href="services.html" class="btn btn-outline btn-lg"><i class="fas fa-stethoscope"></i> Explore Services</a>
+        <!-- HERO SLIDER -->
+        <section class="hero-slider">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <img src="assets/images/hero-heart-care.jpg" alt="Heart Care" class="hero-slide-bg">
+                <div class="hero-slide-overlay"></div>
+                <div class="container hero-slide-container">
+                    <div class="hero-grid">
+                        <div class="hero-main-col">
+                            <div class="hero-badge-pill">
+                                <span class="hero-badge-pulse"></span>
+                                <i class="fas fa-heart-pulse"></i>
+                                <span>24/7 Critical & Emergency Care</span>
+                            </div>
+                            <h1 class="hero-slide-title">Advanced Cardiology for<br><span class="hero-gradient-text">a Healthier Tomorrow</span></h1>
+                            <p class="hero-slide-subtitle">Experience the finest in cardiovascular medicine. From 24/7 rapid door-to-balloon emergency response to cutting-edge catheterization, our renowned specialists protect every beat.</p>
+                            <div class="hero-btn-group">
+                                <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Consultation</a>
+                                <a href="services.html" class="btn hero-btn-glass btn-lg"><i class="fas fa-stethoscope"></i> Our Services</a>
+                            </div>
+                            <div class="hero-trust-bar">
+                                <div class="hero-trust-item"><i class="fas fa-shield-halved"></i> JCI Accredited Hospital</div>
+                                <div class="hero-trust-item"><i class="fas fa-user-doctor"></i> 15+ Board Specialists</div>
+                                <div class="hero-trust-item"><i class="fas fa-star text-warning"></i> 99.4% Procedure Success</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="h2-hero-visual-wrap" id="cardiacHeroVisual">
-                        <div class="cardiac-hero-card" id="cardiacHeroCard">
-                            <div class="cardiac-grid-bg"></div>
-
-                            <!-- Top Telemetry Header -->
-                            <div class="cardiac-top-hud">
-                                <div class="rhythm-toggle-group">
-                                    <button type="button" class="rhythm-pill-btn" data-bpm="60">Rest 60</button>
-                                    <button type="button" class="rhythm-pill-btn active" data-bpm="72">Normal 72</button>
-                                    <button type="button" class="rhythm-pill-btn" data-bpm="96">Active 96</button>
-                                </div>
-                                <div class="cardiac-live-badge">
-                                    <span class="live-beacon-dot"></span>
-                                    <span id="liveBpmText">72 BPM</span>
-                                    <span style="font-weight:400;font-size:0.6875rem;color:rgba(255,255,255,0.7)">| NSR</span>
-                                </div>
-                            </div>
-
-                            <!-- Center Stage: Realistic 3D Anatomical Heart -->
-                            <div class="cardiac-center-stage">
-                                <div class="realistic-heart-wrap" id="realisticHeartWrap" title="Physiological Human Heart Model - Click to pulse">
-                                    <img src="assets/images/realistic-anatomical-heart.png" alt="Realistic Anatomical Human Heart" class="realistic-heart-img" id="realisticHeartImg">
-                                </div>
-                            </div>
-
-                            <!-- Bottom Lead II ECG Telemetry Monitor -->
-                            <div class="cardiac-bottom-hud">
-                                <div class="ecg-hud-header">
-                                    <span><i class="fas fa-heart-pulse"></i> LEAD II TELEMETRY</span>
-                                    <span style="color:#10B981">&bull; REALTIME SYNC</span>
-                                </div>
-                                <div class="ecg-canvas-wrap">
-                                    <canvas id="cardiacWaveCanvas" width="460" height="48"></canvas>
-                                </div>
-                                <div class="cardiac-telemetry-metrics">
-                                    <div class="telemetry-mini-cell">
-                                        Cardiac Output: <span class="telemetry-mini-val">5.2 L/m</span>
+                        <div class="hero-side-col">
+                            <div class="hero-glass-card">
+                                <div class="hero-glass-header">
+                                    <div class="hero-glass-title">
+                                        <span class="hero-badge-pulse"></span>
+                                        <span>24/7 Rapid Response</span>
                                     </div>
-                                    <div class="telemetry-mini-cell">
-                                        Vascular Flow: <span class="telemetry-mini-val">99.4%</span>
+                                    <span class="hero-glass-tag">CRITICAL CARE</span>
+                                </div>
+                                <div class="hero-hotline-box">
+                                    <div class="hero-hotline-icon"><i class="fas fa-phone-volume"></i></div>
+                                    <div>
+                                        <div class="hero-hotline-label">Emergency Cardiac Hotline</div>
+                                        <div class="hero-hotline-number">(555) 911-HEART</div>
                                     </div>
-                                    <div class="telemetry-mini-cell">
-                                        Ejection Fraction: <span class="telemetry-mini-val" style="color:#6EE7B7">65%</span>
+                                </div>
+                                <div class="hero-glass-metrics">
+                                    <div class="hero-metric-pill">
+                                        <div class="hero-metric-val">&lt; 45m</div>
+                                        <div class="hero-metric-lbl">Door-to-Balloon</div>
                                     </div>
+                                    <div class="hero-metric-pill">
+                                        <div class="hero-metric-val">24/7</div>
+                                        <div class="hero-metric-lbl">Cath Lab Ready</div>
+                                    </div>
+                                    <div class="hero-metric-pill">
+                                        <div class="hero-metric-val">100%</div>
+                                        <div class="hero-metric-lbl">ICU Monitored</div>
+                                    </div>
+                                </div>
+                                <div class="hero-glass-footer">
+                                    <a href="contact.html" class="hero-glass-link">Emergency Arrival Protocols <i class="fas fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <img src="assets/images/hero-diagnostics.jpg" alt="Diagnostics" class="hero-slide-bg">
+                <div class="hero-slide-overlay"></div>
+                <div class="container hero-slide-container">
+                    <div class="hero-grid">
+                        <div class="hero-main-col">
+                            <div class="hero-badge-pill">
+                                <span class="hero-badge-pulse"></span>
+                                <i class="fas fa-microscope"></i>
+                                <span>State-of-the-Art Diagnostics</span>
+                            </div>
+                            <h1 class="hero-slide-title">Advanced Cardiac<br><span class="hero-gradient-text">Precision Diagnostics</span></h1>
+                            <p class="hero-slide-subtitle">Ultra-precise imaging, continuous ECG telemetry, and clinical stress profiling to uncover cardiovascular conditions before symptoms arise.</p>
+                            <div class="hero-btn-group">
+                                <a href="services.html" class="btn btn-primary btn-lg"><i class="fas fa-magnifying-glass"></i> Explore Diagnostics</a>
+                                <a href="doctors.html" class="btn hero-btn-glass btn-lg"><i class="fas fa-user-doctor"></i> Meet Our Doctors</a>
+                            </div>
+                            <div class="hero-trust-bar">
+                                <div class="hero-trust-item"><i class="fas fa-bolt text-warning"></i> Same-Day Results</div>
+                                <div class="hero-trust-item"><i class="fas fa-file-waveform"></i> 12-Lead Digital ECG</div>
+                                <div class="hero-trust-item"><i class="fas fa-certificate"></i> AI-Enhanced Precision</div>
+                            </div>
+                        </div>
+                        <div class="hero-side-col">
+                            <div class="hero-glass-card">
+                                <div class="hero-glass-header">
+                                    <div class="hero-glass-title">
+                                        <i class="fas fa-heart-pulse text-danger"></i>
+                                        <span>Diagnostic Capabilities</span>
+                                    </div>
+                                    <span class="hero-glass-tag">PORTAL READY</span>
+                                </div>
+                                <div class="hero-capabilities-list">
+                                    <div class="hero-cap-item">
+                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
+                                        <div>
+                                            <div class="hero-cap-title">12-Lead ECG & 14-Day Holter</div>
+                                            <div class="hero-cap-desc">Continuous arrhythmia capture & AI rhythm review</div>
+                                        </div>
+                                    </div>
+                                    <div class="hero-cap-item">
+                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
+                                        <div>
+                                            <div class="hero-cap-title">4D Color Doppler Echocardiogram</div>
+                                            <div class="hero-cap-desc">Hemodynamic flow & myocardial wall strain imaging</div>
+                                        </div>
+                                    </div>
+                                    <div class="hero-cap-item">
+                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
+                                        <div>
+                                            <div class="hero-cap-title">Low-Dose Cardiac CT Angiography</div>
+                                            <div class="hero-cap-desc">Sub-millimeter calcium score & plaque mapping</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hero-glass-footer">
+                                    <a href="services.html" class="hero-glass-link">View Diagnostic Tests & Prep <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <img src="assets/images/hero-surgery.jpg" alt="Surgery" class="hero-slide-bg">
+                <div class="hero-slide-overlay"></div>
+                <div class="container hero-slide-container">
+                    <div class="hero-grid">
+                        <div class="hero-main-col">
+                            <div class="hero-badge-pill">
+                                <span class="hero-badge-pulse"></span>
+                                <i class="fas fa-stethoscope"></i>
+                                <span>Interventional Excellence</span>
+                            </div>
+                            <h1 class="hero-slide-title">Interventional<br><span class="hero-gradient-text">Cardiology Leadership</span></h1>
+                            <p class="hero-slide-subtitle">Transformative catheter-based interventions, transcatheter valve replacement (TAVR), and precision electrophysiology for faster, safer recoveries.</p>
+                            <div class="hero-btn-group">
+                                <a href="pricing.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice-dollar"></i> View Pricing</a>
+                                <a href="contact.html" class="btn hero-btn-glass btn-lg"><i class="fas fa-envelope"></i> Contact Clinic</a>
+                            </div>
+                            <div class="hero-trust-bar">
+                                <div class="hero-trust-item"><i class="fas fa-clock"></i> Same-Day Discharge Options</div>
+                                <div class="hero-trust-item"><i class="fas fa-hospital"></i> Hybrid Cath Suites</div>
+                                <div class="hero-trust-item"><i class="fas fa-bed"></i> 1.2 Days Avg Recovery</div>
+                            </div>
+                        </div>
+                        <div class="hero-side-col">
+                            <div class="hero-glass-card">
+                                <div class="hero-glass-header">
+                                    <div class="hero-glass-title">
+                                        <i class="fas fa-hospital-user text-accent"></i>
+                                        <span>Surgical & Interventional Suite</span>
+                                    </div>
+                                    <span class="hero-glass-tag">HYBRID THEATRE</span>
+                                </div>
+                                <div class="hero-capabilities-list">
+                                    <div class="hero-cap-item">
+                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
+                                        <div>
+                                            <div class="hero-cap-title">Radial-First Coronary Angioplasty</div>
+                                            <div class="hero-cap-desc">Minimally invasive wrist access reduces recovery time</div>
+                                        </div>
+                                    </div>
+                                    <div class="hero-cap-item">
+                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
+                                        <div>
+                                            <div class="hero-cap-title">TAVR & Mitral Clip Repair</div>
+                                            <div class="hero-cap-desc">Surgical valve repair without open-heart surgery</div>
+                                        </div>
+                                    </div>
+                                    <div class="hero-cap-item">
+                                        <div class="hero-cap-bullet"><i class="fas fa-check"></i></div>
+                                        <div>
+                                            <div class="hero-cap-title">Electrophysiology & 3D Mapping</div>
+                                            <div class="hero-cap-desc">Targeted ablation for atrial fibrillation & flutter</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hero-glass-footer">
+                                    <a href="pricing.html" class="hero-glass-link">Explore Procedure Packages <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-controls">
+                <button class="hero-arrow-btn" id="heroPrevBtn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <div class="hero-dots">
+                    <button class="hero-dot active" aria-label="Slide 1"></button>
+                    <button class="hero-dot" aria-label="Slide 2"></button>
+                    <button class="hero-dot" aria-label="Slide 3"></button>
+                </div>
+                <button class="hero-arrow-btn" id="heroNextBtn" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
@@ -2023,137 +2269,6 @@
     <div id="footer-placeholder"></div>
     <script src="components.js"></script>
     <script>
-    (function() {
-        const card = document.getElementById('cardiacHeroCard');
-        const bpmText = document.getElementById('liveBpmText');
-        const buttons = document.querySelectorAll('.rhythm-pill-btn');
-        const heartWrap = document.getElementById('realisticHeartWrap');
-        let currentBpm = 72;
-
-        if (heartWrap) {
-            heartWrap.addEventListener('click', () => {
-                heartWrap.style.transform = 'scale(1.14) rotate(1.5deg)';
-                setTimeout(() => { heartWrap.style.transform = ''; }, 260);
-            });
-        }
-
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                buttons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentBpm = parseInt(btn.dataset.bpm, 10);
-                if (bpmText) bpmText.textContent = currentBpm + ' BPM';
-                const duration = (60 / currentBpm).toFixed(3) + 's';
-                document.documentElement.style.setProperty('--cardiac-duration', duration);
-                document.documentElement.style.setProperty('--cardiac-bpm', currentBpm);
-            });
-        });
-
-        // Real-time Canvas ECG Stream
-        const canvas = document.getElementById('cardiacWaveCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        const holder = canvas.parentElement;
-
-        let width = canvas.width = (holder && holder.clientWidth) ? holder.clientWidth : 460;
-        let height = canvas.height = (holder && holder.clientHeight) ? holder.clientHeight : 48;
-        const midY = height / 2;
-
-        const points = [];
-        const maxPoints = 140;
-        let cyclePhase = 0;
-
-        function getLeadIIValue(t) {
-            if (t >= 0.10 && t < 0.20) {
-                return -Math.sin((t - 0.10) / 0.10 * Math.PI) * (height * 0.16);
-            } else if (t >= 0.23 && t < 0.26) {
-                return Math.sin((t - 0.23) / 0.03 * Math.PI) * (height * 0.12);
-            } else if (t >= 0.26 && t < 0.32) {
-                return -Math.sin((t - 0.26) / 0.06 * Math.PI) * (height * 0.44);
-            } else if (t >= 0.32 && t < 0.36) {
-                return Math.sin((t - 0.32) / 0.04 * Math.PI) * (height * 0.16);
-            } else if (t >= 0.45 && t < 0.65) {
-                return -Math.sin((t - 0.45) / 0.20 * Math.PI) * (height * 0.22);
-            }
-            return 0;
-        }
-
-        for (let i = 0; i < maxPoints; i++) {
-            points.push(midY);
-        }
-
-        function drawWave() {
-            const speed = (currentBpm / 72) * 0.014;
-            cyclePhase = (cyclePhase + speed) % 1.0;
-            const val = midY + getLeadIIValue(cyclePhase) + (Math.random() - 0.5) * 0.8;
-
-            points.push(val);
-            if (points.length > maxPoints) points.shift();
-
-            ctx.clearRect(0, 0, width, height);
-
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.08)';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            for (let x = 0; x < width; x += 20) { ctx.moveTo(x, 0); ctx.lineTo(x, height); }
-            for (let y = 0; y < height; y += 16) { ctx.moveTo(0, y); ctx.lineTo(width, y); }
-            ctx.stroke();
-
-            if (points.length > 1) {
-                ctx.beginPath();
-                const dx = width / (maxPoints - 1);
-                for (let i = 0; i < points.length; i++) {
-                    const px = i * dx;
-                    const py = points[i];
-                    if (i === 0) ctx.moveTo(px, py);
-                    else ctx.lineTo(px, py);
-                }
-                ctx.strokeStyle = '#00E5FF';
-                ctx.lineWidth = 2.2;
-                ctx.shadowColor = '#00E5FF';
-                ctx.shadowBlur = 8;
-                ctx.stroke();
-                ctx.shadowBlur = 0;
-
-                const headX = (points.length - 1) * dx;
-                const headY = points[points.length - 1];
-                ctx.beginPath();
-                ctx.arc(headX, headY, 3.5, 0, Math.PI * 2);
-                ctx.fillStyle = '#FFFFFF';
-                ctx.shadowColor = '#00E5FF';
-                ctx.shadowBlur = 10;
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-
-            requestAnimationFrame(drawWave);
-        }
-        drawWave();
-
-        function resizeCanvas() {
-            if (holder && holder.clientWidth > 0) {
-                canvas.width = holder.clientWidth;
-                canvas.height = holder.clientHeight || 48;
-                width = canvas.width;
-                height = canvas.height;
-            }
-        }
-        window.addEventListener('resize', resizeCanvas);
-        setTimeout(resizeCanvas, 150);
-
-        if (card) {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                card.style.transform = `perspective(1000px) rotateX(${-y / 24}deg) rotateY(${x / 24}deg)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-            });
-        }
-    })();
-
     // ═════════════════════════════════════════════════════════════
     // SECTION 1: HEART AGE & CARDIOVASCULAR VITALITY CALCULATOR
     // ═════════════════════════════════════════════════════════════

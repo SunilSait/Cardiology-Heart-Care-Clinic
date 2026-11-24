@@ -40,10 +40,10 @@
 
 /* ---- LOGO SVG ---- */
 const LOGO_SVG = `<svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#B91C3A"/><stop offset="100%" stop-color="#8B1429"/></linearGradient></defs>
+  <defs><linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E61C1C"/><stop offset="100%" stop-color="#B91C1C"/></linearGradient></defs>
   <rect width="100" height="100" rx="20" fill="url(#logoBg)"/>
   <path d="M50 72 C50 72 25 55 25 40 C25 32 31 26 38 26 C43 26 47 29 50 33 C53 29 57 26 62 26 C69 26 75 32 75 40 C75 55 50 72 50 72Z" fill="white" opacity="0.95"/>
-  <path d="M38 44 L44 44 L47 38 L50 50 L53 42 L56 44 L62 44" stroke="#B91C3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M38 44 L44 44 L47 38 L50 50 L53 42 L56 44 L62 44" stroke="#E61C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>`;
 
 /* ---- FontAwesome Icon Helper ---- */
@@ -975,6 +975,329 @@ function initSurgicalMatrix() {
     });
 }
 
+/* ---- CARDIAC HUD HERO VISUAL ---- */
+function initCardiacHero() {
+    const card = document.getElementById('cardiacHeroCard');
+    if (!card) return;
+
+    const bpmText = document.getElementById('liveBpmText');
+    const buttons = card.querySelectorAll('.rhythm-pill-btn');
+    const heartWrap = document.getElementById('realisticHeartWrap');
+    let currentBpm = 72;
+
+    if (heartWrap) {
+        heartWrap.addEventListener('click', () => {
+            heartWrap.style.transform = 'scale(1.14) rotate(1.5deg)';
+            setTimeout(() => { heartWrap.style.transform = ''; }, 260);
+        });
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentBpm = parseInt(btn.dataset.bpm, 10);
+            if (bpmText) bpmText.textContent = currentBpm + ' BPM';
+            const duration = (60 / currentBpm).toFixed(3) + 's';
+            document.documentElement.style.setProperty('--cardiac-duration', duration);
+            document.documentElement.style.setProperty('--cardiac-bpm', currentBpm);
+        });
+    });
+
+    // ═════════════════════════════════════════════════════════════
+    // ANIMATED CARDIAC BACKGROUND (3D RBCs, Shockwaves, ECG Sweep)
+    // ═════════════════════════════════════════════════════════════
+    const bgCanvas = document.getElementById('cardiacAnimatedBgCanvas');
+    if (bgCanvas) {
+        const bgCtx = bgCanvas.getContext('2d');
+        if (bgCtx) {
+            let bgW = bgCanvas.width = card.clientWidth || 520;
+            let bgH = bgCanvas.height = card.clientHeight || 520;
+
+            const rbcSources = [
+                'assets/images/rbc-1.png?v=2',
+                'assets/images/rbc-2.png?v=2',
+                'assets/images/rbc-3.png?v=2'
+            ];
+            const rbcImages = rbcSources.map(src => {
+                const img = new Image();
+                img.src = src;
+                return img;
+            });
+
+            const cells = [];
+            for (let i = 0; i < 16; i++) {
+                cells.push({
+                    x: Math.random() * bgW,
+                    y: Math.random() * bgH,
+                    depth: 0.35 + Math.random() * 0.8,
+                    vx: (Math.random() - 0.48) * 0.45,
+                    vy: (Math.random() - 0.52) * 0.35,
+                    rot: Math.random() * Math.PI * 2,
+                    vRot: (Math.random() - 0.5) * 0.012,
+                    spriteIdx: i % 3,
+                    wobble: Math.random() * Math.PI * 2,
+                    wobbleSpeed: 0.015 + Math.random() * 0.02
+                });
+            }
+
+            const shockwaves = [];
+            let lastBeat = performance.now();
+            let bgEcgPhase = 0;
+
+            if (heartWrap) {
+                heartWrap.addEventListener('click', () => {
+                    shockwaves.push({
+                        radius: 20,
+                        maxRadius: Math.max(bgW, bgH) * 0.88,
+                        alpha: 0.95
+                    });
+                });
+            }
+
+            function animateBg(now) {
+                const beatInterval = (60 / currentBpm) * 1000;
+                if (now - lastBeat > beatInterval) {
+                    lastBeat = now;
+                    shockwaves.push({
+                        radius: 30,
+                        maxRadius: Math.max(bgW, bgH) * 0.78,
+                        alpha: 0.6
+                    });
+                }
+
+                bgCtx.clearRect(0, 0, bgW, bgH);
+
+                const cx = bgW * 0.5;
+                const cy = bgH * 0.45;
+
+                // 1. Radiant Cardiac Core Pulse
+                const beatPhase = ((now - lastBeat) % beatInterval) / beatInterval;
+                let pulse = 1.0;
+                if (beatPhase < 0.16) {
+                    pulse = 1.0 + Math.sin(beatPhase / 0.16 * Math.PI) * 0.22;
+                } else if (beatPhase > 0.22 && beatPhase < 0.42) {
+                    pulse = 1.0 + Math.sin((beatPhase - 0.22) / 0.20 * Math.PI) * 0.32;
+                }
+
+                const grad = bgCtx.createRadialGradient(
+                    cx, cy, 20 * pulse,
+                    cx, cy, (bgW * 0.68) * pulse
+                );
+                grad.addColorStop(0, 'rgba(255, 35, 55, 0.48)');
+                grad.addColorStop(0.35, 'rgba(220, 15, 30, 0.32)');
+                grad.addColorStop(0.68, 'rgba(120, 5, 15, 0.18)');
+                grad.addColorStop(1, 'rgba(11, 4, 6, 0.0)');
+
+                bgCtx.fillStyle = grad;
+                bgCtx.fillRect(0, 0, bgW, bgH);
+
+                // 2. Medical Grid
+                bgCtx.lineWidth = 1;
+                bgCtx.strokeStyle = 'rgba(230, 28, 28, 0.08)';
+                bgCtx.beginPath();
+                for (let x = 0; x < bgW; x += 24) {
+                    bgCtx.moveTo(x, 0);
+                    bgCtx.lineTo(x, bgH);
+                }
+                for (let y = 0; y < bgH; y += 24) {
+                    bgCtx.moveTo(0, y);
+                    bgCtx.lineTo(bgW, y);
+                }
+                bgCtx.stroke();
+
+                // 3. Shockwave rings
+                for (let i = shockwaves.length - 1; i >= 0; i--) {
+                    const sw = shockwaves[i];
+                    sw.radius += (currentBpm / 72) * 3.2;
+                    sw.alpha = Math.max(0, 0.6 * (1 - sw.radius / sw.maxRadius));
+
+                    if (sw.alpha <= 0.01 || sw.radius >= sw.maxRadius) {
+                        shockwaves.splice(i, 1);
+                        continue;
+                    }
+
+                    bgCtx.save();
+                    bgCtx.beginPath();
+                    bgCtx.arc(cx, cy, sw.radius, 0, Math.PI * 2);
+                    bgCtx.strokeStyle = `rgba(255, 65, 80, ${sw.alpha})`;
+                    bgCtx.lineWidth = 2.5;
+                    bgCtx.shadowColor = '#FF2E44';
+                    bgCtx.shadowBlur = 16;
+                    bgCtx.stroke();
+                    bgCtx.restore();
+                }
+
+                // 4. Horizontal Luminous ECG Trace behind heart
+                const ecgSpeed = (currentBpm / 72) * 0.008;
+                bgEcgPhase = (bgEcgPhase + ecgSpeed) % 1.0;
+                const ecgY = cy + 20;
+                const scanX = bgEcgPhase * bgW;
+
+                bgCtx.save();
+                bgCtx.beginPath();
+                bgCtx.moveTo(0, ecgY);
+                for (let px = 0; px < bgW; px += 3) {
+                    const normX = px / bgW;
+                    let offset = 0;
+                    const diff = ((normX - bgEcgPhase + 1.0) % 1.0);
+                    if (diff > 0.0 && diff < 0.24) {
+                        const t = diff / 0.24;
+                        if (t >= 0.12 && t < 0.26) offset = -Math.sin((t - 0.12) / 0.14 * Math.PI) * 18;
+                        else if (t >= 0.30 && t < 0.46) offset = Math.sin((t - 0.30) / 0.16 * Math.PI) * 48;
+                        else if (t >= 0.46 && t < 0.58) offset = -Math.sin((t - 0.46) / 0.12 * Math.PI) * 22;
+                    }
+                    bgCtx.lineTo(px, ecgY + offset);
+                }
+                bgCtx.strokeStyle = 'rgba(255, 60, 80, 0.24)';
+                bgCtx.lineWidth = 2;
+                bgCtx.stroke();
+
+                // Spark sweep bead
+                bgCtx.beginPath();
+                bgCtx.arc(scanX, ecgY, 3.5, 0, Math.PI * 2);
+                bgCtx.fillStyle = '#FFFFFF';
+                bgCtx.shadowColor = '#FF3B4E';
+                bgCtx.shadowBlur = 14;
+                bgCtx.fill();
+                bgCtx.restore();
+
+                // 5. Floating 3D Red Blood Cells
+                const rateMult = (currentBpm / 72);
+                cells.forEach(cell => {
+                    cell.wobble += cell.wobbleSpeed;
+                    cell.rot += cell.vRot * rateMult;
+                    cell.x += (cell.vx * cell.depth + Math.sin(cell.wobble) * 0.25) * rateMult;
+                    cell.y += (cell.vy * cell.depth + Math.cos(cell.wobble) * 0.18) * rateMult;
+
+                    const margin = 90 * cell.depth;
+                    if (cell.x < -margin) cell.x = bgW + margin;
+                    if (cell.x > bgW + margin) cell.x = -margin;
+                    if (cell.y < -margin) cell.y = bgH + margin;
+                    if (cell.y > bgH + margin) cell.y = -margin;
+
+                    const sprite = rbcImages[cell.spriteIdx];
+                    if (sprite && sprite.complete && sprite.naturalWidth > 0) {
+                        bgCtx.save();
+                        bgCtx.translate(cell.x, cell.y);
+                        bgCtx.rotate(cell.rot);
+                        const s = 105 * cell.depth;
+                        bgCtx.globalAlpha = Math.min(0.92, 0.4 + cell.depth * 0.5);
+                        bgCtx.shadowColor = 'rgba(200, 10, 25, 0.45)';
+                        bgCtx.shadowBlur = 18 * cell.depth;
+                        bgCtx.drawImage(sprite, -s / 2, -s / 2, s, s);
+                        bgCtx.restore();
+                    }
+                });
+
+                requestAnimationFrame(animateBg);
+            }
+
+            requestAnimationFrame(animateBg);
+
+            function resizeBg() {
+                if (card && card.clientWidth > 0) {
+                    bgW = bgCanvas.width = card.clientWidth;
+                    bgH = bgCanvas.height = card.clientHeight;
+                }
+            }
+            window.addEventListener('resize', resizeBg);
+            setTimeout(resizeBg, 150);
+        }
+    }
+
+    const canvas = document.getElementById('cardiacWaveCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const holder = canvas.parentElement;
+
+    let width = canvas.width = (holder && holder.clientWidth) ? holder.clientWidth : 460;
+    let height = canvas.height = (holder && holder.clientHeight) ? holder.clientHeight : 48;
+    const midY = height / 2;
+
+    const points = [];
+    const maxPoints = 140;
+    let cyclePhase = 0;
+
+    function getLeadIIValue(t) {
+        if (t >= 0.10 && t < 0.20) {
+            return -Math.sin((t - 0.10) / 0.10 * Math.PI) * (height * 0.16);
+        } else if (t >= 0.23 && t < 0.26) {
+            return Math.sin((t - 0.23) / 0.03 * Math.PI) * (height * 0.12);
+        } else if (t >= 0.26 && t < 0.32) {
+            return -Math.sin((t - 0.26) / 0.06 * Math.PI) * (height * 0.44);
+        } else if (t >= 0.32 && t < 0.36) {
+            return Math.sin((t - 0.32) / 0.04 * Math.PI) * (height * 0.16);
+        } else if (t >= 0.45 && t < 0.65) {
+            return -Math.sin((t - 0.45) / 0.20 * Math.PI) * (height * 0.22);
+        }
+        return 0;
+    }
+
+    for (let i = 0; i < maxPoints; i++) {
+        points.push(midY);
+    }
+
+    function drawWave() {
+        const speed = (currentBpm / 72) * 0.014;
+        cyclePhase = (cyclePhase + speed) % 1.0;
+        const val = midY + getLeadIIValue(cyclePhase) + (Math.random() - 0.5) * 0.8;
+
+        points.push(val);
+        if (points.length > maxPoints) points.shift();
+
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.strokeStyle = 'rgba(230, 28, 28, 0.08)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let x = 0; x < width; x += 20) { ctx.moveTo(x, 0); ctx.lineTo(x, height); }
+        for (let y = 0; y < height; y += 16) { ctx.moveTo(0, y); ctx.lineTo(width, y); }
+        ctx.stroke();
+
+        if (points.length > 1) {
+            ctx.beginPath();
+            const dx = width / (maxPoints - 1);
+            for (let i = 0; i < points.length; i++) {
+                const px = i * dx;
+                const py = points[i];
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.strokeStyle = '#00E5FF';
+            ctx.lineWidth = 2.2;
+            ctx.shadowColor = '#00E5FF';
+            ctx.shadowBlur = 8;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+
+            const headX = (points.length - 1) * dx;
+            const headY = points[points.length - 1];
+            ctx.beginPath();
+            ctx.arc(headX, headY, 3.5, 0, Math.PI * 2);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.shadowColor = '#00E5FF';
+            ctx.shadowBlur = 10;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        requestAnimationFrame(drawWave);
+    }
+    drawWave();
+
+    function resizeCanvas() {
+        if (holder) {
+            canvas.width = holder.clientWidth || 460;
+            canvas.height = holder.clientHeight || 48;
+            width = canvas.width;
+            height = canvas.height;
+        }
+    }
+    window.addEventListener('resize', resizeCanvas);
+    setTimeout(resizeCanvas, 150);
+}
+
 /* ---- INIT ---- */
 document.addEventListener('DOMContentLoaded', () => {
     updateDarkIcons();
@@ -983,6 +1306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFooter();
     initFadeUp();
     initHeroSlider();
+    initCardiacHero();
     initCounters();
     initPasswordToggles();
     initFaqAccordion();

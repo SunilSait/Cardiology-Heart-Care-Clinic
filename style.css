@@ -1,15 +1,15 @@
 /* ======================================================
    CARDIOVITA — Cardiology & Heart Care Clinic
    Master Stylesheet
-   Primary: #B91C3A (Cardiac Crimson)   Secondary: #1E3A5F (Midnight Navy)
+   Primary: #E61C1C (Cardiac Crimson)   Secondary: #1E3A5F (Midnight Navy)
    ====================================================== */
 
 /* ---- CSS Custom Properties ---- */
 :root {
-    --primary: #B91C3A;
-    --primary-light: #D4304F;
-    --primary-dark: #8B1429;
-    --primary-rgb: 185, 28, 58;
+    --primary: #E61C1C;
+    --primary-light: #FF4D4D;
+    --primary-dark: #B91C1C;
+    --primary-rgb: 230, 28, 28;
     --secondary: #1E3A5F;
     --secondary-light: #2A5080;
     --secondary-dark: #132840;
@@ -204,14 +204,14 @@ section:last-of-type {
     color: var(--primary);
     padding: 0.3rem 0.8rem;
     border-radius: var(--radius-full);
-    background: rgba(185, 28, 58, 0.08);
-    border: 1px solid rgba(185, 28, 58, 0.15);
+    background: rgba(230, 28, 28, 0.08);
+    border: 1px solid rgba(230, 28, 28, 0.15);
     margin-bottom: 0.85rem;
 }
 
 html.dark .section-tag {
-    background: rgba(185, 28, 58, 0.15);
-    border-color: rgba(185, 28, 58, 0.25);
+    background: rgba(230, 28, 28, 0.15);
+    border-color: rgba(230, 28, 28, 0.25);
 }
 
 .section-title {
@@ -247,9 +247,9 @@ html.dark .section-tag {
 }
 
 .badge-primary {
-    background: rgba(185, 28, 58, 0.1);
+    background: rgba(230, 28, 28, 0.1);
     color: var(--primary);
-    border: 1px solid rgba(185, 28, 58, 0.2);
+    border: 1px solid rgba(230, 28, 28, 0.2);
 }
 
 .badge-secondary {
@@ -259,8 +259,8 @@ html.dark .section-tag {
 }
 
 html.dark .badge-primary {
-    background: rgba(185, 28, 58, 0.2);
-    border-color: rgba(185, 28, 58, 0.35);
+    background: rgba(230, 28, 28, 0.2);
+    border-color: rgba(230, 28, 28, 0.35);
     color: #F87171;
 }
 
@@ -313,7 +313,7 @@ html.dark .badge-secondary {
     background: var(--primary-dark);
     border-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(185, 28, 58, 0.3);
+    box-shadow: 0 4px 16px rgba(230, 28, 28, 0.3);
 }
 
 .btn-secondary {
@@ -367,15 +367,17 @@ html.dark .btn-secondary:hover {
 }
 
 html.dark .btn-outline {
-    color: #FDA4AF;
-    border-color: rgba(244, 63, 94, 0.6);
-    background: rgba(244, 63, 94, 0.12);
+    color: #FFFFFF;
+    border-color: var(--primary);
+    background: rgba(230, 28, 28, 0.08);
 }
 
 html.dark .btn-outline:hover {
-    background: #E11D48;
-    border-color: #E11D48;
+    background: var(--primary);
+    border-color: var(--primary);
     color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(230, 28, 28, 0.4);
 }
 
 html.dark .btn-outline-secondary {
@@ -783,13 +785,13 @@ html.dark .mobile-menu-btn {
 
 .mobile-menu .mob-link:hover,
 .mobile-menu .mob-link.active {
-    background: rgba(185, 28, 58, 0.08);
+    background: rgba(230, 28, 28, 0.08);
     color: var(--primary);
 }
 
 html.dark .mobile-menu .mob-link:hover,
 html.dark .mobile-menu .mob-link.active {
-    background: rgba(185, 28, 58, 0.2);
+    background: rgba(230, 28, 28, 0.2);
     color: var(--primary-light);
 }
 
@@ -892,9 +894,9 @@ html.dark .footer {
 .footer-social-link:hover {
     border-color: var(--primary);
     color: #FFFFFF;
-    background: rgba(185, 28, 58, 0.15);
+    background: rgba(230, 28, 28, 0.15);
     transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(185, 28, 58, 0.25);
+    box-shadow: 0 4px 14px rgba(230, 28, 28, 0.25);
 }
 
 .footer-social-link svg {
@@ -1000,7 +1002,7 @@ html.dark .footer-newsletter-input {
 .footer-newsletter-input:focus {
     border-color: var(--primary);
     background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 0 0 3px rgba(185, 28, 58, 0.25);
+    box-shadow: 0 0 0 3px rgba(230, 28, 28, 0.25);
 }
 
 html.dark .footer-newsletter-input:focus {
@@ -1031,7 +1033,7 @@ html.dark .footer-newsletter-input:focus {
 .footer-newsletter-btn:hover {
     background: var(--primary-light);
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(185, 28, 58, 0.35);
+    box-shadow: 0 4px 14px rgba(230, 28, 28, 0.35);
 }
 
 /* Footer Bottom Bar */
@@ -1138,7 +1140,7 @@ html.dark .footer-newsletter-input:focus {
 
 .faq-item.active {
     border-color: var(--primary);
-    box-shadow: 0 2px 12px rgba(185, 28, 58, 0.08);
+    box-shadow: 0 2px 12px rgba(230, 28, 28, 0.08);
 }
 
 .faq-question {
@@ -1249,7 +1251,7 @@ html.dark .footer-newsletter-input:focus {
 .hero-slide-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(100deg, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.85) 45%, rgba(185, 28, 58, 0.65) 85%, rgba(11, 15, 25, 0.85) 100%);
+    background: linear-gradient(100deg, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.85) 45%, rgba(230, 28, 28, 0.65) 85%, rgba(11, 15, 25, 0.85) 100%);
     z-index: 1;
 }
 
@@ -1314,10 +1316,19 @@ html.dark .footer-newsletter-input:focus {
 }
 
 .hero-gradient-text {
-    background: linear-gradient(135deg, #FFFFFF 30%, #FCA5A5 100%);
+    background: linear-gradient(135deg, #E61C1C 0%, #FF3838 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+    color: var(--primary, #E61C1C);
+}
+
+html.dark .hero-gradient-text,
+:root.dark .hero-gradient-text {
+    background: linear-gradient(135deg, #FF334B 0%, #FF5A5A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #FF334B;
 }
 
 .hero-slide-subtitle {
@@ -1436,8 +1447,8 @@ html.dark .footer-newsletter-input:focus {
     font-weight: 700;
     letter-spacing: 0.08em;
     padding: 0.2rem 0.55rem;
-    background: rgba(185, 28, 58, 0.38);
-    border: 1px solid rgba(185, 28, 58, 0.65);
+    background: rgba(230, 28, 28, 0.38);
+    border: 1px solid rgba(230, 28, 28, 0.65);
     color: #FECDD3;
     border-radius: 4px;
 }
@@ -1447,8 +1458,8 @@ html.dark .footer-newsletter-input:focus {
     align-items: center;
     gap: 1rem;
     padding: 0.9rem 1.15rem;
-    background: rgba(185, 28, 58, 0.22);
-    border: 1px solid rgba(185, 28, 58, 0.4);
+    background: rgba(230, 28, 28, 0.22);
+    border: 1px solid rgba(230, 28, 28, 0.4);
     border-radius: var(--radius-md, 12px);
     margin-bottom: 1.25rem;
 }
@@ -1561,7 +1572,7 @@ html.dark .footer-newsletter-input:focus {
     gap: 0.5rem;
     font-size: 0.8125rem;
     font-weight: 600;
-    color: #FCA5A5;
+    color: #FF4D4D;
     text-decoration: none;
     transition: all 0.2s ease;
 }
@@ -1610,7 +1621,7 @@ html.dark .footer-newsletter-input:focus {
     background: var(--primary);
     border-color: var(--primary);
     transform: scale(1.08);
-    box-shadow: 0 6px 18px rgba(185, 28, 58, 0.5);
+    box-shadow: 0 6px 18px rgba(230, 28, 28, 0.5);
 }
 
 .hero-dots {
@@ -1760,7 +1771,7 @@ html.dark .footer-newsletter-input:focus {
 }
 
 .shadow-pulse {
-    box-shadow: 0 0 0 0 rgba(185, 28, 58, 0.5);
+    box-shadow: 0 0 0 0 rgba(230, 28, 28, 0.5);
     animation: pulse-shadow 2s infinite;
 }
 
@@ -1775,21 +1786,21 @@ html.dark .footer-newsletter-input:focus {
 }
 
 .cta-normal-card {
-    background: linear-gradient(135deg, #132840 0%, #1E3A5F 45%, #8B1429 100%);
+    background: linear-gradient(135deg, #132840 0%, #1E3A5F 45%, #B91C1C 100%);
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: var(--radius-xl);
     padding: 4.25rem 2.5rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(185, 28, 58, 0.18), 0 10px 30px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 50px rgba(230, 28, 28, 0.18), 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 html.dark .cta-normal-card,
 :root.dark .cta-normal-card {
     background: linear-gradient(135deg, #0d1a2d 0%, #162a45 45%, #5c1020 100%);
     border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(185, 28, 58, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(230, 28, 28, 0.2);
 }
 
 .cta-normal-card::before {
@@ -1800,7 +1811,7 @@ html.dark .cta-normal-card,
     transform: translateX(-50%);
     width: 560px;
     height: 320px;
-    background: radial-gradient(circle, rgba(185, 28, 58, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(230, 28, 28, 0.4) 0%, transparent 70%);
     pointer-events: none;
     z-index: 1;
 }
@@ -1974,9 +1985,9 @@ html.dark .cta-normal-card,
 }
 
 @keyframes pulse-shadow {
-    0% { box-shadow: 0 0 0 0 rgba(185, 28, 58, 0.5); }
-    70% { box-shadow: 0 0 0 12px rgba(185, 28, 58, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(185, 28, 58, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(230, 28, 28, 0.5); }
+    70% { box-shadow: 0 0 0 12px rgba(230, 28, 28, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(230, 28, 28, 0); }
 }
 
 /* ---- Cards ---- */
@@ -2035,7 +2046,7 @@ html.dark .cta-normal-card,
 
 .pricing-card.popular:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(185, 28, 58, 0.25);
+    box-shadow: 0 16px 40px rgba(230, 28, 28, 0.25);
 }
 
 /* ---- Auth Pages (Login/Signup) ---- */
@@ -2081,7 +2092,7 @@ html.dark .auth-page,
 }
 
 .auth-toggle-btn:hover {
-    background: rgba(185, 28, 58, 0.08);
+    background: rgba(230, 28, 28, 0.08);
     border-color: var(--primary);
     color: var(--primary);
 }
@@ -2132,7 +2143,7 @@ html.dark .auth-toggle-btn:hover {
 .auth-logo svg {
     width: 42px;
     height: 42px;
-    filter: drop-shadow(0 2px 8px rgba(185, 28, 58, 0.3));
+    filter: drop-shadow(0 2px 8px rgba(230, 28, 28, 0.3));
 }
 
 .auth-logo-text {
@@ -2199,7 +2210,7 @@ html.dark .auth-toggle-btn:hover {
 
 .social-btn:hover {
     border-color: var(--primary);
-    background: rgba(185, 28, 58, 0.06);
+    background: rgba(230, 28, 28, 0.06);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
@@ -2274,7 +2285,7 @@ html.dark .social-btn {
 .form-input:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(185, 28, 58, 0.12);
+    box-shadow: 0 0 0 3px rgba(230, 28, 28, 0.12);
 }
 
 .password-wrapper,
@@ -2459,7 +2470,7 @@ html.dark .social-btn {
 }
 
 .dash-nav-item.active {
-    background: rgba(185, 28, 58, 0.08);
+    background: rgba(230, 28, 28, 0.08);
     color: var(--primary);
     font-weight: 600;
 }
@@ -2940,13 +2951,13 @@ html.dark .utility-page,
     font-size: clamp(5.5rem, 18vw, 11rem);
     line-height: 1;
     color: var(--primary);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #E11D48 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.04em;
     margin: 0;
-    filter: drop-shadow(0 4px 24px rgba(185, 28, 58, 0.15));
+    filter: drop-shadow(0 4px 24px rgba(230, 28, 28, 0.15));
 }
 
 html.dark .error-code {
@@ -3042,7 +3053,7 @@ html.dark .countdown-item {
 
 .subscribe-form input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(185, 28, 58, 0.12);
+    box-shadow: 0 0 0 3px rgba(230, 28, 28, 0.12);
 }
 
 html.dark .subscribe-form input {
@@ -3090,7 +3101,7 @@ html.dark .subscribe-form input {
 .coming-social-link:hover {
     border-color: var(--primary);
     color: var(--primary);
-    background: rgba(185, 28, 58, 0.08);
+    background: rgba(230, 28, 28, 0.08);
     transform: translateY(-2px);
 }
 
@@ -3802,7 +3813,7 @@ html.dark .risk-pill-btn {
     background: var(--primary);
     border-color: var(--primary);
     color: #FFFFFF !important;
-    box-shadow: 0 2px 8px rgba(185, 28, 58, 0.35);
+    box-shadow: 0 2px 8px rgba(230, 28, 28, 0.35);
 }
 
 .risk-checkbox-grid {
@@ -3833,7 +3844,7 @@ html.dark .risk-check-label {
 }
 
 .risk-check-label:hover {
-    border-color: rgba(185, 28, 58, 0.4);
+    border-color: rgba(230, 28, 28, 0.4);
 }
 
 .risk-check-label input[type="checkbox"] {
@@ -4020,7 +4031,7 @@ html.dark .risk-action-item {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: rgba(185, 28, 58, 0.1);
+    background: rgba(230, 28, 28, 0.1);
     color: var(--primary);
     display: flex;
     align-items: center;
@@ -4030,7 +4041,7 @@ html.dark .risk-action-item {
 }
 
 html.dark .risk-action-icon {
-    background: rgba(185, 28, 58, 0.22);
+    background: rgba(230, 28, 28, 0.22);
     color: #FF6B81;
 }
 
@@ -4280,7 +4291,7 @@ html.dark .matrix-tab-btn {
     background: var(--primary);
     border-color: var(--primary);
     color: #FFFFFF !important;
-    box-shadow: 0 4px 14px rgba(185, 28, 58, 0.35);
+    box-shadow: 0 4px 14px rgba(230, 28, 28, 0.35);
 }
 
 .matrix-grid {
@@ -4307,12 +4318,12 @@ html.dark .matrix-card {
 
 .matrix-card.featured {
     border: 2px solid var(--primary);
-    box-shadow: 0 10px 30px rgba(185, 28, 58, 0.12);
+    box-shadow: 0 10px 30px rgba(230, 28, 28, 0.12);
 }
 
 html.dark .matrix-card.featured {
     border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(185, 28, 58, 0.25);
+    box-shadow: 0 10px 30px rgba(230, 28, 28, 0.25);
 }
 
 .matrix-header {
@@ -4347,12 +4358,12 @@ html.dark .matrix-header {
     text-transform: uppercase;
     padding: 0.3rem 0.75rem;
     border-radius: 999px;
-    background: rgba(185, 28, 58, 0.12);
+    background: rgba(230, 28, 28, 0.12);
     color: var(--primary);
 }
 
 html.dark .matrix-tag {
-    background: rgba(185, 28, 58, 0.25);
+    background: rgba(230, 28, 28, 0.25);
     color: #FCA5A5;
 }
 
@@ -4431,7 +4442,7 @@ html.dark .matrix-row {
     width: 52px;
     height: 52px;
     border-radius: var(--radius-md, 14px);
-    background: rgba(185, 28, 58, 0.1);
+    background: rgba(230, 28, 28, 0.1);
     color: var(--primary);
     display: flex;
     align-items: center;
@@ -4441,7 +4452,7 @@ html.dark .matrix-row {
 }
 
 html.dark .connected-icon-box {
-    background: rgba(185, 28, 58, 0.2);
+    background: rgba(230, 28, 28, 0.2);
     color: #F87171;
 }
 
@@ -4934,4 +4945,559 @@ html.dark .sync-badge {
     min-height: 510px;
     object-fit: cover;
     box-shadow: var(--shadow-md);
+}
+
+/* ========================================================
+   CARDIAC SPLIT HERO & REALTIME HUD VISUAL
+   ======================================================== */
+:root {
+    --cardiac-duration: 0.833s;
+    --cardiac-bpm: 72;
+}
+
+/* Ambient Cardiac Atmosphere on the Split Hero section */
+.hero-cardiac-section {
+    position: relative;
+    background: radial-gradient(circle at 75% 45%, rgba(230, 28, 28, 0.05) 0%, transparent 60%), var(--bg-body);
+}
+
+html.dark .hero-cardiac-section,
+:root.dark .hero-cardiac-section {
+    background: radial-gradient(circle at 75% 45%, rgba(230, 28, 28, 0.12) 0%, transparent 60%), var(--bg-body);
+}
+
+.h2-hero {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+    min-height: 520px;
+    padding: 1.5rem 0 2.5rem;
+}
+.h2-hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.h2-hero-text .badge,
+.h2-hero-text .badge-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    align-self: flex-start;
+    font-size: 0.8125rem;
+    font-weight: 550;
+}
+.h2-hero-text h1 {
+    font-size: clamp(2.35rem, 4vw, 3.35rem);
+    font-weight: 600 !important;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.85rem;
+    color: var(--text);
+}
+.h2-hero-text p {
+    font-size: 1.0625rem;
+    font-weight: 450;
+    line-height: 1.65;
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+    max-width: 580px;
+}
+.h2-hero-text .hero-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+}
+.h2-hero-text .hero-trust-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+.h2-hero-text .hero-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 550;
+    color: var(--text-light);
+}
+.h2-hero-text .hero-trust-item i {
+    color: var(--primary);
+    font-size: 0.95rem;
+}
+html.dark .h2-hero-text .hero-trust-bar {
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+html.dark .h2-hero-text .hero-trust-item {
+    color: rgba(255, 255, 255, 0.85);
+}
+html.dark .h2-hero-text .hero-trust-item i {
+    color: #FF4D4D;
+}
+
+.h2-hero-visual-wrap {
+    position: relative;
+}
+
+.cardiac-hero-card {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background: #0B0406;
+    border-radius: var(--radius-xl, 24px);
+    border: 1px solid rgba(230, 28, 28, 0.35);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15), 0 8px 36px rgba(230, 28, 28, 0.28);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+/* Dark Mode Hero Card */
+html.dark .cardiac-hero-card,
+:root.dark .cardiac-hero-card {
+    background: #0B0406;
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(230, 28, 28, 0.45);
+}
+
+.cardiac-animated-bg-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* Background grid & subtle top/bottom contrast vignette */
+.cardiac-grid-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(12, 3, 5, 0.35) 0%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 65%, rgba(12, 3, 5, 0.55) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+html.dark .cardiac-grid-bg,
+:root.dark .cardiac-grid-bg {
+    background: linear-gradient(180deg, rgba(8, 2, 4, 0.45) 0%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 65%, rgba(8, 2, 4, 0.65) 100%);
+}
+
+/* Top HUD Header */
+.cardiac-top-hud {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.rhythm-toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(15, 23, 42, 0.68);
+    padding: 3px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+}
+
+html.dark .rhythm-toggle-group,
+:root.dark .rhythm-toggle-group {
+    background: rgba(10, 16, 28, 0.78);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.rhythm-pill-btn {
+    padding: 4px 11px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.rhythm-pill-btn:hover {
+    color: #FFFFFF;
+}
+
+html.dark .rhythm-pill-btn,
+:root.dark .rhythm-pill-btn {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+html.dark .rhythm-pill-btn:hover,
+:root.dark .rhythm-pill-btn:hover {
+    color: #FFFFFF;
+}
+
+.rhythm-pill-btn.active {
+    background: #E61C1C;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 12px rgba(230, 28, 28, 0.65);
+}
+
+html.dark .rhythm-pill-btn.active,
+:root.dark .rhythm-pill-btn.active {
+    background: #E61C1C;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 14px rgba(230, 28, 28, 0.75);
+}
+
+.cardiac-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    backdrop-filter: blur(10px);
+}
+
+html.dark .cardiac-live-badge,
+:root.dark .cardiac-live-badge {
+    background: rgba(10, 16, 28, 0.82);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #FFFFFF;
+}
+
+#liveBpmText {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.live-beacon-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 8px #10B981;
+    animation: beaconBlink 1.2s infinite;
+}
+
+.live-nsr-tag {
+    font-weight: 400;
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+html.dark .live-nsr-tag,
+:root.dark .live-nsr-tag {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+@keyframes beaconBlink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.75); }
+}
+
+/* Center Stage: Realistic Anatomical Beating Heart */
+.cardiac-center-stage {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin: 6px 0;
+    min-height: 280px;
+}
+
+.realistic-heart-wrap {
+    position: relative;
+    width: 215px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: cardiacLubDub var(--cardiac-duration, 0.833s) infinite ease-in-out;
+    transform-origin: 50% 55%;
+    filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 25px rgba(230, 28, 28, 0.5));
+    user-select: none;
+}
+
+html.dark .realistic-heart-wrap,
+:root.dark .realistic-heart-wrap {
+    filter: drop-shadow(0 18px 44px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 35px rgba(230, 28, 28, 0.65));
+}
+
+.realistic-heart-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    filter: contrast(1.1) brightness(1.04);
+    display: block;
+}
+
+/* Physiologically accurate lub-dub double beat */
+@keyframes cardiacLubDub {
+    0%   { transform: scale(1) rotate(0deg); }
+    12%  { transform: scale(1.08) rotate(-1.2deg); }
+    22%  { transform: scale(0.98) rotate(0.6deg); }
+    34%  { transform: scale(1.15) rotate(1.8deg); }
+    48%  { transform: scale(0.96) rotate(-0.6deg); }
+    64%  { transform: scale(1.02) rotate(0deg); }
+    76%  { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Bottom Lead II ECG Telemetry */
+.cardiac-bottom-hud {
+    position: relative;
+    z-index: 5;
+    background: rgba(10, 16, 30, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-md, 12px);
+    padding: 0.65rem 0.9rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+}
+
+html.dark .cardiac-bottom-hud,
+:root.dark .cardiac-bottom-hud {
+    background: rgba(8, 14, 26, 0.88);
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65);
+}
+
+.ecg-hud-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+}
+
+.ecg-hud-header i {
+    color: #E61C1C;
+    margin-right: 3px;
+}
+
+html.dark .ecg-hud-header,
+:root.dark .ecg-hud-header {
+    color: #FFFFFF;
+}
+
+html.dark .ecg-hud-header i,
+:root.dark .ecg-hud-header i {
+    color: #E61C1C;
+}
+
+.ecg-sync-tag {
+    color: #10B981;
+    font-weight: 700;
+}
+
+html.dark .ecg-sync-tag,
+:root.dark .ecg-sync-tag {
+    color: #10B981;
+}
+
+.ecg-canvas-wrap {
+    width: 100%;
+    height: 48px;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(3, 7, 18, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html.dark .ecg-canvas-wrap,
+:root.dark .ecg-canvas-wrap {
+    background: rgba(2, 6, 20, 0.85);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+#cardiacWaveCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.cardiac-telemetry-metrics {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 0.45rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+html.dark .cardiac-telemetry-metrics,
+:root.dark .cardiac-telemetry-metrics {
+    border-top-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.telemetry-mini-val {
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+html.dark .telemetry-mini-val,
+:root.dark .telemetry-mini-val {
+    color: #FFFFFF;
+}
+
+.telemetry-mini-val.ef-val {
+    color: #34D399;
+}
+
+html.dark .telemetry-mini-val.ef-val,
+:root.dark .telemetry-mini-val.ef-val {
+    color: #6EE7B7;
+}
+
+@media (max-width: 1024px) {
+    .h2-hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .h2-hero-text {
+        text-align: center;
+        align-items: center;
+    }
+    .h2-hero-text .badge,
+    .h2-hero-text .badge-primary {
+        align-self: center;
+        margin: 0 auto 1rem !important;
+    }
+    .h2-hero-text h1 {
+        text-align: center !important;
+    }
+    .h2-hero-text p {
+        text-align: center !important;
+        margin: 0 auto 1.25rem !important;
+    }
+    .h2-hero-text .hero-btn-group {
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+    }
+    .h2-hero-text .hero-trust-bar {
+        justify-content: center !important;
+        gap: 1rem;
+        padding-top: 1.25rem;
+        margin-top: 1.25rem;
+    }
+
+    .h2-hero-visual-wrap {
+        display: block !important;
+        width: 100%;
+        max-width: 440px;
+        margin: 2rem auto 0;
+    }
+
+    .cardiac-hero-card {
+        height: auto;
+        min-height: 440px;
+        padding: 1.15rem 1rem;
+        border-radius: var(--radius-lg, 16px);
+        gap: 0.75rem;
+    }
+
+    .cardiac-top-hud {
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: space-between;
+    }
+
+    .rhythm-toggle-group {
+        gap: 4px;
+        padding: 2px;
+    }
+
+    .rhythm-pill-btn {
+        padding: 4px 9px;
+        font-size: 0.7rem;
+    }
+
+    .cardiac-live-badge {
+        padding: 4px 10px;
+        font-size: 0.72rem;
+    }
+
+    .cardiac-center-stage {
+        min-height: 240px;
+        margin: 6px 0;
+    }
+
+    .realistic-heart-wrap {
+        width: 175px;
+        height: 245px;
+    }
+
+    .cardiac-bottom-hud {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .ecg-canvas-wrap {
+        height: 44px;
+    }
+
+    .cardiac-telemetry-metrics {
+        font-size: 0.6875rem;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 380px) {
+    .h2-hero-visual-wrap {
+        max-width: 100%;
+        margin: 1.5rem auto 0;
+    }
+
+    .cardiac-hero-card {
+        min-height: 420px;
+        padding: 0.85rem;
+    }
+
+    .cardiac-top-hud {
+        justify-content: center;
+    }
+
+    .realistic-heart-wrap {
+        width: 155px;
+        height: 220px;
+    }
+
+    .cardiac-telemetry-metrics {
+        font-size: 0.625rem;
+        justify-content: space-between;
+    }
 }
