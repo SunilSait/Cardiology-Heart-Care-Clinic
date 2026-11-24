@@ -15,10 +15,10 @@
     <title>About Us — CardioVita Heart Care</title>
     <style>
         .about-hero{position:relative;min-height:440px;display:flex;align-items:center;background-size:cover;background-position:center}
-        .about-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.93),rgba(139,20,41,.88))}
+        .about-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.65),rgba(139,20,41,.58))}
         .about-hero-content{position:relative;z-index:2;color:#fff;text-align:center;width:100%}
-        .about-hero-content h1{color:#fff;margin-bottom:.75rem}
-        .about-hero-content p{color:rgba(255,255,255,.9);font-size:1.0625rem;max-width:640px;margin:0 auto}
+        .about-hero-content h1{color:#fff;margin-bottom:.75rem;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+        .about-hero-content p{color:rgba(255,255,255,.95);font-size:1.0625rem;max-width:640px;margin:0 auto;text-shadow:0 1px 8px rgba(0,0,0,.3)}
         .story-split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
         .story-img{width:100%;height:380px;object-fit:cover;border-radius:var(--radius-lg);border-left:4px solid var(--primary)}
         .story-text .section-title{position:relative}
@@ -46,8 +46,9 @@
         .facility-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
         .facility-stat-value{font-size:2.5rem;font-weight:600;margin-bottom:.25rem}
         .facility-stat-label{font-size:.9375rem;font-weight:450;opacity:.9}
-        .values-split{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center}
-        .values-img{width:100%;height:380px;object-fit:cover;border-radius:var(--radius-lg)}
+        .values-split{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:stretch}
+        .values-img-wrap{display:flex;height:100%}
+        .values-img{width:100%;height:100%;min-height:520px;object-fit:cover;border-radius:var(--radius-lg);display:block;box-shadow:var(--shadow-md)}
         .values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
         .value-item{display:flex;align-items:flex-start;gap:.65rem;padding:1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);transition:all var(--transition-normal)}
         .value-item:hover{border-color:var(--primary)}
@@ -61,11 +62,188 @@
         .accred-badge:hover{border-color:var(--primary);transform:translateY(-3px)}
         .accred-badge i{font-size:1.5rem;color:var(--primary)}
         .accred-badge span{font-size:.84375rem;font-weight:600;color:var(--text)}
-        .about-cta{position:relative;padding:4.5rem 0;text-align:center;background:linear-gradient(135deg,var(--primary),var(--primary-dark))}
-        .about-cta h2,.about-cta p{color:#fff}
-        .about-cta p{color:rgba(255,255,255,.9);max-width:600px;margin:0 auto 1.75rem}
+        /* ── Modern Split About CTA Card ── */
+        .about-cta-section {
+            padding: 4.5rem 0 5.5rem;
+            position: relative;
+            background: var(--bg);
+        }
+        .about-cta-card {
+            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #8B1429 100%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(185, 28, 58, 0.18), 0 10px 30px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+        html.dark .about-cta-card,
+        :root.dark .about-cta-card {
+            background: linear-gradient(135deg, #0d1a2d 0%, #162a45 50%, #5c1020 100%);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(185, 28, 58, 0.2);
+        }
+        .about-split-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            align-items: stretch;
+            min-height: 440px;
+        }
+        .about-cta-content-col {
+            padding: 3.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .about-cta-content-col .cta-normal-badge {
+            align-self: flex-start;
+            width: fit-content;
+            display: inline-flex;
+        }
+        .about-cta-title {
+            color: #FFFFFF !important;
+            font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+            font-weight: 600 !important;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .about-cta-desc {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            max-width: 580px;
+        }
+        .about-cta-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .about-cta-actions .btn {
+            min-width: 190px;
+            font-weight: 600;
+        }
+        .about-cta-actions .btn-white {
+            background: #FFFFFF;
+            color: var(--primary);
+            border: 1.5px solid #FFFFFF;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+        }
+        .about-cta-actions .btn-white:hover {
+            background: #FFF0F3;
+            color: var(--primary-dark);
+            border-color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+        }
+        .about-cta-actions .btn-outline-white {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFFFFF !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+            backdrop-filter: blur(8px);
+            font-weight: 500;
+        }
+        .about-cta-actions .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.22);
+            border-color: #FFFFFF !important;
+            color: #FFFFFF !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+        }
+        .about-cta-features {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 0.825rem;
+            font-weight: 500;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            padding-top: 1.5rem;
+        }
+        .about-cta-features span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .about-cta-features i {
+            color: #34D399;
+            font-size: 0.9rem;
+        }
+        .about-cta-image-col {
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+        }
+        .about-cta-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-cta-image-col::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to left, rgba(19, 40, 64, 0.1) 0%, rgba(19, 40, 64, 0.55) 100%);
+            pointer-events: none;
+        }
+        .about-cta-img-badge {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            z-index: 2;
+            background: rgba(19, 40, 64, 0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        .about-cta-img-badge i {
+            font-size: 1.5rem;
+            color: #FFD166;
+        }
+        .about-cta-img-badge strong {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .about-cta-img-badge span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.78);
+        }
+        @media (max-width: 900px) {
+            .about-split-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-cta-image-col {
+                order: -1;
+                min-height: 280px;
+                height: 280px;
+            }
+            .about-cta-content-col {
+                padding: 2.75rem 1.75rem;
+            }
+        }
+        [dir="rtl"] .about-cta-img-badge {
+            right: auto;
+            left: 24px;
+        }
+        [dir="rtl"] .about-cta-image-col::after {
+            background: linear-gradient(to right, rgba(19, 40, 64, 0.1) 0%, rgba(19, 40, 64, 0.55) 100%);
+        }
         @media(max-width:1024px){.story-split,.values-split{grid-template-columns:1fr}.philosophy-grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr;gap:1rem}.timeline-line{left:1rem}.timeline-dot{left:1rem}.timeline-item:nth-child(even){direction:ltr}}
-        @media(max-width:768px){.facility-stats{grid-template-columns:1fr;gap:1.5rem}.story-img,.values-img{height:260px}.accred-badges{flex-direction:column;align-items:center}.philosophy-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}}
+        @media(max-width:768px){.facility-stats{grid-template-columns:1fr;gap:1.5rem}.story-img{height:260px}.values-img{height:320px;min-height:unset}.accred-badges{flex-direction:column;align-items:center}.philosophy-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}}
         @media(max-width:360px){.timeline-line{display:none}.timeline-dot{display:none}.facility-stat-value{font-size:2rem}}
     </style>
 </head>
@@ -212,7 +390,7 @@
         <section class="section">
             <div class="container">
                 <div class="values-split">
-                    <div class="fade-up">
+                    <div class="fade-up values-img-wrap">
                         <img src="assets/images/about-values.jpg" alt="Our Values" class="values-img">
                     </div>
                     <div class="fade-up">
@@ -301,14 +479,39 @@
         </section>
 
         <!-- CTA SECTION -->
-        <section class="about-cta">
+        <section class="about-cta-section">
             <div class="container">
-                <div class="fade-up">
-                    <h2 style="font-size:2rem;margin-bottom:.5rem">Start Your Heart Health Journey</h2>
-                    <p>Take the first step toward a healthier heart. Our expert cardiologists are ready to provide you with the best possible care and guidance.</p>
-                    <div class="hero-btn-group" style="justify-content:center">
-                        <a href="contact.html" class="btn btn-white btn-lg">Book a Consultation</a>
-                        <a href="services.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">Explore Services</a>
+                <div class="about-cta-card fade-up">
+                    <div class="about-split-grid">
+                        <div class="about-cta-content-col">
+                            <div class="cta-normal-badge" style="margin-bottom:1.25rem;">
+                                <i class="fa-solid fa-heart-pulse"></i> Patient-Centered Cardiology
+                            </div>
+                            <h2 class="about-cta-title">Start Your Heart Health Journey</h2>
+                            <p class="about-cta-desc">Take the first step toward a healthier heart. Our board-certified cardiologists combine decades of clinical excellence with state-of-the-art diagnostics to deliver compassionate, personalized care.</p>
+                            <div class="about-cta-actions">
+                                <a href="contact.html" class="btn btn-white btn-lg">
+                                    <i class="fa-solid fa-calendar-check" style="margin-right:0.4rem;"></i> Book a Consultation
+                                </a>
+                                <a href="services.html" class="btn btn-outline-white btn-lg">
+                                    <i class="fa-solid fa-stethoscope" style="margin-right:0.4rem;"></i> Explore Services
+                                </a>
+                            </div>
+                            <div class="about-cta-features">
+                                <span><i class="fa-solid fa-circle-check"></i> 25+ Years Experience</span>
+                                <span><i class="fa-solid fa-circle-check"></i> Same-Week Appointments</span>
+                            </div>
+                        </div>
+                        <div class="about-cta-image-col">
+                            <img src="assets/images/about-cta.jpg" alt="CardioVita Cardiology Medical Team" class="about-cta-img" loading="lazy">
+                            <div class="about-cta-img-badge">
+                                <i class="fa-solid fa-award"></i>
+                                <div>
+                                    <strong>Top-Ranked Team</strong>
+                                    <span>Board-Certified Specialists</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

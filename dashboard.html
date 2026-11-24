@@ -14,40 +14,1172 @@
     </script>
     <title>Patient Dashboard — CardioVita</title>
     <style>
-        .dash-section-title{font-size:1.25rem;font-weight:600 !important;margin-bottom:1rem;color:var(--text)}
-        .dash-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;margin-bottom:1.5rem}
-        .dash-card-title{font-size:1rem;font-weight:600 !important;margin-bottom:1rem;color:var(--text)}
-        .med-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem}
-        .med-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start}
-        .med-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0}
-        .med-info h4{font-size:.9375rem;margin-bottom:.2rem}
-        .med-info p{font-size:.8125rem;color:var(--text-muted);margin-bottom:.15rem}
-        .med-status{font-size:.75rem;font-weight:600;padding:.15rem .5rem;border-radius:var(--radius-full);display:inline-block;margin-top:.25rem}
-        .med-status.active{background:rgba(34,197,94,.1);color:#16a34a}
-        .med-status.review{background:rgba(245,158,11,.1);color:#d97706}
-        .settings-form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-        .settings-form .form-group{margin-bottom:0}
-        .settings-full{grid-column:1/-1}
-        .notif-toggle{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid var(--border-light)}
-        .notif-toggle:last-child{border-bottom:none}
-        .notif-toggle-label{font-size:.875rem;color:var(--text)}
-        .toggle-switch{position:relative;width:44px;height:24px}
-        .toggle-switch input{opacity:0;width:0;height:0}
-        .toggle-slider{position:absolute;cursor:pointer;inset:0;background:var(--border);border-radius:12px;transition:.3s}
-        .toggle-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
-        .toggle-switch input:checked+.toggle-slider{background:var(--primary)}
-        .toggle-switch input:checked+.toggle-slider::before{transform:translateX(20px)}
-        .payment-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1rem}
-        .payment-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem;display:flex;align-items:center;gap:.75rem}
-        .payment-card i{font-size:1.5rem;color:var(--secondary)}
-        .payment-card-info h4{font-size:.875rem;margin-bottom:.1rem}
-        .payment-card-info p{font-size:.8125rem;color:var(--text-muted)}
-        .dash-notif-wrap{position:relative}
-        .dash-profile-wrap{position:relative}
-        .notif-badge-count{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--primary);color:#fff;font-size:.6875rem;font-weight:600;display:flex;align-items:center;justify-content:center}
-        [dir="rtl"] .notif-badge-count{right:auto;left:-4px}
-        .profile-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:600;cursor:pointer;border:none}
-        @media(max-width:768px){.med-grid,.settings-form,.payment-cards{grid-template-columns:1fr}}
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            width: 100%;
+        }
+        .dash-layout {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden !important;
+            box-sizing: border-box;
+        }
+        .dash-main {
+            padding-top: 60px;
+            flex: 1;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+            overflow-x: hidden !important;
+            box-sizing: border-box;
+        }
+        .dash-content {
+            flex: 1;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+            padding: 1.5rem;
+        }
+        .dash-tab {
+            min-width: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+            box-sizing: border-box;
+        }
+        .dash-header {
+            position: fixed;
+            top: 0;
+            left: 260px;
+            right: 0;
+            height: 60px;
+            z-index: 90;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-sizing: border-box;
+        }
+        [dir="rtl"] .dash-header {
+            left: 0;
+            right: 260px;
+        }
+        .dash-section-title {
+            font-size: 1.25rem;
+            font-weight: 600 !important;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        .dash-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        .dash-card-title {
+            font-size: 1rem;
+            font-weight: 600 !important;
+            margin-bottom: 1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .dash-card-title i {
+            margin: 0 !important;
+            flex-shrink: 0;
+        }
+        [dir="rtl"] .dash-card-title {
+            text-align: right;
+            flex-direction: row;
+        }
+        [dir="rtl"] .dash-card-title i {
+            margin: 0 !important;
+        }
+        [dir="rtl"] i[style*="margin-right"],
+        [dir="rtl"] svg[style*="margin-right"] {
+            margin-right: 0 !important;
+            margin-left: 0.5rem !important;
+        }
+        .dash-table-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 1.5rem;
+        }
+        .dash-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 480px;
+        }
+        .dash-table th, .dash-table td {
+            white-space: nowrap;
+        }
+        .dash-table .btn {
+            width: auto !important;
+            min-height: auto !important;
+            padding: 0.35rem 0.65rem !important;
+            font-size: 0.75rem !important;
+        }
+        .med-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .med-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
+        .med-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: rgba(185,28,58,.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .med-info h4 {
+            font-size: .9375rem;
+            margin-bottom: .2rem;
+        }
+        .med-info p {
+            font-size: .8125rem;
+            color: var(--text-muted);
+            margin-bottom: .15rem;
+        }
+        .med-status {
+            font-size: .75rem;
+            font-weight: 600;
+            padding: .15rem .5rem;
+            border-radius: var(--radius-full);
+            display: inline-block;
+            margin-top: .25rem;
+        }
+        .med-status.active {
+            background: rgba(34,197,94,.1);
+            color: #16a34a;
+        }
+        .med-status.review {
+            background: rgba(245,158,11,.1);
+            color: #d97706;
+        }
+        .settings-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .settings-form .form-group {
+            margin-bottom: 0;
+        }
+        .settings-full {
+            grid-column: 1 / -1;
+        }
+        .notif-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .75rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .notif-toggle:last-child {
+            border-bottom: none;
+        }
+        .notif-toggle-label {
+            font-size: .875rem;
+            color: var(--text);
+        }
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: var(--border);
+            border-radius: 12px;
+            transition: .3s;
+        }
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .3s;
+        }
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--primary);
+        }
+        .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
+        .payment-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .payment-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            box-sizing: border-box;
+        }
+        .payment-card i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+        .payment-card-info h4 {
+            font-size: .875rem;
+            margin-bottom: .1rem;
+        }
+        .payment-card-info p {
+            font-size: .8125rem;
+            color: var(--text-muted);
+        }
+        .dash-notif-wrap {
+            position: relative;
+        }
+        .dash-profile-wrap {
+            position: relative;
+        }
+        .notif-badge-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-size: .6875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        [dir="rtl"] .notif-badge-count {
+            right: auto;
+            left: -4px;
+        }
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8125rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            flex-shrink: 0;
+        }
+        .dash-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .dash-progress-wrap {
+            margin-top: .75rem;
+        }
+        .dash-progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        .dash-progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: var(--radius-full);
+            transition: width .3s ease;
+        }
+        .dash-checklist {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .dash-check-item {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: .75rem;
+            padding: .75rem 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: .875rem;
+        }
+        .dash-check-item:last-child {
+            border-bottom: none;
+        }
+        .dash-check-left {
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+            flex: 1;
+            min-width: 0;
+        }
+        .dash-check-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .6875rem;
+            color: #fff;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .dash-check-circle.done {
+            background: #16a34a;
+        }
+        .dash-check-circle.pending {
+            border: 2px solid var(--text-muted);
+            color: transparent;
+        }
+        .telehealth-hero-card {
+            background: linear-gradient(135deg,rgba(30,58,95,.08) 0%,rgba(185,28,58,.08) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        .telehealth-info h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: .35rem;
+        }
+        .telehealth-info p {
+            font-size: .875rem;
+            color: var(--text-light);
+        }
+        .ecg-strip-card {
+            background: linear-gradient(145deg, #0a1120 0%, #070d18 100%);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF !important;
+            box-sizing: border-box;
+            max-width: 100%;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        .ecg-strip-card h3,
+        .ecg-strip-header h3 {
+            color: #FFFFFF !important;
+        }
+        .ecg-strip-card p {
+            color: #94A3B8 !important;
+        }
+        .ecg-strip-card .status-badge {
+            background: rgba(16, 185, 129, 0.16) !important;
+            color: #34D399 !important;
+            border: 1px solid rgba(16, 185, 129, 0.32) !important;
+        }
+        .ecg-strip-card .status-badge i {
+            color: #34D399 !important;
+        }
+        .ecg-strip-card .btn-outline-white {
+            color: #FFFFFF !important;
+            border-color: rgba(255, 255, 255, 0.8) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+        .ecg-strip-card .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-color: #FFFFFF !important;
+            color: #FFFFFF !important;
+        }
+        .ecg-strip-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .ecg-strip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: .75rem;
+            margin-bottom: 1rem;
+        }
+        .ecg-param-box {
+            background: rgba(15,23,42,.75);
+            border: 1px solid rgba(56,189,248,.2);
+            border-radius: var(--radius-sm);
+            padding: .6rem .75rem;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+        .ecg-param-lbl {
+            font-size: .6875rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+        .ecg-param-val {
+            font-size: .9375rem;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        .upload-dropzone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            text-align: center;
+            background: var(--bg-alt);
+            cursor: pointer;
+            transition: border-color .2s;
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        .upload-dropzone:hover {
+            border-color: var(--primary);
+        }
+        .policy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .policy-item {
+            padding: .75rem;
+            background: var(--bg-alt);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            box-sizing: border-box;
+            min-width: 0;
+        }
+        .policy-lbl {
+            font-size: .6875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .policy-val {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: .25rem;
+        }
+        .advisory-box {
+            background: rgba(245,158,11,.08);
+            border-left: 4px solid #d97706;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        [dir="rtl"] .advisory-box {
+            border-left: none;
+            border-right: 4px solid #d97706;
+        }
+        .advisory-box h4 {
+            font-size: .9375rem;
+            color: #d97706;
+            margin-bottom: .35rem;
+        }
+        .advisory-box p {
+            font-size: .84375rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .dash-two-col {
+                grid-template-columns: 1fr;
+            }
+            .ecg-strip-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+            .telehealth-hero-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+                width: 100% !important;
+            }
+            .dash-layout {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+                width: 100% !important;
+            }
+            .dash-main {
+                margin-left: 0 !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+            [dir="rtl"] .dash-main {
+                margin-right: 0 !important;
+            }
+            .dash-content {
+                padding: 1rem 0.75rem !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+                box-sizing: border-box !important;
+            }
+            .dash-header,
+            [dir="rtl"] .dash-header {
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                padding: 0.5rem 0.75rem !important;
+                box-sizing: border-box !important;
+            }
+            .dash-header-title {
+                display: none !important;
+            }
+            .dash-mobile-toggle {
+                display: flex !important;
+            }
+            .dash-welcome {
+                padding: 1.15rem 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+            .dash-welcome h2 {
+                font-size: 1.15rem !important;
+            }
+            .dash-welcome p {
+                font-size: 0.8125rem !important;
+            }
+            .dash-card {
+                padding: 1rem 0.85rem !important;
+                margin-bottom: 1rem !important;
+            }
+            .dash-card-title {
+                font-size: 0.9375rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            .dash-section-title {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            .dash-metrics-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.65rem !important;
+                margin-bottom: 1rem !important;
+            }
+            .dash-metric-card {
+                padding: 0.85rem 0.75rem !important;
+            }
+            .dash-metric-value {
+                font-size: 1.25rem !important;
+            }
+            .dash-metric-label {
+                font-size: 0.6875rem !important;
+            }
+            .med-grid,
+            .settings-form,
+            .payment-cards {
+                grid-template-columns: 1fr !important;
+                gap: 0.75rem !important;
+            }
+            .telehealth-hero-card {
+                padding: 1rem 0.85rem !important;
+                gap: 0.85rem !important;
+            }
+            .telehealth-hero-card > div:last-child {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            .telehealth-hero-card .btn {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+            .ecg-strip-card {
+                padding: 1rem 0.85rem !important;
+            }
+            .ecg-strip-header {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.75rem !important;
+            }
+            .ecg-strip-header > div:last-child {
+                display: flex;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            .ecg-strip-header > div:last-child .btn {
+                flex: 1;
+                justify-content: center;
+                font-size: 0.75rem !important;
+                padding: 0.45rem 0.5rem !important;
+            }
+            .ecg-strip-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.5rem !important;
+            }
+            .ecg-param-box {
+                padding: 0.5rem 0.6rem !important;
+            }
+            .ecg-param-lbl {
+                font-size: 0.625rem !important;
+            }
+            .ecg-param-val {
+                font-size: 0.875rem !important;
+            }
+            .dash-table th,
+            .dash-table td {
+                padding: 0.55rem 0.65rem !important;
+                font-size: 0.8125rem !important;
+            }
+            .dash-table-header {
+                padding: 0.75rem 0.85rem !important;
+            }
+            .dash-table-title {
+                font-size: 0.9375rem !important;
+            }
+            .upload-dropzone {
+                padding: 1.25rem 0.85rem !important;
+            }
+            .upload-dropzone .btn {
+                width: 100% !important;
+                white-space: normal;
+                font-size: 0.75rem !important;
+            }
+            .care-team-row {
+                gap: 1rem !important;
+            }
+            .care-team-actions {
+                width: 100% !important;
+                display: flex !important;
+                gap: 0.5rem !important;
+            }
+            .care-team-actions .btn {
+                flex: 1 !important;
+                justify-content: center !important;
+                font-size: 0.75rem !important;
+                padding: 0.45rem 0.5rem !important;
+            }
+            .billing-statement-row {
+                gap: 1rem !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+            .billing-btn-group {
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+            .billing-btn-group .btn {
+                width: 100% !important;
+                justify-content: center !important;
+                text-align: center;
+            }
+            .tax-doc-row .btn,
+            .refill-header-row .btn,
+            .delivery-row .btn {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+            .dash-tab > div:last-child .btn-primary {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dash-metrics-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .dash-header-right {
+                gap: 0.25rem !important;
+            }
+            .dash-header-right .nav-icon-btn {
+                width: 32px !important;
+                height: 32px !important;
+            }
+            .profile-avatar {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 0.75rem !important;
+            }
+            .dash-notif-dropdown,
+            [dir="rtl"] .dash-notif-dropdown {
+                position: fixed !important;
+                top: 62px !important;
+                left: 10px !important;
+                right: 10px !important;
+                width: auto !important;
+                max-width: calc(100vw - 20px) !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+                z-index: 250 !important;
+            }
+            .dash-profile-dropdown {
+                max-width: calc(100vw - 20px) !important;
+            }
+        }
+    
+        /* LOGOUT CONFIRMATION MODAL */
+        .btn-danger{background:#DC2626;color:#FFFFFF;border-color:#DC2626}
+        .btn-danger:hover{background:#B91C1C;border-color:#B91C1C;box-shadow:0 4px 16px rgba(220,38,38,0.35)}
+        .dash-modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease}
+        .dash-modal-backdrop.open{opacity:1;visibility:visible;pointer-events:auto}
+        .dash-modal-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.25rem 2rem 1.75rem;width:100%;max-width:420px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.45);text-align:center;position:relative;transform:scale(.92) translateY(12px);transition:transform .25s cubic-bezier(.16,1,.3,1);box-sizing:border-box}
+        .dash-modal-backdrop.open .dash-modal-card{transform:scale(1) translateY(0)}
+        .dash-modal-icon{width:60px;height:60px;border-radius:50%;background:rgba(239,68,68,.12);color:#EF4444;font-size:1.5rem;display:inline-flex;align-items:center;justify-content:center;margin-bottom:1.15rem;border:1px solid rgba(239,68,68,.25);box-shadow:0 0 24px rgba(239,68,68,.18)}
+        .dash-modal-title{font-size:1.25rem;font-weight:600 !important;color:var(--text);margin-bottom:.5rem}
+        .dash-modal-desc{font-size:.875rem;color:var(--text-muted);line-height:1.55;margin-bottom:1.75rem}
+        .dash-modal-actions{display:flex;gap:.75rem;justify-content:center}
+        .dash-modal-actions .btn{flex:1;min-height:44px;font-size:.875rem;font-weight:600;justify-content:center;box-sizing:border-box;display:inline-flex;align-items:center;gap:.4rem}
+        .dash-modal-close{position:absolute;top:.85rem;right:.85rem;background:transparent;border:none;color:var(--text-muted);font-size:1.1rem;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+        [dir="rtl"] .dash-modal-close{right:auto;left:.85rem}
+        .dash-modal-close:hover{background:var(--bg-alt);color:var(--text)}
+        @media(max-width:480px){.dash-modal-card{padding:1.75rem 1.25rem;max-width:330px}.dash-modal-actions{flex-direction:column-reverse;gap:.6rem}.dash-modal-actions .btn{width:100% !important}}
+    
+
+        .ecg-strip-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+        .ecg-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            flex-wrap: nowrap;
+        }
+        .ecg-btn-group .btn {
+            white-space: nowrap !important;
+        }
+        @media (max-width: 576px) {
+            .ecg-strip-header {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.75rem !important;
+            }
+            .ecg-btn-group {
+                width: 100% !important;
+                display: flex !important;
+                gap: 0.5rem !important;
+            }
+            .ecg-btn-group .btn {
+                flex: 1 !important;
+                justify-content: center !important;
+                font-size: 0.75rem !important;
+                padding: 0.45rem 0.5rem !important;
+            }
+        }
+
+        /* ═════════════════════════════════════════════════════════════
+           RESPONSIVE MOBILE DASHBOARD TABLE & CARD LAYOUT
+           Eliminates horizontal sidescroll on mobile viewports
+           ═════════════════════════════════════════════════════════════ */
+        @media (max-width: 680px) {
+            .dash-table-wrap {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin-bottom: 1.25rem !important;
+            }
+            .dash-table {
+                min-width: 0 !important;
+                width: 100% !important;
+            }
+            .dash-table.dash-table-cards-mobile {
+                display: block !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                border: none !important;
+            }
+            .dash-table.dash-table-cards-mobile thead {
+                display: none !important;
+            }
+            .dash-table.dash-table-cards-mobile tbody {
+                display: block !important;
+                width: 100% !important;
+            }
+            .dash-table.dash-table-cards-mobile tr {
+                display: block !important;
+                padding: 0.85rem 1rem !important;
+                border-bottom: 1px solid var(--border) !important;
+                box-sizing: border-box !important;
+                width: 100% !important;
+                background: transparent !important;
+            }
+            .dash-table.dash-table-cards-mobile tr:last-child {
+                border-bottom: none !important;
+            }
+            .dash-table.dash-table-cards-mobile td {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 0.35rem 0 !important;
+                border: none !important;
+                font-size: 0.8125rem !important;
+                white-space: normal !important;
+                text-align: right !important;
+                box-sizing: border-box !important;
+                gap: 0.75rem !important;
+            }
+            .dash-table.dash-table-cards-mobile td::before {
+                content: attr(data-label);
+                font-weight: 600 !important;
+                color: var(--text-muted) !important;
+                font-size: 0.72rem !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.03em !important;
+                text-align: left !important;
+                flex-shrink: 0 !important;
+            }
+            .dash-table.dash-table-cards-mobile td .cell-val {
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 0.35rem !important;
+                text-align: right !important;
+                word-break: break-word !important;
+                justify-content: flex-end !important;
+                flex-wrap: wrap !important;
+            }
+            [dir="rtl"] .dash-table.dash-table-cards-mobile td {
+                text-align: left !important;
+            }
+            [dir="rtl"] .dash-table.dash-table-cards-mobile td::before {
+                text-align: right !important;
+            }
+            [dir="rtl"] .dash-table.dash-table-cards-mobile td .cell-val {
+                text-align: left !important;
+                justify-content: flex-start !important;
+            }
+            .dash-table.dash-table-cards-mobile td[data-label="Action"] {
+                padding-top: 0.55rem !important;
+                justify-content: stretch !important;
+            }
+            .dash-table.dash-table-cards-mobile td[data-label="Action"] .btn {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 0.45rem 0.75rem !important;
+                font-size: 0.8125rem !important;
+                font-weight: 600 !important;
+            }
+            .dash-table.dash-table-cards-mobile td[data-label="Action"] a {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0.35rem !important;
+                width: 100% !important;
+                padding: 0.45rem 0.75rem !important;
+                background: rgba(185, 28, 58, 0.1) !important;
+                border: 1px solid rgba(185, 28, 58, 0.3) !important;
+                border-radius: var(--radius-sm) !important;
+                color: var(--primary) !important;
+                font-weight: 600 !important;
+                font-size: 0.8125rem !important;
+                text-decoration: none !important;
+                box-sizing: border-box !important;
+                transition: background 0.2s, border-color 0.2s;
+            }
+            .dash-table.dash-table-cards-mobile td[data-label="Action"] a:hover {
+                background: rgba(185, 28, 58, 0.18) !important;
+                border-color: var(--primary) !important;
+            }
+
+            /* Ultra-compact Weekly Schedule for 100% fit on mobile */
+            .table-schedule-wrap {
+                overflow-x: hidden !important;
+            }
+            .med-schedule-table {
+                min-width: 0 !important;
+                width: 100% !important;
+                table-layout: fixed !important;
+                border-collapse: collapse !important;
+            }
+            .med-schedule-table th,
+            .med-schedule-table td {
+                padding: 0.45rem 0.12rem !important;
+                font-size: 0.7rem !important;
+                text-align: center !important;
+                white-space: nowrap !important;
+                border-bottom: 1px solid var(--border) !important;
+            }
+            .med-schedule-table th:first-child,
+            .med-schedule-table td:first-child {
+                width: 38% !important;
+                text-align: left !important;
+                padding-left: 0.5rem !important;
+                white-space: normal !important;
+                font-weight: 600 !important;
+                line-height: 1.2 !important;
+            }
+            [dir="rtl"] .med-schedule-table th:first-child,
+            [dir="rtl"] .med-schedule-table td:first-child {
+                text-align: right !important;
+                padding-left: 0.12rem !important;
+                padding-right: 0.5rem !important;
+            }
+            .med-schedule-table th:not(:first-child),
+            .med-schedule-table td:not(:first-child) {
+                width: 8.85% !important;
+            }
+            .med-schedule-table td i {
+                display: inline-block !important;
+                font-size: 0.75rem !important;
+            }
+        }
+
+        /* ═════════════════════════════════════════════════════════════
+           DASHBOARD BUTTON & COLOR CONTRAST SYSTEM (LIGHT & DARK)
+           Vibrant, high-contrast, accessible actions across all tabs
+           ═════════════════════════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: var(--radius-sm, 8px);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+            white-space: nowrap;
+        }
+
+        .btn-sm {
+            padding: 0.45rem 0.9rem !important;
+            font-size: 0.8125rem !important;
+            min-height: 34px !important;
+            line-height: 1.25 !important;
+        }
+
+        /* Light Mode Outline Button */
+        .btn-outline {
+            background: rgba(185, 28, 58, 0.05);
+            color: #B91C3A;
+            border: 1.5px solid #B91C3A;
+            box-shadow: 0 1px 2px rgba(185, 28, 58, 0.08);
+            font-weight: 600;
+        }
+
+        .btn-outline:hover {
+            background: #B91C3A;
+            color: #FFFFFF !important;
+            border-color: #B91C3A;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(185, 28, 58, 0.25);
+        }
+
+        /* Light Mode Secondary Outline */
+        .btn-outline-secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1.5px solid var(--border);
+            font-weight: 600;
+        }
+
+        .btn-outline-secondary:hover {
+            background: var(--bg-alt);
+            color: var(--text);
+            border-color: var(--text-muted);
+        }
+
+        /* Table Action Buttons */
+        .table-action-btn {
+            padding: 0.35rem 0.85rem !important;
+            font-size: 0.78125rem !important;
+            font-weight: 600 !important;
+            min-height: 30px !important;
+            border-radius: 6px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.35rem !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+        }
+
+        .table-action-btn.btn-primary {
+            background: #B91C3A;
+            border: 1px solid #B91C3A;
+            color: #FFFFFF !important;
+            box-shadow: 0 2px 6px rgba(185, 28, 58, 0.3);
+        }
+
+        .table-action-btn.btn-primary:hover {
+            background: #9A142E;
+            box-shadow: 0 4px 12px rgba(185, 28, 58, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .btn-hotline {
+            background: rgba(14, 165, 233, 0.06) !important;
+            color: #0284C7 !important;
+            border: 1.5px solid rgba(14, 165, 233, 0.4) !important;
+        }
+
+        .btn-hotline:hover {
+            background: #0284C7 !important;
+            color: #FFFFFF !important;
+            border-color: #0284C7 !important;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+            transform: translateY(-1px);
+        }
+
+        /* ═════════════════════════════════════════════════════════════
+           DARK MODE BUTTONS & CONTRAST (html.dark)
+           ═════════════════════════════════════════════════════════════ */
+        html.dark .btn-primary {
+            background: linear-gradient(135deg, #E11D48, #BE123C) !important;
+            border-color: #E11D48 !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 2px 10px rgba(225, 29, 72, 0.35) !important;
+            font-weight: 600 !important;
+        }
+
+        html.dark .btn-primary:hover {
+            background: linear-gradient(135deg, #F43F5E, #E11D48) !important;
+            border-color: #F43F5E !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 18px rgba(244, 63, 94, 0.5) !important;
+            transform: translateY(-1px);
+        }
+
+        html.dark .btn-outline {
+            background: rgba(244, 63, 94, 0.15) !important;
+            color: #FDA4AF !important;
+            border: 1.5px solid rgba(244, 63, 94, 0.6) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+            font-weight: 600 !important;
+        }
+
+        html.dark .btn-outline:hover {
+            background: #E11D48 !important;
+            border-color: #E11D48 !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 16px rgba(225, 29, 72, 0.5) !important;
+            transform: translateY(-1px);
+        }
+
+        html.dark .btn-outline-secondary {
+            background: rgba(255, 255, 255, 0.08) !important;
+            color: #F1F5F9 !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+        }
+
+        html.dark .btn-outline-secondary:hover {
+            background: rgba(255, 255, 255, 0.18) !important;
+            color: #FFFFFF !important;
+            border-color: rgba(255, 255, 255, 0.5) !important;
+            transform: translateY(-1px);
+        }
+
+        html.dark .table-action-btn.btn-outline {
+            background: rgba(244, 63, 94, 0.15) !important;
+            color: #FDA4AF !important;
+            border: 1.5px solid rgba(244, 63, 94, 0.6) !important;
+        }
+
+        html.dark .table-action-btn.btn-outline:hover {
+            background: #E11D48 !important;
+            border-color: #E11D48 !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 2px 10px rgba(225, 29, 72, 0.5) !important;
+            transform: translateY(-1px);
+        }
+
+        html.dark .table-action-btn.btn-primary {
+            background: linear-gradient(135deg, #E11D48, #BE123C) !important;
+            border-color: #E11D48 !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4) !important;
+        }
+
+        html.dark .table-action-btn.btn-primary:hover {
+            background: linear-gradient(135deg, #F43F5E, #E11D48) !important;
+            box-shadow: 0 4px 14px rgba(244, 63, 94, 0.55) !important;
+            transform: translateY(-1px);
+        }
+
+        html.dark .btn-hotline {
+            background: rgba(56, 189, 248, 0.12) !important;
+            color: #38BDF8 !important;
+            border: 1.5px solid rgba(56, 189, 248, 0.45) !important;
+        }
+
+        html.dark .btn-hotline:hover {
+            background: #0284C7 !important;
+            color: #FFFFFF !important;
+            border-color: #38BDF8 !important;
+            box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35) !important;
+            transform: translateY(-1px);
+        }
+
     </style>
 </head>
 <body>
@@ -73,7 +1205,7 @@
                 <button class="dash-nav-item" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
             </nav>
             <div class="dash-sidebar-footer">
-                <button class="dash-nav-item dash-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                <button class="dash-nav-item dash-logout-btn" id="sidebarLogoutBtn" type="button" onclick="openLogoutModal()"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
         </aside>
 
@@ -130,7 +1262,7 @@
                         <div class="dash-profile-dropdown" id="dashProfileDropdown">
                             <button class="profile-dropdown-item" onclick="document.querySelector('[data-tab=settings]').click()"><i class="fas fa-user"></i> View Profile</button>
                             <button class="profile-dropdown-item" onclick="document.querySelector('[data-tab=settings]').click()"><i class="fas fa-cog"></i> Settings</button>
-                            <button class="profile-dropdown-item danger" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                            <button class="profile-dropdown-item danger" id="profileLogoutBtn" type="button" onclick="openLogoutModal()"><i class="fas fa-sign-out-alt"></i> Logout</button>
                         </div>
                     </div>
                 </div>
@@ -167,16 +1299,88 @@
                             <div class="dash-metric-trend" style="color:var(--info)"><i class="fas fa-pills"></i> On Schedule</div>
                         </div>
                     </div>
+
+                    <!-- Daily Vitals & Care Plan 2-Col Grid -->
+                    <div class="dash-two-col">
+                        <div class="dash-card" style="margin-bottom:0">
+                            <h3 class="dash-card-title"><i class="fas fa-heart-pulse" style="color:var(--primary)"></i>Daily Cardiac Activity & Recovery</h3>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem">
+                                <span style="font-size:.875rem;color:var(--text)">Daily Steps Goal</span>
+                                <span style="font-size:.875rem;font-weight:600;color:var(--primary)">6,840 / 8,000 (85%)</span>
+                            </div>
+                            <div class="dash-progress-wrap">
+                                <div class="dash-progress-bar"><div class="dash-progress-fill" style="width:85%"></div></div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.25rem">
+                                <div class="policy-item">
+                                    <div class="policy-lbl">Resting HR</div>
+                                    <div class="policy-val" style="color:#10b981"><i class="fas fa-heart"></i> 58 bpm</div>
+                                    <span style="font-size:.6875rem;color:var(--text-muted)">Optimal range</span>
+                                </div>
+                                <div class="policy-item">
+                                    <div class="policy-lbl">Sleep Quality</div>
+                                    <div class="policy-val"><i class="fas fa-moon" style="color:#6366f1"></i> 7h 25m</div>
+                                    <span style="font-size:.6875rem;color:#10b981">92% Restorative</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dash-card" style="margin-bottom:0">
+                            <h3 class="dash-card-title"><i class="fas fa-list-check" style="color:var(--primary)"></i>Today's Care Plan Checklist</h3>
+                            <ul class="dash-checklist">
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <span class="dash-check-circle done"><i class="fas fa-check"></i></span>
+                                        <div>
+                                            <div style="font-weight:500;color:var(--text)">Morning Aspirin 81mg</div>
+                                            <div style="font-size:.75rem;color:var(--text-muted)">Taken with breakfast at 8:02 AM</div>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge normal">Completed</span>
+                                </li>
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <span class="dash-check-circle done"><i class="fas fa-check"></i></span>
+                                        <div>
+                                            <div style="font-weight:500;color:var(--text)">25-Min Brisk Cardio Walk</div>
+                                            <div style="font-size:.75rem;color:var(--text-muted)">Recorded via wearable tracker</div>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge normal">Completed</span>
+                                </li>
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <span class="dash-check-circle pending"></span>
+                                        <div>
+                                            <div style="font-weight:500;color:var(--text)">Evening Blood Pressure Log</div>
+                                            <div style="font-size:.75rem;color:var(--text-muted)">Scheduled for 7:00 PM</div>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge pending">Due Soon</span>
+                                </li>
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <span class="dash-check-circle pending"></span>
+                                        <div>
+                                            <div style="font-weight:500;color:var(--text)">Lisinopril 10mg with Dinner</div>
+                                            <div style="font-size:.75rem;color:var(--text-muted)">Scheduled for 6:30 PM</div>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge pending">Due Soon</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <div class="dash-table-wrap">
                         <div class="dash-table-header">
                             <h3 class="dash-table-title">Upcoming Consultations</h3>
                         </div>
-                        <table class="dash-table">
+                        <table class="dash-table dash-table-cards-mobile">
                             <thead><tr><th>Date</th><th>Doctor</th><th>Type</th><th>Status</th></tr></thead>
                             <tbody>
-                                <tr><td>Dec 15, 2024</td><td>Dr. James Mitchell</td><td>Follow-Up</td><td><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></td></tr>
-                                <tr><td>Jan 8, 2025</td><td>Dr. Sarah Chen</td><td>ECG Review</td><td><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></td></tr>
-                                <tr><td>Jan 22, 2025</td><td>Dr. Robert Williams</td><td>Annual Checkup</td><td><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Dec 15, 2024</span></td><td data-label="Doctor"><span class="cell-val">Dr. James Mitchell</span></td><td data-label="Type"><span class="cell-val">Follow-Up</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Jan 8, 2025</span></td><td data-label="Doctor"><span class="cell-val">Dr. Sarah Chen</span></td><td data-label="Type"><span class="cell-val">ECG Review</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Jan 22, 2025</span></td><td data-label="Doctor"><span class="cell-val">Dr. Robert Williams</span></td><td data-label="Type"><span class="cell-val">Annual Checkup</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></span></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -184,31 +1388,67 @@
                         <div class="dash-table-header">
                             <h3 class="dash-table-title">Recent Test Results</h3>
                         </div>
-                        <table class="dash-table">
+                        <table class="dash-table dash-table-cards-mobile">
                             <thead><tr><th>Test</th><th>Date</th><th>Result</th><th>Status</th></tr></thead>
                             <tbody>
-                                <tr><td>ECG Resting</td><td>Nov 10, 2024</td><td>Normal Sinus Rhythm</td><td><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></td></tr>
-                                <tr><td>Lipid Panel</td><td>Nov 10, 2024</td><td>Total: 195 mg/dL</td><td><span class="status-badge warning"><i class="fas fa-exclamation-triangle"></i> Borderline</span></td></tr>
-                                <tr><td>Blood Pressure</td><td>Nov 10, 2024</td><td>120/80 mmHg</td><td><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></td></tr>
+                                <tr><td data-label="Test"><span class="cell-val">ECG Resting</span></td><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Result"><span class="cell-val">Normal Sinus Rhythm</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td></tr>
+                                <tr><td data-label="Test"><span class="cell-val">Lipid Panel</span></td><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Result"><span class="cell-val">Total: 195 mg/dL</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge warning"><i class="fas fa-exclamation-triangle"></i> Borderline</span></span></td></tr>
+                                <tr><td data-label="Test"><span class="cell-val">Blood Pressure</span></td><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Result"><span class="cell-val">120/80 mmHg</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td></tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Assigned Care Team & Clinical Note Card -->
+                    <div class="dash-card">
+                        <h3 class="dash-card-title"><i class="fas fa-user-doctor" style="color:var(--primary)"></i>Assigned Cardiologist & Latest Clinical Note</h3>
+                        <div class="care-team-row" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border-light)">
+                            <div style="display:flex;align-items:center;gap:1rem">
+                                <div style="width:50px;height:50px;border-radius:50%;background:rgba(185,28,58,.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.4rem"><i class="fas fa-stethoscope"></i></div>
+                                <div>
+                                    <h4 style="font-size:1rem;margin-bottom:.2rem">Dr. James Mitchell, MD, FACC</h4>
+                                    <p style="font-size:.8125rem;color:var(--text-muted)">Lead Interventional Cardiologist • CardioVita Center Suite 402</p>
+                                </div>
+                            </div>
+                            <div class="care-team-actions" style="display:flex;gap:.5rem;flex-wrap:wrap">
+                                <button class="btn btn-outline btn-sm" onclick="alert('Secure message window opened. Dr. Mitchell\'s clinical team typically responds within 24 business hours.')"><i class="fas fa-envelope"></i> Message Team</button>
+                                <button class="btn btn-outline btn-sm btn-hotline" onclick="alert('Calling CardioVita Direct Nurse Triage: +1 (555) 847-CARE')"><i class="fas fa-phone"></i> Nurse Hotline</button>
+                            </div>
+                        </div>
+                        <div style="margin-top:1rem;padding:.85rem 1rem;background:var(--bg-alt);border-radius:var(--radius-sm);border-left:3px solid var(--primary)">
+                            <div style="font-size:.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:.25rem">Latest Physician Assessment (Nov 10, 2024)</div>
+                            <p style="font-size:.875rem;color:var(--text);line-height:1.5;margin:0">"Patient demonstrates excellent compliance with oral antihypertensive therapy. Resting ECG confirms stable sinus rhythm at 72 bpm. Mild LDL elevation noted; continuing Atorvastatin 20mg and scheduled for routine follow-up on Dec 15."</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- TAB: CONSULTATIONS -->
                 <div class="dash-tab" id="tab-consultations">
                     <h2 class="dash-section-title">My Consultations</h2>
+
+                    <!-- Telehealth Ready Alert Card -->
+                    <div class="telehealth-hero-card">
+                        <div class="telehealth-info">
+                            <span class="status-badge scheduled" style="margin-bottom:.5rem"><i class="fas fa-video"></i> Next Virtual Consultation</span>
+                            <h3>Follow-Up Telehealth Visit with Dr. James Mitchell</h3>
+                            <p><i class="fas fa-calendar-day" style="margin-right:.4rem;color:var(--primary)"></i>Sunday, Dec 15, 2024 • 10:00 AM EST • 30-Minute Video Assessment</p>
+                        </div>
+                        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+                            <button class="btn btn-primary btn-sm" onclick="alert('Virtual Telehealth Room will activate 10 minutes prior to scheduled start time.')"><i class="fas fa-video"></i> Enter Waiting Room</button>
+                            <button class="btn btn-outline btn-sm" onclick="alert('Device Diagnostics: Microphone, Camera, and High-Speed Connection are Ready!')"><i class="fas fa-sliders"></i> Test Audio & Camera</button>
+                        </div>
+                    </div>
+
                     <div class="dash-table-wrap">
                         <div class="dash-table-header">
                             <h3 class="dash-table-title">Upcoming Consultations</h3>
                         </div>
-                        <table class="dash-table">
+                        <table class="dash-table dash-table-cards-mobile">
                             <thead><tr><th>Date</th><th>Time</th><th>Doctor</th><th>Specialization</th><th>Type</th><th>Status</th></tr></thead>
                             <tbody>
-                                <tr><td>Dec 15, 2024</td><td>10:00 AM</td><td>Dr. James Mitchell</td><td>Interventional</td><td>Follow-Up</td><td><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></td></tr>
-                                <tr><td>Jan 8, 2025</td><td>2:30 PM</td><td>Dr. Sarah Chen</td><td>Electrophysiology</td><td>ECG Review</td><td><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></td></tr>
-                                <tr><td>Jan 22, 2025</td><td>11:00 AM</td><td>Dr. Robert Williams</td><td>Preventive</td><td>Annual Checkup</td><td><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></td></tr>
-                                <tr><td>Feb 14, 2025</td><td>9:30 AM</td><td>Dr. David Kim</td><td>Heart Failure</td><td>Consultation</td><td><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Dec 15, 2024</span></td><td data-label="Time"><span class="cell-val">10:00 AM</span></td><td data-label="Doctor"><span class="cell-val">Dr. James Mitchell</span></td><td data-label="Specialization"><span class="cell-val">Interventional</span></td><td data-label="Type"><span class="cell-val">Follow-Up</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Jan 8, 2025</span></td><td data-label="Time"><span class="cell-val">2:30 PM</span></td><td data-label="Doctor"><span class="cell-val">Dr. Sarah Chen</span></td><td data-label="Specialization"><span class="cell-val">Electrophysiology</span></td><td data-label="Type"><span class="cell-val">ECG Review</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge scheduled"><i class="fas fa-clock"></i> Scheduled</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Jan 22, 2025</span></td><td data-label="Time"><span class="cell-val">11:00 AM</span></td><td data-label="Doctor"><span class="cell-val">Dr. Robert Williams</span></td><td data-label="Specialization"><span class="cell-val">Preventive</span></td><td data-label="Type"><span class="cell-val">Annual Checkup</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Feb 14, 2025</span></td><td data-label="Time"><span class="cell-val">9:30 AM</span></td><td data-label="Doctor"><span class="cell-val">Dr. David Kim</span></td><td data-label="Specialization"><span class="cell-val">Heart Failure</span></td><td data-label="Type"><span class="cell-val">Consultation</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></span></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -216,17 +1456,68 @@
                         <div class="dash-table-header">
                             <h3 class="dash-table-title">Past Consultations</h3>
                         </div>
-                        <table class="dash-table">
+                        <table class="dash-table dash-table-cards-mobile">
                             <thead><tr><th>Date</th><th>Time</th><th>Doctor</th><th>Specialization</th><th>Type</th><th>Status</th></tr></thead>
                             <tbody>
-                                <tr><td>Nov 10, 2024</td><td>10:00 AM</td><td>Dr. James Mitchell</td><td>Interventional</td><td>Follow-Up</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></td></tr>
-                                <tr><td>Oct 5, 2024</td><td>3:00 PM</td><td>Dr. Sarah Chen</td><td>Electrophysiology</td><td>ECG Review</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></td></tr>
-                                <tr><td>Sep 12, 2024</td><td>11:30 AM</td><td>Dr. Robert Williams</td><td>Preventive</td><td>Screening</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></td></tr>
-                                <tr><td>Aug 1, 2024</td><td>9:00 AM</td><td>Dr. Maria Rodriguez</td><td>Cardiac Surgery</td><td>Pre-Op Assessment</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Time"><span class="cell-val">10:00 AM</span></td><td data-label="Doctor"><span class="cell-val">Dr. James Mitchell</span></td><td data-label="Specialization"><span class="cell-val">Interventional</span></td><td data-label="Type"><span class="cell-val">Follow-Up</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Oct 5, 2024</span></td><td data-label="Time"><span class="cell-val">3:00 PM</span></td><td data-label="Doctor"><span class="cell-val">Dr. Sarah Chen</span></td><td data-label="Specialization"><span class="cell-val">Electrophysiology</span></td><td data-label="Type"><span class="cell-val">ECG Review</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Sep 12, 2024</span></td><td data-label="Time"><span class="cell-val">11:30 AM</span></td><td data-label="Doctor"><span class="cell-val">Dr. Robert Williams</span></td><td data-label="Specialization"><span class="cell-val">Preventive</span></td><td data-label="Type"><span class="cell-val">Screening</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></span></td></tr>
+                                <tr><td data-label="Date"><span class="cell-val">Aug 1, 2024</span></td><td data-label="Time"><span class="cell-val">9:00 AM</span></td><td data-label="Doctor"><span class="cell-val">Dr. Maria Rodriguez</span></td><td data-label="Specialization"><span class="cell-val">Cardiac Surgery</span></td><td data-label="Type"><span class="cell-val">Pre-Op Assessment</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Completed</span></span></td></tr>
                             </tbody>
                         </table>
                     </div>
-                    <div style="text-align:center;margin-top:1rem">
+
+                    <!-- Visit Summaries & Preparation Guidelines -->
+                    <div class="dash-two-col">
+                        <div class="dash-card" style="margin-bottom:0">
+                            <h3 class="dash-card-title"><i class="fas fa-file-waveform" style="color:var(--primary)"></i>Past Consultation Summaries</h3>
+                            <div style="margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border-light)">
+                                <div style="display:flex;justify-content:space-between;margin-bottom:.25rem">
+                                    <strong style="font-size:.875rem">Dr. James Mitchell — Nov 10, 2024</strong>
+                                    <span class="status-badge completed" style="font-size:.6875rem">Signed</span>
+                                </div>
+                                <p style="font-size:.8125rem;color:var(--text-light);line-height:1.5;margin:0">"Post-evaluation visit. Confirmed heart rate stability and normal telemetry. Prescriptions renewed for 90 days. Next review scheduled for December."</p>
+                            </div>
+                            <div>
+                                <div style="display:flex;justify-content:space-between;margin-bottom:.25rem">
+                                    <strong style="font-size:.875rem">Dr. Sarah Chen — Oct 5, 2024</strong>
+                                    <span class="status-badge completed" style="font-size:.6875rem">Signed</span>
+                                </div>
+                                <p style="font-size:.8125rem;color:var(--text-light);line-height:1.5;margin:0">"Holter telemetry analysis. Zero sustained arrhythmias or high-grade conduction abnormalities detected. Reassurance given regarding benign occasional PACs."</p>
+                            </div>
+                        </div>
+                        <div class="dash-card" style="margin-bottom:0">
+                            <h3 class="dash-card-title"><i class="fas fa-clipboard-check" style="color:var(--primary)"></i>Pre-Appointment Guidelines</h3>
+                            <ul class="dash-checklist">
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <i class="fas fa-pills" style="color:var(--primary);width:18px"></i>
+                                        <span style="font-size:.8125rem">Have all current prescription and supplement bottles accessible.</span>
+                                    </div>
+                                </li>
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <i class="fas fa-mug-hot" style="color:var(--primary);width:18px"></i>
+                                        <span style="font-size:.8125rem">Refrain from caffeinated beverages 3 hours prior to in-office ECGs.</span>
+                                    </div>
+                                </li>
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <i class="fas fa-shirt" style="color:var(--primary);width:18px"></i>
+                                        <span style="font-size:.8125rem">Wear comfortable loose-fitting clothing for blood pressure monitoring.</span>
+                                    </div>
+                                </li>
+                                <li class="dash-check-item">
+                                    <div class="dash-check-left">
+                                        <i class="fas fa-book-medical" style="color:var(--primary);width:18px"></i>
+                                        <span style="font-size:.8125rem">Note any recent episodes of lightheadedness or irregular palpitations.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center;margin-top:1.5rem">
                         <a href="contact.html" class="btn btn-primary"><i class="fas fa-plus"></i> Book New Consultation</a>
                     </div>
                 </div>
@@ -234,21 +1525,107 @@
                 <!-- TAB: ECG & REPORTS -->
                 <div class="dash-tab" id="tab-reports">
                     <h2 class="dash-section-title">ECG & Test Reports</h2>
+
+                    <!-- Featured 12-Lead ECG Telemetry Strip Preview Card -->
+                    <div class="ecg-strip-card">
+                        <div class="ecg-strip-header">
+                            <div>
+                                <span class="status-badge normal" style="margin-bottom:.35rem"><i class="fas fa-heart-circle-check"></i> Latest Telemetry</span>
+                                <h3 style="font-size:1.125rem;font-weight:600;margin:.25rem 0 0;color:#FFFFFF !important">12-Lead Resting ECG Strip Analysis</h3>
+                                <p style="font-size:.8125rem;color:#94a3b8;margin:.15rem 0 0">Recorded Nov 10, 2024 at 10:25 AM • Reviewed by Dr. Sarah Chen, MD</p>
+                            </div>
+                            <div class="ecg-btn-group">
+                                <button class="btn btn-primary btn-sm" onclick="alert('Downloading high-resolution diagnostic ECG Strip PDF...')"><i class="fas fa-file-pdf"></i> Download PDF</button>
+                                <button class="btn btn-outline-white btn-sm" onclick="alert('Diagnostic telemetry summary copied to clipboard for medical sharing.')"><i class="fas fa-share-nodes"></i> Share</button>
+                            </div>
+                        </div>
+
+                        <!-- 4 ECG Telemetry Parameters -->
+                        <div class="ecg-strip-grid">
+                            <div class="ecg-param-box">
+                                <div class="ecg-param-lbl">Heart Rate</div>
+                                <div class="ecg-param-val">72 <span style="font-size:.75rem;font-weight:400;color:#94a3b8">BPM</span></div>
+                                <span style="font-size:.6875rem;color:#10b981"><i class="fas fa-check"></i> Sinus Rhythm</span>
+                            </div>
+                            <div class="ecg-param-box">
+                                <div class="ecg-param-lbl">PR Interval</div>
+                                <div class="ecg-param-val">156 <span style="font-size:.75rem;font-weight:400;color:#94a3b8">ms</span></div>
+                                <span style="font-size:.6875rem;color:#94a3b8">Normal (120–200ms)</span>
+                            </div>
+                            <div class="ecg-param-box">
+                                <div class="ecg-param-lbl">QRS Duration</div>
+                                <div class="ecg-param-val">86 <span style="font-size:.75rem;font-weight:400;color:#94a3b8">ms</span></div>
+                                <span style="font-size:.6875rem;color:#94a3b8">Normal (&lt; 120ms)</span>
+                            </div>
+                            <div class="ecg-param-box">
+                                <div class="ecg-param-lbl">QTc Interval</div>
+                                <div class="ecg-param-val">412 <span style="font-size:.75rem;font-weight:400;color:#94a3b8">ms</span></div>
+                                <span style="font-size:.6875rem;color:#94a3b8">Normal (&lt; 440ms)</span>
+                            </div>
+                        </div>
+
+                        <!-- Visual Rhythm Waveform Strip (SVG Medical Tracing) -->
+                        <div style="background:#070d18;border:1px solid rgba(56,189,248,.2);border-radius:var(--radius-sm);padding:1rem;position:relative;overflow:hidden;margin-bottom:1rem">
+                            <div style="font-size:.6875rem;font-weight:600;color:#38bdf8;letter-spacing:.05em;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.35rem">
+                                <span style="word-break:break-word;max-width:100%"><i class="fas fa-chart-line"></i> LEAD II TELEMETRY RHYTHM STRIP</span>
+                                <span style="color:#10b981"><i class="fas fa-circle" style="font-size:.5rem;margin-right:.25rem"></i>CALIBRATED</span>
+                            </div>
+                            <svg viewBox="0 0 900 80" style="width:100%;height:65px;display:block" preserveAspectRatio="none">
+                                <defs>
+                                    <pattern id="ecgGridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(56, 189, 248, 0.08)" stroke-width="1"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="900" height="80" fill="url(#ecgGridPattern)"/>
+                                <path d="M0,45 L40,45 L48,42 L56,47 L62,45 L70,45 L74,48 L80,10 L86,65 L92,45 L102,45 L112,38 L122,45 L150,45 L190,45 L198,42 L206,47 L212,45 L220,45 L224,48 L230,10 L236,65 L242,45 L252,45 L262,38 L272,45 L300,45 L340,45 L348,42 L356,47 L362,45 L370,45 L374,48 L380,10 L386,65 L392,45 L402,45 L412,38 L422,45 L450,45 L490,45 L498,42 L506,47 L512,45 L520,45 L524,48 L530,10 L536,65 L542,45 L552,45 L562,38 L572,45 L600,45 L640,45 L648,42 L656,47 L662,45 L670,45 L674,48 L680,10 L686,65 L692,45 L702,45 L712,38 L722,45 L750,45 L790,45 L798,42 L806,47 L812,45 L820,45 L824,48 L830,10 L836,65 L842,45 L852,45 L862,38 L872,45 L900,45" fill="none" stroke="#00e5ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div style="font-size:.8125rem;color:#cbd5e1;line-height:1.5;background:rgba(15,23,42,.6);padding:.75rem 1rem;border-radius:var(--radius-sm)">
+                            <strong style="color:#fff">Physician Interpretation:</strong> "Normal sinus rhythm at 72 bpm. PR and QTc intervals within normal parameters. Intact ventricular conduction with normal R-wave progression. No evidence of myocardial ischemia, injury, or acute infarction."
+                        </div>
+                    </div>
+
                     <div class="dash-table-wrap">
                         <div class="dash-table-header">
-                            <h3 class="dash-table-title">All Reports</h3>
+                            <h3 class="dash-table-title">All Diagnostic Reports</h3>
                         </div>
-                        <table class="dash-table">
+                        <table class="dash-table dash-table-cards-mobile">
                             <thead><tr><th>Report</th><th>Date</th><th>Doctor</th><th>Category</th><th>Status</th><th>Action</th></tr></thead>
                             <tbody>
-                                <tr><td>ECG Resting — 12 Lead</td><td>Nov 10, 2024</td><td>Dr. Chen</td><td>Electrophysiology</td><td><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>Echocardiogram</td><td>Oct 25, 2024</td><td>Dr. Mitchell</td><td>Imaging</td><td><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>Lipid Panel — Full</td><td>Nov 10, 2024</td><td>Dr. Williams</td><td>Blood Work</td><td><span class="status-badge warning"><i class="fas fa-exclamation-triangle"></i> Borderline</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>Stress Test — Treadmill</td><td>Sep 15, 2024</td><td>Dr. Mitchell</td><td>Functional</td><td><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>Holter Monitor — 48hr</td><td>Aug 20, 2024</td><td>Dr. Chen</td><td>Electrophysiology</td><td><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>Complete Blood Panel</td><td>Nov 10, 2024</td><td>Dr. Williams</td><td>Blood Work</td><td><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
+                                <tr><td data-label="Report"><span class="cell-val">ECG Resting — 12 Lead</span></td><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Doctor"><span class="cell-val">Dr. Chen</span></td><td data-label="Category"><span class="cell-val">Electrophysiology</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Opening diagnostic report viewer...')"><i class="fas fa-file-waveform"></i> View</button></td></tr>
+                                <tr><td data-label="Report"><span class="cell-val">Echocardiogram</span></td><td data-label="Date"><span class="cell-val">Oct 25, 2024</span></td><td data-label="Doctor"><span class="cell-val">Dr. Mitchell</span></td><td data-label="Category"><span class="cell-val">Imaging</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Opening diagnostic report viewer...')"><i class="fas fa-file-waveform"></i> View</button></td></tr>
+                                <tr><td data-label="Report"><span class="cell-val">Lipid Panel — Full</span></td><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Doctor"><span class="cell-val">Dr. Williams</span></td><td data-label="Category"><span class="cell-val">Blood Work</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge warning"><i class="fas fa-exclamation-triangle"></i> Borderline</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Opening diagnostic report viewer...')"><i class="fas fa-file-waveform"></i> View</button></td></tr>
+                                <tr><td data-label="Report"><span class="cell-val">Stress Test — Treadmill</span></td><td data-label="Date"><span class="cell-val">Sep 15, 2024</span></td><td data-label="Doctor"><span class="cell-val">Dr. Mitchell</span></td><td data-label="Category"><span class="cell-val">Functional</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Opening diagnostic report viewer...')"><i class="fas fa-file-waveform"></i> View</button></td></tr>
+                                <tr><td data-label="Report"><span class="cell-val">Holter Monitor — 48hr</span></td><td data-label="Date"><span class="cell-val">Aug 20, 2024</span></td><td data-label="Doctor"><span class="cell-val">Dr. Chen</span></td><td data-label="Category"><span class="cell-val">Electrophysiology</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Opening diagnostic report viewer...')"><i class="fas fa-file-waveform"></i> View</button></td></tr>
+                                <tr><td data-label="Report"><span class="cell-val">Complete Blood Panel</span></td><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Doctor"><span class="cell-val">Dr. Williams</span></td><td data-label="Category"><span class="cell-val">Blood Work</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Opening diagnostic report viewer...')"><i class="fas fa-file-waveform"></i> View</button></td></tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Cardiovascular Biomarkers Panel -->
+                    <div class="dash-card">
+                        <h3 class="dash-card-title"><i class="fas fa-vial" style="color:var(--primary)"></i>Key Cardiac Biomarkers & Lipid Panel (Nov 10, 2024)</h3>
+                        <div class="dash-table-wrap" style="margin-bottom:0;border:none">
+                            <table class="dash-table dash-table-cards-mobile">
+                                <thead><tr><th>Biomarker Test</th><th>Patient Result</th><th>Standard Target Range</th><th>Clinical Assessment</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Biomarker Test"><span class="cell-val"><strong>Total Cholesterol</strong></span></td><td data-label="Patient Result"><span class="cell-val">195 mg/dL</span></td><td data-label="Standard Target Range"><span class="cell-val">&lt; 200 mg/dL</span></td><td data-label="Clinical Assessment"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Desirable</span></span></td></tr>
+                                    <tr><td data-label="Biomarker Test"><span class="cell-val"><strong>HDL ("Good") Cholesterol</strong></span></td><td data-label="Patient Result"><span class="cell-val">54 mg/dL</span></td><td data-label="Standard Target Range"><span class="cell-val">&gt; 40 mg/dL</span></td><td data-label="Clinical Assessment"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Optimal</span></span></td></tr>
+                                    <tr><td data-label="Biomarker Test"><span class="cell-val"><strong>LDL ("Bad") Cholesterol</strong></span></td><td data-label="Patient Result"><span class="cell-val">108 mg/dL</span></td><td data-label="Standard Target Range"><span class="cell-val">&lt; 100 mg/dL</span></td><td data-label="Clinical Assessment"><span class="cell-val"><span class="status-badge warning"><i class="fas fa-exclamation-triangle"></i> Borderline (Diet Target)</span></span></td></tr>
+                                    <tr><td data-label="Biomarker Test"><span class="cell-val"><strong>Triglycerides</strong></span></td><td data-label="Patient Result"><span class="cell-val">142 mg/dL</span></td><td data-label="Standard Target Range"><span class="cell-val">&lt; 150 mg/dL</span></td><td data-label="Clinical Assessment"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Normal</span></span></td></tr>
+                                    <tr><td data-label="Biomarker Test"><span class="cell-val"><strong>Fasting Blood Glucose (HbA1c)</strong></span></td><td data-label="Patient Result"><span class="cell-val">5.4%</span></td><td data-label="Standard Target Range"><span class="cell-val">&lt; 5.7%</span></td><td data-label="Clinical Assessment"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-check"></i> Non-Diabetic</span></span></td></tr>
+                                    <tr><td data-label="Biomarker Test"><span class="cell-val"><strong>High-Sensitivity CRP (Inflammation)</strong></span></td><td data-label="Patient Result"><span class="cell-val">1.1 mg/L</span></td><td data-label="Standard Target Range"><span class="cell-val">&lt; 2.0 mg/L</span></td><td data-label="Clinical Assessment"><span class="cell-val"><span class="status-badge normal"><i class="fas fa-shield-halved"></i> Low Risk</span></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Upload Outside Medical Records Zone -->
+                    <div class="upload-dropzone" onclick="alert('File picker opened. Select PDF, DICOM, or image reports from outside healthcare networks.')">
+                        <i class="fas fa-cloud-arrow-up" style="font-size:2.25rem;color:var(--primary);margin-bottom:.75rem"></i>
+                        <h4 style="font-size:1rem;margin-bottom:.35rem">Upload Outside Diagnostic Records</h4>
+                        <p style="font-size:.8125rem;color:var(--text-muted);max-width:520px;margin:0 auto .75rem">Have tests performed at an external laboratory, hospital, or cardiologist? Upload records here to sync with your CardioVita electronic chart.</p>
+                        <span class="btn btn-outline btn-sm"><i class="fas fa-folder-open"></i> Browse Documents (PDF, DICOM, JPG up to 25MB)</span>
                     </div>
                 </div>
 
@@ -293,11 +1670,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="dash-table-wrap">
+
+                    <div class="dash-table-wrap table-schedule-wrap">
                         <div class="dash-table-header">
                             <h3 class="dash-table-title">Weekly Schedule</h3>
                         </div>
-                        <table class="dash-table">
+                        <table class="dash-table med-schedule-table">
                             <thead><tr><th>Medication</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
                             <tbody>
                                 <tr><td>Aspirin 81mg</td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td><td><i class="fas fa-check" style="color:var(--success)"></i></td></tr>
@@ -307,8 +1685,70 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="text-align:center;margin-top:1rem">
-                        <button class="btn btn-primary" onclick="alert('Medication reminder feature coming soon!')"><i class="fas fa-plus"></i> Add Medication Reminder</button>
+
+                    <!-- Prescription Refills & Pharmacy Center -->
+                    <div class="dash-card">
+                        <div class="refill-header-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem">
+                            <div>
+                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-prescription-bottle-medical" style="color:var(--primary)"></i>Prescription Refill Center</h3>
+                                <p style="font-size:.8125rem;color:var(--text-muted);margin:0"><i class="fas fa-store" style="margin-right:.3rem"></i>Preferred Pharmacy: <strong>CVS Pharmacy #4821</strong> — 1420 3rd Avenue, NY (Tel: 555-847-0199)</p>
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="alert('Manage connected pharmacies window opened.')"><i class="fas fa-pen-to-square"></i> Change Pharmacy</button>
+                        </div>
+                        <div class="dash-table-wrap" style="margin-bottom:0">
+                            <table class="dash-table dash-table-cards-mobile">
+                                <thead><tr><th>Prescription</th><th>Prescribed By</th><th>Refills Left</th><th>Next Refill Due</th><th>Action</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="Prescription"><span class="cell-val"><strong>Lisinopril 10mg</strong> (Oral Tablet)</span></td>
+                                        <td data-label="Prescribed By"><span class="cell-val">Dr. James Mitchell</span></td>
+                                        <td data-label="Refills Left"><span class="cell-val"><span class="status-badge normal">2 Refills</span></span></td>
+                                        <td data-label="Next Refill Due"><span class="cell-val">Dec 28, 2024</span></td>
+                                        <td data-label="Action"><button class="btn btn-outline btn-sm" onclick="alert('Refill requested for Lisinopril 10mg. Order forwarded to CVS Pharmacy #4821.')"><i class="fas fa-arrows-rotate"></i> Request Refill</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Prescription"><span class="cell-val"><strong>Atorvastatin 20mg</strong> (Oral Tablet)</span></td>
+                                        <td data-label="Prescribed By"><span class="cell-val">Dr. James Mitchell</span></td>
+                                        <td data-label="Refills Left"><span class="cell-val"><span class="status-badge warning">1 Refill</span></span></td>
+                                        <td data-label="Next Refill Due"><span class="cell-val">Jan 05, 2025</span></td>
+                                        <td data-label="Action"><button class="btn btn-outline btn-sm" onclick="alert('Refill requested for Atorvastatin 20mg. Order forwarded to CVS Pharmacy #4821.')"><i class="fas fa-arrows-rotate"></i> Request Refill</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Prescription"><span class="cell-val"><strong>Metoprolol 25mg</strong> (Oral Tablet)</span></td>
+                                        <td data-label="Prescribed By"><span class="cell-val">Dr. Sarah Chen</span></td>
+                                        <td data-label="Refills Left"><span class="cell-val"><span class="status-badge warning">Under Review</span></span></td>
+                                        <td data-label="Next Refill Due"><span class="cell-val">Awaiting Next Visit</span></td>
+                                        <td data-label="Action"><button class="btn btn-outline btn-sm" onclick="alert('Consultation note sent to Dr. Chen regarding Metoprolol renewal.')"><i class="fas fa-stethoscope"></i> Ask Doctor</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Clinical Drug Safety & Dietary Advisory -->
+                    <div class="advisory-box">
+                        <h4><i class="fas fa-triangle-exclamation" style="margin-right:.4rem"></i>Cardiologist Safety & Dietary Advisories</h4>
+                        <ul style="margin:0;padding-left:1.25rem;font-size:.84375rem;line-height:1.6;color:var(--text)">
+                            <li><strong>Atorvastatin 20mg:</strong> Avoid fresh grapefruit or grapefruit juice, as compounds in grapefruit inhibit CYP3A4 enzymes and raise statin concentrations.</li>
+                            <li><strong>Metoprolol 25mg:</strong> Take with or immediately following meals. Do not abruptly discontinue beta-blocker therapy without clinical titration.</li>
+                            <li><strong>Aspirin 81mg:</strong> Take with a full glass of water. Report any unexplained bruising, bleeding gums, or gastrointestinal discomfort.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Prescription Delivery Tracking -->
+                    <div class="dash-card">
+                        <div class="delivery-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <span class="status-badge completed" style="margin-bottom:.35rem"><i class="fas fa-truck-fast"></i> Home Delivery Dispatched</span>
+                                <h4 style="font-size:.95rem;margin:.2rem 0">Prescription Order #CV-RX-8942 (30-Day Supply)</h4>
+                                <p style="font-size:.8125rem;color:var(--text-muted);margin:0">Carrier: FedEx Health Priority • Tracking #7489-0182-9921 • Expected Delivery: <strong>Monday, Dec 02</strong></p>
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="alert('Tracking FedEx Health Shipment #7489-0182-9921: Package is currently in transit from Regional Healthcare Distribution Center.')"><i class="fas fa-location-dot"></i> Track Shipment</button>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center;margin-top:1.5rem">
+                        <button class="btn btn-primary" onclick="alert('Medication reminder feature: You can set SMS or push notifications in Settings.')"><i class="fas fa-plus"></i> Add Medication Reminder</button>
                     </div>
                 </div>
 
@@ -337,38 +1777,94 @@
                             <div class="dash-metric-trend up"><i class="fas fa-shield-halved"></i> BlueCross</div>
                         </div>
                     </div>
+
+                    <!-- Outstanding Statement Quick Pay Banner -->
+                    <div class="dash-card" style="border-left:4px solid var(--primary)">
+                        <div class="billing-statement-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem">
+                            <div>
+                                <span class="status-badge warning" style="margin-bottom:.35rem"><i class="fas fa-clock"></i> Statement Due Dec 30, 2024</span>
+                                <h3 style="font-size:1.15rem;font-weight:600;margin:.2rem 0">Invoice #INV-2024-0756: Echocardiogram & Doppler</h3>
+                                <p style="font-size:.84375rem;color:var(--text-light);margin:0">Total Billed: $1,250.00 • BlueCross Insurance Paid: $800.00 • <strong>Patient Responsibility: $450.00</strong></p>
+                            </div>
+                            <div class="billing-btn-group" style="display:flex;gap:.75rem;flex-wrap:wrap">
+                                <button class="btn btn-primary" onclick="alert('Payment of $450.00 successfully authorized via saved Visa ending in 4829! Receipt sent to your email.')"><i class="fas fa-lock"></i> Pay $450.00 with Visa (4829)</button>
+                                <button class="btn btn-outline" onclick="alert('Payment Plan Options: You are eligible to split this into 3 monthly payments of $150.00 at 0% APR.')"><i class="fas fa-calendar-days"></i> Payment Plan (0% APR)</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="dash-table-wrap">
                         <div class="dash-table-header">
                             <h3 class="dash-table-title">Invoice History</h3>
                         </div>
-                        <table class="dash-table">
+                        <table class="dash-table dash-table-cards-mobile">
                             <thead><tr><th>Invoice #</th><th>Date</th><th>Service</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
                             <tbody>
-                                <tr><td>INV-2024-0847</td><td>Nov 10, 2024</td><td>Comprehensive Cardiac Screening</td><td>$349</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>INV-2024-0756</td><td>Oct 25, 2024</td><td>Echocardiogram</td><td>$450</td><td><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">Pay</a></td></tr>
-                                <tr><td>INV-2024-0632</td><td>Sep 15, 2024</td><td>Stress Test</td><td>$275</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>INV-2024-0518</td><td>Aug 20, 2024</td><td>Holter Monitor 48hr</td><td>$425</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
-                                <tr><td>INV-2024-0404</td><td>Jul 10, 2024</td><td>Follow-Up Consultation</td><td>$149</td><td><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></td><td><a href="#" style="color:var(--primary);font-weight:500;font-size:.84375rem">View</a></td></tr>
+                                <tr><td data-label="Invoice #"><span class="cell-val">INV-2024-0847</span></td><td data-label="Date"><span class="cell-val">Nov 10, 2024</span></td><td data-label="Service"><span class="cell-val">Comprehensive Cardiac Screening</span></td><td data-label="Amount"><span class="cell-val">$349</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Downloading invoice PDF receipt...')"><i class="fas fa-file-invoice"></i> View</button></td></tr>
+                                <tr><td data-label="Invoice #"><span class="cell-val">INV-2024-0756</span></td><td data-label="Date"><span class="cell-val">Oct 25, 2024</span></td><td data-label="Service"><span class="cell-val">Echocardiogram</span></td><td data-label="Amount"><span class="cell-val">$450</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge pending"><i class="fas fa-hourglass-half"></i> Pending</span></span></td><td data-label="Action"><button class="btn btn-primary btn-sm table-action-btn" onclick="alert('Payment checkout opened for invoice INV-2024-0756 ($450.00)...')"><i class="fas fa-credit-card"></i> Pay Now</button></td></tr>
+                                <tr><td data-label="Invoice #"><span class="cell-val">INV-2024-0632</span></td><td data-label="Date"><span class="cell-val">Sep 15, 2024</span></td><td data-label="Service"><span class="cell-val">Stress Test</span></td><td data-label="Amount"><span class="cell-val">$275</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Downloading invoice PDF receipt...')"><i class="fas fa-file-invoice"></i> View</button></td></tr>
+                                <tr><td data-label="Invoice #"><span class="cell-val">INV-2024-0518</span></td><td data-label="Date"><span class="cell-val">Aug 20, 2024</span></td><td data-label="Service"><span class="cell-val">Holter Monitor 48hr</span></td><td data-label="Amount"><span class="cell-val">$425</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Downloading invoice PDF receipt...')"><i class="fas fa-file-invoice"></i> View</button></td></tr>
+                                <tr><td data-label="Invoice #"><span class="cell-val">INV-2024-0404</span></td><td data-label="Date"><span class="cell-val">Jul 10, 2024</span></td><td data-label="Service"><span class="cell-val">Follow-Up Consultation</span></td><td data-label="Amount"><span class="cell-val">$149</span></td><td data-label="Status"><span class="cell-val"><span class="status-badge completed"><i class="fas fa-check"></i> Paid</span></span></td><td data-label="Action"><button class="btn btn-outline btn-sm table-action-btn" onclick="alert('Downloading invoice PDF receipt...')"><i class="fas fa-file-invoice"></i> View</button></td></tr>
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Health Insurance Policy & Benefits Summary -->
+                    <div class="policy-card">
+                        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-shield-halved" style="color:var(--primary)"></i>Health Insurance Coverage & Benefit Tiers</h3>
+                                <p style="font-size:.8125rem;color:var(--text-muted);margin:0">Primary Payer: <strong>BlueCross BlueShield Comprehensive HeartCare</strong> • Member ID: <strong>BCBS-8849-0194</strong> • Group: <strong>GRP-4821</strong></p>
+                            </div>
+                            <span class="status-badge active"><i class="fas fa-check-circle"></i> Policy Active</span>
+                        </div>
+                        <div class="policy-grid">
+                            <div class="policy-item">
+                                <div class="policy-lbl">Annual Deductible</div>
+                                <div class="policy-val" style="color:#10b981">$1,500.00</div>
+                                <span style="font-size:.75rem;color:#10b981"><i class="fas fa-check"></i> 100% Met for 2024</span>
+                            </div>
+                            <div class="policy-item">
+                                <div class="policy-lbl">Out-of-Pocket Maximum</div>
+                                <div class="policy-val">$4,000.00</div>
+                                <span style="font-size:.75rem;color:var(--text-muted)">$2,200.00 remaining</span>
+                            </div>
+                            <div class="policy-item">
+                                <div class="policy-lbl">Specialist Office Copay</div>
+                                <div class="policy-val">$25.00</div>
+                                <span style="font-size:.75rem;color:#10b981">$0 Preventive Screenings</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-credit-card" style="margin-right:.5rem;color:var(--primary)"></i>Payment Methods</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-credit-card" style="color:var(--primary)"></i>Saved Payment Methods</h3>
                         <div class="payment-cards">
                             <div class="payment-card">
                                 <i class="fab fa-cc-visa"></i>
                                 <div class="payment-card-info">
                                     <h4>Visa ending in 4829</h4>
-                                    <p>Expires 08/2027</p>
+                                    <p>Expires 08/2027 • Primary Card</p>
                                 </div>
                             </div>
                             <div class="payment-card">
                                 <i class="fab fa-cc-mastercard"></i>
                                 <div class="payment-card-info">
                                     <h4>Mastercard ending in 1253</h4>
-                                    <p>Expires 11/2026</p>
+                                    <p>Expires 11/2026 • Backup Card</p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Annual Tax Statement & HSA/FSA Reimbursement -->
+                    <div class="dash-card" style="margin-bottom:0">
+                        <div class="tax-doc-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+                            <div>
+                                <h3 class="dash-card-title" style="margin-bottom:.2rem"><i class="fas fa-receipt" style="color:var(--primary)"></i>Annual Tax Documents & HSA/FSA Superbills</h3>
+                                <p style="font-size:.8125rem;color:var(--text-muted);margin:0">All CardioVita cardiac diagnostics, consultations, and monitoring services are 100% eligible for FSA/HSA reimbursement.</p>
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="alert('Downloading 2024 Itemized Medical Expense Superbill (PDF)...')"><i class="fas fa-file-pdf"></i> Download 2024 Tax Statement</button>
                         </div>
                     </div>
                 </div>
@@ -377,7 +1873,7 @@
                 <div class="dash-tab" id="tab-settings">
                     <h2 class="dash-section-title">Account Settings</h2>
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-user" style="margin-right:.5rem;color:var(--primary)"></i>Personal Information</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-user" style="color:var(--primary)"></i>Personal Information</h3>
                         <form class="settings-form" onsubmit="event.preventDefault();alert('Settings saved successfully!')">
                             <div class="form-group">
                                 <label>Full Name</label>
@@ -414,7 +1910,7 @@
                         </form>
                     </div>
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-bell" style="margin-right:.5rem;color:var(--primary)"></i>Notification Preferences</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-bell" style="color:var(--primary)"></i>Notification Preferences</h3>
                         <div class="notif-toggle">
                             <span class="notif-toggle-label">Email Notifications</span>
                             <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
@@ -429,7 +1925,7 @@
                         </div>
                     </div>
                     <div class="dash-card">
-                        <h3 class="dash-card-title"><i class="fas fa-lock" style="margin-right:.5rem;color:var(--primary)"></i>Change Password</h3>
+                        <h3 class="dash-card-title"><i class="fas fa-lock" style="color:var(--primary)"></i>Change Password</h3>
                         <form class="settings-form" onsubmit="event.preventDefault();alert('Password updated successfully!')">
                             <div class="form-group">
                                 <label>Current Password</label>
@@ -463,6 +1959,28 @@
             </div><!-- /dash-content -->
         </div><!-- /dash-main -->
     </div><!-- /dash-layout -->
+
+    <!-- LOGOUT CONFIRMATION MODAL -->
+    <div class="dash-modal-backdrop" id="logoutModal" role="dialog" aria-modal="true" aria-labelledby="logoutModalTitle">
+        <div class="dash-modal-card">
+            <button type="button" class="dash-modal-close" id="closeLogoutModalBtn" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="dash-modal-icon">
+                <i class="fas fa-arrow-right-from-bracket"></i>
+            </div>
+            <h3 class="dash-modal-title" id="logoutModalTitle">Confirm Logout</h3>
+            <p class="dash-modal-desc">Are you sure you want to log out of your CardioVita patient dashboard? You will need your credentials to sign back in.</p>
+            <div class="dash-modal-actions">
+                <button type="button" class="btn btn-outline" id="cancelLogoutBtn">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="components.js"></script>
 </body>
 </html>

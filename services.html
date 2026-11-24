@@ -48,11 +48,6 @@
         .srv-process-step p{font-size:.8125rem}
         .srv-process-arrow{position:absolute;top:28px;right:-8px;color:var(--primary);font-size:1.1rem}
         [dir="rtl"] .srv-process-arrow{right:auto;left:-8px;transform:scaleX(-1)}
-        .srv-cta{position:relative;min-height:320px;background-size:cover;background-position:center;display:flex;align-items:center}
-        .srv-cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.92),rgba(30,58,95,.9))}
-        .srv-cta-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:660px;margin:0 auto}
-        .srv-cta-content h2{color:#fff;margin-bottom:.6rem}
-        .srv-cta-content p{color:rgba(255,255,255,.88);margin-bottom:1.75rem}
         @media(max-width:1024px){.srv-icon-grid{grid-template-columns:repeat(2,1fr)}.srv-featured,.srv-featured.reverse{grid-template-columns:1fr;direction:ltr}.srv-process{grid-template-columns:repeat(2,1fr)}.srv-extra-grid{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:768px){.srv-icon-grid,.srv-extra-grid{grid-template-columns:1fr}.srv-featured-img{height:260px}.srv-process-arrow{display:none}}
         @media(max-width:360px){.srv-process{grid-template-columns:1fr}}
@@ -257,15 +252,29 @@
         </section>
 
         <!-- CTA SECTION -->
-        <section class="srv-cta" style="background-image:url('assets/images/srv-rehab.jpg')">
-            <div class="srv-cta-overlay"></div>
+        <section class="cta-normal-section">
             <div class="container">
-                <div class="srv-cta-content">
-                    <h2>Ready to Prioritize Your Heart Health?</h2>
-                    <p>Take the first step today. Our team of expert cardiologists is ready to provide you with the comprehensive cardiac care you deserve.</p>
-                    <div class="hero-btn-group" style="justify-content:center">
-                        <a href="contact.html" class="btn btn-white btn-lg">Schedule a Visit</a>
-                        <a href="pricing.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)">View Pricing</a>
+                <div class="cta-normal-card fade-up">
+                    <div class="cta-normal-inner">
+                        <div class="cta-normal-badge">
+                            <i class="fa-solid fa-heart-pulse"></i> Comprehensive Cardiac Care
+                        </div>
+                        <h2 class="cta-normal-title">Ready to Prioritize Your Heart Health?</h2>
+                        <p class="cta-normal-desc">Take the first step today. Our team of board-certified cardiologists is ready to provide you with advanced diagnostic evaluation, personalized treatment plans, and continuous compassionate care.</p>
+                        <div class="cta-normal-actions">
+                            <a href="contact.html" class="btn btn-white btn-lg">
+                                <i class="fa-solid fa-calendar-check" style="margin-right:0.4rem;"></i> Schedule a Visit
+                            </a>
+                            <a href="pricing.html" class="btn btn-outline-white btn-lg">
+                                <i class="fa-solid fa-file-invoice-dollar" style="margin-right:0.4rem;"></i> View Pricing
+                            </a>
+                        </div>
+                        <div class="cta-normal-features">
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> Non-Invasive Diagnostics</span>
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> Advanced Interventions</span>
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> Dedicated Rehabilitation</span>
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> Insurance & Medicare Accepted</span>
+                        </div>
                     </div>
                 </div>
             </div>

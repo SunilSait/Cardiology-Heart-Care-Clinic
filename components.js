@@ -541,6 +541,15 @@ function initDashboard() {
                 headerTitle.innerHTML = `<span class="dash-title-prefix">Dashboard </span>${labels[target] || target}`;
             }
 
+            // Scroll immediately to the 1st section at the very top
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            const dashMain = document.querySelector('.dash-main');
+            if (dashMain) dashMain.scrollTop = 0;
+            const dashContent = document.querySelector('.dash-content');
+            if (dashContent) dashContent.scrollTop = 0;
+
             // Mobile: close sidebar
             const sidebar = document.getElementById('dashSidebar');
             const overlay = document.getElementById('dashSidebarOverlay');
@@ -560,6 +569,8 @@ function initDashboard() {
             if (overlay) overlay.classList.toggle('active');
         });
     }
+
+    initLogoutModal();
 
     if (overlay) {
         overlay.addEventListener('click', () => {
@@ -596,7 +607,373 @@ function initDashboard() {
         if (profileDrop) profileDrop.classList.remove('open');
     });
 }
+
+/* ---- LOGOUT CONFIRMATION MODAL ---- */
+function initLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    if (!modal) return;
+
+    const sidebarLogout = document.getElementById('sidebarLogoutBtn');
+    const profileLogout = document.getElementById('profileLogoutBtn');
+    const cancelBtn = document.getElementById('cancelLogoutBtn');
+    const closeBtn = document.getElementById('closeLogoutModalBtn');
+    const confirmBtn = document.getElementById('confirmLogoutBtn');
+
+    function openModal(e) {
+        if (e) e.preventDefault();
+        // Close profile dropdown or mobile sidebar if open
+        const profileDrop = document.getElementById('dashProfileDropdown');
+        if (profileDrop) profileDrop.classList.remove('open');
+        const sidebar = document.getElementById('dashSidebar');
+        const overlay = document.getElementById('dashSidebarOverlay');
+        if (sidebar) sidebar.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (cancelBtn) cancelBtn.focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    // Bind triggers
+    if (sidebarLogout) sidebarLogout.addEventListener('click', openModal);
+    if (profileLogout) profileLogout.addEventListener('click', openModal);
+
+    document.querySelectorAll('.dash-logout-btn').forEach(btn => {
+        btn.addEventListener('click', openModal);
+    });
+
+    // Close triggers
+    if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    // Click outside card
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) {
+            closeModal();
+        }
+    });
+
+    // Confirm Logout
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    }
+
+    window.openLogoutModal = openModal;
+    window.closeLogoutModal = closeModal;
+}
+
 window.initDashboard = initDashboard;
+
+/* ---- CARDIOVASCULAR RISK CALCULATOR ---- */
+function initRiskCalculator() {
+    const riskSection = document.querySelector('.cardiac-risk-section');
+    if (!riskSection) return;
+
+    // Pill selectors
+    riskSection.querySelectorAll('.risk-pill-selector').forEach(selector => {
+        selector.addEventListener('click', (e) => {
+            const btn = e.target.closest('.risk-pill-btn');
+            if (!btn) return;
+            selector.querySelectorAll('.risk-pill-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    const calcBtn = document.getElementById('btnCalculateRisk');
+    if (!calcBtn) return;
+
+    calcBtn.addEventListener('click', () => {
+        let score = 0;
+        let isChestPain = false;
+
+        // Age
+        const activeAge = riskSection.querySelector('.age-selector .risk-pill-btn.active');
+        if (activeAge) {
+            const ageVal = activeAge.dataset.val;
+            if (ageVal === '35-49') score += 1;
+            else if (ageVal === '50-64') score += 2;
+            else if (ageVal === '65+') score += 3;
+        }
+
+        // Risk factor checkboxes
+        riskSection.querySelectorAll('.risk-factor-chk:checked').forEach(() => {
+            score += 2;
+        });
+
+        // Symptoms
+        riskSection.querySelectorAll('.risk-symptom-chk:checked').forEach(chk => {
+            if (chk.value === 'chest_pain') {
+                isChestPain = true;
+                score += 5;
+            } else if (chk.value === 'sob') {
+                score += 3;
+            } else if (chk.value === 'palpitations') {
+                score += 2;
+            } else if (chk.value === 'dizziness') {
+                score += 2;
+            }
+        });
+
+        const circle = document.getElementById('riskScoreCircle');
+        const scoreVal = document.getElementById('riskScoreVal');
+        const badge = document.getElementById('riskStatusBadge');
+        const recTitle = document.getElementById('riskRecTitle');
+        const recText = document.getElementById('riskRecText');
+        const ctaBtn = document.getElementById('riskCtaBtn');
+
+        if (!circle || !scoreVal || !badge) return;
+
+        circle.classList.remove('moderate', 'high');
+        badge.classList.remove('moderate', 'high');
+
+        const actionsList = document.getElementById('riskActionsList');
+
+        if (isChestPain || score >= 8) {
+            circle.classList.add('high');
+            badge.classList.add('high');
+            const percent = Math.min(28 + score * 2, 45);
+            scoreVal.textContent = percent + '%';
+            badge.textContent = 'High Priority Clinical Alert';
+            recTitle.textContent = 'Priority Cardiologist Consultation Advised';
+            recText.textContent = 'Your reported symptom profile and cardiovascular markers suggest heightened cardiac strain. We strongly recommend scheduling an urgent diagnostic ECG and clinical consultation within 24–48 hours.';
+            if (ctaBtn) {
+                ctaBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Schedule Priority Evaluation';
+                ctaBtn.className = 'btn btn-primary w-100';
+            }
+            if (actionsList) {
+                actionsList.innerHTML = `
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon" style="background:rgba(239,68,68,0.12);color:#EF4444"><i class="fas fa-heart-pulse"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">Urgent 12-Lead Telemetry</div>
+                            <div class="risk-action-desc">Immediate diagnostic rhythm &amp; ischemia scan</div>
+                        </div>
+                    </div>
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon" style="background:rgba(239,68,68,0.12);color:#EF4444"><i class="fas fa-vial-circle-check"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">High-Sensitivity Troponin</div>
+                            <div class="risk-action-desc">Rapid myocardial strain &amp; enzyme screening</div>
+                        </div>
+                    </div>
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon" style="background:rgba(239,68,68,0.12);color:#EF4444"><i class="fas fa-user-doctor"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">Senior Cardiologist Consult</div>
+                            <div class="risk-action-desc">Direct clinical evaluation within 24–48 hours</div>
+                        </div>
+                    </div>
+                `;
+            }
+        } else if (score >= 4) {
+            circle.classList.add('moderate');
+            badge.classList.add('moderate');
+            const percent = 12 + score * 2;
+            scoreVal.textContent = percent + '%';
+            badge.textContent = 'Moderate Cardiovascular Risk';
+            recTitle.textContent = 'Preventative Screening Recommended';
+            recText.textContent = 'You exhibit cardiovascular risk factors that benefit from proactive medical oversight. We recommend an Advanced Lipid Panel, 12-Lead ECG, and an initial consultation with our prevention specialist.';
+            if (ctaBtn) {
+                ctaBtn.innerHTML = '<i class="fas fa-stethoscope"></i> Book Preventative Screening';
+                ctaBtn.className = 'btn btn-primary w-100';
+            }
+            if (actionsList) {
+                actionsList.innerHTML = `
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon" style="background:rgba(245,158,11,0.12);color:#D97706"><i class="fas fa-heart-pulse"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">12-Lead ECG &amp; Echocardiogram</div>
+                            <div class="risk-action-desc">Structural myocardial &amp; valvular Doppler scan</div>
+                        </div>
+                    </div>
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon" style="background:rgba(245,158,11,0.12);color:#D97706"><i class="fas fa-vial"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">ApoB &amp; hs-CRP Inflammation Panel</div>
+                            <div class="risk-action-desc">Atherosclerotic particle &amp; vascular inflammation check</div>
+                        </div>
+                    </div>
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon" style="background:rgba(245,158,11,0.12);color:#D97706"><i class="fas fa-user-doctor"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">Preventative Cardiology Consult</div>
+                            <div class="risk-action-desc">Personalized clinical lifestyle &amp; lipid care plan</div>
+                        </div>
+                    </div>
+                `;
+            }
+        } else {
+            scoreVal.textContent = '5%';
+            badge.textContent = 'Low Preventative Risk';
+            recTitle.textContent = 'Healthy Cardiovascular Baseline';
+            recText.textContent = 'Your cardiovascular indicators reflect a healthy baseline. Continue maintaining heart-healthy nutrition and regular aerobic exercise, and schedule routine annual cardiovascular wellness checks.';
+            if (ctaBtn) {
+                ctaBtn.innerHTML = '<i class="fas fa-heart"></i> Schedule Routine Checkup';
+                ctaBtn.className = 'btn btn-primary w-100';
+            }
+            if (actionsList) {
+                actionsList.innerHTML = `
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon"><i class="fas fa-heart-pulse"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">12-Lead Baseline ECG</div>
+                            <div class="risk-action-desc">Establish resting electrical conduction profile</div>
+                        </div>
+                    </div>
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon"><i class="fas fa-vial"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">Comprehensive Lipid Panel</div>
+                            <div class="risk-action-desc">Fasting LDL, HDL &amp; metabolic risk markers</div>
+                        </div>
+                    </div>
+                    <div class="risk-action-item">
+                        <div class="risk-action-icon"><i class="fas fa-user-doctor"></i></div>
+                        <div class="risk-action-info">
+                            <div class="risk-action-title">Annual Wellness Review</div>
+                            <div class="risk-action-desc">Routine cardiovascular checkup with our team</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        circle.style.transform = 'scale(1.05)';
+        setTimeout(() => { circle.style.transform = 'scale(1)'; }, 300);
+    });
+}
+
+/* ---- SURGICAL COMPARISON MATRIX TABS ---- */
+function initSurgicalMatrix() {
+    const matrixSection = document.querySelector('.surgical-matrix-section');
+    if (!matrixSection) return;
+
+    const tabs = matrixSection.querySelectorAll('.matrix-tab-btn');
+    if (!tabs.length) return;
+
+    const data = {
+        stenting: {
+            titleMin: 'Radial-First Coronary Stenting',
+            subMin: 'Ultra-thin drug-eluting stents deployed via wrist artery',
+            titleTrad: 'Coronary Artery Bypass Graft (CABG)',
+            subTrad: 'Traditional open-chest coronary bypass surgery',
+            min: {
+                incision: '< 2mm Wrist Puncture',
+                anesthesia: 'Local Numbing + Mild Sedation',
+                bypass: 'None (Heart beats naturally)',
+                stay: 'Same-Day or Overnight (24h)',
+                recovery: '48 to 72 Hours return to work',
+                pain: 'Minimal (Managed with mild analgesics)',
+                success: '99.4% Procedural Success Rate'
+            },
+            trad: {
+                incision: '8-Inch Median Sternotomy',
+                anesthesia: 'General Anesthesia with Intubation',
+                bypass: 'Full Cardiopulmonary Bypass Machine',
+                stay: '7 to 10 Days in Hospital & ICU',
+                recovery: '8 to 12 Weeks restricted mobility',
+                pain: 'Substantial surgical bone healing pain',
+                success: 'Standard surgical risk & transfusion needs'
+            }
+        },
+        tavr: {
+            titleMin: 'Transcatheter Aortic Valve (TAVR)',
+            subMin: 'Percutaneous prosthetic valve replacement via femoral catheter',
+            titleTrad: 'Surgical Aortic Valve Replacement (SAVR)',
+            subTrad: 'Open-heart mechanical or bioprosthetic valve replacement',
+            min: {
+                incision: '< 3mm Femoral Puncture',
+                anesthesia: 'Conscious Sedation without breathing tube',
+                bypass: 'None required',
+                stay: '24 to 48 Hours discharge',
+                recovery: '3 to 5 Days return to activity',
+                pain: 'Very low discomfort at puncture site',
+                success: '99.2% Hemodynamic Success Rate'
+            },
+            trad: {
+                incision: 'Full Open Sternotomy Incision',
+                anesthesia: 'Deep General Anesthesia',
+                bypass: 'Cardiopulmonary Bypass Required',
+                stay: '6 to 9 Days (3 days in ICU)',
+                recovery: '10 to 14 Weeks rehabilitation',
+                pain: 'Heavy sternal incision pain',
+                success: 'Higher stroke & infection risk profile'
+            }
+        },
+        ablation: {
+            titleMin: 'Pulse-Field Cardiac Ablation (PFA)',
+            subMin: 'Non-thermal pulsed electric fields to isolate AFib pathways',
+            titleTrad: 'Surgical Maze Open Procedure',
+            subTrad: 'Surgical incisions on atrial tissue during open surgery',
+            min: {
+                incision: 'Catheter Access via Femoral Vein',
+                anesthesia: 'Conscious Sedation / Twilight',
+                bypass: 'None',
+                stay: 'Same-Day Discharge',
+                recovery: '24 to 48 Hours',
+                pain: 'Minimal to none',
+                success: 'Zero risk of thermal esophageal damage'
+            },
+            trad: {
+                incision: 'Open Sternotomy or Mini-Thoracotomy',
+                anesthesia: 'General Anesthesia',
+                bypass: 'Often requires bypass machine',
+                stay: '5 to 8 Days',
+                recovery: '6 to 8 Weeks',
+                pain: 'Chest wall surgical trauma',
+                success: 'Prolonged postoperative pleural recovery'
+            }
+        }
+    };
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const proc = tab.dataset.procedure || 'stenting';
+            const info = data[proc];
+            if (!info) return;
+
+            // Update titles
+            const minTitle = matrixSection.querySelector('#matrixMinTitle');
+            const minSub = matrixSection.querySelector('#matrixMinSub');
+            const tradTitle = matrixSection.querySelector('#matrixTradTitle');
+            const tradSub = matrixSection.querySelector('#matrixTradSub');
+
+            if (minTitle) minTitle.textContent = info.titleMin;
+            if (minSub) minSub.textContent = info.subMin;
+            if (tradTitle) tradTitle.textContent = info.titleTrad;
+            if (tradSub) tradSub.textContent = info.subTrad;
+
+            // Update rows
+            for (const key in info.min) {
+                const elMin = matrixSection.querySelector(`[data-val-min="${key}"]`);
+                if (elMin) {
+                    elMin.innerHTML = `<i class="fas fa-check-circle"></i> ${info.min[key]}`;
+                }
+            }
+            for (const key in info.trad) {
+                const elTrad = matrixSection.querySelector(`[data-val-trad="${key}"]`);
+                if (elTrad) {
+                    elTrad.innerHTML = `<i class="fas fa-circle-minus"></i> ${info.trad[key]}`;
+                }
+            }
+        });
+    });
+}
 
 /* ---- INIT ---- */
 document.addEventListener('DOMContentLoaded', () => {
@@ -609,6 +986,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initPasswordToggles();
     initFaqAccordion();
+    initRiskCalculator();
+    initSurgicalMatrix();
 
     if (document.querySelector('.dash-layout')) {
         initDashboard();

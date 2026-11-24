@@ -135,12 +135,16 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 48px;
-        align-items: center;
+        align-items: stretch;
       }
       .approach-img {
         width: 100%;
+        height: 100%;
+        min-height: 520px;
         border-radius: 16px;
         object-fit: cover;
+        display: block;
+        box-shadow: var(--shadow-md);
       }
       .approach-text h2 {
         font-size: 2rem;
@@ -225,12 +229,16 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 48px;
-        align-items: center;
+        align-items: stretch;
       }
       .research-img {
         width: 100%;
+        height: 100%;
+        min-height: 480px;
         border-radius: 16px;
         object-fit: cover;
+        display: block;
+        box-shadow: var(--shadow-md);
       }
       .research-text h2 {
         font-size: 2rem;
@@ -275,6 +283,8 @@
         padding: 40px;
         box-shadow: 0 4px 24px rgba(0,0,0,.07);
         position: relative;
+        display: flex;
+        flex-direction: column;
       }
       .testimonial-card .quote-icon {
         font-size: 2rem;
@@ -300,6 +310,7 @@
         padding: 0;
         border: none;
         font-style: italic;
+        flex: 1 1 auto;
       }
       .testimonial-author {
         display: flex;
@@ -327,35 +338,6 @@
         font-size: .82rem;
         font-weight: 400;
         color: #888;
-      }
-
-      /* ── CTA Gradient ── */
-      .doctors-cta {
-        background: linear-gradient(135deg, #1E3A5F 0%, #B91C3A 100%);
-        padding: 80px 24px;
-        text-align: center;
-        color: #fff;
-      }
-      .doctors-cta h2 {
-        font-size: 2.25rem;
-        font-weight: 600;
-        margin-bottom: 16px;
-        color: #fff;
-      }
-      .doctors-cta p {
-        font-size: 1.1rem;
-        font-weight: 400;
-        max-width: 600px;
-        margin: 0 auto 32px;
-        opacity: .92;
-        line-height: 1.7;
-        color: #fff;
-      }
-      .doctors-cta .cta-btns {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-        flex-wrap: wrap;
       }
 
       /* ── Dark Mode Overrides ── */
@@ -404,6 +386,8 @@
         .doctors-hero { min-height: 360px; }
         .approach-split,
         .research-split { grid-template-columns: 1fr; gap: 32px; }
+        .approach-img,
+        .research-img { height: 320px; min-height: unset; }
         .testimonials-grid { grid-template-columns: 1fr; }
         .expertise-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .expertise-card { padding: 28px 18px; }
@@ -412,7 +396,6 @@
       @media (max-width: 480px) {
         .doctor-grid { grid-template-columns: 1fr; }
         .expertise-row { grid-template-columns: 1fr; }
-        .doctors-cta h2 { font-size: 1.6rem; }
         .testimonial-card { padding: 28px 20px; }
       }
     </style>
@@ -683,19 +666,80 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <blockquote>"Living with persistent atrial fibrillation was debilitating until I met Dr. Sarah Chen. Her advanced ablation therapy completely stabilized my heart rhythm. I can now jog and travel with total peace of mind."</blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="testimonial-author-info">
+                                <strong>David L. Harrison</strong>
+                                <span>Electrophysiology Patient</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <div class="testimonial-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <blockquote>"Dr. Maria Rodriguez performed my robotic-assisted valve repair with exceptional precision. The surgical team provided round-the-clock compassionate care, and my recovery exceeded all expectations."</blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="testimonial-author-info">
+                                <strong>Eleanor Vance</strong>
+                                <span>Cardiac Surgery Patient</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
 
         <!-- ════════════ 7. BOOK A CONSULTATION CTA ════════════ -->
-        <section class="doctors-cta">
-            <div class="container fade-up">
-                <h2>Find the Right Specialist for Your Heart</h2>
-                <p>Whether you need a routine checkup or advanced cardiac care, our team of specialists is ready to guide you on the path to better heart health.</p>
-                <div class="cta-btns">
-                    <a href="appointment.html" class="btn btn-primary btn-lg" style="background:#fff;color:#B91C3A;border-color:#fff;">Book Appointment</a>
-                    <a href="services.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">View Services</a>
+        <section class="cta-normal-section">
+            <div class="container">
+                <div class="cta-normal-card fade-up">
+                    <div class="cta-normal-inner">
+                        <div class="cta-normal-badge">
+                            <i class="fa-solid fa-user-doctor"></i> Expert Heart Specialists
+                        </div>
+                        <h2 class="cta-normal-title">Find the Right Specialist for Your Heart</h2>
+                        <p class="cta-normal-desc">Whether you need a routine checkup, expert second opinion, or advanced cardiac intervention, our board-certified cardiologists are ready to guide you to optimal heart health.</p>
+                        <div class="cta-normal-actions">
+                            <a href="appointment.html" class="btn btn-white btn-lg">
+                                <i class="fa-solid fa-calendar-check" style="margin-right:0.4rem;"></i> Book Appointment
+                            </a>
+                            <a href="services.html" class="btn btn-outline-white btn-lg">
+                                <i class="fa-solid fa-stethoscope" style="margin-right:0.4rem;"></i> View Services
+                            </a>
+                        </div>
+                        <div class="cta-normal-features">
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> 15+ Board-Certified Specialists</span>
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> Same-Week Consultations</span>
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> Multidisciplinary Case Reviews</span>
+                            <span class="cta-normal-feature-item"><i class="fa-solid fa-circle-check"></i> Dedicated Patient Navigators</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

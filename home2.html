@@ -14,9 +14,52 @@
     </script>
     <title>CardioVita — Premium Heart Care Experience</title>
     <style>
-        .h2-hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;min-height:520px;padding:3rem 0}
-        .h2-hero-text h1{font-size:2.75rem;line-height:1.15;margin-bottom:1rem}
-        .h2-hero-text p{font-size:1.0625rem;margin-bottom:1.75rem}
+                .h2-hero {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3.5rem;
+            align-items: center;
+            min-height: 520px;
+            padding: 1.5rem 0 2.5rem;
+        }
+        .h2-hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .h2-hero-text .badge,
+        .h2-hero-text .badge-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            align-self: flex-start;
+            font-size: 0.8125rem;
+            font-weight: 550;
+        }
+        .h2-hero-text h1 {
+            font-size: clamp(2.35rem, 4vw, 3.35rem);
+            font-weight: 600 !important;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.85rem;
+            color: var(--text);
+        }
+        .h2-hero-text p {
+            font-size: 1.0625rem;
+            font-weight: 450;
+            line-height: 1.65;
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+            max-width: 580px;
+        }
+        .h2-hero-text .hero-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+        }
         .h2-hero-img-wrap{position:relative}
         .h2-hero-img{width:100%;height:460px;object-fit:cover;border-radius:var(--radius-xl)}
         .h2-hero-stat{position:absolute;bottom:1.5rem;left:-1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:.85rem 1.15rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:.6rem}
@@ -44,7 +87,7 @@
         .why-card{text-align:center;padding:2rem}
         .why-icon{width:64px;height:64px;border-radius:var(--radius-lg);background:rgba(185,28,58,.08);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.5rem;margin:0 auto 1rem}
         .why-card h3{font-size:1.1rem;margin-bottom:.5rem}
-        .why-card p{font-size:.875rem}
+        .why-card p{font-size:.875rem;line-height:1.6;max-width:320px;margin:0 auto}
         .journey-section{position:relative}
         .journey-timeline{display:flex;flex-direction:column;gap:2rem;max-width:700px;margin:0 auto;position:relative}
         .journey-timeline::before{content:'';position:absolute;left:24px;top:0;bottom:0;width:2px;background:var(--primary)}
@@ -80,18 +123,1220 @@
         .h2-testimonial-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
         .h2-testimonial-info h4{font-size:.875rem;margin-bottom:.1rem}
         .h2-testimonial-info span{font-size:.75rem;color:var(--text-muted)}
-        .newsletter-section{position:relative;min-height:360px;background-size:cover;background-position:center;display:flex;align-items:center}
-        .newsletter-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(185,28,58,.92),rgba(30,58,95,.9))}
-        .newsletter-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:560px;margin:0 auto}
-        .newsletter-content h2{color:#fff;margin-bottom:.6rem}
-        .newsletter-content p{color:rgba(255,255,255,.88);margin-bottom:1.5rem}
-        .newsletter-form{display:flex;gap:.5rem;max-width:440px;margin:0 auto}
-        .newsletter-input{flex:1;padding:.75rem 1rem;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:.9375rem;font-family:var(--font)}
-        .newsletter-input::placeholder{color:rgba(255,255,255,.5)}
-        .newsletter-input:focus{outline:none;border-color:rgba(255,255,255,.5)}
-        @media(max-width:1024px){.h2-hero{grid-template-columns:1fr;gap:2rem;min-height:auto}.h2-hero-img{height:360px}.specialty-grid,.why-grid,.awards-badges,.h2-stats-grid{grid-template-columns:repeat(2,1fr)}.zigzag-item,.zigzag-item.reverse{grid-template-columns:1fr;direction:ltr}.spotlight-grid{grid-template-columns:1fr}.h2-testimonial-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:768px){.specialty-grid,.why-grid,.h2-testimonial-grid{grid-template-columns:1fr}.awards-badges{grid-template-columns:repeat(2,1fr)}.h2-hero-img{height:280px}.zigzag-img{height:260px}.spotlight-card{height:240px}.newsletter-form{flex-direction:column}}
-        @media(max-width:360px){.h2-stats-grid,.awards-badges{grid-template-columns:1fr}}
+        /* ── Modern Split Newsletter Card ── */
+        .newsletter-modern-section {
+            padding: 4.5rem 0 5.5rem;
+            position: relative;
+            background: var(--bg);
+        }
+        .newsletter-modern-card {
+            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #8B1429 100%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(185, 28, 58, 0.18), 0 10px 30px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+        html.dark .newsletter-modern-card,
+        :root.dark .newsletter-modern-card {
+            background: linear-gradient(135deg, #0d1a2d 0%, #162a45 50%, #5c1020 100%);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(185, 28, 58, 0.2);
+        }
+        .newsletter-split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            align-items: stretch;
+            min-height: 440px;
+        }
+        .newsletter-image-col {
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+        }
+        .newsletter-col-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .newsletter-image-col::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(19, 40, 64, 0.15) 0%, rgba(19, 40, 64, 0.55) 100%);
+            pointer-events: none;
+        }
+        .newsletter-img-badge {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            z-index: 2;
+            background: rgba(19, 40, 64, 0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        .newsletter-img-badge i {
+            font-size: 1.5rem;
+            color: #FF4D6D;
+        }
+        .newsletter-img-badge strong {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .newsletter-img-badge span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.78);
+        }
+        .newsletter-content-col {
+            padding: 3.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .newsletter-content-col .cta-normal-badge {
+            align-self: flex-start;
+            width: fit-content;
+            display: inline-flex;
+        }
+        .newsletter-title {
+            color: #FFFFFF !important;
+            font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+            font-weight: 600 !important;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .newsletter-desc {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            max-width: 580px;
+        }
+        .newsletter-modern-form {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+            max-width: 540px;
+        }
+        .newsletter-input-group {
+            position: relative;
+            flex: 1 1 260px;
+            display: flex;
+            align-items: center;
+        }
+        .newsletter-field-icon {
+            position: absolute;
+            left: 16px;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+        .newsletter-modern-input {
+            width: 100%;
+            padding: 14px 18px 14px 44px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+        .newsletter-modern-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .newsletter-modern-input:focus {
+            outline: none;
+            border-color: #FF6B81;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 0 0 3px rgba(255, 107, 129, 0.25);
+        }
+        .newsletter-submit-btn {
+            background: #B91C3A;
+            color: #fff;
+            border: 1px solid #B91C3A;
+            border-radius: var(--radius-md);
+            padding: 14px 26px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(185, 28, 58, 0.35);
+        }
+        .newsletter-submit-btn:hover {
+            background: #d42247;
+            border-color: #d42247;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(185, 28, 58, 0.45);
+        }
+        .newsletter-trust-tags {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        .newsletter-trust-tags span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .newsletter-trust-tags i {
+            color: #34D399;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 900px) {
+            .newsletter-split-grid {
+                grid-template-columns: 1fr;
+            }
+            .newsletter-image-col {
+                min-height: 280px;
+                height: 280px;
+            }
+            .newsletter-content-col {
+                padding: 2.75rem 1.75rem;
+                text-align: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+            .newsletter-title,
+            .newsletter-desc {
+                text-align: center;
+            }
+            .newsletter-modern-form {
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+            }
+            .newsletter-trust-tags {
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                margin: 0 auto !important;
+                width: 100% !important;
+            }
+        }
+        @media (max-width: 540px) {
+            .newsletter-content-col {
+                padding: 2.25rem 1.25rem !important;
+                justify-content: flex-start !important;
+                text-align: center !important;
+                align-items: center !important;
+                display: flex;
+                flex-direction: column;
+            }
+            .newsletter-title {
+                text-align: center !important;
+            }
+            .newsletter-desc {
+                margin-bottom: 1.25rem !important;
+                text-align: center !important;
+            }
+            .newsletter-modern-form {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 1.25rem;
+                width: 100%;
+            }
+            .newsletter-input-group {
+                flex: none !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+            .newsletter-submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .newsletter-trust-tags {
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                width: 100% !important;
+                gap: 10px !important;
+                flex-direction: column !important;
+                margin: 0 auto !important;
+            }
+            .newsletter-trust-tags span {
+                justify-content: center !important;
+                display: inline-flex !important;
+            }
+        }
+        [dir="rtl"] .newsletter-field-icon {
+            left: auto;
+            right: 16px;
+        }
+        [dir="rtl"] .newsletter-modern-input {
+            padding: 14px 44px 14px 18px;
+        }
+        [dir="rtl"] .newsletter-img-badge {
+            left: auto;
+            right: 24px;
+        }
+        [dir="rtl"] .newsletter-image-col::after {
+            background: linear-gradient(to left, rgba(19, 40, 64, 0.15) 0%, rgba(19, 40, 64, 0.55) 100%);
+        }
+        @media (max-width: 1024px) {
+            .h2-hero {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                min-height: auto;
+                text-align: center;
+                padding: 2rem 0;
+            }
+            .h2-hero-text {
+                align-items: center !important;
+                text-align: center !important;
+                max-width: 680px;
+                margin: 0 auto !important;
+                width: 100%;
+            }
+            .h2-hero-text .badge,
+            .h2-hero-text .badge-primary {
+                align-self: center !important;
+                margin: 0 auto 1.25rem !important;
+            }
+            .h2-hero-text h1 {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                width: 100% !important;
+            }
+            .h2-hero-text p {
+                text-align: center !important;
+                margin: 0 auto 1.25rem !important;
+                max-width: 600px;
+                width: 100% !important;
+            }
+            .h2-hero-text .hero-btn-group {
+                justify-content: center !important;
+                align-items: center !important;
+                margin: 0 auto !important;
+                width: 100% !important;
+            }
+            .h2-hero-visual-wrap {
+                margin: 0 auto;
+            }
+            .h2-hero-img { height: 360px; }
+            .specialty-grid, .why-grid, .awards-badges, .h2-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .zigzag-item, .zigzag-item.reverse {
+                grid-template-columns: 1fr;
+                direction: ltr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .zigzag-text {
+                text-align: center !important;
+                max-width: 680px;
+                margin: 0 auto 1.5rem !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center !important;
+                width: 100%;
+            }
+            .zigzag-text h3 {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                width: 100%;
+            }
+            .zigzag-text p {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                width: 100%;
+            }
+            .zigzag-features {
+                display: inline-flex !important;
+                flex-direction: column;
+                align-items: flex-start !important;
+                margin: 0 auto !important;
+                text-align: left;
+            }
+            .zigzag-feat {
+                justify-content: flex-start;
+            }
+            .zigzag-img {
+                max-width: 680px;
+                margin: 0 auto;
+                width: 100%;
+            }
+            .spotlight-grid { grid-template-columns: 1fr; }
+            .h2-testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .why-grid .why-card:nth-child(3),
+            .why-grid .why-card:nth-child(3):last-child,
+            .h2-testimonial-grid .h2-testimonial:nth-child(3),
+            .h2-testimonial-grid .h2-testimonial:nth-child(3):last-child {
+                grid-column: 1 / -1 !important;
+                max-width: calc(50% - 0.75rem) !important;
+                margin: 0 auto !important;
+                justify-self: center !important;
+                width: 100% !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .specialty-grid, .why-grid, .h2-testimonial-grid { grid-template-columns: 1fr; }
+            .why-grid .why-card:nth-child(3),
+            .why-grid .why-card:nth-child(3):last-child,
+            .h2-testimonial-grid .h2-testimonial:nth-child(3),
+            .h2-testimonial-grid .h2-testimonial:nth-child(3):last-child {
+                grid-column: auto !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                justify-self: auto !important;
+            }
+            .h2-hero-text {
+                max-width: 100%;
+                align-items: center !important;
+                text-align: center !important;
+                margin: 0 auto !important;
+            }
+            .h2-hero-text .badge,
+            .h2-hero-text .badge-primary {
+                align-self: center !important;
+                margin: 0 auto 1rem !important;
+            }
+            .h2-hero-text h1 {
+                text-align: center !important;
+            }
+            .h2-hero-text p {
+                text-align: center !important;
+                margin: 0 auto 1.25rem !important;
+            }
+            .h2-hero-text .hero-btn-group {
+                justify-content: center !important;
+                align-items: center !important;
+                margin: 0 auto !important;
+            }
+            .awards-badges { grid-template-columns: repeat(2, 1fr); }
+            .h2-hero-img { height: 280px; }
+            .zigzag-img { height: 260px; }
+            .spotlight-card { height: 240px; }
+            .newsletter-form { flex-direction: column; }
+        }
+        @media (max-width: 360px) { .h2-stats-grid, .awards-badges { grid-template-columns: 1fr; } }
+    
+        /* ═════════════════════════════════════════════════════════════
+           REALISTIC ANATOMICAL CARDIAC HUD HERO VISUAL (HOME 2)
+           ═════════════════════════════════════════════════════════════ */
+        :root {
+            --cardiac-duration: 0.833s;
+            --cardiac-bpm: 72;
+        }
+
+        .h2-hero-visual-wrap {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .cardiac-hero-card {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            background: radial-gradient(circle at 50% 42%, rgba(185, 28, 58, 0.22) 0%, rgba(15, 23, 42, 0.94) 58%, #070E18 100%);
+            border-radius: var(--radius-xl, 24px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 50px rgba(185, 28, 58, 0.25);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            overflow: hidden;
+            box-sizing: border-box;
+            user-select: none;
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+        }
+
+        .cardiac-hero-card:hover {
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 60px rgba(185, 28, 58, 0.35);
+            border-color: rgba(56, 189, 248, 0.45);
+        }
+
+        /* Background grid */
+        .cardiac-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Top HUD Header */
+        .cardiac-top-hud {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .rhythm-toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(15, 23, 42, 0.75);
+            padding: 3px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+        }
+
+        .rhythm-pill-btn {
+            padding: 4px 11px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border-radius: 999px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .rhythm-pill-btn:hover {
+            color: #FFFFFF;
+        }
+
+        .rhythm-pill-btn.active {
+            background: #B91C3A;
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(185, 28, 58, 0.45);
+        }
+
+        .cardiac-live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #38BDF8;
+            backdrop-filter: blur(8px);
+        }
+
+        .live-beacon-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 8px #10B981;
+            animation: beaconBlink 1.2s infinite;
+        }
+
+        @keyframes beaconBlink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.75); }
+        }
+
+        /* Center Stage: Realistic Anatomical Beating Heart */
+        .cardiac-center-stage {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            margin: 6px 0;
+            min-height: 280px;
+        }
+
+        /* Realistic Anatomical Heart Container */
+        .realistic-heart-wrap {
+            position: relative;
+            width: 215px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: cardiacLubDub var(--cardiac-duration, 0.833s) infinite ease-in-out;
+            transform-origin: 50% 55%;
+            cursor: pointer;
+            filter: drop-shadow(0 14px 40px rgba(220, 38, 38, 0.52)) drop-shadow(0 0 24px rgba(56, 189, 248, 0.25));
+            transition: filter 0.3s ease, transform 0.25s ease;
+            user-select: none;
+        }
+
+        .realistic-heart-wrap:hover {
+            filter: drop-shadow(0 18px 52px rgba(220, 38, 38, 0.7)) drop-shadow(0 0 35px rgba(56, 189, 248, 0.45));
+        }
+
+        .realistic-heart-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+            filter: contrast(1.1) brightness(1.05);
+            display: block;
+        }
+
+        /* Physiologically accurate lub-dub double beat */
+        @keyframes cardiacLubDub {
+            0%   { transform: scale(1) rotate(0deg); }
+            12%  { transform: scale(1.08) rotate(-1.2deg); } /* Atrial systole */
+            22%  { transform: scale(0.98) rotate(0.6deg); }  /* Isovolumetric contraction */
+            34%  { transform: scale(1.15) rotate(1.8deg); }   /* Ventricular systole (ejection) */
+            48%  { transform: scale(0.96) rotate(-0.6deg); }  /* Elastic recoil */
+            64%  { transform: scale(1.02) rotate(0deg); }    /* Rapid filling */
+            76%  { transform: scale(1) rotate(0deg); }       /* Diastasis */
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Bottom Lead II ECG Telemetry */
+        .cardiac-bottom-hud {
+            position: relative;
+            z-index: 5;
+            background: rgba(11, 18, 33, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: var(--radius-md, 12px);
+            padding: 0.65rem 0.9rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .ecg-hud-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #38BDF8;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+        }
+
+        .ecg-canvas-wrap {
+            width: 100%;
+            height: 48px;
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            background: rgba(3, 7, 18, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        #cardiacWaveCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .cardiac-telemetry-metrics {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 0.45rem;
+            padding-top: 0.35rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.6875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .telemetry-mini-val {
+            font-weight: 700;
+            color: #38BDF8;
+        }
+
+        /* Mobile View - Live Cardiac HUD Display */
+        @media (max-width: 768px) {
+            .h2-hero-visual-wrap {
+                display: block !important;
+                width: 100%;
+                max-width: 440px;
+                margin: 2rem auto 0;
+            }
+
+            .cardiac-hero-card {
+                height: auto;
+                min-height: 440px;
+                padding: 1.15rem 1rem;
+                border-radius: var(--radius-lg, 16px);
+                gap: 0.75rem;
+            }
+
+            .cardiac-top-hud {
+                flex-wrap: wrap;
+                gap: 6px;
+                justify-content: space-between;
+            }
+
+            .rhythm-toggle-group {
+                gap: 4px;
+                padding: 2px;
+            }
+
+            .rhythm-pill-btn {
+                padding: 4px 9px;
+                font-size: 0.7rem;
+            }
+
+            .cardiac-live-badge {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+
+            .cardiac-center-stage {
+                min-height: 240px;
+                margin: 6px 0;
+            }
+
+            .realistic-heart-wrap {
+                width: 175px;
+                height: 245px;
+            }
+
+            .cardiac-bottom-hud {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .ecg-canvas-wrap {
+                height: 44px;
+            }
+
+            .cardiac-telemetry-metrics {
+                font-size: 0.6875rem;
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .h2-hero-visual-wrap {
+                max-width: 100%;
+                margin: 1.5rem auto 0;
+            }
+
+            .cardiac-hero-card {
+                min-height: 420px;
+                padding: 0.85rem;
+            }
+
+            .cardiac-top-hud {
+                justify-content: center;
+            }
+
+            .realistic-heart-wrap {
+                width: 155px;
+                height: 220px;
+            }
+
+            .cardiac-telemetry-metrics {
+                font-size: 0.625rem;
+                justify-content: space-between;
+            }
+        }
+
+        /* ═════════════════════════════════════════════════════════════
+           NEW SECTION 1: INTERACTIVE HEART AGE & VITALITY CALCULATOR
+           ═════════════════════════════════════════════════════════════ */
+        .vitality-calc-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            box-shadow: var(--shadow-lg, 0 15px 40px rgba(0,0,0,0.06));
+            position: relative;
+            overflow: hidden;
+        }
+        html.dark .vitality-calc-card {
+            background: linear-gradient(145deg, #0e1726 0%, #070d18 100%);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 40px rgba(185, 28, 58, 0.15);
+        }
+        .vitality-calc-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+        .vitality-form-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+        .vitality-field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .vitality-field-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .vitality-val-badge {
+            background: rgba(185, 28, 58, 0.1);
+            color: var(--primary);
+            font-size: 0.8125rem;
+            font-weight: 700;
+            padding: 0.2rem 0.65rem;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(185, 28, 58, 0.2);
+        }
+        html.dark .vitality-val-badge {
+            background: rgba(244, 63, 94, 0.16);
+            color: #FDA4AF;
+            border-color: rgba(244, 63, 94, 0.35);
+        }
+        .vitality-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border);
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+        .vitality-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 2px 8px rgba(185, 28, 58, 0.4);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        .vitality-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+        .vitality-segmented-pills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+        .vitality-pill-btn {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.65rem 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            text-align: center;
+            transition: all var(--transition-fast, 0.2s ease);
+        }
+        .vitality-pill-btn:hover {
+            border-color: var(--primary);
+            color: var(--text);
+        }
+        .vitality-pill-btn.active {
+            background: rgba(185, 28, 58, 0.08);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 2px 10px rgba(185, 28, 58, 0.12);
+        }
+        html.dark .vitality-pill-btn.active {
+            background: rgba(244, 63, 94, 0.18);
+            color: #FDA4AF;
+            border-color: #E11D48;
+        }
+        .vitality-check-row {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .vitality-check-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.84375rem;
+            color: var(--text-light);
+            cursor: pointer;
+            user-select: none;
+        }
+        .vitality-check-label input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Results Display Pane */
+        .vitality-result-pane {
+            background: linear-gradient(145deg, rgba(185, 28, 58, 0.04) 0%, rgba(15, 23, 42, 0.03) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.25rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        html.dark .vitality-result-pane {
+            background: linear-gradient(145deg, rgba(225, 29, 72, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        .vitality-gauge-wrap {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .vitality-svg-ring {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        .vitality-svg-ring circle {
+            fill: none;
+            stroke-width: 11;
+            stroke-linecap: round;
+        }
+        .vitality-ring-bg {
+            stroke: var(--border);
+            opacity: 0.6;
+        }
+        html.dark .vitality-ring-bg {
+            stroke: rgba(255, 255, 255, 0.12);
+        }
+        .vitality-ring-fill {
+            stroke: #10B981;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 88;
+            transition: stroke-dashoffset 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), stroke 0.4s ease;
+        }
+        .vitality-gauge-center {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .vitality-score-num {
+            font-size: 2.35rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text);
+        }
+        .vitality-score-lbl {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .vitality-delta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.35rem 0.9rem;
+            border-radius: var(--radius-full);
+            margin-bottom: 0.85rem;
+        }
+        .vitality-delta-badge.optimal {
+            background: rgba(16, 185, 129, 0.14);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        html.dark .vitality-delta-badge.optimal {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34D399;
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+        .vitality-delta-badge.elevated {
+            background: rgba(245, 158, 11, 0.14);
+            color: #D97706;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        html.dark .vitality-delta-badge.elevated {
+            background: rgba(245, 158, 11, 0.2);
+            color: #FBBF24;
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        .vitality-delta-badge.action {
+            background: rgba(239, 68, 68, 0.14);
+            color: #DC2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        html.dark .vitality-delta-badge.action {
+            background: rgba(239, 68, 68, 0.2);
+            color: #F87171;
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+        .vitality-status-desc {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            line-height: 1.55;
+            margin-bottom: 1.5rem;
+            max-width: 320px;
+        }
+        .vitality-action-btns {
+            display: flex;
+            gap: 0.75rem;
+            width: 100%;
+            flex-direction: column;
+        }
+        .vitality-action-btns .btn {
+            justify-content: center;
+            width: 100%;
+            padding: 0.65rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .vitality-calc-grid {
+                grid-template-columns: 1fr;
+                gap: 2.25rem;
+            }
+            .vitality-calc-card {
+                padding: 2.25rem 1.5rem;
+            }
+        }
+
+        /* ═════════════════════════════════════════════════════════════
+           NEW SECTION 2: CARDIOVASCULAR CARE FAQS & PATIENT GUIDE
+           ═════════════════════════════════════════════════════════════ */
+        .h2-faq-section {
+            position: relative;
+            background: var(--bg-alt);
+            padding: 5rem 0;
+        }
+        .h2-faq-filter-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+        .h2-faq-tab-btn {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-full);
+            padding: 0.55rem 1.25rem;
+            font-size: 0.84375rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all var(--transition-fast, 0.2s ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .h2-faq-tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+        .h2-faq-tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 14px rgba(185, 28, 58, 0.3);
+        }
+        .h2-faq-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .h2-faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .h2-faq-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: border-color var(--transition-fast, 0.2s ease), box-shadow var(--transition-fast, 0.2s ease);
+        }
+        .h2-faq-card.active {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-sm, 0 4px 16px rgba(0, 0, 0, 0.05));
+        }
+        .h2-faq-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            cursor: pointer;
+            user-select: none;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+        [dir="rtl"] .h2-faq-header {
+            text-align: right;
+        }
+        .h2-faq-question-text {
+            font-size: 0.96875rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+        .h2-faq-question-text i {
+            color: var(--primary);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .h2-faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(185, 28, 58, 0.08);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
+        }
+        .h2-faq-card.active .h2-faq-icon {
+            transform: rotate(180deg);
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+        .h2-faq-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), padding 0.3s ease;
+            padding: 0 1.5rem;
+            font-size: 0.875rem;
+            line-height: 1.65;
+            color: var(--text-light);
+        }
+        .h2-faq-card.active .h2-faq-body {
+            max-height: 280px;
+            padding: 0 1.5rem 1.35rem;
+        }
+
+        /* Concierge Help Box */
+        .h2-concierge-card {
+            background: linear-gradient(135deg, #132840 0%, #1E3A5F 50%, #8B1429 100%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: var(--radius-xl);
+            padding: 2.25rem 2rem;
+            color: #FFFFFF;
+            position: sticky;
+            top: 90px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+        }
+        html.dark .h2-concierge-card {
+            background: linear-gradient(135deg, #0d1a2d 0%, #162a45 45%, #5c1020 100%);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        .h2-concierge-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            color: #FF6B81;
+            margin-bottom: 1.25rem;
+        }
+        .h2-concierge-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600 !important;
+            color: #FFFFFF;
+            margin-bottom: 0.65rem;
+        }
+        .h2-concierge-card p {
+            font-size: 0.84375rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .h2-concierge-phone {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .h2-concierge-phone i {
+            color: #34D399;
+            font-size: 1.1rem;
+        }
+        .h2-concierge-phone div {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
+        }
+        .h2-concierge-phone strong {
+            font-size: 1.05rem;
+            color: #FFFFFF;
+        }
+        .h2-concierge-hours {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .h2-faq-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .h2-concierge-card {
+                position: static;
+            }
+        }
     </style>
 </head>
 <body>
@@ -102,22 +1347,60 @@
         <section class="section">
             <div class="container">
                 <div class="h2-hero">
-                    <div class="fade-up">
-                        <span class="badge badge-primary" style="margin-bottom:1rem"><i class="fas fa-heart-pulse"></i> Premium Heart Care</span>
+                    <div class="h2-hero-text fade-up">
+                        <span class="badge badge-primary"><i class="fas fa-heart-pulse"></i> Premium Heart Care</span>
                         <h1>Advanced Cardiology for a Healthier Tomorrow</h1>
                         <p>Experience the finest in cardiovascular medicine. Our world-renowned specialists use cutting-edge technology and evidence-based approaches to protect and restore your heart health.</p>
                         <div class="hero-btn-group">
-                            <a href="contact.html" class="btn btn-primary btn-lg">Book Consultation</a>
-                            <a href="services.html" class="btn btn-outline btn-lg">Explore Services</a>
+                            <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Consultation</a>
+                            <a href="services.html" class="btn btn-outline btn-lg"><i class="fas fa-stethoscope"></i> Explore Services</a>
                         </div>
                     </div>
-                    <div class="h2-hero-img-wrap fade-up">
-                        <img src="assets/images/hero2-operating.jpg" alt="Advanced Cardiology" class="h2-hero-img">
-                        <div class="h2-hero-stat">
-                            <i class="fas fa-heart-pulse"></i>
-                            <div>
-                                <div class="stat-num">50K+</div>
-                                <div class="stat-txt">Patients Treated</div>
+                    <div class="h2-hero-visual-wrap" id="cardiacHeroVisual">
+                        <div class="cardiac-hero-card" id="cardiacHeroCard">
+                            <div class="cardiac-grid-bg"></div>
+
+                            <!-- Top Telemetry Header -->
+                            <div class="cardiac-top-hud">
+                                <div class="rhythm-toggle-group">
+                                    <button type="button" class="rhythm-pill-btn" data-bpm="60">Rest 60</button>
+                                    <button type="button" class="rhythm-pill-btn active" data-bpm="72">Normal 72</button>
+                                    <button type="button" class="rhythm-pill-btn" data-bpm="96">Active 96</button>
+                                </div>
+                                <div class="cardiac-live-badge">
+                                    <span class="live-beacon-dot"></span>
+                                    <span id="liveBpmText">72 BPM</span>
+                                    <span style="font-weight:400;font-size:0.6875rem;color:rgba(255,255,255,0.7)">| NSR</span>
+                                </div>
+                            </div>
+
+                            <!-- Center Stage: Realistic 3D Anatomical Heart -->
+                            <div class="cardiac-center-stage">
+                                <div class="realistic-heart-wrap" id="realisticHeartWrap" title="Physiological Human Heart Model - Click to pulse">
+                                    <img src="assets/images/realistic-anatomical-heart.png" alt="Realistic Anatomical Human Heart" class="realistic-heart-img" id="realisticHeartImg">
+                                </div>
+                            </div>
+
+                            <!-- Bottom Lead II ECG Telemetry Monitor -->
+                            <div class="cardiac-bottom-hud">
+                                <div class="ecg-hud-header">
+                                    <span><i class="fas fa-heart-pulse"></i> LEAD II TELEMETRY</span>
+                                    <span style="color:#10B981">&bull; REALTIME SYNC</span>
+                                </div>
+                                <div class="ecg-canvas-wrap">
+                                    <canvas id="cardiacWaveCanvas" width="460" height="48"></canvas>
+                                </div>
+                                <div class="cardiac-telemetry-metrics">
+                                    <div class="telemetry-mini-cell">
+                                        Cardiac Output: <span class="telemetry-mini-val">5.2 L/m</span>
+                                    </div>
+                                    <div class="telemetry-mini-cell">
+                                        Vascular Flow: <span class="telemetry-mini-val">99.4%</span>
+                                    </div>
+                                    <div class="telemetry-mini-cell">
+                                        Ejection Fraction: <span class="telemetry-mini-val" style="color:#6EE7B7">65%</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -233,17 +1516,153 @@
                     <div class="why-card fade-up">
                         <div class="why-icon"><i class="fas fa-user-doctor"></i></div>
                         <h3>Experienced Team</h3>
-                        <p>Our board-certified cardiologists bring decades of combined clinical and research experience from leading medical institutions worldwide.</p>
+                        <p>Our board-certified cardiologists bring decades of clinical and research experience from leading medical institutions.</p>
                     </div>
                     <div class="why-card fade-up">
                         <div class="why-icon"><i class="fas fa-laptop-medical"></i></div>
                         <h3>Advanced Technology</h3>
-                        <p>We deploy the latest cardiac imaging, diagnostic, and interventional technologies to deliver precise and effective treatments.</p>
+                        <p>We deploy the latest cardiac imaging, diagnostic, and interventional technologies to deliver precise, effective treatments.</p>
                     </div>
                     <div class="why-card fade-up">
                         <div class="why-icon"><i class="fas fa-hand-holding-heart"></i></div>
                         <h3>Compassionate Care</h3>
-                        <p>Every patient receives personalized attention, clear communication, and emotional support throughout their entire cardiac care journey.</p>
+                        <p>Every patient receives personalized attention, clear communication, and compassionate support throughout their care journey.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE HEART AGE & VITALITY ASSESSMENT -->
+        <section class="section" id="heart-vitality-section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-heart-pulse"></i> Interactive Assessment</span>
+                    <h2 class="section-title">Know Your Heart Age & Cardiovascular Vitality</h2>
+                    <p class="section-desc">Discover how your blood pressure, activity, and lifestyle impact your vascular elasticity compared to your biological age.</p>
+                </div>
+                <div class="vitality-calc-card fade-up">
+                    <div class="vitality-calc-grid">
+                        <!-- Input Parameters -->
+                        <div class="vitality-form-pane">
+                            <!-- Age Slider -->
+                            <div class="vitality-field-group">
+                                <div class="vitality-field-label">
+                                    <span><i class="fas fa-user-clock text-primary" style="margin-right:0.4rem;"></i> Biological Age</span>
+                                    <span class="vitality-val-badge" id="vitalityAgeVal">45 years</span>
+                                </div>
+                                <input type="range" class="vitality-slider" id="vitalityAgeSlider" min="20" max="85" value="45" step="1">
+                                <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted)">
+                                    <span>20 yrs</span>
+                                    <span>50 yrs</span>
+                                    <span>85 yrs</span>
+                                </div>
+                            </div>
+
+                            <!-- Systolic Blood Pressure -->
+                            <div class="vitality-field-group">
+                                <div class="vitality-field-label">
+                                    <span><i class="fas fa-gauge-high text-primary" style="margin-right:0.4rem;"></i> Systolic Blood Pressure</span>
+                                    <span class="vitality-val-badge" id="vitalityBpVal">120 mmHg</span>
+                                </div>
+                                <input type="range" class="vitality-slider" id="vitalityBpSlider" min="95" max="180" value="120" step="1">
+                                <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted)">
+                                    <span>Optimal (&lt;120)</span>
+                                    <span>Elevated (120-129)</span>
+                                    <span>High (130+)</span>
+                                </div>
+                            </div>
+
+                            <!-- Resting Heart Rate -->
+                            <div class="vitality-field-group">
+                                <div class="vitality-field-label">
+                                    <span><i class="fas fa-wave-square text-primary" style="margin-right:0.4rem;"></i> Resting Heart Rate</span>
+                                    <span class="vitality-val-badge" id="vitalityHrVal">70 BPM</span>
+                                </div>
+                                <input type="range" class="vitality-slider" id="vitalityHrSlider" min="50" max="105" value="70" step="1">
+                                <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted)">
+                                    <span>Athletic (50-60)</span>
+                                    <span>Normal (60-80)</span>
+                                    <span>Tachycardia (85+)</span>
+                                </div>
+                            </div>
+
+                            <!-- Weekly Activity Level -->
+                            <div class="vitality-field-group">
+                                <div class="vitality-field-label">
+                                    <span><i class="fas fa-person-running text-primary" style="margin-right:0.4rem;"></i> Weekly Aerobic Exercise</span>
+                                </div>
+                                <div class="vitality-segmented-pills" id="activityPills">
+                                    <button type="button" class="vitality-pill-btn" data-activity="sedentary">
+                                        <i class="fas fa-couch" style="margin-bottom:0.25rem;display:block;font-size:1rem;"></i> Sedentary
+                                    </button>
+                                    <button type="button" class="vitality-pill-btn active" data-activity="moderate">
+                                        <i class="fas fa-person-walking" style="margin-bottom:0.25rem;display:block;font-size:1rem;"></i> Moderate
+                                    </button>
+                                    <button type="button" class="vitality-pill-btn" data-activity="active">
+                                        <i class="fas fa-dumbbell" style="margin-bottom:0.25rem;display:block;font-size:1rem;"></i> Active (3+ hrs)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Lifestyle Factors -->
+                            <div class="vitality-field-group">
+                                <div class="vitality-field-label">
+                                    <span><i class="fas fa-notes-medical text-primary" style="margin-right:0.4rem;"></i> Risk & Lifestyle Factors</span>
+                                </div>
+                                <div class="vitality-check-row">
+                                    <label class="vitality-check-label">
+                                        <input type="checkbox" id="vitalityNonSmoker" checked>
+                                        <span>Non-Smoker</span>
+                                    </label>
+                                    <label class="vitality-check-label">
+                                        <input type="checkbox" id="vitalityDiet" checked>
+                                        <span>Heart-Healthy Diet</span>
+                                    </label>
+                                    <label class="vitality-check-label">
+                                        <input type="checkbox" id="vitalityFamilyHistory">
+                                        <span>Family History</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Calculated Results Dashboard -->
+                        <div class="vitality-result-pane">
+                            <div>
+                                <span class="badge" style="background:rgba(56,189,248,0.12);color:#0284C7;border:1px solid rgba(56,189,248,0.3);margin-bottom:1rem;display:inline-flex;">
+                                    <i class="fas fa-microchip" style="margin-right:0.35rem;"></i> Clinical Vitality Algorithm
+                                </span>
+                                
+                                <div class="vitality-gauge-wrap">
+                                    <svg class="vitality-svg-ring" viewBox="0 0 160 160">
+                                        <circle class="vitality-ring-bg" cx="80" cy="80" r="70"></circle>
+                                        <circle class="vitality-ring-fill" id="vitalityRingFill" cx="80" cy="80" r="70"></circle>
+                                    </svg>
+                                    <div class="vitality-gauge-center">
+                                        <span class="vitality-score-num" id="vitalityScoreNum">88</span>
+                                        <span class="vitality-score-lbl">Vitality Index</span>
+                                    </div>
+                                </div>
+
+                                <div class="vitality-delta-badge optimal" id="vitalityDeltaBadge">
+                                    <i class="fas fa-shield-heart"></i>
+                                    <span id="vitalityDeltaText">Heart Age: 42 yrs • 3 yrs younger</span>
+                                </div>
+
+                                <p class="vitality-status-desc" id="vitalityStatusDesc">
+                                    Your vascular compliance and resting hemodynamics indicate strong cardiovascular resilience.
+                                </p>
+                            </div>
+
+                            <div class="vitality-action-btns">
+                                <a href="contact.html" class="btn btn-primary">
+                                    <i class="fas fa-calendar-check"></i> Book In-Depth Screening
+                                </a>
+                                <a href="services.html" class="btn btn-outline">
+                                    <i class="fas fa-stethoscope"></i> View Diagnostic Capabilities
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -424,17 +1843,178 @@
             </div>
         </section>
 
-        <!-- NEWSLETTER CTA -->
-        <section class="newsletter-section" style="background-image:url('assets/images/h2-newsletter.jpg')">
-            <div class="newsletter-overlay"></div>
+        <!-- CARDIAC CARE FAQS & PATIENT GUIDE -->
+        <section class="h2-faq-section" id="faq-section">
             <div class="container">
-                <div class="newsletter-content">
-                    <h2>Stay Heart-Smart</h2>
-                    <p>Subscribe to our newsletter for the latest heart health tips, clinic updates, and exclusive wellness resources from our expert cardiologists.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault();alert('Thank you! You are now subscribed to CardioVita updates.');this.reset();">
-                        <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address" required>
-                        <button type="submit" class="btn btn-white">Subscribe</button>
-                    </form>
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-circle-question"></i> Patient Guidance</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-desc">Expert answers on appointment preparation, diagnostic procedures, telemetry monitoring, and accepted insurance plans.</p>
+                </div>
+
+                <!-- Filter Category Tabs -->
+                <div class="h2-faq-filter-wrap fade-up">
+                    <button type="button" class="h2-faq-tab-btn active" data-filter="all">
+                        <i class="fas fa-list-ul"></i> All Questions
+                    </button>
+                    <button type="button" class="h2-faq-tab-btn" data-filter="consult">
+                        <i class="fas fa-user-doctor"></i> Consultations
+                    </button>
+                    <button type="button" class="h2-faq-tab-btn" data-filter="tests">
+                        <i class="fas fa-heart-pulse"></i> Diagnostic Tests
+                    </button>
+                    <button type="button" class="h2-faq-tab-btn" data-filter="insurance">
+                        <i class="fas fa-file-invoice-dollar"></i> Insurance & Billing
+                    </button>
+                </div>
+
+                <div class="h2-faq-layout">
+                    <!-- FAQ Accordion List -->
+                    <div class="h2-faq-list">
+                        <!-- Q1 -->
+                        <div class="h2-faq-card active fade-up" data-category="consult">
+                            <button type="button" class="h2-faq-header" aria-expanded="true">
+                                <span class="h2-faq-question-text">
+                                    <i class="fas fa-clipboard-check"></i> How should I prepare for my first cardiology consultation?
+                                </span>
+                                <span class="h2-faq-icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="h2-faq-body">
+                                Please bring a complete list of your current prescription medications, recent lab reports or ECG records, and your insurance card. We recommend wearing comfortable two-piece clothing, as a baseline 12-lead resting ECG and vital evaluation are performed during your initial examination.
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="h2-faq-card fade-up" data-category="tests">
+                            <button type="button" class="h2-faq-header" aria-expanded="false">
+                                <span class="h2-faq-question-text">
+                                    <i class="fas fa-wave-square"></i> What is the difference between an Echocardiogram and an ECG?
+                                </span>
+                                <span class="h2-faq-icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="h2-faq-body">
+                                An ECG records the electrical conduction and rhythm signals of your heart using skin sensors. An Echocardiogram uses ultrasound soundwaves to create high-resolution real-time video imaging of your heart valves, wall motion, and blood ejection fraction. Both are non-invasive and painless.
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="h2-faq-card fade-up" data-category="insurance">
+                            <button type="button" class="h2-faq-header" aria-expanded="false">
+                                <span class="h2-faq-question-text">
+                                    <i class="fas fa-shield-halved"></i> Do you accept Medicare, Medicaid, and private commercial insurance?
+                                </span>
+                                <span class="h2-faq-icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="h2-faq-body">
+                                Yes. CardioVita is in-network with all major national health insurance providers, including Medicare, BlueCross BlueShield, Aetna, Cigna, and UnitedHealthcare. Our patient financial advocates handle prior-authorization paperwork to ensure transparent coverage.
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="h2-faq-card fade-up" data-category="consult">
+                            <button type="button" class="h2-faq-header" aria-expanded="false">
+                                <span class="h2-faq-question-text">
+                                    <i class="fas fa-truck-medical"></i> When should I seek urgent same-day evaluation versus calling 911?
+                                </span>
+                                <span class="h2-faq-icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="h2-faq-body">
+                                If you experience crushing chest pain radiating to your jaw or left arm, severe shortness of breath, or sudden loss of consciousness, call 911 immediately. For new-onset fluttering palpitations, mild exertional shortness of breath, or borderline blood pressure spikes, our Same-Day Urgent Clinic provides rapid on-site diagnosis.
+                            </div>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="h2-faq-card fade-up" data-category="tests">
+                            <button type="button" class="h2-faq-header" aria-expanded="false">
+                                <span class="h2-faq-question-text">
+                                    <i class="fas fa-clock"></i> How quickly will I receive results from a Holter or cardiac monitor?
+                                </span>
+                                <span class="h2-faq-icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="h2-faq-body">
+                                Our digital patch monitors transmit telemetry data in real-time via cellular gateway to our diagnostic reading hub. Complete physician-verified diagnostic summaries are uploaded to your Patient Portal within 24 to 48 hours following device turn-in.
+                            </div>
+                        </div>
+
+                        <!-- Q6 -->
+                        <div class="h2-faq-card fade-up" data-category="insurance">
+                            <button type="button" class="h2-faq-header" aria-expanded="false">
+                                <span class="h2-faq-question-text">
+                                    <i class="fas fa-hospital"></i> Are cardiac catheterizations and surgical procedures performed on-site?
+                                </span>
+                                <span class="h2-faq-icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="h2-faq-body">
+                                Yes. CardioVita operates a state-of-the-art biplane cardiac catheterization suite and hybrid surgical lab on-site, enabling advanced diagnostic angiography, stent placements, and arrhythmia ablations with rapid same-day recovery protocols.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concierge Help Sidebar Card -->
+                    <div class="h2-concierge-card fade-up">
+                        <div class="h2-concierge-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Have a Clinical Question?</h3>
+                        <p>Speak directly with our dedicated cardiac triage nurses. We're here to guide your diagnostic preparation and scheduling.</p>
+                        <div class="h2-concierge-phone">
+                            <i class="fas fa-phone-volume"></i>
+                            <div>
+                                <div>Direct Cardiac Nurse Line</div>
+                                <strong>(555) 234-CARDIO</strong>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary w-100" style="justify-content:center;font-weight:600;">
+                            <i class="fas fa-calendar-plus"></i> Request Priority Call
+                        </a>
+                        <div class="h2-concierge-hours">
+                            <i class="fas fa-clock" style="margin-right:0.35rem;"></i> Mon – Sat: 8:00 AM – 7:00 PM EST<br>
+                            <span style="color:#34D399;font-weight:600;">● 24/7 Rapid Emergency Response Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER CTA -->
+        <section class="newsletter-modern-section">
+            <div class="container">
+                <div class="newsletter-modern-card fade-up">
+                    <div class="newsletter-split-grid">
+                        <div class="newsletter-image-col">
+                            <img src="assets/images/h2-newsletter.jpg" alt="Cardiology Wellness Consultation" class="newsletter-col-img" loading="lazy">
+                            <div class="newsletter-img-badge">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                                <div>
+                                    <strong>Weekly Heart Tips</strong>
+                                    <span>Curated by Specialists</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="newsletter-content-col">
+                            <div class="cta-normal-badge" style="margin-bottom:1.25rem;">
+                                <i class="fa-solid fa-envelope-open-text"></i> CardioVita Wellness Digest
+                            </div>
+                            <h2 class="newsletter-title">Stay Heart-Smart</h2>
+                            <p class="newsletter-desc">Subscribe to our monthly newsletter for the latest breakthroughs in cardiovascular medicine, actionable heart nutrition tips, exercise guides, and exclusive clinic updates from our cardiologists.</p>
+                            
+                            <form class="newsletter-modern-form" onsubmit="event.preventDefault();alert('Thank you! You are now subscribed to CardioVita Heart-Smart updates.');this.reset();">
+                                <div class="newsletter-input-group">
+                                    <i class="fa-solid fa-envelope newsletter-field-icon"></i>
+                                    <input type="email" class="newsletter-modern-input" placeholder="Enter your email address..." aria-label="Email address" required>
+                                </div>
+                                <button type="submit" class="newsletter-submit-btn">
+                                    <span>Subscribe</span> <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </form>
+
+                            <div class="newsletter-trust-tags">
+                                <span><i class="fa-solid fa-circle-check"></i> Free Monthly Insights</span>
+                                <span><i class="fa-solid fa-circle-check"></i> No Spam Guarantee</span>
+                                <span><i class="fa-solid fa-circle-check"></i> Unsubscribe Anytime</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -442,5 +2022,324 @@
     </main>
     <div id="footer-placeholder"></div>
     <script src="components.js"></script>
+    <script>
+    (function() {
+        const card = document.getElementById('cardiacHeroCard');
+        const bpmText = document.getElementById('liveBpmText');
+        const buttons = document.querySelectorAll('.rhythm-pill-btn');
+        const heartWrap = document.getElementById('realisticHeartWrap');
+        let currentBpm = 72;
+
+        if (heartWrap) {
+            heartWrap.addEventListener('click', () => {
+                heartWrap.style.transform = 'scale(1.14) rotate(1.5deg)';
+                setTimeout(() => { heartWrap.style.transform = ''; }, 260);
+            });
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentBpm = parseInt(btn.dataset.bpm, 10);
+                if (bpmText) bpmText.textContent = currentBpm + ' BPM';
+                const duration = (60 / currentBpm).toFixed(3) + 's';
+                document.documentElement.style.setProperty('--cardiac-duration', duration);
+                document.documentElement.style.setProperty('--cardiac-bpm', currentBpm);
+            });
+        });
+
+        // Real-time Canvas ECG Stream
+        const canvas = document.getElementById('cardiacWaveCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const holder = canvas.parentElement;
+
+        let width = canvas.width = (holder && holder.clientWidth) ? holder.clientWidth : 460;
+        let height = canvas.height = (holder && holder.clientHeight) ? holder.clientHeight : 48;
+        const midY = height / 2;
+
+        const points = [];
+        const maxPoints = 140;
+        let cyclePhase = 0;
+
+        function getLeadIIValue(t) {
+            if (t >= 0.10 && t < 0.20) {
+                return -Math.sin((t - 0.10) / 0.10 * Math.PI) * (height * 0.16);
+            } else if (t >= 0.23 && t < 0.26) {
+                return Math.sin((t - 0.23) / 0.03 * Math.PI) * (height * 0.12);
+            } else if (t >= 0.26 && t < 0.32) {
+                return -Math.sin((t - 0.26) / 0.06 * Math.PI) * (height * 0.44);
+            } else if (t >= 0.32 && t < 0.36) {
+                return Math.sin((t - 0.32) / 0.04 * Math.PI) * (height * 0.16);
+            } else if (t >= 0.45 && t < 0.65) {
+                return -Math.sin((t - 0.45) / 0.20 * Math.PI) * (height * 0.22);
+            }
+            return 0;
+        }
+
+        for (let i = 0; i < maxPoints; i++) {
+            points.push(midY);
+        }
+
+        function drawWave() {
+            const speed = (currentBpm / 72) * 0.014;
+            cyclePhase = (cyclePhase + speed) % 1.0;
+            const val = midY + getLeadIIValue(cyclePhase) + (Math.random() - 0.5) * 0.8;
+
+            points.push(val);
+            if (points.length > maxPoints) points.shift();
+
+            ctx.clearRect(0, 0, width, height);
+
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.08)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            for (let x = 0; x < width; x += 20) { ctx.moveTo(x, 0); ctx.lineTo(x, height); }
+            for (let y = 0; y < height; y += 16) { ctx.moveTo(0, y); ctx.lineTo(width, y); }
+            ctx.stroke();
+
+            if (points.length > 1) {
+                ctx.beginPath();
+                const dx = width / (maxPoints - 1);
+                for (let i = 0; i < points.length; i++) {
+                    const px = i * dx;
+                    const py = points[i];
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.strokeStyle = '#00E5FF';
+                ctx.lineWidth = 2.2;
+                ctx.shadowColor = '#00E5FF';
+                ctx.shadowBlur = 8;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                const headX = (points.length - 1) * dx;
+                const headY = points[points.length - 1];
+                ctx.beginPath();
+                ctx.arc(headX, headY, 3.5, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.shadowColor = '#00E5FF';
+                ctx.shadowBlur = 10;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            requestAnimationFrame(drawWave);
+        }
+        drawWave();
+
+        function resizeCanvas() {
+            if (holder && holder.clientWidth > 0) {
+                canvas.width = holder.clientWidth;
+                canvas.height = holder.clientHeight || 48;
+                width = canvas.width;
+                height = canvas.height;
+            }
+        }
+        window.addEventListener('resize', resizeCanvas);
+        setTimeout(resizeCanvas, 150);
+
+        if (card) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `perspective(1000px) rotateX(${-y / 24}deg) rotateY(${x / 24}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        }
+    })();
+
+    // ═════════════════════════════════════════════════════════════
+    // SECTION 1: HEART AGE & CARDIOVASCULAR VITALITY CALCULATOR
+    // ═════════════════════════════════════════════════════════════
+    (function initVitalityCalculator() {
+        const ageSlider = document.getElementById('vitalityAgeSlider');
+        const bpSlider = document.getElementById('vitalityBpSlider');
+        const hrSlider = document.getElementById('vitalityHrSlider');
+        const ageVal = document.getElementById('vitalityAgeVal');
+        const bpVal = document.getElementById('vitalityBpVal');
+        const hrVal = document.getElementById('vitalityHrVal');
+        const activityBtns = document.querySelectorAll('#activityPills .vitality-pill-btn');
+        const nonSmokerCheck = document.getElementById('vitalityNonSmoker');
+        const dietCheck = document.getElementById('vitalityDiet');
+        const familyHistoryCheck = document.getElementById('vitalityFamilyHistory');
+        const scoreNum = document.getElementById('vitalityScoreNum');
+        const ringFill = document.getElementById('vitalityRingFill');
+        const deltaBadge = document.getElementById('vitalityDeltaBadge');
+        const deltaText = document.getElementById('vitalityDeltaText');
+        const statusDesc = document.getElementById('vitalityStatusDesc');
+
+        if (!ageSlider || !bpSlider || !hrSlider) return;
+
+        let selectedActivity = 'moderate';
+
+        activityBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                activityBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedActivity = btn.dataset.activity || 'moderate';
+                calculateVitality();
+            });
+        });
+
+        function calculateVitality() {
+            const bioAge = parseInt(ageSlider.value, 10);
+            const sysBp = parseInt(bpSlider.value, 10);
+            const restHr = parseInt(hrSlider.value, 10);
+            const isNonSmoker = nonSmokerCheck ? nonSmokerCheck.checked : true;
+            const hasGoodDiet = dietCheck ? dietCheck.checked : true;
+            const hasFamilyHist = familyHistoryCheck ? familyHistoryCheck.checked : false;
+
+            if (ageVal) ageVal.textContent = `${bioAge} years`;
+            if (bpVal) bpVal.textContent = `${sysBp} mmHg`;
+            if (hrVal) hrVal.textContent = `${restHr} BPM`;
+
+            // Calculate Heart Age delta
+            let delta = 0;
+            // Blood pressure
+            if (sysBp < 120) delta -= 2;
+            else if (sysBp >= 120 && sysBp < 130) delta += 0;
+            else if (sysBp >= 130 && sysBp < 140) delta += 2;
+            else if (sysBp >= 140 && sysBp < 160) delta += 5;
+            else if (sysBp >= 160) delta += 8;
+
+            // Resting Heart Rate
+            if (restHr < 60) delta -= 1;
+            else if (restHr >= 60 && restHr <= 75) delta += 0;
+            else if (restHr > 75 && restHr <= 85) delta += 2;
+            else if (restHr > 85) delta += 4;
+
+            // Activity
+            if (selectedActivity === 'sedentary') delta += 3;
+            else if (selectedActivity === 'moderate') delta -= 1;
+            else if (selectedActivity === 'intense') delta -= 3;
+
+            // Lifestyle
+            if (!isNonSmoker) delta += 6;
+            if (hasGoodDiet) delta -= 2;
+            if (hasFamilyHist) delta += 2;
+
+            const heartAge = Math.max(18, Math.min(95, bioAge + delta));
+            const netDelta = heartAge - bioAge;
+
+            // Vitality Index (0 - 100)
+            let baseScore = 96;
+            if (sysBp >= 120) baseScore -= (sysBp - 120) * 0.45;
+            if (restHr > 72) baseScore -= (restHr - 72) * 0.4;
+            if (selectedActivity === 'sedentary') baseScore -= 12;
+            else if (selectedActivity === 'intense') baseScore += 4;
+            if (!isNonSmoker) baseScore -= 18;
+            if (!hasGoodDiet) baseScore -= 8;
+            if (hasFamilyHist) baseScore -= 6;
+
+            const finalScore = Math.max(35, Math.min(99, Math.round(baseScore)));
+
+            // Update UI elements
+            if (scoreNum) scoreNum.textContent = finalScore;
+
+            // SVG ring animation: perimeter 2 * PI * 70 = ~440
+            const circumference = 440;
+            const strokeOffset = circumference * (1 - (finalScore / 100));
+            if (ringFill) {
+                ringFill.style.strokeDashoffset = strokeOffset;
+                if (finalScore >= 80) ringFill.style.stroke = '#10B981';
+                else if (finalScore >= 65) ringFill.style.stroke = '#F59E0B';
+                else ringFill.style.stroke = '#EF4444';
+            }
+
+            // Delta Badge and Text
+            if (deltaBadge && deltaText) {
+                if (netDelta < 0) {
+                    deltaBadge.className = 'vitality-delta-badge optimal';
+                    deltaBadge.innerHTML = `<i class="fas fa-shield-heart"></i> <span id="vitalityDeltaText">Heart Age: ${heartAge} yrs &bull; ${Math.abs(netDelta)} yrs younger</span>`;
+                } else if (netDelta === 0) {
+                    deltaBadge.className = 'vitality-delta-badge optimal';
+                    deltaBadge.innerHTML = `<i class="fas fa-scale-balanced"></i> <span id="vitalityDeltaText">Heart Age: ${heartAge} yrs &bull; Matches biological age</span>`;
+                } else if (netDelta <= 4) {
+                    deltaBadge.className = 'vitality-delta-badge elevated';
+                    deltaBadge.innerHTML = `<i class="fas fa-triangle-exclamation"></i> <span id="vitalityDeltaText">Heart Age: ${heartAge} yrs &bull; +${netDelta} yrs elevated</span>`;
+                } else {
+                    deltaBadge.className = 'vitality-delta-badge action';
+                    deltaBadge.innerHTML = `<i class="fas fa-circle-exclamation"></i> <span id="vitalityDeltaText">Heart Age: ${heartAge} yrs &bull; +${netDelta} yrs accelerated</span>`;
+                }
+            }
+
+            // Status message description
+            if (statusDesc) {
+                if (finalScore >= 85) {
+                    statusDesc.textContent = 'Your vascular compliance and resting hemodynamics indicate strong cardiovascular resilience and youthful arterial elasticity.';
+                } else if (finalScore >= 70) {
+                    statusDesc.textContent = 'Moderate cardiovascular reserve with mild arterial load. Targeted dietary refinement and aerobic conditioning can optimize your vascular age.';
+                } else {
+                    statusDesc.textContent = 'Elevated cardiovascular stress detected. We recommend an in-depth clinical consultation with our board-certified cardiologists.';
+                }
+            }
+        }
+
+        [ageSlider, bpSlider, hrSlider].forEach(slider => {
+            slider.addEventListener('input', calculateVitality);
+        });
+
+        if (nonSmokerCheck) nonSmokerCheck.addEventListener('change', calculateVitality);
+        if (dietCheck) dietCheck.addEventListener('change', calculateVitality);
+        if (familyHistoryCheck) familyHistoryCheck.addEventListener('change', calculateVitality);
+
+        calculateVitality();
+    })();
+
+    // ═════════════════════════════════════════════════════════════
+    // SECTION 2: CARDIOVASCULAR CARE FAQS & PATIENT GUIDE
+    // ═════════════════════════════════════════════════════════════
+    (function initFaqAccordion() {
+        const tabBtns = document.querySelectorAll('.h2-faq-tab-btn');
+        const faqCards = document.querySelectorAll('.h2-faq-card');
+
+        // Tab Filtering
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter || 'all';
+
+                faqCards.forEach(card => {
+                    const category = card.dataset.category;
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Accordion Toggle
+        faqCards.forEach(card => {
+            const header = card.querySelector('.h2-faq-header');
+            if (!header) return;
+
+            header.addEventListener('click', () => {
+                const isOpen = card.classList.contains('active');
+
+                // Close other open cards for clean single-accordion UX
+                faqCards.forEach(c => {
+                    c.classList.remove('active');
+                    const h = c.querySelector('.h2-faq-header');
+                    if (h) h.setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isOpen) {
+                    card.classList.add('active');
+                    header.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    })();
+    </script>
+
 </body>
 </html>
