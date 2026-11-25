@@ -68,11 +68,15 @@
         .h2-hero-stat .stat-num{font-size:1.25rem;font-weight:600;color:var(--text)}
         .h2-hero-stat .stat-txt{font-size:.75rem;color:var(--text-muted)}
         .specialty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-        .specialty-card{text-align:center;padding:2rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal)}
+        .specialty-card{display:flex;flex-direction:column;text-align:center;padding:0;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--transition-normal);overflow:hidden}
         .specialty-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
-        .specialty-icon{width:60px;height:60px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.35rem;margin:0 auto .85rem}
+        .specialty-img-wrap{position:relative;width:100%;height:190px;overflow:hidden;z-index:1}
+        .specialty-img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
+        .specialty-card:hover .specialty-img{transform:scale(1.05)}
+        .specialty-icon{position:relative;width:52px;height:52px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.25rem;box-shadow:0 4px 12px rgba(0,0,0,.25);margin:-26px auto .85rem;z-index:2;flex-shrink:0}
+        .specialty-content{position:relative;z-index:2;padding:0 1.35rem 1.5rem;flex:1;display:flex;flex-direction:column;align-items:center}
         .specialty-card h3{font-size:1.05rem;margin-bottom:.4rem}
-        .specialty-card p{font-size:.84375rem}
+        .specialty-card p{font-size:.84375rem;color:var(--text-muted)}
         .zigzag-item{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
         .zigzag-item:last-child{margin-bottom:0}
         .zigzag-item.reverse{direction:rtl}
@@ -1709,34 +1713,64 @@
                 </div>
                 <div class="specialty-grid">
                     <div class="specialty-card fade-up">
-                        <div class="specialty-icon"><i class="fas fa-syringe"></i></div>
-                        <h3>Interventional Cardiology</h3>
-                        <p>Minimally invasive catheter-based procedures for coronary artery disease and structural heart conditions.</p>
+                        <div class="specialty-img-wrap">
+                            <img src="assets/images/h2-spec-interventional.jpg" alt="Interventional Cardiology" class="specialty-img" loading="lazy">
+                        </div>
+                        <div class="specialty-content">
+                            <div class="specialty-icon"><i class="fas fa-syringe"></i></div>
+                            <h3>Interventional Cardiology</h3>
+                            <p>Minimally invasive catheter-based procedures for coronary artery disease and structural heart conditions.</p>
+                        </div>
                     </div>
                     <div class="specialty-card fade-up">
-                        <div class="specialty-icon"><i class="fas fa-bolt"></i></div>
-                        <h3>Electrophysiology</h3>
-                        <p>Advanced diagnosis and treatment of heart rhythm disorders including ablation and pacemaker implantation.</p>
+                        <div class="specialty-img-wrap">
+                            <img src="assets/images/h2-spec-electrophysiology.jpg" alt="Electrophysiology" class="specialty-img" loading="lazy">
+                        </div>
+                        <div class="specialty-content">
+                            <div class="specialty-icon"><i class="fas fa-bolt"></i></div>
+                            <h3>Electrophysiology</h3>
+                            <p>Advanced diagnosis and treatment of heart rhythm disorders including ablation and pacemaker implantation.</p>
+                        </div>
                     </div>
                     <div class="specialty-card fade-up">
-                        <div class="specialty-icon"><i class="fas fa-shield-heart"></i></div>
-                        <h3>Preventive Cardiology</h3>
-                        <p>Risk assessment, lifestyle modification, and early detection programs to prevent cardiovascular disease.</p>
+                        <div class="specialty-img-wrap">
+                            <img src="assets/images/h2-spec-prevention.jpg" alt="Preventive Cardiology" class="specialty-img" loading="lazy">
+                        </div>
+                        <div class="specialty-content">
+                            <div class="specialty-icon"><i class="fas fa-shield-heart"></i></div>
+                            <h3>Preventive Cardiology</h3>
+                            <p>Risk assessment, lifestyle modification, and early detection programs to prevent cardiovascular disease.</p>
+                        </div>
                     </div>
                     <div class="specialty-card fade-up">
-                        <div class="specialty-icon"><i class="fas fa-dumbbell"></i></div>
-                        <h3>Cardiac Rehabilitation</h3>
-                        <p>Supervised exercise programs and lifestyle counseling to aid recovery after cardiac events or surgery.</p>
+                        <div class="specialty-img-wrap">
+                            <img src="assets/images/h2-spec-rehab.jpg" alt="Cardiac Rehabilitation" class="specialty-img" loading="lazy">
+                        </div>
+                        <div class="specialty-content">
+                            <div class="specialty-icon"><i class="fas fa-dumbbell"></i></div>
+                            <h3>Cardiac Rehabilitation</h3>
+                            <p>Supervised exercise programs and lifestyle counseling to aid recovery after cardiac events or surgery.</p>
+                        </div>
                     </div>
                     <div class="specialty-card fade-up">
-                        <div class="specialty-icon"><i class="fas fa-lungs"></i></div>
-                        <h3>Vascular Surgery</h3>
-                        <p>Surgical and endovascular treatment of conditions affecting blood vessels throughout the body.</p>
+                        <div class="specialty-img-wrap">
+                            <img src="assets/images/h2-spec-vascular.jpg" alt="Vascular Surgery" class="specialty-img" loading="lazy">
+                        </div>
+                        <div class="specialty-content">
+                            <div class="specialty-icon"><i class="fas fa-lungs"></i></div>
+                            <h3>Vascular Surgery</h3>
+                            <p>Surgical and endovascular treatment of conditions affecting blood vessels throughout the body.</p>
+                        </div>
                     </div>
                     <div class="specialty-card fade-up">
-                        <div class="specialty-icon"><i class="fas fa-heart-crack"></i></div>
-                        <h3>Heart Failure Management</h3>
-                        <p>Comprehensive care programs for chronic heart failure, including advanced device therapies and transplant evaluation.</p>
+                        <div class="specialty-img-wrap">
+                            <img src="assets/images/h2-spec-heart-failure.jpg" alt="Heart Failure Management" class="specialty-img" loading="lazy">
+                        </div>
+                        <div class="specialty-content">
+                            <div class="specialty-icon"><i class="fas fa-heart-crack"></i></div>
+                            <h3>Heart Failure Management</h3>
+                            <p>Comprehensive care programs for chronic heart failure, including advanced device therapies and transplant evaluation.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1802,8 +1836,6 @@
                             <div class="zigzag-feat"><i class="fas fa-check"></i> Biplane Fluoroscopy Systems & Real-Time Cineangiography</div>
                             <div class="zigzag-feat"><i class="fas fa-check"></i> Intravascular Ultrasound (IVUS) & Optical Coherence (OCT)</div>
                             <div class="zigzag-feat"><i class="fas fa-check"></i> Fractional Flow Reserve (FFR) & Microvascular Resistance</div>
-                            <div class="zigzag-feat"><i class="fas fa-check"></i> Transcatheter Valve Repair (TAVR) & Structural Closure</div>
-                            <div class="zigzag-feat"><i class="fas fa-check"></i> Ultra-Low Radiation Dose Protocols with Real-Time Dosimetry</div>
                         </div>
                         <div class="zigzag-tags">
                             <span class="zigzag-tag"><i class="fas fa-bolt"></i> Door-to-Balloon &lt; 60 Min</span>
@@ -2093,7 +2125,7 @@
                 <div class="h2-testimonial-grid">
                     <div class="h2-testimonial fade-up">
                         <div class="h2-quote-mark">"</div>
-                        <p>The team at CardioVita didn't just treat my condition — they educated me about my heart health and empowered me to make lasting lifestyle changes. I feel like a new person.</p>
+                        <p>The team at CardioVita didn't just treat my condition — they educated me about my heart health and empowered me to make lasting lifestyle changes in the cardiac care journey.</p>
                         <div class="h2-testimonial-author">
                             <img src="assets/images/h2-testimonial-1.jpg" alt="James P." class="h2-testimonial-avatar">
                             <div class="h2-testimonial-info">

@@ -32,7 +32,7 @@
         .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
         .process-card{text-align:center;position:relative}
         .process-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.1rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
-        .process-img{width:100%;height:160px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:.75rem}
+        .process-img{width:100%;height:175px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:.75rem}
         .process-card h4{font-size:1rem;margin-bottom:.35rem}
         .process-card p{font-size:.84375rem}
         .stats-section{position:relative;background-size:cover;background-position:center;padding:4rem 0}
@@ -63,30 +63,13 @@
         @media (max-width: 1024px) {
             .service-grid, .process-grid, .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .service-card-img { height: 260px; object-position: center 20%; }
+            .process-img { height: 260px; }
             .about-split {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
+                grid-template-columns: 1.05fr 1fr;
+                gap: 2rem;
+                align-items: stretch;
             }
-            .about-split > div:last-child {
-                max-width: 680px;
-                margin: 0 auto;
-                width: 100%;
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .about-split .section-tag { margin: 0 auto 0.75rem; }
-            .about-split .section-title { text-align: center; }
-            .about-split .section-desc { text-align: center; margin-left: auto; margin-right: auto; }
-            .about-split .about-features {
-                text-align: left;
-                max-width: 520px;
-                width: 100%;
-                margin: 1.5rem auto;
-            }
-            .about-split .btn { margin: 0 auto; }
-            .about-img { height: 380px; min-height: auto; }
+            .about-img { height: 100%; min-height: 460px; }
             .testimonial-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 1024px) and (min-width: 769px) {
@@ -105,6 +88,7 @@
             .service-grid, .testimonial-grid, .blog-grid { grid-template-columns: 1fr; }
             .service-card-img { height: 320px; object-position: center 18%; }
             .blog-card-img { height: 260px; object-position: center 20%; }
+            .process-img { height: 220px; }
             .testimonial-grid .testimonial-card:nth-child(3),
             .testimonial-grid .testimonial-card:nth-child(3):last-child,
             .blog-grid .blog-card:nth-child(3),
@@ -114,16 +98,38 @@
                 margin: 0 !important;
                 justify-self: auto !important;
             }
-            .about-split { gap: 1.75rem; }
-            .about-split > div:last-child { max-width: 100%; padding: 0 0.5rem; }
-            .about-split .about-features { max-width: 100%; }
+            .about-split {
+                grid-template-columns: 1fr;
+                gap: 1.75rem;
+            }
+            .about-split > div:last-child {
+                max-width: 100%;
+                padding: 0 0.5rem;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .about-split .section-tag { margin: 0 auto 0.75rem; }
+            .about-split .section-title { text-align: center; }
+            .about-split .section-desc { text-align: center; margin-left: auto; margin-right: auto; }
+            .about-split .about-features {
+                text-align: left;
+                max-width: 100%;
+                margin: 1.25rem auto;
+            }
+            .about-split .btn { margin: 0 auto; }
             .about-img { height: 280px; min-height: auto; }
         }
         @media (max-width: 480px) {
             .service-card-img { height: 240px; }
             .blog-card-img { height: 210px; }
+            .process-img { height: 180px; }
         }
-        @media (max-width: 360px) { .process-grid, .stats-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 360px) {
+            .process-grid, .stats-grid { grid-template-columns: 1fr; }
+            .process-img { height: 200px; }
+        }
     </style>
 </head>
 <body>
@@ -202,7 +208,7 @@
         </section>
 
         <!-- STATISTICS COUNTER -->
-        <section class="stats-section" style="background-image:url('assets/images/stats-background.jpg')">
+        <section class="stats-section" style="background-image:url('assets/images/cardiac-cells-bg.jpg')">
             <div class="stats-overlay"></div>
             <div class="container">
                 <div class="stats-grid fade-up">
@@ -452,13 +458,13 @@
                         <div class="process-num">1</div>
                         <img src="assets/images/process-step1.jpg" alt="Book Appointment" class="process-img">
                         <h4>Book Appointment</h4>
-                        <p>Schedule your visit online or call our team for a convenient appointment time.</p>
+                        <p>Schedule your visit online or call our team for a convenient time.</p>
                     </div>
                     <div class="process-card fade-up">
                         <div class="process-num">2</div>
                         <img src="assets/images/process-step2.jpg" alt="Initial Assessment" class="process-img">
                         <h4>Initial Assessment</h4>
-                        <p>Comprehensive evaluation including medical history review.</p>
+                        <p>Comprehensive evaluation assessment including medical history review.</p>
                     </div>
                     <div class="process-card fade-up">
                         <div class="process-num">3</div>
@@ -471,6 +477,127 @@
                         <img src="assets/images/process-step4.jpg" alt="Follow-Up Care" class="process-img">
                         <h4>Follow-Up Care</h4>
                         <p>Ongoing monitoring and follow-up visits to track your progress and recovery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHEST PAIN TRIAGE & EMERGENCY PROTOCOL -->
+        <section class="section triage-section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag" style="background:rgba(239,68,68,0.12);color:#DC2626"><i class="fas fa-truck-medical"></i> Emergency Response</span>
+                    <h2 class="section-title">Chest Pain Triage & Rapid Emergency Protocol</h2>
+                    <p class="section-desc">When cardiac symptoms strike, minutes determine heart muscle survival. Learn our rapid triage pathways and immediate response standards.</p>
+                </div>
+                <div class="triage-grid fade-up">
+                    <!-- Acute Emergency -->
+                    <div class="triage-card critical">
+                        <div>
+                            <span class="triage-badge danger"><i class="fas fa-triangle-exclamation"></i> Immediate Emergency</span>
+                            <div class="triage-icon-wrap"><i class="fas fa-heart-crack"></i></div>
+                            <h3>Heart Attack Warning Signs</h3>
+                            <p>Call 911 or our Emergency Hotline immediately. Every second of delay impacts cardiac muscle preservation.</p>
+                            <ul class="triage-symptoms-list">
+                                <li><i class="fas fa-circle-exclamation"></i> <span>Crushing central chest heaviness, pressure, or tightness</span></li>
+                                <li><i class="fas fa-circle-exclamation"></i> <span>Radiating numbness or pain to left arm, neck, back, or jaw</span></li>
+                                <li><i class="fas fa-circle-exclamation"></i> <span>Cold sweats, sudden dizziness, nausea, or impending doom</span></li>
+                            </ul>
+                        </div>
+                        <div class="triage-action-box">
+                            <a href="tel:5559114327" class="btn btn-primary w-100" style="background:#DC2626;border-color:#DC2626">
+                                <i class="fas fa-phone-volume"></i> Emergency: (555) 911-HEART
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Urgent Walk-in -->
+                    <div class="triage-card urgent">
+                        <div>
+                            <span class="triage-badge warning"><i class="fas fa-clock"></i> Same-Day Walk-In</span>
+                            <div class="triage-icon-wrap"><i class="fas fa-user-doctor"></i></div>
+                            <h3>Acute Symptom Evaluation</h3>
+                            <p>For urgent new-onset symptoms that require same-day physician evaluation and rhythm diagnostics.</p>
+                            <ul class="triage-symptoms-list">
+                                <li><i class="fas fa-circle-dot"></i> <span>Rapid palpitations or fluttering heartbeat lasting &gt; 15 mins</span></li>
+                                <li><i class="fas fa-circle-dot"></i> <span>Shortness of breath climbing stairs or when resting flat</span></li>
+                                <li><i class="fas fa-circle-dot"></i> <span>Unexplained bilateral fluid retention or ankle swelling</span></li>
+                            </ul>
+                        </div>
+                        <div class="triage-action-box">
+                            <a href="contact.html" class="btn btn-outline w-100">
+                                <i class="fas fa-location-dot"></i> Walk-In Clinic Directions
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Direct Cath Lab Guarantee -->
+                    <div class="triage-card cathlab">
+                        <div>
+                            <span class="triage-badge success"><i class="fas fa-shield-halved"></i> Fast-Track Protocol</span>
+                            <div class="triage-icon-wrap"><i class="fas fa-heart-circle-bolt"></i></div>
+                            <h3>Cath Lab Guarantee</h3>
+                            <p>Our STEMI emergency protocol bypasses general triage to route acute coronary alerts directly into our surgical suite.</p>
+                            <ul class="triage-symptoms-list">
+                                <li><i class="fas fa-check"></i> <span><strong>&lt; 45 Minute</strong> Door-to-Balloon Time (National avg: 90m)</span></li>
+                                <li><i class="fas fa-check"></i> <span>Direct ambulance bay into biplane catheterization suite</span></li>
+                                <li><i class="fas fa-check"></i> <span>On-site 24/7 board-certified interventional surgical team</span></li>
+                            </ul>
+                        </div>
+                        <div class="triage-action-box">
+                            <a href="services.html" class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-hospital"></i> Explore Cath Lab Technology
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG PREVIEW -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-newspaper"></i> Health Blog</span>
+                    <h2 class="section-title">Latest Heart Health Insights</h2>
+                    <p class="section-desc">Stay informed with expert articles on cardiovascular health, prevention tips, and the latest advancements in cardiac care.</p>
+                </div>
+                <div class="blog-grid">
+                    <div class="blog-card fade-up">
+                        <img src="assets/images/blog-cholesterol.jpg" alt="Cholesterol Management" class="blog-card-img">
+                        <div class="blog-card-body">
+                            <div class="blog-meta">
+                                <span class="blog-category">Prevention</span>
+                                <span class="blog-date">Nov 15, 2024</span>
+                            </div>
+                            <h3>Understanding Cholesterol levels for heart</h3>
+                            <p>Learn how to interpret your cholesterol levels and what lifestyle changes can improve your heart health significantly.</p>
+                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card fade-up">
+                        <img src="assets/images/blog-exercise.jpg" alt="Heart Exercise" class="blog-card-img">
+                        <div class="blog-card-body">
+                            <div class="blog-meta">
+                                <span class="blog-category">Wellness</span>
+                                <span class="blog-date">Nov 8, 2024</span>
+                            </div>
+                            <h3>The Best Exercises for a Healthy Heart at Any Age</h3>
+                            <p>Discover the most effective cardiovascular exercises recommended by our cardiologists for optimal heart fitness.</p>
+                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card fade-up">
+                        <img src="assets/images/blog-diet.jpg" alt="Heart-Healthy Diet" class="blog-card-img">
+                        <div class="blog-card-body">
+                            <div class="blog-meta">
+                                <span class="blog-category">Nutrition</span>
+                                <span class="blog-date">Oct 28, 2024</span>
+                            </div>
+                            <h3>Heart-Healthy Diet: Foods That Protect Your Cardiovascular System</h3>
+                            <p>A comprehensive guide to foods that lower blood pressure, reduce inflammation, and support overall cardiac wellness.</p>
+                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -574,127 +701,6 @@
                         </button>
                         <div class="faq-answer">
                             <p>If you or someone else is experiencing a cardiac emergency such as severe chest pain, difficulty breathing, or loss of consciousness, call 911 immediately. Our emergency cardiac unit is available 24/7 for urgent cases.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHEST PAIN TRIAGE & EMERGENCY PROTOCOL -->
-        <section class="section triage-section">
-            <div class="container">
-                <div class="section-header text-center fade-up">
-                    <span class="section-tag" style="background:rgba(239,68,68,0.12);color:#DC2626"><i class="fas fa-truck-medical"></i> Emergency Response</span>
-                    <h2 class="section-title">Chest Pain Triage & Rapid Emergency Protocol</h2>
-                    <p class="section-desc">When cardiac symptoms strike, minutes determine heart muscle survival. Learn our rapid triage pathways and immediate response standards.</p>
-                </div>
-                <div class="triage-grid fade-up">
-                    <!-- Acute Emergency -->
-                    <div class="triage-card critical">
-                        <div>
-                            <span class="triage-badge danger"><i class="fas fa-triangle-exclamation"></i> Immediate Emergency</span>
-                            <div class="triage-icon-wrap"><i class="fas fa-heart-crack"></i></div>
-                            <h3>Heart Attack Warning Signs</h3>
-                            <p>Call 911 or our Emergency Hotline immediately. Every second of delay impacts cardiac muscle preservation.</p>
-                            <ul class="triage-symptoms-list">
-                                <li><i class="fas fa-circle-exclamation"></i> <span>Crushing central chest heaviness, pressure, or tightness</span></li>
-                                <li><i class="fas fa-circle-exclamation"></i> <span>Radiating numbness or pain to left arm, neck, back, or jaw</span></li>
-                                <li><i class="fas fa-circle-exclamation"></i> <span>Cold sweats, sudden dizziness, nausea, or impending doom</span></li>
-                            </ul>
-                        </div>
-                        <div class="triage-action-box">
-                            <a href="tel:5559114327" class="btn btn-primary w-100" style="background:#DC2626;border-color:#DC2626">
-                                <i class="fas fa-phone-volume"></i> Emergency: (555) 911-HEART
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Urgent Walk-in -->
-                    <div class="triage-card urgent">
-                        <div>
-                            <span class="triage-badge warning"><i class="fas fa-clock"></i> Same-Day Walk-In</span>
-                            <div class="triage-icon-wrap"><i class="fas fa-user-doctor"></i></div>
-                            <h3>Acute Symptom Evaluation</h3>
-                            <p>For urgent new-onset symptoms that require same-day physician evaluation and rhythm diagnostics.</p>
-                            <ul class="triage-symptoms-list">
-                                <li><i class="fas fa-circle-dot"></i> <span>Rapid palpitations or fluttering heartbeat lasting &gt; 15 mins</span></li>
-                                <li><i class="fas fa-circle-dot"></i> <span>Shortness of breath climbing stairs or when resting flat</span></li>
-                                <li><i class="fas fa-circle-dot"></i> <span>Unexplained bilateral fluid retention or ankle swelling</span></li>
-                            </ul>
-                        </div>
-                        <div class="triage-action-box">
-                            <a href="contact.html" class="btn btn-outline w-100">
-                                <i class="fas fa-location-dot"></i> Walk-In Clinic Directions
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Direct Cath Lab Guarantee -->
-                    <div class="triage-card cathlab">
-                        <div>
-                            <span class="triage-badge success"><i class="fas fa-shield-halved"></i> Fast-Track Protocol</span>
-                            <div class="triage-icon-wrap"><i class="fas fa-heart-circle-bolt"></i></div>
-                            <h3>Cath Lab Guarantee</h3>
-                            <p>Our STEMI emergency protocol bypasses general triage to route acute coronary alerts directly into our surgical suite.</p>
-                            <ul class="triage-symptoms-list">
-                                <li><i class="fas fa-check"></i> <span><strong>&lt; 45 Minute</strong> Door-to-Balloon Time (National avg: 90m)</span></li>
-                                <li><i class="fas fa-check"></i> <span>Direct ambulance bay into biplane catheterization suite</span></li>
-                                <li><i class="fas fa-check"></i> <span>On-site 24/7 board-certified interventional surgical team</span></li>
-                            </ul>
-                        </div>
-                        <div class="triage-action-box">
-                            <a href="services.html" class="btn btn-outline-secondary w-100">
-                                <i class="fas fa-hospital"></i> Explore Cath Lab Technology
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- BLOG PREVIEW -->
-        <section class="section">
-            <div class="container">
-                <div class="section-header text-center fade-up">
-                    <span class="section-tag"><i class="fas fa-newspaper"></i> Health Blog</span>
-                    <h2 class="section-title">Latest Heart Health Insights</h2>
-                    <p class="section-desc">Stay informed with expert articles on cardiovascular health, prevention tips, and the latest advancements in cardiac care.</p>
-                </div>
-                <div class="blog-grid">
-                    <div class="blog-card fade-up">
-                        <img src="assets/images/blog-cholesterol.jpg" alt="Cholesterol Management" class="blog-card-img">
-                        <div class="blog-card-body">
-                            <div class="blog-meta">
-                                <span class="blog-category">Prevention</span>
-                                <span class="blog-date">Nov 15, 2024</span>
-                            </div>
-                            <h3>Understanding Cholesterol: What Your Numbers Really Mean</h3>
-                            <p>Learn how to interpret your cholesterol levels and what lifestyle changes can improve your heart health significantly.</p>
-                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-card fade-up">
-                        <img src="assets/images/blog-exercise.jpg" alt="Heart Exercise" class="blog-card-img">
-                        <div class="blog-card-body">
-                            <div class="blog-meta">
-                                <span class="blog-category">Wellness</span>
-                                <span class="blog-date">Nov 8, 2024</span>
-                            </div>
-                            <h3>The Best Exercises for a Healthy Heart at Any Age</h3>
-                            <p>Discover the most effective cardiovascular exercises recommended by our cardiologists for optimal heart fitness.</p>
-                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-card fade-up">
-                        <img src="assets/images/blog-diet.jpg" alt="Heart-Healthy Diet" class="blog-card-img">
-                        <div class="blog-card-body">
-                            <div class="blog-meta">
-                                <span class="blog-category">Nutrition</span>
-                                <span class="blog-date">Oct 28, 2024</span>
-                            </div>
-                            <h3>Heart-Healthy Diet: Foods That Protect Your Cardiovascular System</h3>
-                            <p>A comprehensive guide to foods that lower blood pressure, reduce inflammation, and support overall cardiac wellness.</p>
-                            <a href="coming-soon.html" class="service-card-link">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>

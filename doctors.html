@@ -297,7 +297,13 @@
         color: var(--text-muted);
         opacity: .15;
         position: absolute;
-        top: 24px;
+        top: 28px;
+        right: 32px;
+        left: auto;
+        pointer-events: none;
+      }
+      [dir="rtl"] .testimonial-card .quote-icon {
+        right: auto;
         left: 32px;
       }
       .testimonial-stars {
@@ -324,16 +330,14 @@
         gap: 12px;
       }
       .testimonial-author-avatar {
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
         border-radius: 50%;
-        background: var(--bg-alt);
-        color: var(--text);
-        border: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
+        object-fit: cover;
+        object-position: center top;
+        border: 2px solid var(--primary);
+        flex-shrink: 0;
+        display: block;
       }
       .testimonial-author-info strong {
         display: block;
@@ -404,6 +408,8 @@
         .doctor-grid { grid-template-columns: 1fr; }
         .expertise-row { grid-template-columns: 1fr; }
         .testimonial-card { padding: 28px 20px; }
+        .testimonial-card .quote-icon { top: 22px; right: 20px; left: auto; }
+        [dir="rtl"] .testimonial-card .quote-icon { right: auto; left: 20px; }
       }
     </style>
 </head>
@@ -641,9 +647,7 @@
                         </div>
                         <blockquote>"Dr. James Mitchell performed my stent procedure and I was back on my feet within days. His calm demeanor and clear explanations made a terrifying diagnosis feel manageable. I truly owe him my life."</blockquote>
                         <div class="testimonial-author">
-                            <div class="testimonial-author-avatar">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
+                            <img src="assets/images/doc-testimonial-1.jpg" alt="Michael R. Patterson" class="testimonial-author-avatar" loading="lazy">
                             <div class="testimonial-author-info">
                                 <strong>Michael R. Patterson</strong>
                                 <span>Interventional Cardiology Patient</span>
@@ -663,9 +667,7 @@
                         </div>
                         <blockquote>"Dr. Emily Thompson has been caring for my daughter's congenital heart condition since she was an infant. Her warmth, expertise, and dedication have given our family so much hope and confidence."</blockquote>
                         <div class="testimonial-author">
-                            <div class="testimonial-author-avatar">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
+                            <img src="assets/images/doc-testimonial-2.jpg" alt="Angela Torres" class="testimonial-author-avatar" loading="lazy">
                             <div class="testimonial-author-info">
                                 <strong>Angela Torres</strong>
                                 <span>Pediatric Cardiology Parent</span>
@@ -685,9 +687,7 @@
                         </div>
                         <blockquote>"Living with persistent atrial fibrillation was debilitating until I met Dr. Sarah Chen. Her advanced ablation therapy completely stabilized my heart rhythm. I can now jog and travel with total peace of mind."</blockquote>
                         <div class="testimonial-author">
-                            <div class="testimonial-author-avatar">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
+                            <img src="assets/images/doc-testimonial-3.jpg" alt="David L. Harrison" class="testimonial-author-avatar" loading="lazy">
                             <div class="testimonial-author-info">
                                 <strong>David L. Harrison</strong>
                                 <span>Electrophysiology Patient</span>
@@ -707,9 +707,7 @@
                         </div>
                         <blockquote>"Dr. Maria Rodriguez performed my robotic-assisted valve repair with exceptional precision. The surgical team provided round-the-clock compassionate care, and my recovery exceeded all expectations."</blockquote>
                         <div class="testimonial-author">
-                            <div class="testimonial-author-avatar">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
+                            <img src="assets/images/doc-testimonial-4.jpg" alt="Eleanor Vance" class="testimonial-author-avatar" loading="lazy">
                             <div class="testimonial-author-info">
                                 <strong>Eleanor Vance</strong>
                                 <span>Cardiac Surgery Patient</span>

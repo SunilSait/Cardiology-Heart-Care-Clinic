@@ -30,7 +30,7 @@
         .timeline-item:nth-child(even){direction:rtl}
         .timeline-item:nth-child(even) .timeline-content{direction:ltr}
         .timeline-dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:var(--primary);border:3px solid var(--bg);z-index:2;box-shadow:0 0 0 4px rgba(230, 28, 28,.2)}
-        .timeline-img{width:100%;height:220px;object-fit:cover;border-radius:var(--radius-md);border:2px solid rgba(230, 28, 28,.2)}
+        .timeline-img{width:100%;height:260px;object-fit:cover;object-position:center;border-radius:var(--radius-md);border:2px solid rgba(230, 28, 28,.2)}
         .timeline-content{padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);border-top:3px solid var(--primary)}
         .timeline-year{font-size:.8125rem;font-weight:600;color:var(--primary);margin-bottom:.35rem;display:inline-flex;align-items:center;gap:.35rem;background:rgba(230, 28, 28,.08);padding:.2rem .6rem;border-radius:var(--radius-full)}
         .timeline-content h3{font-size:1.15rem;margin-bottom:.4rem}
@@ -41,7 +41,8 @@
         .philosophy-icon{width:56px;height:56px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.25rem;margin:0 auto .85rem}
         .philosophy-card h3{font-size:1rem;margin-bottom:.35rem}
         .philosophy-card p{font-size:.84375rem}
-        .facility-section{position:relative;min-height:360px;background-size:cover;background-position:center;display:flex;align-items:center}
+        .facility-section{position:relative;min-height:360px;padding:4.5rem 0;background-size:cover;background-position:center;display:flex;align-items:center}
+        .facility-section .container{position:relative;z-index:2;width:100%}
         .facility-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(230, 28, 28,.90) 0%,rgba(185, 28, 28,.90) 45%,rgba(74, 7, 16,.94) 100%)}
         html.dark .facility-overlay,:root.dark .facility-overlay{background:linear-gradient(135deg,rgba(185, 28, 28,.88) 0%,rgba(92, 13, 23,.92) 50%,rgba(15, 17, 23,.96) 100%)}
         .facility-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;position:relative;z-index:2;text-align:center;color:#fff}
@@ -58,18 +59,20 @@
         .value-item p{font-size:.8125rem}
         .accred-section{text-align:center}
         .accred-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:1.75rem;align-items:stretch;margin-top:1rem}
-        .accred-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.25rem 2rem;display:flex;flex-direction:column;justify-content:center;text-align:left;box-shadow:var(--shadow-sm);transition:all var(--transition-normal)}
+        .accred-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.25rem 2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--transition-normal)}
         .accred-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 12px 30px rgba(230,28,28,.12),var(--shadow-md)}
-        .accred-card-icon{width:50px;height:50px;border-radius:12px;background:var(--bg-alt);color:var(--text);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.15rem;border:1px solid var(--border)}
-        .accred-card-tag{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--primary);margin-bottom:.5rem;display:flex;align-items:center;gap:.35rem}
+        .accred-card-icon{width:50px;height:50px;border-radius:12px;background:var(--bg-alt);color:var(--text);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin:0 auto 1.15rem;border:1px solid var(--border)}
+        .accred-card-tag{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--primary);margin-bottom:.5rem;display:inline-flex;align-items:center;justify-content:center;gap:.35rem}
         .accred-card h3{font-size:1.25rem;font-weight:600;margin-bottom:.85rem;color:var(--text);line-height:1.3}
         .accred-card p{font-size:.9rem;line-height:1.65;color:var(--text-light);margin-bottom:0}
         .accred-center{display:flex;align-items:center;justify-content:center}
         .accred-center .accred-img{width:100%;max-width:100%;height:100%;min-height:280px;object-fit:cover;border-radius:var(--radius-lg);margin:0;border:1px solid var(--border)}
-        [dir="rtl"] .accred-card{text-align:right}
+        [dir="rtl"] .accred-card{text-align:center}
         @media(max-width:1024px){
             .accred-grid{grid-template-columns:1fr;gap:1.5rem}
+            .accred-center{order:-1}
             .accred-center .accred-img{max-width:600px;height:280px;margin:0 auto}
+            .accred-card{max-width:600px;width:100%;margin:0 auto;text-align:center;align-items:center}
         }
         /* ── Modern Split About CTA Card ── */
         .about-cta-section {
@@ -242,6 +245,33 @@
             }
             .about-cta-content-col {
                 padding: 2.75rem 1.75rem;
+                text-align: center;
+                align-items: center;
+            }
+            .about-cta-content-col .cta-normal-badge {
+                align-self: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about-cta-title {
+                text-align: center;
+            }
+            .about-cta-desc {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about-cta-actions {
+                justify-content: center;
+            }
+            .about-cta-features {
+                justify-content: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .about-cta-actions .btn {
+                width: 100% !important;
+                min-width: 0 !important;
             }
         }
         [dir="rtl"] .about-cta-img-badge {
@@ -251,9 +281,380 @@
         [dir="rtl"] .about-cta-image-col::after {
             background: linear-gradient(to right, rgba(19, 40, 64, 0.1) 0%, rgba(19, 40, 64, 0.55) 100%);
         }
-        @media(max-width:1024px){.story-split,.values-split{grid-template-columns:1fr}.philosophy-grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr;gap:1rem}.timeline-line{left:1rem}.timeline-dot{left:1rem}.timeline-item:nth-child(even){direction:ltr}}
-        @media(max-width:768px){.facility-stats{grid-template-columns:1fr;gap:1.5rem}.story-img{height:260px}.values-img{height:320px;min-height:unset}.accred-badges{flex-direction:column;align-items:center}.philosophy-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}}
-        @media(max-width:360px){.timeline-line{display:none}.timeline-dot{display:none}.facility-stat-value{font-size:2rem}}
+        /* ── Section 8: Clinical Outcomes & Benchmarks ── */
+        .outcome-tabs {
+            display: flex;
+            justify-content: center;
+            gap: .65rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.25rem;
+        }
+        .outcome-tab-btn {
+            padding: .55rem 1.15rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-light);
+            font-size: .875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-family: inherit;
+        }
+        .outcome-tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .outcome-tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(230, 28, 28, .25);
+        }
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+        .benchmark-panel,
+        .governance-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .benchmark-panel h3,
+        .governance-panel h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: .4rem;
+            color: var(--text);
+        }
+        .benchmark-sub {
+            font-size: .875rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .benchmark-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.55rem;
+            flex: 1;
+            justify-content: center;
+        }
+        .benchmark-footnote {
+            margin-top: 1.5rem;
+            padding-top: 1.15rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .75rem;
+            flex-wrap: wrap;
+            font-size: .8125rem;
+            color: var(--text-muted);
+        }
+        .benchmark-footnote span {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        .benchmark-footnote i {
+            color: var(--primary);
+        }
+        .benchmark-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: .75rem;
+            margin-bottom: .45rem;
+            flex-wrap: wrap;
+        }
+        .benchmark-label {
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+        .benchmark-nums {
+            font-size: .8125rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .benchmark-nums span {
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: .4rem;
+        }
+        [dir="rtl"] .benchmark-nums span {
+            margin-left: 0;
+            margin-right: .4rem;
+        }
+        .benchmark-track {
+            position: relative;
+            height: 10px;
+            border-radius: var(--radius-full);
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .benchmark-fill {
+            height: 100%;
+            border-radius: var(--radius-full);
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+            transition: width .45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .governance-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: .5rem;
+        }
+        .gov-item {
+            display: flex;
+            align-items: flex-start;
+            gap: .9rem;
+            padding: 1rem 1.1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            transition: border-color var(--transition-fast), transform var(--transition-fast);
+        }
+        .gov-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .gov-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(230, 28, 28, .1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .gov-item h4 {
+            font-size: .95rem;
+            font-weight: 600;
+            margin-bottom: .2rem;
+            color: var(--text);
+        }
+        .gov-item p {
+            font-size: .8125rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ── Section 9: Community Outreach & Global Fellowship Bento ── */
+        .impact-bento-grid {
+            display: grid;
+            grid-template-columns: 1.08fr 1fr;
+            gap: 1.75rem;
+            align-items: stretch;
+        }
+        .impact-spotlight {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            min-height: 420px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .impact-spotlight img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            transition: transform .5s ease;
+        }
+        .impact-spotlight:hover img {
+            transform: scale(1.04);
+        }
+        .impact-spotlight-overlay {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 1.75rem 1.75rem;
+            background: linear-gradient(to top, rgba(15, 4, 7, .96) 0%, rgba(56, 6, 13, .86) 55%, transparent 100%);
+            color: #fff;
+        }
+        .impact-spotlight-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .3rem .75rem;
+            border-radius: var(--radius-full);
+            background: rgba(230, 28, 28, .9);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 600;
+            margin-bottom: .75rem;
+        }
+        .impact-spotlight-overlay h3 {
+            color: #fff;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+        }
+        .impact-spotlight-overlay p {
+            color: rgba(255, 255, 255, .9);
+            font-size: .9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .impact-spotlight-stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            padding-top: .85rem;
+            font-size: .8125rem;
+            color: rgba(255, 255, 255, .92);
+        }
+        .impact-spotlight-stats strong {
+            color: #fff;
+            font-weight: 600;
+        }
+        .impact-programs-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.1rem;
+        }
+        .impact-program-card {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.35rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all var(--transition-normal);
+        }
+        .impact-program-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .impact-program-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(230, 28, 28, .08);
+            border: 1px solid rgba(230, 28, 28, .2);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .impact-program-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-bottom: .3rem;
+        }
+        .impact-program-card h4 {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0;
+        }
+        .impact-metric-tag {
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(230, 28, 28, .08);
+            padding: .2rem .6rem;
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+        }
+        .impact-program-card p {
+            font-size: .84375rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin: 0;
+        }
+        @media (max-width: 991px) {
+            .outcomes-grid,
+            .impact-bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .impact-spotlight {
+                min-height: 360px;
+            }
+        }
+        @media (max-width: 480px) {
+            .benchmark-panel,
+            .governance-panel {
+                padding: 1.35rem;
+            }
+            .impact-program-card {
+                flex-direction: column;
+                padding: 1.25rem;
+            }
+        }
+        @media(max-width:1024px){
+            .story-split,.values-split{grid-template-columns:1fr;gap:2.5rem}
+            .story-img{max-width:680px;margin:0 auto;width:100%}
+            .story-text{
+                max-width:680px;
+                margin:0 auto;
+                width:100%;
+                text-align:center;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+            }
+            .story-text .section-tag{margin:0 auto 0.75rem}
+            .story-text .section-title{text-align:center}
+            .story-text .section-title::after{margin:0.75rem auto 0}
+            .story-text p{text-align:center}
+            .story-text .btn{margin:1.5rem auto 0 !important}
+            .values-img{max-width:680px;margin:0 auto;width:100%}
+            .values-split > div:last-child{max-width:680px;margin:0 auto;width:100%}
+            .philosophy-grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:768px){
+            .facility-section{padding:3.5rem 0;min-height:auto}
+            .facility-stats{grid-template-columns:1fr;gap:1.5rem}
+            .story-img{height:260px}
+            .values-img{height:320px;min-height:unset}
+            .philosophy-grid{grid-template-columns:1fr}
+            .values-grid{grid-template-columns:1fr}
+            .timeline-line{left:20px;transform:none}
+            .timeline-item{grid-template-columns:1fr;gap:1rem;padding-left:45px;position:relative}
+            .timeline-item:nth-child(even){direction:ltr}
+            .timeline-dot{left:20px;top:24px;transform:translate(-50%,0)}
+            .timeline-img{height:360px}
+        }
+        @media(max-width:480px){
+            .timeline-img{height:240px}
+        }
+        @media(max-width:360px){
+            .timeline-img{height:210px}
+            .facility-section{padding:3.25rem 0}
+            .timeline-line{display:none}
+            .timeline-dot{display:none}
+            .timeline-item{padding-left:0}
+            .facility-stat-value{font-size:2rem}
+        }
     </style>
 </head>
 <body>
@@ -492,6 +893,139 @@
             </div>
         </section>
 
+        <!-- CLINICAL QUALITY & OUTCOMES -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-chart-simple"></i> Clinical Transparency</span>
+                    <h2 class="section-title">Audited Clinical Outcomes & Governance</h2>
+                    <p class="section-desc">Independent registry benchmarking and multidisciplinary clinical oversight guide every procedure we perform.</p>
+                </div>
+                <div class="outcome-tabs fade-up" id="aboutOutcomeTabs">
+                    <button type="button" class="outcome-tab-btn active" data-outcome="overall">Overall Cardiac Center</button>
+                    <button type="button" class="outcome-tab-btn" data-outcome="cath">Interventional &amp; Cath</button>
+                    <button type="button" class="outcome-tab-btn" data-outcome="ep">Electrophysiology</button>
+                    <button type="button" class="outcome-tab-btn" data-outcome="surgery">Cardiac Surgery</button>
+                </div>
+                <div class="outcomes-grid fade-up">
+                    <div class="benchmark-panel">
+                        <div>
+                            <h3 id="outcomePanelTitle">Overall Institutional Benchmarks</h3>
+                            <p class="benchmark-sub" id="outcomePanelSub">Audited institutional performance vs. national cardiovascular hospital averages.</p>
+                            <div class="benchmark-list" id="outcomeBenchmarkList">
+                                <div>
+                                    <div class="benchmark-head">
+                                        <span class="benchmark-label">Patient Safety &amp; Infection-Free Rate</span>
+                                        <span class="benchmark-nums">99.6% <span>(Nat'l avg: 96.4%)</span></span>
+                                    </div>
+                                    <div class="benchmark-track"><div class="benchmark-fill" style="width:99.6%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="benchmark-head">
+                                        <span class="benchmark-label">Same-Week Specialist Access Rate</span>
+                                        <span class="benchmark-nums">96.0% <span>(Nat'l avg: 71.5%)</span></span>
+                                    </div>
+                                    <div class="benchmark-track"><div class="benchmark-fill" style="width:96%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="benchmark-head">
+                                        <span class="benchmark-label">30-Day Unplanned Readmission Avoidance</span>
+                                        <span class="benchmark-nums">94.8% <span>(Nat'l avg: 84.2%)</span></span>
+                                    </div>
+                                    <div class="benchmark-track"><div class="benchmark-fill" style="width:94.8%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="benchmark-head">
+                                        <span class="benchmark-label">Patient-Reported Recovery Satisfaction</span>
+                                        <span class="benchmark-nums">98.4% <span>(Nat'l avg: 88.0%)</span></span>
+                                    </div>
+                                    <div class="benchmark-track"><div class="benchmark-fill" style="width:98.4%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="governance-panel">
+                        <div>
+                            <h3>Medical Board &amp; Clinical Oversight</h3>
+                            <p class="benchmark-sub">Three independent committees oversee ethics, safety checklists, and peer-reviewed quality standards.</p>
+                            <div class="governance-list">
+                                <div class="gov-item">
+                                    <div class="gov-item-icon"><i class="fas fa-user-shield"></i></div>
+                                    <div>
+                                        <h4>Surgical &amp; Cath Peer Review</h4>
+                                        <p>Weekly multidisciplinary case conferences bring interventionalists, surgeons, and imaging leads together before complex interventions.</p>
+                                    </div>
+                                </div>
+                                <div class="gov-item">
+                                    <div class="gov-item-icon"><i class="fas fa-scale-balanced"></i></div>
+                                    <div>
+                                        <h4>Clinical Ethics &amp; Informed Consent</h4>
+                                        <p>Every patient receives visual treatment alternatives, unbiased risk disclosures, and shared decision-making tools prior to care in Clinic.</p>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY & GLOBAL IMPACT -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <span class="section-tag"><i class="fas fa-globe"></i> Beyond the Clinic</span>
+                    <h2 class="section-title">Community Outreach &amp; Academic Training</h2>
+                    <p class="section-desc">Extending cardiovascular expertise beyond hospital walls through medical fellowships, school readiness, and public heart screenings.</p>
+                </div>
+                <div class="impact-bento-grid fade-up">
+                    <div class="impact-spotlight">
+                        <img src="assets/images/hero2-operating.jpg" alt="CardioVita Visiting Clinical Fellowship & Live Surgical Training" loading="lazy">
+                        <div class="impact-spotlight-overlay">
+                            <span class="impact-spotlight-pill"><i class="fas fa-graduation-cap"></i> Academic Fellowship Center</span>
+                            <h3>Global Cardiovascular Training Hub</h3>
+                            <p>Each year, CardioVita hosts visiting cardiology fellows and surgical observers for live hybrid-suite case broadcasts and hands-on 3D electroanatomical mapping workshops.</p>
+                          
+                        </div>
+                    </div>
+                    <div class="impact-programs-col">
+                        <div class="impact-program-card">
+                            <div class="impact-program-icon"><i class="fas fa-hand-holding-medical"></i></div>
+                            <div style="flex:1;">
+                                <div class="impact-program-top">
+                                    <h4>Mobile Community Screenings</h4>
+                                    <span class="impact-metric-tag">12,400+ Screened</span>
+                                </div>
+                                <p>Weekend mobile clinics delivering free blood pressure, ECG checks, and cholesterol risk counseling across underserved neighborhoods.</p>
+                            </div>
+                        </div>
+                        <div class="impact-program-card">
+                            <div class="impact-program-icon"><i class="fas fa-heart-circle-bolt"></i></div>
+                            <div style="flex:1;">
+                                <div class="impact-program-top">
+                                    <h4>School &amp; Sports AED Readiness</h4>
+                                    <span class="impact-metric-tag">85 Local Schools</span>
+                                </div>
+                                <p>Donating automated external defibrillators and hands-only CPR certification workshops for youth coaches, teachers, and athletic staff.</p>
+                            </div>
+                        </div>
+                        <div class="impact-program-card">
+                            <div class="impact-program-icon"><i class="fas fa-children"></i></div>
+                            <div style="flex:1;">
+                                <div class="impact-program-top">
+                                    <h4>Pediatric Heart Fund</h4>
+                                    <span class="impact-metric-tag">320+ Kids Helped</span>
+                                </div>
+                                <p>Charitable surgical and interventional grants ensuring children born with congenital heart defects receive timely, life-saving treatment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA SECTION -->
         <section class="about-cta-section">
             <div class="container">
@@ -534,5 +1068,75 @@
     </main>
     <div id="footer-placeholder"></div>
     <script src="components.js"></script>
+    <script>
+      (function () {
+        const OUTCOMES = {
+          overall: {
+            title: "Overall Institutional Benchmarks",
+            sub: "Audited institutional performance vs. national cardiovascular hospital averages.",
+            rows: [
+              { label: "Patient Safety & Infection-Free Rate", val: "99.6%", avg: "Nat'l avg: 96.4%", pct: 99.6 },
+              { label: "Same-Week Specialist Access Rate", val: "96.0%", avg: "Nat'l avg: 71.5%", pct: 96.0 },
+              { label: "30-Day Unplanned Readmission Avoidance", val: "94.8%", avg: "Nat'l avg: 84.2%", pct: 94.8 },
+              { label: "Patient-Reported Recovery Satisfaction", val: "98.4%", avg: "Nat'l avg: 88.0%", pct: 98.4 }
+            ]
+          },
+          cath: {
+            title: "Interventional & Cath Lab Benchmarks",
+            sub: "Radial-first coronary interventions and emergency STEMI response metrics.",
+            rows: [
+              { label: "Transradial (Wrist-Access) Procedure Share", val: "92.5%", avg: "Nat'l avg: 58.0%", pct: 92.5 },
+              { label: "Emergency Door-to-Balloon < 45 Min Compliance", val: "97.2%", avg: "Nat'l avg: 79.0%", pct: 97.2 },
+              { label: "Procedural Patency & Immediate Flow Success", val: "99.4%", avg: "Nat'l avg: 95.1%", pct: 99.4 },
+              { label: "Same-Day Post-Angiogram Ambulation Rate", val: "94.1%", avg: "Nat'l avg: 69.5%", pct: 94.1 }
+            ]
+          },
+          ep: {
+            title: "Electrophysiology & Rhythm Benchmarks",
+            sub: "3D mapping ablation outcomes and cardiac implantable device longevity.",
+            rows: [
+              { label: "First-Procedure Sinus Rhythm Maintenance (1 Yr)", val: "91.8%", avg: "Nat'l avg: 78.4%", pct: 91.8 },
+              { label: "Low-Fluoroscopy / Zero-Radiation Mapping Rate", val: "88.5%", avg: "Nat'l avg: 44.0%", pct: 88.5 },
+              { label: "Pacemaker / ICD Complication-Free Implants", val: "99.3%", avg: "Nat'l avg: 96.8%", pct: 99.3 },
+              { label: "Remote Home Telemetry Enrollment Rate", val: "97.6%", avg: "Nat'l avg: 72.0%", pct: 97.6 }
+            ]
+          },
+          surgery: {
+            title: "Structural & Cardiac Surgery Benchmarks",
+            sub: "Minimally invasive valve repair and perioperative ICU recovery standards.",
+            rows: [
+              { label: "Mitral & Aortic Valve Repair Success", val: "99.1%", avg: "Nat'l avg: 95.5%", pct: 99.1 },
+              { label: "Early Post-Op Extubation (< 6 Hours)", val: "93.4%", avg: "Nat'l avg: 74.0%", pct: 93.4 },
+              { label: "Minimally Invasive / TAVR Eligibility Rate", val: "89.0%", avg: "Nat'l avg: 61.5%", pct: 89.0 },
+              { label: "Post-Surgical Rehab Graduation Rate", val: "95.2%", avg: "Nat'l avg: 68.0%", pct: 95.2 }
+            ]
+          }
+        };
+        const tabs = document.querySelectorAll('#aboutOutcomeTabs .outcome-tab-btn');
+        const listEl = document.getElementById('outcomeBenchmarkList');
+        const titleEl = document.getElementById('outcomePanelTitle');
+        const subEl = document.getElementById('outcomePanelSub');
+        if (!tabs.length || !listEl) return;
+        tabs.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const data = OUTCOMES[btn.dataset.outcome];
+            if (!data) return;
+            tabs.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            titleEl.textContent = data.title;
+            subEl.textContent = data.sub;
+            listEl.innerHTML = data.rows.map(r => `
+              <div>
+                <div class="benchmark-head">
+                  <span class="benchmark-label">${r.label}</span>
+                  <span class="benchmark-nums">${r.val} <span>(${r.avg})</span></span>
+                </div>
+                <div class="benchmark-track"><div class="benchmark-fill" style="width:${r.pct}%"></div></div>
+              </div>
+            `).join('');
+          });
+        });
+      })();
+    </script>
 </body>
 </html>
