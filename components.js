@@ -409,49 +409,50 @@ function initScrollAnimations() {
     const existingBar = document.getElementById('scroll-progress-bar');
     if (existingBar) existingBar.remove();
 
-    // Check if on auth page (login & signup only)
+    // Check if on auth or dashboard pages
     const isAuthPage = document.body.classList.contains('auth-page');
+    const isDashboardPage = Boolean(document.querySelector('.dash-layout'));
 
-    // Scroll to Top Floating Button (exclude auth pages: login & signup)
+    // Scroll to Top Floating Button (exclude auth pages & dashboard)
     let backToTop = document.getElementById('back-to-top-btn');
-    if (isAuthPage) {
+    if (isAuthPage || isDashboardPage) {
         if (backToTop) backToTop.remove();
-        return;
-    }
+        if (isAuthPage) return;
+    } else {
+        if (!backToTop) {
+            backToTop = document.createElement('button');
+            backToTop.id = 'back-to-top-btn';
+            backToTop.setAttribute('aria-label', 'Scroll to top');
+            backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            document.body.appendChild(backToTop);
 
-    if (!backToTop) {
-        backToTop = document.createElement('button');
-        backToTop.id = 'back-to-top-btn';
-        backToTop.setAttribute('aria-label', 'Scroll to top');
-        backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
-        document.body.appendChild(backToTop);
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // Scroll Handler (Back to Top visibility)
-    let isTicking = false;
-    function handleScroll() {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        if (backToTop) {
-            if (scrollTop > 350) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
+        // Scroll Handler (Back to Top visibility)
+        let isTicking = false;
+        function handleScroll() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            if (backToTop) {
+                if (scrollTop > 350) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
             }
+            isTicking = false;
         }
-        isTicking = false;
-    }
 
-    window.addEventListener('scroll', () => {
-        if (!isTicking) {
-            window.requestAnimationFrame(handleScroll);
-            isTicking = true;
-        }
-    }, { passive: true });
-    handleScroll();
+        window.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(handleScroll);
+                isTicking = true;
+            }
+        }, { passive: true });
+        handleScroll();
+    }
 
     // 3. Staggered Card Grid Animation Setup
     const gridSelectors = [
@@ -1134,9 +1135,9 @@ function initCardiacHero() {
             let bgH = bgCanvas.height = card.clientHeight || 530;
 
             const rbcSources = [
-                'assets/images/rbc-1.png?v=2',
-                'assets/images/rbc-2.png?v=2',
-                'assets/images/rbc-3.png?v=2'
+                'assets/images/rbc-1.png?v=3',
+                'assets/images/rbc-2.png?v=3',
+                'assets/images/rbc-3.png?v=3'
             ];
             const rbcImages = rbcSources.map(src => {
                 const img = new Image();
@@ -1412,9 +1413,9 @@ function initCardiacHero() {
                         bgCtx.translate(cell.x, cell.y);
                         bgCtx.rotate(cell.rot);
                         const s = cell.size;
-                        bgCtx.globalAlpha = Math.min(0.92, 0.45 + cell.depth * 0.45);
-                        bgCtx.shadowColor = 'rgba(210, 15, 30, 0.40)';
-                        bgCtx.shadowBlur = 12 * cell.depth;
+                        bgCtx.globalAlpha = Math.min(0.96, 0.54 + cell.depth * 0.42);
+                        bgCtx.shadowColor = 'rgba(20, 2, 6, 0.50)';
+                        bgCtx.shadowBlur = 10 * cell.depth;
                         bgCtx.drawImage(sprite, -s / 2, -s / 2, s, s);
                         bgCtx.restore();
                     }
